@@ -12,12 +12,11 @@
     id: 'cmd.exe',
     title: 'Command Prompt',
     desktopLabel: 'cmd.exe',
-    // Font glyph instead of cmd.svg: the tiny console text in the SVG turned into a blur at icon size
-    iconSvg: '<i class="bi bi-terminal-fill" style="color: #1d1d1d; font-size: 26px;"></i>',
+    iconUrl: 'assets/icons/cmd.svg',
     width: 640,
     height: 400,
     showOnDesktop: true,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       container.innerHTML = `
         <div class="terminal-container" id="terminal-screen-${win.appId}">

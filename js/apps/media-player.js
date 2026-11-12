@@ -47,7 +47,7 @@
     width: 720,
     height: 500,
     showOnDesktop: true,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     onClose: () => {
       if (_activeVideoEl) {
         _activeVideoEl.pause();

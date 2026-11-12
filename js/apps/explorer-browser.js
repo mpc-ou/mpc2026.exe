@@ -78,7 +78,7 @@
     width: 880,
     height: 600,
     showOnDesktop: true,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       container.style.overflow = 'hidden';
       container.style.display = 'flex';

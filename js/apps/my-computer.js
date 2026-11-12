@@ -14,7 +14,7 @@
     width: 680,
     height: 460,
     showOnDesktop: true,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       let currentView = 'root';
       let historyStack = ['root'];
