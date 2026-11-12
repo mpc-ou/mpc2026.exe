@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="pad-cover" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4a90e2"/>
+      <stop offset="100%" stop-color="#1555a6"/>
+    </linearGradient>
+    <linearGradient id="pencil" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffcc00"/>
+      <stop offset="100%" stop-color="#e67e22"/>
+    </linearGradient>
+  </defs>
+  <!-- Notepad Body -->
+  <rect x="8" y="5" width="28" height="38" rx="2" fill="#ffffff" stroke="#7a8c9e" stroke-width="1.2"/>
+  <!-- Top Blue Binding -->
+  <path d="M8 7 C8 5.8 8.8 5 10 5 L34 5 C35.2 5 36 5.8 36 7 L36 12 L8 12 Z" fill="url(#pad-cover)"/>
+  <!-- Ruled Lines -->
+  <line x1="12" y1="17" x2="32" y2="17" stroke="#7bb6fa" stroke-width="1.2"/>
+  <line x1="12" y1="22" x2="32" y2="22" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="12" y1="26" x2="32" y2="26" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="12" y1="30" x2="28" y2="30" stroke="#e0e0e0" stroke-width="1"/>
+  <line x1="12" y1="34" x2="24" y2="34" stroke="#e0e0e0" stroke-width="1"/>
+  <!-- Folded Corner Bottom Right -->
+  <polygon points="30,37 36,37 36,43" fill="#cfd8dc"/>
+  <polygon points="30,37 36,43 30,43" fill="#90a4ae"/>
+  <!-- Pencil -->
+  <g transform="rotate(-35 34 26)">
+    <rect x="24" y="24" width="22" height="5" rx="1" fill="url(#pencil)" stroke="#a06000" stroke-width="0.8"/>
+    <polygon points="24,24 18,26.5 24,29" fill="#f5deb3"/>
+    <polygon points="18,26.5 20,25.6 20,27.4" fill="#222"/>
+    <rect x="42" y="24" width="4" height="5" fill="#ff7675"/>
+    <rect x="40" y="24" width="2" height="5" fill="#silver"/>
+  </g>
+</svg>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT_MPC.txt</title>
+  <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      font-family: 'Consolas', 'Courier New', Courier, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      overflow-y: auto;
+      height: 100vh;
+      user-select: text;
+    }
+    .notepad-header {
+      border-bottom: 1px dashed #0055ea;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      color: #003399;
+      font-weight: bold;
+    }
+    .notepad-title {
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .notepad-section {
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-weight: bold;
+      color: #0055ea;
+      margin-bottom: 4px;
+    }
+    .highlight {
+      background: #fff8dc;
+      padding: 1px 4px;
+      border-radius: 2px;
+    }
+    .footer-stamp {
+      margin-top: 24px;
+      border-top: 1px dashed #ccc;
+      padding-top: 10px;
+      font-size: 11px;
+      color: #666;
+      display: flex;
+      justify-content: space-between;
+    }
+    .lang-bar {
+      margin-bottom: 10px;
+      text-align: right;
+    }
+    .lang-btn {
+      background: #ece9d8;
+      border: 1px solid #7f9db9;
+      font-size: 11px;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: Tahoma, sans-serif;
+    }
+    .lang-btn:hover {
+      background: #316ac5;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="lang-bar">
+    <button class="lang-btn" id="btn-toggle-lang"><i class="bi bi-translate"></i> <span id="lang-label">English</span></button>
+  </div>
+
+  <div class="notepad-header">
+    <div class="notepad-title" id="t-main-heading">=====================================================&#10;CHÀO MỪNG ĐẾN VỚI MPCLUB 2026&#10;=====================================================</div>
+  </div>
+
+  <div id="content-body">
+    <div class="notepad-section">
+      <p id="t-intro">MPClub (Multi-Platform Club) là câu lạc bộ học thuật & công nghệ trực thuộc Khoa Công Nghệ Thông Tin - Trường Đại học Mở TP.HCM (OU IT).</p>
+    </div>
+
+    <div class="notepad-section">
+      <div class="section-title" id="t-vision-title">1. TẦM NHÌN & SỨ MỆNH:</div>
+      <p id="t-vision-desc">- Xây dựng cộng đồng sinh viên đam mê công nghệ tại OU.<br>
+      - Tạo môi trường thực chiến qua các dự án phần mềm, giải đấu và workshop chuyên sâu.<br>
+      - Kết nối các thế hệ lập trình viên, chia sẻ kinh nghiệm và kỹ năng nghề nghiệp thực tế.</p>
+    </div>
+
+    <div class="notepad-section">
+      <div class="section-title" id="t-activities-title">2. CÁC HOẠT ĐỘNG CHÍNH:</div>
+      <p id="t-activities-desc">- Training chuyên môn hàng tuần: Web, Mobile, AI, DevOps, Thuật toán thi đấu.<br>
+      - Hackathon & Giải đấu nội bộ kịch tính (MPC Coding Cup).<br>
+      - Các buổi Tech Sharing từ cựu thành viên và chuyên gia doanh nghiệp công nghệ lớn.</p>
+    </div>
+
+    <div class="notepad-section">
+      <div class="section-title" id="t-culture-title">3. VĂN HÓA CLB:</div>
+      <p id="t-culture-desc">- Tinh thần sẻ chia, học hỏi lẫn nhau và không ngại thử thách mới.<br>
+      - Làm việc theo nhóm với quy trình Git/GitHub và chuẩn chuyên nghiệp.<br>
+      - Gắn kết qua những buổi dã ngoại, sinh hoạt ngoại khóa và bonding khó quên.</p>
+    </div>
+  </div>
+
+  <div class="footer-stamp">
+    <span>Ban Lập Trình (BLT) – MPClub</span>
+    <span>Khoa CNTT – ĐH Mở TP.HCM</span>
+  </div>
+
+  <script>
+    let isVi = true;
+    try {
+      if (window.parent && window.parent.I18n) {
+        isVi = window.parent.I18n.getLanguage() === 'vi';
+        window.parent.I18n.onChange(lang => {
+          setLang(lang === 'vi');
+        });
+      }
+    } catch(e) {}
+
+    function setLang(vi) {
+      isVi = vi;
+      document.getElementById('lang-label').textContent = isVi ? 'English' : 'Tiếng Việt';
+      if (isVi) {
+        document.getElementById('t-main-heading').textContent = '=====================================================\nCHÀO MỪNG ĐẾN VỚI MPCLUB 2026\n=====================================================';
+        document.getElementById('t-intro').textContent = 'MPClub (Multi-Platform Club) là câu lạc bộ học thuật & công nghệ trực thuộc Khoa Công Nghệ Thông Tin - Trường Đại học Mở TP.HCM (OU IT).';
+        document.getElementById('t-vision-title').textContent = '1. TẦM NHÌN & SỨ MỆNH:';
+        document.getElementById('t-vision-desc').innerHTML = '- Xây dựng cộng đồng sinh viên đam mê công nghệ tại OU.<br>- Tạo môi trường thực chiến qua các dự án phần mềm, giải đấu và workshop chuyên sâu.<br>- Kết nối các thế hệ lập trình viên, chia sẻ kinh nghiệm và kỹ năng nghề nghiệp thực tế.';
+        document.getElementById('t-activities-title').textContent = '2. CÁC HOẠT ĐỘNG CHÍNH:';
+        document.getElementById('t-activities-desc').innerHTML = '- Training chuyên môn hàng tuần: Web, Mobile, AI, DevOps, Thuật toán thi đấu.<br>- Hackathon & Giải đấu nội bộ kịch tính (MPC Coding Cup).<br>- Các buổi Tech Sharing từ cựu thành viên và chuyên gia doanh nghiệp công nghệ lớn.';
+        document.getElementById('t-culture-title').textContent = '3. VĂN HÓA CLB:';
+        document.getElementById('t-culture-desc').innerHTML = '- Tinh thần sẻ chia, học hỏi lẫn nhau và không ngại thử thách mới.<br>- Làm việc theo nhóm với quy trình Git/GitHub và chuẩn chuyên nghiệp.<br>- Gắn kết qua những buổi dã ngoại, sinh hoạt ngoại khóa và bonding khó quên.';
+      } else {
+        document.getElementById('t-main-heading').textContent = '=====================================================\nWELCOME TO MPCLUB 2026\n=====================================================';
+        document.getElementById('t-intro').textContent = 'MPClub (Multi-Platform Club) is an academic & technology club under the Faculty of Information Technology - Ho Chi Minh City Open University (OU IT).';
+        document.getElementById('t-vision-title').textContent = '1. VISION & MISSION:';
+        document.getElementById('t-vision-desc').innerHTML = '- Build an inspiring tech-enthusiast student community at OU.<br>- Hands-on project environment through software products, hackathons & workshops.<br>- Connect student generations and industry alumni to share real engineering experience.';
+        document.getElementById('t-activities-title').textContent = '2. CORE ACTIVITIES:';
+        document.getElementById('t-activities-desc').innerHTML = '- Weekly periodic training: Web, Mobile, AI, DevOps, Competitive Algorithms.<br>- Hackathons & internal tournaments (MPC Coding Cup).<br>- Tech Talk & Sharing sessions with senior alumni and tech leaders.';
+        document.getElementById('t-culture-title').textContent = '3. CLUB CULTURE:';
+        document.getElementById('t-culture-desc').innerHTML = '- Mutual sharing, continuous learning, and embracing new challenges.<br>- Team collaboration with modern Git/GitHub workflows.<br>- Unforgettable outdoor bonding retreats and camaraderie.';
+      }
+    }
+
+    document.getElementById('btn-toggle-lang').addEventListener('click', () => {
+      setLang(!isVi);
+      try {
+        if (window.parent && window.parent.I18n) {
+          window.parent.I18n.setLanguage(isVi ? 'vi' : 'en');
+        }
+      } catch(e) {}
+    });
+
+    setLang(isVi);
+  </script>
+</body>
+</html>

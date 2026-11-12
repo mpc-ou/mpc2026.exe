@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EVENTS</title>
+  <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Tahoma, 'Segoe UI', sans-serif;
+      font-size: 11px;
+      color: #111;
+      background: #ffffff;
+      padding: 16px;
+      overflow-y: auto;
+      height: 100vh;
+    }
+    .header-bar {
+      margin-bottom: 16px;
+      border-bottom: 2px solid #0055ea;
+      padding-bottom: 8px;
+    }
+    .title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #003399;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid #3399ff;
+      margin-left: 10px;
+    }
+    .event-item {
+      position: relative;
+      background: #f8faff;
+      border: 1px solid #c9d8eb;
+      border-radius: 4px;
+      padding: 12px;
+      transition: all 0.15s;
+    }
+    .event-item:hover {
+      border-color: #0055ea;
+      box-shadow: 0 3px 8px rgba(0, 85, 234, 0.15);
+      transform: translateX(4px);
+    }
+    .event-item::before {
+      content: "";
+      position: absolute;
+      left: -27px;
+      top: 14px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ff6600;
+      border: 2px solid #fff;
+      box-shadow: 0 0 4px #0055ea;
+    }
+    .event-badge {
+      display: inline-block;
+      background: #0055ea;
+      color: #fff;
+      font-size: 9px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-bottom: 6px;
+    }
+    .event-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #003399;
+      margin-bottom: 4px;
+    }
+    .event-desc {
+      color: #555;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <div class="title"><i class="bi bi-trophy-fill" style="color: #f4b400;"></i> Sự Kiện & Giải Đấu Trọng Điểm MPClub</div>
+  </div>
+
+  <div class="timeline">
+    <div class="event-item">
+      <span class="event-badge">SỰ KIỆN NỔI BẬT 2026</span>
+      <div class="event-title">🏆 MPC Coding Cup 2026</div>
+      <div class="event-desc">
+        Giải đấu lập trình thi đấu thuật toán thường niên quy mô toàn khoa CNTT - Trường ĐH Mở TP.HCM. Cơ hội rinh về giải thưởng lớn và tranh tài cùng những lập trình viên xuất sắc nhất.
+      </div>
+    </div>
+
+    <div class="event-item">
+      <span class="event-badge" style="background: #e65100;">WORKSHOP CHUYÊN GIA</span>
+      <div class="event-title">🎤 Tech Talk: Hành Trang Kỹ Sư Phần Mềm</div>
+      <div class="event-desc">
+        Tọa đàm gặp gỡ các Senior Software Engineer, Solutions Architect và cựu sinh viên thành đạt chia sẻ kinh nghiệm phỏng vấn, thực tập và xu hướng AI / Cloud computing.
+      </div>
+    </div>
+
+    <div class="event-item">
+      <span class="event-badge" style="background: #2e7d32;">HACKATHON THỰC CHIẾN</span>
+      <div class="event-title">⚡ Hackathon 24H: Innovation Sprint</div>
+      <div class="event-desc">
+        Đấu trường 24 giờ liên tục không ngủ, các đội thi hiện thực hóa ý tưởng sản phẩm công nghệ từ con số không thành MVP hoàn chỉnh phục vụ cộng đồng.
+      </div>
+    </div>
+
+    <div class="event-item">
+      <span class="event-badge" style="background: #7b1fa2;">GẮN KẾT THÀNH VIÊN</span>
+      <div class="event-title">🏕️ Teambuilding & Sinh Nhật MPClub</div>
+      <div class="event-desc">
+        Chuyến dã ngoại truyền thống hàng năm, nơi các thế hệ thành viên giao lưu, xả stress sau kỳ thi và thắt chặt tình cảm đồng đội.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

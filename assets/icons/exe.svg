@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="exe-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#d9e2ec"/>
+    </linearGradient>
+    <linearGradient id="exe-bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ff7700"/>
+      <stop offset="100%" stop-color="#ff9900"/>
+    </linearGradient>
+  </defs>
+  <!-- Window Container -->
+  <rect x="5" y="7" width="38" height="34" rx="3" fill="url(#exe-body)" stroke="#003399" stroke-width="1.5"/>
+  <!-- Titlebar -->
+  <path d="M5 10 C5 8.3 6.3 7 8 7 L40 7 C41.7 7 43 8.3 43 10 L43 15 L5 15 Z" fill="#0055ea"/>
+  <rect x="37" y="9" width="4" height="4" rx="0.5" fill="#ff4d4d"/>
+  <!-- App Screen Area -->
+  <rect x="9" y="19" width="30" height="18" fill="#1b2a4a" rx="1.5"/>
+  <!-- Big Shiny Gear / Rocket / Shield -->
+  <circle cx="24" cy="28" r="6" fill="url(#exe-bar)" stroke="#ffffff" stroke-width="1"/>
+  <polygon points="22,25 28,28 22,31" fill="#ffffff"/>
+  <!-- Ribbon Badge -->
+  <rect x="18" y="38" width="12" height="4" rx="1" fill="#e65100"/>
+  <text x="24" y="41.5" font-family="Arial, sans-serif" font-size="3.5" font-weight="bold" fill="#ffffff" text-anchor="middle">JOIN</text>
+</svg>

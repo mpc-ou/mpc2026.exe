@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "q_vi": "Sinh viên năm nhất (K25/K26) chưa có nhiều kiến thức lập trình có ứng tuyển được không?",
+    "a_vi": "Hoàn toàn được! MPClub luôn chào đón các bạn sinh viên có niềm đam mê và tinh thần ham học hỏi. CLB có lộ trình training bài bản từ cơ bản đến nâng cao (Web, Mobile, Thuật toán) cùng sự hướng dẫn tận tình từ các anh chị mentor.",
+    "q_en": "Can freshmen without much coding experience apply?",
+    "a_en": "Absolutely yes! MPClub welcomes everyone with curiosity and passion. We provide structured training paths from beginner to advanced with senior mentors."
+  },
+  {
+    "id": 2,
+    "q_vi": "MPClub có những ban chuyên môn nào? Tôi có thể đăng ký nhiều ban không?",
+    "a_vi": "MPClub gồm 4 ban: Ban Lập Trình (BLT), Ban Thiết Kế (BTK), Ban Truyền Thông (BTT), và Ban Sự Kiện (BSK). Bạn có thể chọn ban nguyện vọng 1 và ban nguyện vọng 2 phù hợp với thế mạnh của mình.",
+    "q_en": "What departments does MPClub have? Can I apply to multiple teams?",
+    "a_en": "MPClub has 4 divisions: Programming (BLT), Design (BTK), Media (BTT), and Event (BSK). You can specify your 1st and 2nd priority preferences."
+  },
+  {
+    "id": 3,
+    "q_vi": "Quy trình tuyển thành viên 2026 diễn ra như thế nào?",
+    "a_vi": "Quy trình gồm 3 vòng chính: Vòng 1 (Vòng đơn qua form JOIN_MPC.exe) ➜ Vòng 2 (Teamwork & Thử thách chuyên môn thực tế) ➜ Vòng 3 (Phỏng vấn trực tiếp cùng Ban Chủ Nhiệm và Trưởng ban).",
+    "q_en": "How does the 2026 recruitment process work?",
+    "a_en": "The process consists of 3 stages: Stage 1 (Application form) ➜ Stage 2 (Teamwork & Practical challenge) ➜ Stage 3 (Direct interview with Board leaders)."
+  },
+  {
+    "id": 4,
+    "q_vi": "Tham gia MPClub mang lại những quyền lợi gì cho sinh viên OU IT?",
+    "a_vi": "Được rèn luyện kỹ năng thực chiến qua các dự án phần mềm thật; Được cộng điểm rèn luyện theo quy chế Khoa CNTT - ĐH Mở TP.HCM; Mở rộng network với các anh chị Alumni tại các công ty công nghệ lớn; Môi trường sinh hoạt gắn kết và năng động!",
+    "q_en": "What benefits do members receive at MPClub?",
+    "a_en": "Hands-on project experience, university extracurricular training points (ĐRL), networking with alumni at top tech firms, and a supportive family environment!"
+  }
+]

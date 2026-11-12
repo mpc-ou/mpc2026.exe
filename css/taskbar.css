@@ -1,0 +1,645 @@
+/* ==========================================================================
+   Taskbar, Start Menu, System Tray Widgets & Turn Off Modal
+   ========================================================================== */
+
+.taskbar-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--taskbar-height);
+  background: var(--xp-taskbar-bg);
+  z-index: var(--z-taskbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #3f8cf3;
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Left: Start Button --- */
+.start-button {
+  height: 100%;
+  padding: 0 16px 0 10px;
+  background: var(--xp-start-green);
+  border: none;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  font-family: var(--font-system);
+  font-size: 14px;
+  font-weight: 800;
+  font-style: italic;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 2px 0 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.start-button:hover {
+  background: var(--xp-start-hover);
+}
+
+.start-button:active,
+.start-button.active {
+  background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 85%, #388e3c 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.start-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --- Middle: Running Task Items --- */
+.taskbar-tasks-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.taskbar-tasks-area::-webkit-scrollbar {
+  display: none;
+}
+
+.task-item {
+  height: 26px;
+  max-width: 170px;
+  min-width: 100px;
+  flex: 1;
+  background: linear-gradient(180deg, #3c81f3 0%, #276de8 30%, #1754ce 70%, #1545aa 100%);
+  border: 1px solid #13398c;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+  color: #ffffff;
+  font-size: 11px;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.task-item:hover {
+  background: linear-gradient(180deg, #5394f7 0%, #367af0 30%, #2264e0 70%, #184dbf 100%);
+}
+
+.task-item.active {
+  background: linear-gradient(180deg, #19439e 0%, #143785 40%, #1845aa 85%, #2558c4 100%);
+  border-color: #0b2259;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+}
+
+.task-item-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.task-item-icon img,
+.task-item-icon svg {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  display: block;
+}
+
+.task-item-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Right: System Tray --- */
+.system-tray {
+  height: 100%;
+  background: #0c59b9;
+  border-left: 1px solid #166ee8;
+  box-shadow: inset 1px 0 2px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px;
+  color: #ffffff;
+  font-size: 11px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.tray-lang-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 2px;
+  font-family: var(--font-system);
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s;
+}
+
+.tray-lang-switcher:hover {
+  background: #316ac5;
+  border-color: #ffffff;
+  box-shadow: 0 0 4px #80d8ff;
+}
+
+.tray-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tray-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.9;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.tray-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.tray-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.tray-clock {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+.tray-clock:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   System Tray Interactive Popups (Volume, Network, Calendar)
+   ========================================================================== */
+
+.tray-popup {
+  position: absolute;
+  bottom: calc(var(--taskbar-height) + 4px);
+  right: 8px;
+  background-color: #ece9d8;
+  border: 2px solid #0055ea;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  box-shadow: 2px -2px 12px rgba(0, 0, 0, 0.4);
+  z-index: 9200;
+  color: #000;
+  font-family: var(--font-system);
+}
+
+/* Volume Slider Popup */
+.tray-vol-box {
+  width: 90px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.tray-vol-slider {
+  writing-mode: bt-lr; /* Vertical slider */
+  -webkit-appearance: slider-vertical;
+  width: 22px;
+  height: 100px;
+  cursor: pointer;
+}
+
+/* Network Info Popup */
+.tray-net-box {
+  width: 240px;
+  padding: 12px 16px;
+  font-size: 11px;
+}
+
+.tray-net-title {
+  font-weight: bold;
+  font-size: 12px;
+  color: #003399;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tray-net-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+/* Calendar & Analog Clock Popup */
+.tray-calendar-box {
+  width: 290px;
+  padding: 14px;
+}
+
+.cal-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #003399;
+}
+
+/* Analog Clock */
+.analog-clock-container {
+  width: 90px;
+  height: 90px;
+  border: 3px solid #0055ea;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto 12px auto;
+  background: radial-gradient(circle, #ffffff 60%, #e0e6ed 100%);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.clock-center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: #cc0000;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 2px;
+}
+
+.hand-hour {
+  width: 3px;
+  height: 26px;
+  background: #111;
+  margin-left: -1.5px;
+}
+
+.hand-minute {
+  width: 2px;
+  height: 36px;
+  background: #333;
+  margin-left: -1px;
+}
+
+.hand-second {
+  width: 1px;
+  height: 40px;
+  background: #cc0000;
+  margin-left: -0.5px;
+}
+
+/* Calendar Grid */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.cal-day-header {
+  font-weight: bold;
+  color: #555;
+  padding: 2px 0;
+}
+
+.cal-day-cell {
+  padding: 3px 0;
+  border-radius: 2px;
+}
+
+.cal-today {
+  background-color: #316ac5;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   Start Menu (Classic XP 2-Column Popup)
+   ========================================================================== */
+
+.start-menu {
+  position: absolute;
+  left: 0;
+  bottom: var(--taskbar-height);
+  width: 380px;
+  background-color: #ffffff;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px -2px 14px rgba(0, 0, 0, 0.5);
+  z-index: var(--z-start-menu);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid #0055ea;
+}
+
+.start-menu-header {
+  height: 54px;
+  background: linear-gradient(180deg, #0a246a 0%, #2062dc 85%, #4489ff 100%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 16px;
+  color: #ffffff;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+
+.start-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.start-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.start-username {
+  font-weight: bold;
+  font-size: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.start-menu-body {
+  display: flex;
+  min-height: 280px;
+  background-color: #ffffff;
+}
+
+.start-left-col {
+  width: 55%;
+  background-color: #ffffff;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.start-right-col {
+  width: 45%;
+  background-color: #d3e5fa;
+  border-left: 1px solid #9bbfe8;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.start-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #000000;
+  text-decoration: none;
+  font-size: 11px;
+}
+
+.start-item:hover {
+  background-color: #2f71cd;
+  color: #ffffff;
+}
+
+.start-item-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.start-item-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.start-item-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.start-item-title {
+  font-weight: 600;
+}
+
+.start-item-desc {
+  font-size: 9px;
+  opacity: 0.75;
+}
+
+.start-divider {
+  height: 1px;
+  background-color: #dcdcdc;
+  margin: 4px 6px;
+}
+
+.start-menu-footer {
+  height: 44px;
+  background: linear-gradient(180deg, #4489ff 0%, #2062dc 40%, #0a246a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 12px;
+  gap: 12px;
+}
+
+.start-footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-family: var(--font-system);
+  font-size: 11px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+.start-footer-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   Windows XP 3-Button Turn Off Modal
+   ========================================================================== */
+
+.xp-shutdown-modal-container {
+  position: fixed;
+  inset: 0;
+  z-index: 99990;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-shutdown-dialog {
+  width: 420px;
+  background-color: #003399;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  user-select: none;
+}
+
+.xp-shutdown-header {
+  height: 48px;
+  background-color: #001f5c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #ffffff;
+}
+
+.xp-shutdown-title {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.xp-shutdown-body {
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.xp-shutdown-choice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: var(--font-system);
+  font-size: 12px;
+  transition: transform 0.15s;
+}
+
+.xp-shutdown-choice:hover {
+  transform: scale(1.08);
+}
+
+.xp-choice-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.xp-choice-circle i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 24px;
+}
+
+.circle-standby {
+  background: radial-gradient(circle, #ffcc00 30%, #e69500 100%);
+}
+
+.circle-turnoff {
+  background: radial-gradient(circle, #ff3b30 30%, #b31000 100%);
+}
+
+.circle-restart {
+  background: radial-gradient(circle, #34c759 30%, #1e8238 100%);
+}
+
+.xp-shutdown-footer {
+  height: 48px;
+  background-color: #001f5c;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 16px;
+}
+
+.xp-btn-cancel {
+  background-color: #ece9d8;
+  border: 1px solid #716f64;
+  padding: 4px 16px;
+  font-family: var(--font-system);
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.xp-btn-cancel:hover {
+  background-color: #f5f3e9;
+}

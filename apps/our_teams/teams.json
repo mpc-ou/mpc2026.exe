@@ -1,0 +1,38 @@
+[
+  {
+    "id": "BLT",
+    "name_vi": "Ban Lập Trình (BLT)",
+    "name_en": "Programming Division",
+    "icon": "💻",
+    "color": "#0055ea",
+    "desc_vi": "Nòng cốt kỹ thuật của MPClub. Nơi các thành viên cùng nghiên cứu công nghệ mới, thực chiến xây dựng các dự án phần mềm thật (Web, Mobile, Bot, DevOps) và huấn luyện đội tuyển thuật toán thi đấu.",
+    "skills_vi": ["Frontend & Backend Development", "Git/GitHub Team Workflow", "Tư duy giải thuật & Cấu trúc dữ liệu", "DevOps & Cloud Deployment"]
+  },
+  {
+    "id": "BTK",
+    "name_vi": "Ban Thiết Kế (BTK)",
+    "name_en": "UI/UX & Graphic Design Division",
+    "icon": "🎨",
+    "color": "#e91e63",
+    "desc_vi": "Linh hồn thị giác của CLB. Phụ trách xây dựng bộ nhận diện thương hiệu (Visual Identity), thiết kế UI/UX cho các sản phẩm phần mềm, vẽ linh vật mascot và sáng tạo các ấn phẩm truyền thông độc đáo.",
+    "skills_vi": ["Figma & UI/UX Product Design", "Photoshop / Illustrator", "Tư duy màu sắc & Typography", "Thiết kế linh vật & Pixel Art"]
+  },
+  {
+    "id": "BTT",
+    "name_vi": "Ban Truyền Thông (BTT)",
+    "name_en": "Media & Content Division",
+    "icon": "📢",
+    "color": "#ff9800",
+    "desc_vi": "Cầu nối lan tỏa hình ảnh và giá trị của MPClub đến toàn thể sinh viên Khoa CNTT - ĐH Mở TP.HCM. Lên kế hoạch chiến dịch truyền thông đa kênh, sáng tạo video ngắn và biên tập bài viết kỹ thuật.",
+    "skills_vi": ["Content Strategy & Copywriting", "Quản trị Fanpage & Kênh truyền thông", "Quay dựng video ngắn (TikTok/Reels)", "Kỹ năng phỏng vấn & bắt trend"]
+  },
+  {
+    "id": "BSK",
+    "name_vi": "Ban Sự Kiện (BSK)",
+    "name_en": "Event & Operations Division",
+    "icon": "🎪",
+    "color": "#4caf50",
+    "desc_vi": "Những nhà tổ chức tài ba đứng sau các giải đấu học thuật lớn, workshop công nghệ chuyên sâu và các chuyến dã ngoại bonding đáng nhớ của đại gia đình MPClub.",
+    "skills_vi": ["Lập kế hoạch & Dự trù ngân sách sự kiện", "Điều phối MC, diễn giả và hậu cần", "Kỹ năng đàm phán & Làm việc nhóm", "Quản trị rủi ro & Xử lý tình huống"]
+  }
+]

@@ -1,0 +1,211 @@
+/* ==========================================================================
+   Boot Sequences: Dynamic BIOS & MPCrosoft XP Boot Screen
+   ========================================================================== */
+
+/* Fullscreen Overlay Container */
+.boot-screen-layer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--z-overlay);
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Phase 1: Animated Retro BIOS Screen --- */
+.bios-screen {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  color: #c0c0c0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 28px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.bios-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #555;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.bios-energy-logo {
+  color: #ffcc00;
+  font-weight: bold;
+  text-align: right;
+  line-height: 1.2;
+}
+
+.bios-body {
+  flex: 1;
+}
+
+.bios-line {
+  margin-bottom: 4px;
+  animation: biosTypeLine 0.1s ease-out;
+}
+
+@keyframes biosTypeLine {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bios-highlight {
+  color: #00ff66;
+  font-weight: bold;
+}
+
+.bios-cursor {
+  display: inline-block;
+  color: #00ff66;
+  animation: cursorBlink 0.6s infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.bios-footer {
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 12px;
+}
+
+/* --- Phase 2: MPCrosoft XP Boot Screen --- */
+.xp-bootscreen {
+  position: absolute;
+  inset: 0;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.xp-boot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
+.xp-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.xp-mpc-logo-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 12px rgba(255, 102, 0, 0.4));
+}
+
+.xp-brand-title {
+  color: #ffffff;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.xp-brand-sub {
+  color: #ff6600;
+  font-size: 26px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+.xp-edition-tag {
+  color: #aaa;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* Classic Windows XP 3 Blue Blocks Loader */
+.xp-loader-bar {
+  width: 190px;
+  height: 14px;
+  border: 2px solid #5a5a5a;
+  border-radius: 4px;
+  background-color: #000;
+  padding: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.xp-loader-progress {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  width: 48px;
+  display: flex;
+  gap: 2px;
+  animation: xpLoadingCycle 2s linear infinite;
+}
+
+.xp-block {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(180deg, #5b90f6 0%, #2968e7 50%, #174eb8 100%);
+  border-radius: 1px;
+  box-shadow: 0 0 4px #3f8cf3;
+}
+
+@keyframes xpLoadingCycle {
+  0% { left: -50px; }
+  100% { left: 195px; }
+}
+
+.xp-boot-footer {
+  position: absolute;
+  bottom: 30px;
+  color: #666;
+  font-size: 11px;
+  font-family: var(--font-system);
+}
+
+/* Shutting down screen */
+.xp-shutting-down-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: #001f5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.xp-shutting-down-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}

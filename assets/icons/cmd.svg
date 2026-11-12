@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="cmd-win-title" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0058ee"/>
+      <stop offset="100%" stop-color="#0030a5"/>
+    </linearGradient>
+  </defs>
+  <!-- Window Border -->
+  <rect x="4" y="6" width="40" height="34" rx="2" fill="#000000" stroke="#003399" stroke-width="2"/>
+  <!-- Titlebar -->
+  <rect x="5" y="7" width="38" height="8" fill="url(#cmd-win-title)"/>
+  <circle cx="39" cy="11" r="2" fill="#ff4d4d"/>
+  <text x="8" y="13.5" font-family="Tahoma, sans-serif" font-size="6" font-weight="bold" fill="#ffffff">C:\_ Command Prompt</text>
+  <!-- Screen Text -->
+  <text x="8" y="23" font-family="'Courier New', monospace" font-size="6.5" font-weight="bold" fill="#00ff66">C:\&gt; mpc.exe</text>
+  <text x="8" y="30" font-family="'Courier New', monospace" font-size="6" fill="#ffffff">Booting kernel...</text>
+  <!-- Blinking Cursor -->
+  <rect x="8" y="33" width="5" height="1.5" fill="#00ff66"/>
+</svg>

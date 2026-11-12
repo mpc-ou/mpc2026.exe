@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIARY - Nhật ký & Hậu trường MPClub</title>
+  <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #fdfaf3;
+      color: #333333;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      overflow-y: auto;
+      height: 100vh;
+    }
+    .diary-header {
+      background: linear-gradient(135deg, #795548 0%, #4e342e 100%);
+      color: #fff;
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+    .diary-title-box h1 {
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .diary-sub {
+      font-size: 11px;
+      color: #d7ccc8;
+      margin-top: 2px;
+    }
+    .diary-entry {
+      background: #ffffff;
+      border: 1px solid #e0d7c6;
+      border-left: 4px solid #ff9800;
+      border-radius: 4px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .entry-meta {
+      display: flex;
+      justify-content: space-between;
+      color: #888;
+      font-size: 11px;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #eee;
+      padding-bottom: 4px;
+    }
+    .entry-author {
+      font-weight: bold;
+      color: #5d4037;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .entry-title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #2e7d32;
+      margin-bottom: 6px;
+    }
+    .entry-body {
+      color: #444;
+      line-height: 1.6;
+    }
+    .entry-tags {
+      margin-top: 10px;
+      display: flex;
+      gap: 6px;
+    }
+    .tag {
+      background: #efebe9;
+      color: #6d4c41;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="diary-header">
+    <div class="diary-title-box">
+      <h1><i class="bi bi-journal-bookmark-fill"></i> <span>MPClub Diary & Stories</span></h1>
+      <div class="diary-sub">Những trang nhật ký, kỷ niệm và câu chuyện hậu trường từ gia đình MPC (stories.json)</div>
+    </div>
+    <div style="font-size: 24px; opacity: 0.85;">📔</div>
+  </div>
+
+  <div id="entries-container"></div>
+
+  <script>
+    const fallbackStories = [
+      {
+        id: 1,
+        author: "Ban Lập Trình (BLT)",
+        date: "15/09/2025 • 02:45 AM",
+        title: "Hậu trường dự án MPC.exe – Đêm thức trắng cùng Retro Windows XP",
+        body: "Ý tưởng làm một chiếc website tuyển quân theo phong cách hệ điều hành Windows XP Luna nhen nhóm từ một buổi trà đá sau giờ học thuật toán. Cả team BLT đã cùng nhau bàn luận về từng chi tiết nhỏ: âm thanh khởi động BIOS 8-bit, thanh taskbar xanh huyền thoại, cửa sổ kéo thả... Hy vọng các bạn tân sinh viên khi mở chiếc máy tính này sẽ cảm nhận được ngọn lửa đam mê lập trình của CLB!",
+        tags: ["#BLT", "#Project_MPC_exe", "#HauTruong"]
+      },
+      {
+        id: 2,
+        author: "Ban Thiết Kế (BTK)",
+        date: "08/11/2025 • 04:15 PM",
+        title: "Linh vật MPC và hành trình vẽ từng pixel retro",
+        body: "Để tái hiện cảm giác hoài niệm Windows XP mà vẫn mang đậm bản sắc Khoa CNTT - ĐH Mở TP.HCM, team thiết kế đã thử nghiệm rất nhiều phong cách: từ vector tối giản đến pixel art 8-bit. Nhìn sản phẩm hoàn thiện trên màn hình Desktop xanh mướt, cảm xúc thực sự rất tự hào!",
+        tags: ["#BTK", "#PixelArt", "#Branding"]
+      },
+      {
+        id: 3,
+        author: "Ban Sự Kiện (BSK) & Ban Truyền Thông (BTT)",
+        date: "20/12/2025 • 10:30 PM",
+        title: "Kỷ niệm buổi Tech Sharing & Bonding ấm cúng",
+        body: "Không chỉ có những dòng code khô khan, MPClub luôn là nơi gắn kết những tâm hồn đồng điệu. Buổi dã ngoại và bonding cuối năm với những trận boardgame nảy lửa, những lời tâm sự từ các anh chị cựu sinh viên đi làm tại các tập đoàn lớn đã tiếp thêm bao động lực cho thế hệ tiếp theo.",
+        tags: ["#BSK", "#BTT", "#Family"]
+      }
+    ];
+
+    function renderStories(list) {
+      const container = document.getElementById('entries-container');
+      container.innerHTML = list.map(item => `
+        <div class="diary-entry">
+          <div class="entry-meta">
+            <span class="entry-author"><i class="bi bi-person-circle"></i> ${item.author}</span>
+            <span>${item.date}</span>
+          </div>
+          <div class="entry-title">${item.title}</div>
+          <div class="entry-body">${item.body}</div>
+          <div class="entry-tags">
+            ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    fetch('./stories.json')
+      .then(r => r.json())
+      .then(data => renderStories(data))
+      .catch(() => renderStories(fallbackStories));
+  </script>
+</body>
+</html>

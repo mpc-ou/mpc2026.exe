@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      background: #ece9d8;
+      font-family: Tahoma, Arial, sans-serif;
+      font-size: 11px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .menubar {
+      display: flex;
+      gap: 12px;
+      padding-bottom: 6px;
+      color: #000;
+      font-size: 11px;
+    }
+    .menu-item {
+      cursor: pointer;
+    }
+    .menu-item span {
+      text-decoration: underline;
+    }
+    .calc-screen {
+      background: #ffffff;
+      border: 1px solid #7f9db9;
+      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 8px;
+      font-family: 'Lucida Console', monospace, Tahoma;
+      font-size: 14px;
+      color: #000;
+      margin-bottom: 8px;
+    }
+    .top-controls {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .mem-box {
+      width: 32px;
+      height: 26px;
+      border: 1px solid #7f9db9;
+      background: #ece9d8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #000;
+    }
+    .btn-top {
+      flex: 1;
+      height: 26px;
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      border-radius: 2px;
+      box-shadow: inset 1px 1px 0px #fff, inset -1px -1px 0px #707070;
+      color: #cc0000;
+      font-size: 11px;
+      cursor: pointer;
+    }
+    .btn-top:active {
+      box-shadow: inset -1px -1px 0px #fff, inset 1px 1px 0px #707070;
+    }
+    .keys-grid {
+      display: grid;
+      grid-template-columns: 36px repeat(5, 1fr);
+      gap: 5px;
+      flex: 1;
+    }
+    .calc-btn {
+      height: 28px;
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      border-radius: 2px;
+      box-shadow: inset 1px 1px 0px #fff, inset -1px -1px 0px #707070;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: inherit;
+    }
+    .calc-btn:active {
+      box-shadow: inset -1px -1px 0px #fff, inset 1px 1px 0px #707070;
+      padding-top: 1px;
+    }
+    .btn-red {
+      color: #cc0000;
+    }
+    .btn-blue {
+      color: #0000cc;
+      font-weight: bold;
+    }
+    .btn-darkred {
+      color: #990000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menubar">
+    <div class="menu-item"><span>E</span>dit</div>
+    <div class="menu-item"><span>V</span>iew</div>
+    <div class="menu-item"><span>H</span>elp</div>
+  </div>
+
+  <div class="calc-screen" id="display">0.</div>
+
+  <div class="top-controls">
+    <div class="mem-box" id="mem-indicator"></div>
+    <button class="btn-top" id="btn-back">Backspace</button>
+    <button class="btn-top" id="btn-ce">CE</button>
+    <button class="btn-top" id="btn-c">C</button>
+  </div>
+
+  <div class="keys-grid">
+    <!-- Row 1 -->
+    <button class="calc-btn btn-red" data-action="mc">MC</button>
+    <button class="calc-btn btn-blue" data-num="7">7</button>
+    <button class="calc-btn btn-blue" data-num="8">8</button>
+    <button class="calc-btn btn-blue" data-num="9">9</button>
+    <button class="calc-btn btn-red" data-op="/">/</button>
+    <button class="calc-btn btn-darkred" data-action="sqrt">sqrt</button>
+
+    <!-- Row 2 -->
+    <button class="calc-btn btn-red" data-action="mr">MR</button>
+    <button class="calc-btn btn-blue" data-num="4">4</button>
+    <button class="calc-btn btn-blue" data-num="5">5</button>
+    <button class="calc-btn btn-blue" data-num="6">6</button>
+    <button class="calc-btn btn-red" data-op="*">*</button>
+    <button class="calc-btn btn-darkred" data-action="percent">%</button>
+
+    <!-- Row 3 -->
+    <button class="calc-btn btn-red" data-action="ms">MS</button>
+    <button class="calc-btn btn-blue" data-num="1">1</button>
+    <button class="calc-btn btn-blue" data-num="2">2</button>
+    <button class="calc-btn btn-blue" data-num="3">3</button>
+    <button class="calc-btn btn-red" data-op="-">-</button>
+    <button class="calc-btn btn-darkred" data-action="recip">1/x</button>
+
+    <!-- Row 4 -->
+    <button class="calc-btn btn-red" data-action="mplus">M+</button>
+    <button class="calc-btn btn-blue" data-num="0">0</button>
+    <button class="calc-btn btn-blue" data-action="neg">+/-</button>
+    <button class="calc-btn btn-blue" data-num=".">.</button>
+    <button class="calc-btn btn-red" data-op="+">+</button>
+    <button class="calc-btn btn-red" data-action="equals">=</button>
+  </div>
+
+  <script>
+    let curVal = '0';
+    let prevVal = null;
+    let pendingOp = null;
+    let memory = 0;
+    let overwrite = true;
+
+    const display = document.getElementById('display');
+    const memIndicator = document.getElementById('mem-indicator');
+
+    function updateDisplay() {
+      let txt = curVal;
+      if (!txt.includes('.')) txt += '.';
+      display.textContent = txt;
+      memIndicator.textContent = memory !== 0 ? 'M' : '';
+    }
+
+    function inputDigit(d) {
+      if (overwrite) {
+        curVal = d === '.' ? '0.' : d;
+        overwrite = false;
+      } else {
+        if (d === '.' && curVal.includes('.')) return;
+        curVal += d;
+      }
+      updateDisplay();
+    }
+
+    function doOp(op) {
+      const num = parseFloat(curVal);
+      if (pendingOp && !overwrite) {
+        calculate();
+      } else {
+        prevVal = num;
+      }
+      pendingOp = op;
+      overwrite = true;
+    }
+
+    function calculate() {
+      if (pendingOp === null || prevVal === null) return;
+      const a = prevVal;
+      const b = parseFloat(curVal);
+      let res = 0;
+      switch (pendingOp) {
+        case '+': res = a + b; break;
+        case '-': res = a - b; break;
+        case '*': res = a * b; break;
+        case '/': res = b === 0 ? 'Cannot divide by zero' : a / b; break;
+      }
+      curVal = String(res);
+      prevVal = null;
+      pendingOp = null;
+      overwrite = true;
+      updateDisplay();
+    }
+
+    document.querySelectorAll('[data-num]').forEach(b => {
+      b.addEventListener('click', () => inputDigit(b.getAttribute('data-num')));
+    });
+
+    document.querySelectorAll('[data-op]').forEach(b => {
+      b.addEventListener('click', () => doOp(b.getAttribute('data-op')));
+    });
+
+    document.getElementById('btn-c').addEventListener('click', () => {
+      curVal = '0';
+      prevVal = null;
+      pendingOp = null;
+      overwrite = true;
+      updateDisplay();
+    });
+
+    document.getElementById('btn-ce').addEventListener('click', () => {
+      curVal = '0';
+      overwrite = true;
+      updateDisplay();
+    });
+
+    document.getElementById('btn-back').addEventListener('click', () => {
+      if (!overwrite && curVal.length > 1) {
+        curVal = curVal.slice(0, -1);
+      } else {
+        curVal = '0';
+        overwrite = true;
+      }
+      updateDisplay();
+    });
+
+    document.querySelectorAll('[data-action]').forEach(b => {
+      b.addEventListener('click', () => {
+        const act = b.getAttribute('data-action');
+        let val = parseFloat(curVal);
+        switch (act) {
+          case 'equals': calculate(); break;
+          case 'neg': curVal = String(-val); updateDisplay(); break;
+          case 'sqrt': curVal = String(Math.sqrt(val)); overwrite = true; updateDisplay(); break;
+          case 'percent': curVal = String(val / 100); overwrite = true; updateDisplay(); break;
+          case 'recip': curVal = String(1 / val); overwrite = true; updateDisplay(); break;
+          case 'mc': memory = 0; updateDisplay(); break;
+          case 'mr': curVal = String(memory); overwrite = true; updateDisplay(); break;
+          case 'ms': memory = val; overwrite = true; updateDisplay(); break;
+          case 'mplus': memory += val; overwrite = true; updateDisplay(); break;
+        }
+      });
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>

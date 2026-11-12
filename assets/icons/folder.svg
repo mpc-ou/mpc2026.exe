@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="folder-back" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f8c347"/>
+      <stop offset="100%" stop-color="#d49419"/>
+    </linearGradient>
+    <linearGradient id="folder-front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffdf7a"/>
+      <stop offset="25%" stop-color="#ffd555"/>
+      <stop offset="100%" stop-color="#e09d17"/>
+    </linearGradient>
+  </defs>
+  <!-- Back Folder Tab -->
+  <path d="M4 11 C4 9 5.5 8 7.5 8 L18 8 L22 13 L40.5 13 C42.5 13 44 14.5 44 16.5 L44 36 C44 38 42.5 39 40.5 39 L7.5 39 C5.5 39 4 38 4 36 Z" fill="url(#folder-back)" stroke="#a6700c" stroke-width="1.2"/>
+  <!-- Paper Inside -->
+  <rect x="8" y="12" width="28" height="18" rx="1.5" fill="#ffffff" stroke="#c0c0c0" stroke-width="0.8"/>
+  <line x1="12" y1="16" x2="28" y2="16" stroke="#4a86e8" stroke-width="1.5"/>
+  <line x1="12" y1="20" x2="32" y2="20" stroke="#b0bec5" stroke-width="1"/>
+  <line x1="12" y1="23" x2="26" y2="23" stroke="#b0bec5" stroke-width="1"/>
+  <!-- Front Folder Flap (Perspective) -->
+  <path d="M3 18 L43 18 C44 18 45 19 44.5 20.5 L41.5 38.5 C41 40 39.5 41 38 41 L5 41 C3.5 41 2.5 40 2 38.5 L1 20.5 C0.5 19 1.5 18 3 18 Z" fill="url(#folder-front)" stroke="#a6700c" stroke-width="1.2"/>
+  <path d="M3 19 L43 19" stroke="#fff8dc" stroke-width="1" opacity="0.8"/>
+</svg>

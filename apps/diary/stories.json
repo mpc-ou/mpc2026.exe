@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "author": "Ban Lập Trình (BLT)",
+    "date": "15/09/2025 • 02:45 AM",
+    "title": "Hậu trường dự án MPC.exe – Đêm thức trắng cùng Retro Windows XP",
+    "body": "Ý tưởng làm một chiếc website tuyển quân theo phong cách hệ điều hành Windows XP Luna nhen nhóm từ một buổi trà đá sau giờ học thuật toán. Cả team BLT đã cùng nhau bàn luận về từng chi tiết nhỏ: âm thanh khởi động BIOS 8-bit, thanh taskbar xanh huyền thoại, cửa sổ kéo thả... Hy vọng các bạn tân sinh viên khi mở chiếc máy tính này sẽ cảm nhận được ngọn lửa đam mê lập trình của CLB!",
+    "tags": ["#BLT", "#Project_MPC_exe", "#HauTruong"]
+  },
+  {
+    "id": 2,
+    "author": "Ban Thiết Kế (BTK)",
+    "date": "08/11/2025 • 04:15 PM",
+    "title": "Linh vật MPC và hành trình vẽ từng pixel retro",
+    "body": "Để tái hiện cảm giác hoài niệm Windows XP mà vẫn mang đậm bản sắc Khoa CNTT - ĐH Mở TP.HCM, team thiết kế đã thử nghiệm rất nhiều phong cách: từ vector tối giản đến pixel art 8-bit. Nhìn sản phẩm hoàn thiện trên màn hình Desktop xanh mướt, cảm xúc thực sự rất tự hào!",
+    "tags": ["#BTK", "#PixelArt", "#Branding"]
+  },
+  {
+    "id": 3,
+    "author": "Ban Sự Kiện (BSK) & Ban Truyền Thông (BTT)",
+    "date": "20/12/2025 • 10:30 PM",
+    "title": "Kỷ niệm buổi Tech Sharing & Bonding ấm cúng",
+    "body": "Không chỉ có những dòng code khô khan, MPClub luôn là nơi gắn kết những tâm hồn đồng điệu. Buổi dã ngoại và bonding cuối năm với những trận boardgame nảy lửa, những lời tâm sự từ các anh chị cựu sinh viên đi làm tại các tập đoàn lớn đã tiếp thêm bao động lực cho thế hệ tiếp theo.",
+    "tags": ["#BSK", "#BTT", "#Family"]
+  }
+]

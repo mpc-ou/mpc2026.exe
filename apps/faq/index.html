@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ.txt - Câu hỏi thường gặp</title>
+  <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #ffffff;
+      color: #222;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 16px;
+      overflow-y: auto;
+      height: 100vh;
+    }
+    .faq-header {
+      border-bottom: 2px solid #0055ea;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-title {
+      font-size: 17px;
+      font-weight: bold;
+      color: #003399;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .search-box {
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      background: #f4f6fa;
+      border: 1px solid #c0d0e6;
+      border-radius: 4px;
+      padding: 6px 12px;
+      gap: 8px;
+    }
+    .search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 13px;
+    }
+    .faq-item {
+      background: #fafbfc;
+      border: 1px solid #e1e4e8;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      overflow: hidden;
+      transition: all 0.2s;
+    }
+    .faq-item:hover {
+      border-color: #0055ea;
+    }
+    .faq-question {
+      padding: 12px 14px;
+      font-weight: 600;
+      color: #003399;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+    .faq-question:hover {
+      background: #edf3ff;
+    }
+    .faq-answer {
+      padding: 0 14px 12px 14px;
+      color: #444;
+      font-size: 12.5px;
+      line-height: 1.6;
+      display: none;
+      border-top: 1px dashed #e1e4e8;
+      margin-top: 4px;
+      padding-top: 10px;
+    }
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+    }
+    .faq-icon {
+      transition: transform 0.2s;
+      font-size: 11px;
+    }
+    .cta-banner {
+      margin-top: 24px;
+      background: linear-gradient(90deg, #fff3e0 0%, #ffe0b2 100%);
+      border: 1px solid #ffb74d;
+      border-radius: 6px;
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cta-btn {
+      background: #ff6600;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .cta-btn:hover {
+      background: #e65c00;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="faq-header">
+    <div class="faq-title">
+      <i class="bi bi-question-circle-fill" style="color: #0055ea;"></i>
+      <span>FAQ.txt - Giải Đáp Thắc Mắc Tuyển Quân 2026</span>
+    </div>
+    <span style="font-size: 11px; color: #666;">Dữ liệu: data.json</span>
+  </div>
+
+  <div class="search-box">
+    <i class="bi bi-search" style="color: #888;"></i>
+    <input type="text" id="faq-search" placeholder="Tìm kiếm câu hỏi thắc mắc..." />
+  </div>
+
+  <!-- Dynamic FAQ list rendered from data.json -->
+  <div id="faq-list"></div>
+
+  <div class="cta-banner">
+    <div>
+      <div style="font-weight: bold; color: #b26a00;">Bạn đã sẵn sàng trở thành một mảnh ghép của MPClub?</div>
+      <div style="font-size: 11px; color: #666;">Đừng ngần ngại gửi đơn ứng tuyển ngay hôm nay!</div>
+    </div>
+    <button class="cta-btn" id="btn-apply-cta">
+      <i class="bi bi-send-fill"></i> Ứng tuyển ngay (JOIN_MPC)
+    </button>
+  </div>
+
+  <script>
+    const fallbackData = [
+      {
+        id: 1,
+        q_vi: "Sinh viên năm nhất (K25/K26) chưa có nhiều kiến thức lập trình có ứng tuyển được không?",
+        a_vi: "Hoàn toàn được! MPClub luôn chào đón các bạn sinh viên có niềm đam mê và tinh thần ham học hỏi. CLB có lộ trình training bài bản từ cơ bản đến nâng cao (Web, Mobile, Thuật toán) cùng sự hướng dẫn tận tình từ các anh chị mentor."
+      },
+      {
+        id: 2,
+        q_vi: "MPClub có những ban chuyên môn nào? Tôi có thể đăng ký nhiều ban không?",
+        a_vi: "MPClub gồm 4 ban: Ban Lập Trình (BLT), Ban Thiết Kế (BTK), Ban Truyền Thông (BTT), và Ban Sự Kiện (BSK). Bạn có thể chọn ban nguyện vọng 1 và ban nguyện vọng 2 phù hợp với thế mạnh của mình."
+      },
+      {
+        id: 3,
+        q_vi: "Quy trình tuyển thành viên 2026 diễn ra như thế nào?",
+        a_vi: "Quy trình gồm 3 vòng chính: Vòng 1 (Vòng đơn qua form JOIN_MPC.exe) ➜ Vòng 2 (Teamwork & Thử thách chuyên môn thực tế) ➜ Vòng 3 (Phỏng vấn trực tiếp cùng Ban Chủ Nhiệm và Trưởng ban)."
+      },
+      {
+        id: 4,
+        q_vi: "Tham gia MPClub mang lại những quyền lợi gì cho sinh viên OU IT?",
+        a_vi: "Được rèn luyện kỹ năng thực chiến qua các dự án phần mềm thật; Được cộng điểm rèn luyện theo quy chế Khoa CNTT - ĐH Mở TP.HCM; Mở rộng network với các anh chị Alumni tại các công ty công nghệ lớn; Môi trường sinh hoạt gắn kết và năng động!"
+      }
+    ];
+
+    let currentFaqs = [];
+
+    function renderFaqs(list) {
+      const container = document.getElementById('faq-list');
+      container.innerHTML = list.map((item, index) => `
+        <div class="faq-item ${index === 0 ? 'active' : ''}">
+          <div class="faq-question">
+            <span>${item.id}. ${item.q_vi}</span>
+            <i class="bi bi-chevron-down faq-icon"></i>
+          </div>
+          <div class="faq-answer">${item.a_vi}</div>
+        </div>
+      `).join('');
+
+      // Accordion toggle click handler
+      container.querySelectorAll('.faq-question').forEach(q => {
+        q.addEventListener('click', () => {
+          q.parentElement.classList.toggle('active');
+        });
+      });
+    }
+
+    // Load data from data.json or fallback
+    fetch('./data.json')
+      .then(r => r.json())
+      .then(data => {
+        currentFaqs = data;
+        renderFaqs(currentFaqs);
+      })
+      .catch(() => {
+        currentFaqs = fallbackData;
+        renderFaqs(currentFaqs);
+      });
+
+    // Search filter
+    document.getElementById('faq-search').addEventListener('input', (e) => {
+      const term = e.target.value.toLowerCase();
+      const filtered = currentFaqs.filter(item => 
+        item.q_vi.toLowerCase().includes(term) || item.a_vi.toLowerCase().includes(term)
+      );
+      renderFaqs(filtered);
+    });
+
+    // CTA button
+    document.getElementById('btn-apply-cta').addEventListener('click', () => {
+      if (window.parent && window.parent.WindowManager) {
+        window.parent.WindowManager.open('JOIN_MPC.exe');
+      }
+    });
+  </script>
+</body>
+</html>

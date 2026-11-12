@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="crt-frame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0efe4"/>
+      <stop offset="100%" stop-color="#b6b29d"/>
+    </linearGradient>
+    <linearGradient id="crt-screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0055ea"/>
+      <stop offset="40%" stop-color="#1976d2"/>
+      <stop offset="100%" stop-color="#0d47a1"/>
+    </linearGradient>
+    <linearGradient id="crt-stand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c9c5b2"/>
+      <stop offset="100%" stop-color="#8c8874"/>
+    </linearGradient>
+  </defs>
+  <!-- Monitor Frame -->
+  <rect x="4" y="4" width="34" height="26" rx="3" fill="url(#crt-frame)" stroke="#5c594c" stroke-width="1.5"/>
+  <!-- Bezel Inset -->
+  <rect x="7" y="7" width="28" height="20" rx="2" fill="#202020"/>
+  <!-- Screen -->
+  <rect x="8" y="8" width="26" height="18" rx="1" fill="url(#crt-screen)"/>
+  <!-- Screen Highlight -->
+  <path d="M9 9 L22 9 L9 20 Z" fill="#ffffff" opacity="0.3"/>
+  <circle cx="21" cy="27" r="1" fill="#4caf50"/>
+  <!-- Stand Neck -->
+  <rect x="17" y="30" width="8" height="5" fill="url(#crt-stand)" stroke="#5c594c" stroke-width="1"/>
+  <!-- Stand Base -->
+  <path d="M12 35 L30 35 L34 38 L8 38 Z" fill="url(#crt-frame)" stroke="#5c594c" stroke-width="1"/>
+  <!-- Tower behind/next to monitor -->
+  <rect x="34" y="10" width="10" height="28" rx="1.5" fill="url(#crt-frame)" stroke="#5c594c" stroke-width="1.2"/>
+  <rect x="36" y="13" width="6" height="2" fill="#555"/>
+  <rect x="36" y="17" width="6" height="2" fill="#555"/>
+  <circle cx="39" cy="23" r="1.2" fill="#4caf50"/>
+  <rect x="36" y="27" width="6" height="8" rx="0.5" fill="#333"/>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="drive-top" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#d8dce2"/>
+      <stop offset="100%" stop-color="#9fa8b5"/>
+    </linearGradient>
+    <linearGradient id="drive-front" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b0b7c3"/>
+      <stop offset="100%" stop-color="#677382"/>
+    </linearGradient>
+  </defs>
+  <!-- Hard Drive Casing Top Isometric-ish view -->
+  <polygon points="6,18 20,8 42,8 28,18" fill="url(#drive-top)" stroke="#47515e" stroke-width="1.2"/>
+  <rect x="6" y="18" width="22" height="18" fill="url(#drive-front)" stroke="#47515e" stroke-width="1.2"/>
+  <polygon points="28,18 42,8 42,26 28,36" fill="#8892a0" stroke="#47515e" stroke-width="1.2"/>
+  <!-- Status LED and Drive Label -->
+  <circle cx="11" cy="27" r="2" fill="#00e676" stroke="#00a844" stroke-width="0.8"/>
+  <rect x="15" y="25" width="10" height="4" rx="1" fill="#2c343e"/>
+  <text x="17" y="34" font-family="Tahoma, sans-serif" font-size="7" font-weight="bold" fill="#ffffff">C:</text>
+  <!-- Windows Flag Mini Badge -->
+  <path d="M31 16 L34 14 L38 15 L35 17 Z" fill="#0055ea"/>
+  <path d="M35 17 L38 15 L41 17 L38 19 Z" fill="#ff9900"/>
+</svg>

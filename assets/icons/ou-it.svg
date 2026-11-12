@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="ou-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0055ea"/>
+      <stop offset="100%" stop-color="#001a66"/>
+    </linearGradient>
+  </defs>
+  <!-- Circle Shield / Avatar Frame -->
+  <circle cx="24" cy="24" r="22" fill="url(#ou-bg)" stroke="#ffffff" stroke-width="2"/>
+  <!-- User Head & Shoulders -->
+  <circle cx="24" cy="17" r="7.5" fill="#ffd54f" stroke="#ffffff" stroke-width="1.2"/>
+  <path d="M11 36 C11 28, 16 26, 24 26 C32 26, 37 28, 37 36 C37 38, 35 41, 24 41 C13 41, 11 38, 11 36 Z" fill="#ffffff"/>
+  <!-- OU IT Badge at bottom right -->
+  <circle cx="36" cy="34" r="7.5" fill="#ff6600" stroke="#ffffff" stroke-width="1.5"/>
+  <text x="36" y="37" font-family="Arial, sans-serif" font-size="6" font-weight="900" fill="#ffffff" text-anchor="middle">IT</text>
+</svg>

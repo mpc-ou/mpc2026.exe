@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Windows XP Login / Welcome Screen (Single User: OU IT)
+   ========================================================================== */
+
+.xp-login-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: calc(var(--z-overlay) - 10);
+  background: radial-gradient(circle at 50% 50%, #004fe8 0%, #002878 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  user-select: none;
+}
+
+/* Top Banner Bar */
+.login-header-bar {
+  height: 60px;
+  background-color: #001f5c;
+  border-bottom: 2px solid #ff7b00;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.login-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.login-brand-logo-img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.login-brand-logo span {
+  color: #ff8800;
+  font-style: italic;
+}
+
+.login-instruction {
+  color: #c9dbfd;
+  font-size: 13px;
+}
+
+/* Center Body */
+.login-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px;
+}
+
+.login-divider {
+  width: 1px;
+  height: 280px;
+  background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  margin: 0 50px;
+}
+
+/* Left Column */
+.login-left-col {
+  width: 340px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.login-welcome-title {
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-welcome-desc {
+  color: #92b8ff;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 300px;
+}
+
+/* Right Column: Single User OU IT */
+.login-right-col {
+  width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.user-card:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.user-card:active {
+  transform: translateY(0);
+}
+
+.user-avatar-frame {
+  width: 64px;
+  height: 64px;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  background: #0055ea;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-avatar-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.user-status {
+  color: #b5cfff;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.user-logging-in {
+  color: #ffea79 !important;
+  font-weight: bold;
+  animation: pulseText 1s infinite alternate;
+}
+
+@keyframes pulseText {
+  from { opacity: 0.7; }
+  to { opacity: 1; }
+}
+
+/* Bottom Footer Bar */
+.login-footer-bar {
+  height: 60px;
+  background-color: #001f5c;
+  border-top: 2px solid #ff7b00;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.login-power-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  font-family: var(--font-system);
+  font-size: 13px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.login-power-btn:hover {
+  background: rgba(255, 68, 68, 0.25);
+  color: #ff9999;
+}
+
+.login-power-icon {
+  width: 24px;
+  height: 24px;
+  background: #cc2200;
+  border: 1px solid #ff5533;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.login-recruitment-badge {
+  color: #ffcc00;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}

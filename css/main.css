@@ -1,0 +1,106 @@
+/* ==========================================================================
+   MPC.exe - Core & System Stylesheet (Retro / Windows XP Aesthetic)
+   ========================================================================== */
+
+:root {
+  /* System Fonts */
+  --font-system: "Tahoma", "Segoe UI", Arial, sans-serif;
+  --font-mono: "Courier New", Courier, monospace;
+  --font-pixel: "Courier New", monospace;
+
+  /* Windows XP Palette */
+  --xp-blue-dark: #003399;
+  --xp-blue-main: #0055ea;
+  --xp-blue-light: #2572fe;
+  --xp-blue-titlebar: linear-gradient(180deg, #0a246a 0%, #a6caf0 100%);
+  --xp-blue-active-title: linear-gradient(180deg, #0058ee 0%, #3593ff 8%, #288eff 40%, #0055ea 88%, #0045d0 93%, #0030a5 100%);
+  --xp-gray-inactive-title: linear-gradient(180deg, #7697c7 0%, #8eaacf 8%, #7899c9 40%, #688ab9 88%, #577ba9 93%, #4b6f9d 100%);
+  --xp-taskbar-bg: linear-gradient(180deg, #245edb 0%, #3f8cf3 9%, #245edb 18%, #245edb 92%, #1941a5 100%);
+  --xp-start-green: linear-gradient(180deg, #388e3c 0%, #43a047 15%, #2e7d32 85%, #1b5e20 100%);
+  --xp-start-hover: linear-gradient(180deg, #4caf50 0%, #66bb6a 15%, #388e3c 85%, #2e7d32 100%);
+  --xp-tray-bg: #0c59b9;
+  --xp-window-bg: #ece9d8;
+  --xp-border-gray: #00136b;
+
+  /* MPC Brand Accents */
+  --mpc-primary: #0055ea;
+  --mpc-accent: #ff6600;
+  --mpc-glow: rgba(0, 85, 234, 0.4);
+
+  /* Window Management */
+  --taskbar-height: 36px;
+  --z-desktop: 1;
+  --z-window-base: 100;
+  --z-taskbar: 9000;
+  --z-start-menu: 9050;
+  --z-overlay: 10000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-system);
+  font-size: 12px;
+  background-color: #000;
+  color: #000;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Base Utility Classes */
+.hidden {
+  display: none !important;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-in-out forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.4s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Quick Dev Control Button - ONLY VISIBLE ON HOVER */
+.dev-skip-btn {
+  position: fixed;
+  top: 8px;
+  right: 8px;
+  z-index: 100000;
+  background: rgba(0, 0, 0, 0.85);
+  color: #00ff66;
+  border: 1px solid #00ff66;
+  padding: 5px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.25s ease-in-out, background 0.15s;
+}
+
+.dev-skip-btn:hover {
+  opacity: 1 !important;
+  background: #003311;
+  box-shadow: 0 0 8px #00ff66;
+}

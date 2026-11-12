@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Window Manager & Window Component Styling (Windows XP Luna Aesthetic)
+   ========================================================================== */
+
+.window-container {
+  position: absolute;
+  top: 60px;
+  left: 100px;
+  background-color: var(--xp-window-bg);
+  border: 3px solid #0055ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 280px;
+  min-height: 180px;
+  z-index: var(--z-window-base);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
+}
+
+/* Inactive Window State */
+.window-container.inactive {
+  border-color: #7697c7;
+}
+
+/* Minimized State */
+.window-container.minimized {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6) translateY(200px);
+}
+
+/* Maximized State */
+.window-container.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: calc(100vh - var(--taskbar-height)) !important;
+  border-radius: 0;
+  border-width: 0;
+}
+
+/* --- Window Titlebar --- */
+.window-titlebar {
+  height: 30px;
+  background: var(--xp-blue-active-title);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 0 8px;
+  cursor: grab;
+  user-select: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-container.inactive .window-titlebar {
+  background: var(--xp-gray-inactive-title);
+  color: #e0e0e0;
+}
+
+.window-titlebar-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.window-app-icon {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.window-app-icon img,
+.window-app-icon svg {
+  width: 16px !important;
+  height: 16px !important;
+  max-width: 16px !important;
+  max-height: 16px !important;
+  object-fit: contain !important;
+  display: block;
+  flex-shrink: 0;
+}
+
+.window-title {
+  font-weight: bold;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* --- Window Controls (Min, Max, Close) --- */
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.window-btn {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: filter 0.1s;
+}
+
+.window-btn:hover {
+  filter: brightness(1.2);
+}
+
+.window-btn:active {
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.window-btn i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn-minimize, .btn-maximize {
+  background: linear-gradient(180deg, #4489ff 0%, #2062dc 50%, #1545aa 100%);
+  color: #fff;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.btn-close {
+  background: linear-gradient(180deg, #e7674e 0%, #d6371a 50%, #aa1a04 100%);
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* --- Window Menu Bar (File, Edit, Help) --- */
+.window-menubar {
+  height: 22px;
+  background-color: #ece9d8;
+  border-bottom: 1px solid #d0ccb8;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 4px;
+  font-size: 11px;
+}
+
+.menu-item {
+  padding: 2px 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.menu-item:hover {
+  background-color: #316ac5;
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* --- Window Body & Content --- */
+.window-body {
+  flex: 1;
+  background-color: #ffffff;
+  overflow: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Standalone Contributor App Iframe */
+.window-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  flex: 1;
+  background-color: transparent;
+}
+
+/* Prevent iframe from intercepting mouse events during window drag/resize */
+body.window-is-dragging iframe,
+body.window-is-resizing iframe {
+  pointer-events: none !important;
+}
+
+/* --- Window Statusbar --- */
+.window-statusbar {
+  height: 22px;
+  background-color: #ece9d8;
+  border-top: 1px solid #d0ccb8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #444;
+}
+
+/* --- Resize Gripper --- */
+.window-resizer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  cursor: se-resize;
+  background: radial-gradient(circle, #888 1.5px, transparent 1.5px);
+  background-size: 4px 4px;
+  background-position: 100% 100%;
+}

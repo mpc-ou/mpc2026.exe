@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="bin-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#bccad6"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#8a9ba8"/>
+    </linearGradient>
+    <linearGradient id="bin-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#80d8ff"/>
+      <stop offset="100%" stop-color="#0091ea"/>
+    </linearGradient>
+  </defs>
+  <!-- Bin Body -->
+  <path d="M12 14 L15 41 C15.2 42.5 16.5 43.5 18 43.5 L30 43.5 C31.5 43.5 32.8 42.5 33 41 L36 14 Z" fill="url(#bin-glass)" fill-opacity="0.3" stroke="#546e7a" stroke-width="1.5"/>
+  <!-- Rim Top -->
+  <ellipse cx="24" cy="14" rx="13" ry="3.5" fill="url(#bin-metal)" stroke="#546e7a" stroke-width="1.2"/>
+  <ellipse cx="24" cy="14" rx="10" ry="2" fill="#37474f"/>
+  <!-- Wire/Mesh Lines -->
+  <line x1="16" y1="18" x2="18" y2="39" stroke="#78909c" stroke-width="1.2"/>
+  <line x1="21" y1="18" x2="22" y2="40" stroke="#ffffff" stroke-width="1.2" opacity="0.8"/>
+  <line x1="27" y1="18" x2="26" y2="40" stroke="#78909c" stroke-width="1.2"/>
+  <line x1="32" y1="18" x2="30" y2="39" stroke="#78909c" stroke-width="1.2"/>
+  <!-- Recycle Symbol in Green -->
+  <path d="M22 25 L24 22 L26 25 H24.5 C24.5 28 27 29 28 28 L29 30 C27 31.5 23 31 23 25 Z" fill="#00c853"/>
+</svg>
