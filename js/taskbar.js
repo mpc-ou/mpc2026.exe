@@ -306,11 +306,16 @@ const Taskbar = (function () {
         }
       }
 
+      // "ABOUT_MPC.txt - Giới thiệu MPClub" -> name "ABOUT_MPC.txt", description "Giới thiệu MPClub"
+      const dash = title.indexOf(' - ');
+      const name = dash > 0 ? title.slice(0, dash) : title;
+      const desc = dash > 0 ? title.slice(dash + 3) : app.id;
+
       item.innerHTML = `
         <div class="start-item-icon">${iconGraphic}</div>
         <div class="start-item-text">
-          <span class="start-item-title">${title}</span>
-          <span class="start-item-desc">${app.id}</span>
+          <span class="start-item-title">${name}</span>
+          <span class="start-item-desc">${desc}</span>
         </div>
       `;
 

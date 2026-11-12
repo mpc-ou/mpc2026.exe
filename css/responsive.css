@@ -413,3 +413,21 @@
     font-size: 13px;
   }
 }
+
+/* Phones: readable, finger-sized Start menu items */
+@media (max-width: 768px) {
+  .start-item {
+    min-height: 44px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .start-item-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .start-item-desc {
+    font-size: 12px;
+  }
+}
