@@ -431,3 +431,19 @@
     font-size: 12px;
   }
 }
+
+/* Phones: cmd.exe text a bit bigger; 16px input stops iOS from zooming in on focus */
+@media (max-width: 768px) {
+  .terminal-container {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .terminal-input-row {
+    flex-wrap: wrap;
+  }
+
+  .terminal-input {
+    font-size: 16px;
+  }
+}
