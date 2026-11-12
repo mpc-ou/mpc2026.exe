@@ -37,7 +37,9 @@ const AppRegistry = (function () {
         return;
       }
 
+      // Keep every field the app passes (url, noMenubar, i18n keys...); the ones below get defaults.
       const appData = {
+        ...config,
         id: config.id,
         title: config.title || config.id,
         desktopLabel: config.desktopLabel || config.title || config.id,
