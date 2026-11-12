@@ -18,7 +18,8 @@ const I18n = (function () {
       'system.title': 'MPC.exe – MPCrosoft Windows XP (OU IT - Tuyển Thành Viên 2026)',
       'system.ready': 'Sẵn sàng',
       'system.version': 'MPC.exe v2026',
-      'skip.btn': '⚡ Nhảy tới Desktop',
+      'skip.btn': 'Bỏ qua ⏭',
+      'bios.press_any_key': 'Nhấn phím bất kỳ hoặc chạm màn hình để tiếp tục . . .',
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',
@@ -158,7 +159,8 @@ const I18n = (function () {
       'system.title': 'MPC.exe – MPCrosoft Windows XP (OU IT - Recruitment 2026)',
       'system.ready': 'Ready',
       'system.version': 'MPC.exe v2026',
-      'skip.btn': '⚡ Skip to Desktop',
+      'skip.btn': 'Skip ⏭',
+      'bios.press_any_key': 'Press any key or tap the screen to continue . . .',
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',

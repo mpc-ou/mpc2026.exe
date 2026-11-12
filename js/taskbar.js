@@ -258,7 +258,8 @@ const Taskbar = (function () {
 
     btnRestart?.addEventListener('click', () => {
       hideShutdownModal();
-      window.location.reload();
+      if (window.BootManager) window.BootManager.restart();
+      else window.location.reload();
     });
   }
 

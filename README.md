@@ -15,16 +15,16 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
 1. **Cách 1 (Khuyên dùng):** Mở thư mục dự án bằng **VS Code** ➜ Click chuột phải vào file `index.html` ➜ Chọn **Open with Live Server**.
 2. **Cách 2:** Mở trực tiếp file `index.html` bằng bất kỳ trình duyệt nào (Chrome, Edge, Firefox, Brave...).
 
-> **Mẹo cho Developer:** Khi khởi động web, rê chuột vào góc trên cùng bên phải màn hình sẽ xuất hiện nút **`⚡ Nhảy tới Desktop`** để bỏ qua màn hình boot BIOS và vào thẳng màn hình Desktop làm việc.
+> **Mẹo cho Developer:** Chuỗi boot chỉ chạy ở lần truy cập đầu tiên (BIOS chờ nhấn phím/chạm để tiếp tục, sau đó ~1,5 giây; ở màn XP/Login bấm bất kỳ đâu hoặc nút **`Bỏ qua ⏭`** để vào Desktop ngay). Các lần sau vào thẳng Desktop. Muốn xem lại boot: thêm `?boot=1` vào URL, hoặc chọn Restart trong Start menu.
 
 ---
 
 ## 🌟 Tổng Quan Tính Năng Đã Hoàn Thiện
 
 1. **Chuỗi khởi động sống động (Animated Boot Sequence)**:
-   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng và phát âm thanh POST Beep 8-bit (`assets/sounds/bios_boot.wav`).
+   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng, rồi chờ người xem nhấn phím/chạm để tiếp tục. Cú chạm này cho phép trình duyệt phát tiếng bíp BIOS (`assets/sounds/bios_boot.wav`) và các âm thanh boot sau đó.
    - **Bootscreen MPCrosoft XP**: Hiển thị logo chính thức `assets/icons/logo.png`, dòng chữ *MPCrosoft MPC xp* cùng thanh chạy 3 khối xanh nguyên bản.
-   - **Màn hình Welcome / Login**: Tài khoản duy nhất **"OU IT"** (Avatar sinh viên IT). Khi nhấn vào phát âm thanh `logon.mp3`, hiển thị trạng thái `Logging on...` và chuyển mượt mà vào Desktop kèm nhạc `startup.mp3`.
+   - **Màn hình Welcome / Login**: Tài khoản duy nhất **"OU IT"** (Avatar sinh viên IT). Ở lần boot đầu, "OU IT" tự đăng nhập (hiển thị `Logging on...`) rồi vào Desktop. Sau khi Log off, nhấn vào thẻ để đăng nhập lại. Âm thanh `logon.mp3`/`startup.mp3` chỉ phát sau lần đầu người xem bấm/chạm vào trang (trình duyệt chặn tự phát).
 2. **Giao diện Desktop & Window Manager**:
    - Hình nền chính thức `assets/backgrounds/bg.jpg`.
    - Chuột phải trên Desktop mở **Context Menu** chuẩn Windows XP (`Refresh` có hiệu ứng nháy màn hình, sắp xếp icon).
@@ -285,10 +285,9 @@ Mở file `js/vfs.js`, tìm đến thư mục bạn muốn thêm vào cây `_fs`
 
 ### 5. Cập Nhật Link Ứng Tuyển Google Forms (`JOIN_MPC.exe`)
 
-Mở file `apps/join_mpc/index.html`, tìm đến phần xử lý nút bấm `btn-submit` để thay thế URL form thực tế:
+Mở file `apps/join_mpc/index.html` và thay giá trị hằng `FORM_URL` (hiện đang là link mock). Đây là chỗ duy nhất chứa link form:
 ```javascript
-const formUrl = `https://forms.gle/link-form-chinh-thuc-cua-mpclub`;
-window.open(formUrl, '_blank');
+const FORM_URL = 'https://forms.gle/link-form-chinh-thuc-cua-mpclub';
 ```
 
 ---

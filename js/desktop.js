@@ -88,23 +88,30 @@ const Desktop = (function () {
         iconEl.classList.add('selected');
       });
 
-      let lastTouchTime = 0;
       iconEl.addEventListener('dblclick', () => {
         WindowManager.open(app.id);
       });
 
+      // Touch: one tap opens the app (nobody double-taps on a phone).
+      // A finger that moved more than 10px was scrolling, not tapping.
+      let touchStart = null;
+      iconEl.addEventListener('touchstart', (e) => {
+        const t = e.touches[0];
+        touchStart = { x: t.clientX, y: t.clientY };
+      }, { passive: true });
+
       iconEl.addEventListener('touchend', (e) => {
-        const currentTime = new Date().getTime();
-        const tapLength = currentTime - lastTouchTime;
-        if (tapLength < 400 && tapLength > 0) {
-          WindowManager.open(app.id);
-          e.preventDefault();
-        } else {
-          clearSelection();
-          _selectedIcon = iconEl;
-          iconEl.classList.add('selected');
-        }
-        lastTouchTime = currentTime;
+        if (!touchStart) return;
+        const t = e.changedTouches[0];
+        const moved = Math.hypot(t.clientX - touchStart.x, t.clientY - touchStart.y);
+        touchStart = null;
+        if (moved > 10) return;
+        e.preventDefault(); // stop the synthetic click/dblclick that would follow
+        closeContextMenu();
+        clearSelection();
+        _selectedIcon = iconEl;
+        iconEl.classList.add('selected');
+        WindowManager.open(app.id);
       });
 
       _iconsContainer.appendChild(iconEl);

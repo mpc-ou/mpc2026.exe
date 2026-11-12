@@ -73,6 +73,7 @@
     right: 8px !important;
     width: calc(100vw - 16px) !important;
     height: calc(100vh - var(--taskbar-height) - 20px) !important;
+    height: calc(100dvh - var(--taskbar-height) - 20px) !important;
     max-width: none !important;
     border-radius: 6px;
   }
@@ -83,6 +84,18 @@
 
   .btn-maximize {
     display: none; /* Auto-maximized already */
+  }
+
+  /* Finger-sized window controls (>= 40px) */
+  .window-titlebar {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .window-btn {
+    width: 40px;
+    height: 36px;
+    font-size: 16px;
   }
 
   /* Taskbar on Mobile */
@@ -158,8 +171,8 @@
     gap: 4px;
   }
   .nav-circle-btn {
-    width: 22px;
-    height: 22px;
+    width: 36px;
+    height: 36px;
     font-size: 14px;
   }
   .browser-search-pill {
