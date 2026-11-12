@@ -18,7 +18,7 @@
     linear-gradient(180deg, #1b58b8 0%, #4a8ee8 55%, #76b1f4 75%, #a6d0fa 100%);
   background-size: cover;
   /* Wide screens crop the 3:2 wallpaper: crop the sky, keep the foxes at the bottom */
-  background-position: center bottom;
+  background-position: center 80%;
   background-repeat: no-repeat;
   transition: filter 0.4s ease, opacity 0.2s ease;
 }
