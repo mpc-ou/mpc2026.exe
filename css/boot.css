@@ -8,6 +8,7 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* mobile: excludes the browser's address bar */
   z-index: var(--z-overlay);
   background-color: #000;
   color: #fff;

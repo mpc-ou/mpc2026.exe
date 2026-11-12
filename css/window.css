@@ -38,6 +38,7 @@
   left: 0 !important;
   width: 100vw !important;
   height: calc(100vh - var(--taskbar-height)) !important;
+  height: calc(100dvh - var(--taskbar-height)) !important;
   border-radius: 0;
   border-width: 0;
 }

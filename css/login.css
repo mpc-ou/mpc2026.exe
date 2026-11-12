@@ -7,6 +7,7 @@
   inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh; /* mobile: excludes the browser's address bar */
   z-index: calc(var(--z-overlay) - 10);
   background: radial-gradient(circle at 50% 50%, #004fe8 0%, #002878 100%);
   display: flex;
