@@ -17,7 +17,8 @@
     radial-gradient(ellipse at 50% 100%, #6ba545 0%, #3e8824 35%, transparent 65%),
     linear-gradient(180deg, #1b58b8 0%, #4a8ee8 55%, #76b1f4 75%, #a6d0fa 100%);
   background-size: cover;
-  background-position: center center;
+  /* Wide screens crop the 3:2 wallpaper: crop the sky, keep the foxes at the bottom */
+  background-position: center bottom;
   background-repeat: no-repeat;
   transition: filter 0.4s ease, opacity 0.2s ease;
 }
