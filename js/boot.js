@@ -152,10 +152,21 @@ const BootManager = (function () {
     return true;
   }
 
+  // On the BIOS screen a tap/key means "continue" (and lets the browser play sound);
+  // on the later screens it skips to the desktop.
   function onBootInterrupt(e) {
     if (!_booting) return;
     if (e.target === _devSkipBtn) return;
-    skipToDesktop();
+    if (!_biosEl.classList.contains('hidden')) continueFromBios();
+    else skipToDesktop();
+  }
+
+  function continueFromBios() {
+    _timers.forEach(clearTimeout);
+    _timers = [];
+    SoundFX.play('bios_boot');
+    SoundFX.beep(950, 0.28);
+    startXPBootSequence();
   }
 
   /**
@@ -183,10 +194,8 @@ const BootManager = (function () {
     bodyEl.innerHTML = '';
 
     let lineIndex = 0;
-    let isSkipped = false;
 
     function printNextLine() {
-      if (isSkipped) return;
       if (lineIndex < biosLines.length) {
         const item = biosLines[lineIndex];
         const lineEl = document.createElement('div');
@@ -200,18 +209,13 @@ const BootManager = (function () {
         lineIndex++;
         later(printNextLine, item.delay);
       } else {
-        // Cursor blink then start XP bootscreen
-        const cursorEl = document.createElement('span');
-        cursorEl.className = 'bios-cursor';
-        cursorEl.textContent = '_';
-        bodyEl.appendChild(cursorEl);
-
-        later(() => {
-          if (!isSkipped) {
-            isSkipped = true;
-            startXPBootSequence();
-          }
-        }, 250);
+        // Wait for a key or tap, like "Press any key to continue". That gesture is also
+        // what allows the browser to play the boot sounds.
+        const promptEl = document.createElement('div');
+        promptEl.className = 'bios-line';
+        promptEl.style.marginTop = '12px';
+        promptEl.innerHTML = `<span class="bios-highlight">${window.I18n ? I18n.t('bios.press_any_key') : 'Press any key or tap to continue...'}</span><span class="bios-cursor">_</span>`;
+        bodyEl.appendChild(promptEl);
       }
     }
 

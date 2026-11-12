@@ -15,14 +15,14 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
 1. **Cách 1 (Khuyên dùng):** Mở thư mục dự án bằng **VS Code** ➜ Click chuột phải vào file `index.html` ➜ Chọn **Open with Live Server**.
 2. **Cách 2:** Mở trực tiếp file `index.html` bằng bất kỳ trình duyệt nào (Chrome, Edge, Firefox, Brave...).
 
-> **Mẹo cho Developer:** Chuỗi boot chỉ chạy ở lần truy cập đầu tiên (~2 giây; bấm phím bất kỳ, chạm màn hình hoặc nút **`Bỏ qua ⏭`** để vào Desktop ngay). Các lần sau vào thẳng Desktop. Muốn xem lại boot: thêm `?boot=1` vào URL, hoặc chọn Restart trong Start menu.
+> **Mẹo cho Developer:** Chuỗi boot chỉ chạy ở lần truy cập đầu tiên (BIOS chờ nhấn phím/chạm để tiếp tục, sau đó ~1,5 giây; ở màn XP/Login bấm bất kỳ đâu hoặc nút **`Bỏ qua ⏭`** để vào Desktop ngay). Các lần sau vào thẳng Desktop. Muốn xem lại boot: thêm `?boot=1` vào URL, hoặc chọn Restart trong Start menu.
 
 ---
 
 ## 🌟 Tổng Quan Tính Năng Đã Hoàn Thiện
 
 1. **Chuỗi khởi động sống động (Animated Boot Sequence)**:
-   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng (không phát tiếng vì trình duyệt chặn âm thanh trước khi người xem tương tác).
+   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng, rồi chờ người xem nhấn phím/chạm để tiếp tục. Cú chạm này cho phép trình duyệt phát tiếng bíp BIOS (`assets/sounds/bios_boot.wav`) và các âm thanh boot sau đó.
    - **Bootscreen MPCrosoft XP**: Hiển thị logo chính thức `assets/icons/logo.png`, dòng chữ *MPCrosoft MPC xp* cùng thanh chạy 3 khối xanh nguyên bản.
    - **Màn hình Welcome / Login**: Tài khoản duy nhất **"OU IT"** (Avatar sinh viên IT). Ở lần boot đầu, "OU IT" tự đăng nhập (hiển thị `Logging on...`) rồi vào Desktop. Sau khi Log off, nhấn vào thẻ để đăng nhập lại. Âm thanh `logon.mp3`/`startup.mp3` chỉ phát sau lần đầu người xem bấm/chạm vào trang (trình duyệt chặn tự phát).
 2. **Giao diện Desktop & Window Manager**:
