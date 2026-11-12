@@ -214,7 +214,7 @@ const BootManager = (function () {
         const promptEl = document.createElement('div');
         promptEl.className = 'bios-line';
         promptEl.style.marginTop = '12px';
-        promptEl.innerHTML = `<span class="bios-highlight">${window.I18n ? I18n.t('bios.press_any_key') : 'Press any key or tap to continue...'}</span><span class="bios-cursor">_</span>`;
+        promptEl.innerHTML = `<span class="bios-highlight">${window.I18n ? I18n.t('bios.press_any_key') : 'Press any key or tap the screen to continue . . .'}</span><span class="bios-cursor">_</span>`;
         bodyEl.appendChild(promptEl);
       }
     }

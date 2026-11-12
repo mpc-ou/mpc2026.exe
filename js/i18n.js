@@ -19,7 +19,7 @@ const I18n = (function () {
       'system.ready': 'Sẵn sàng',
       'system.version': 'MPC.exe v2026',
       'skip.btn': 'Bỏ qua ⏭',
-      'bios.press_any_key': 'C:\\> echo Nhấn phím bất kỳ hoặc chạm màn hình để tiếp tục...',
+      'bios.press_any_key': 'Nhấn phím bất kỳ hoặc chạm màn hình để tiếp tục . . .',
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',
@@ -160,7 +160,7 @@ const I18n = (function () {
       'system.ready': 'Ready',
       'system.version': 'MPC.exe v2026',
       'skip.btn': 'Skip ⏭',
-      'bios.press_any_key': 'C:\\> echo Press any key or tap the screen to continue...',
+      'bios.press_any_key': 'Press any key or tap the screen to continue . . .',
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',
