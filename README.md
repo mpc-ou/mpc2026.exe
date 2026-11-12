@@ -200,6 +200,8 @@ Tạo thư mục: `apps/my_game/` với file chính `apps/my_game/index.html`:
       font-weight: bold;
     }
   </style>
+  <!-- Co giãn theo cửa sổ (chữ, nút, lưới trên màn hẹp). Đặt sau <style> để ghi đè được -->
+  <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
   <div class="card">

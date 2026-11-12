@@ -50,166 +50,15 @@
     padding: 12px 14px;
   }
 
-  /* Desktop Icons */
-  .desktop-icons-area {
-    gap: 12px 8px;
-    top: 8px;
-    left: 8px;
+  /* Desktop: icons fill the screen as a grid instead of one long column */
+  .desktop-container {
+    /* The grid sits at the top, so the shade runs from the top instead of the left.
+       Portrait phones see a narrow slice of bg.jpg: center it on the fox at the laptop. */
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.12) 30%, transparent 50%),
+      url('../assets/backgrounds/bg.jpg');
+    background-position: center, 77% center;
   }
 
-  .desktop-icon {
-    width: 76px;
-    height: 78px;
-  }
-
-  .desktop-watermark {
-    display: none;
-  }
-
-  /* Window Manager on Mobile: Mobile App / Modal View */
-  /* Phones: windows fill the space above the taskbar with a 4px margin,
-     so they still read as windows on the desktop */
-  .window-container {
-    top: 4px !important;
-    left: 4px !important;
-    right: 4px !important;
-    width: calc(100vw - 8px) !important;
-    height: calc(100vh - var(--taskbar-height) - 8px) !important;
-    height: calc(100dvh - var(--taskbar-height) - 8px) !important;
-    max-width: none !important;
-    border-width: 2px;
-    border-radius: 6px 6px 2px 2px;
-  }
-
-  .window-resizer {
-    display: none; /* Disable manual corner resizing on mobile touch */
-  }
-
-  .btn-maximize {
-    display: none; /* Auto-maximized already */
-  }
-
-  /* Compact title bar; buttons stay tappable */
-  .window-titlebar {
-    height: 34px;
-    font-size: 13px;
-  }
-
-  .window-btn {
-    width: 30px;
-    height: 26px;
-    font-size: 13px;
-  }
-
-  /* Taskbar on Mobile */
-  .taskbar-container {
-    height: 40px;
-  }
-
-  :root {
-    --taskbar-height: 40px;
-  }
-
-  .start-button {
-    padding: 0 12px 0 8px;
-    font-size: 13px;
-  }
-
-  .taskbar-tasks-area {
-    gap: 2px;
-    padding: 0 4px;
-  }
-
-  .task-item {
-    min-width: 70px;
-    max-width: 120px;
-    font-size: 10px;
-    padding: 0 4px;
-  }
-
-  .tray-icons {
-    display: none; /* Hide tray icon cluster, keep clock */
-  }
-
-  .tray-clock {
-    font-size: 10px;
-    padding: 0 4px;
-  }
-
-  /* Start Menu on Mobile */
-  .start-menu {
-    width: 100vw;
-    border-radius: 0;
-  }
-
-  .start-menu-body {
-    flex-direction: column;
-    max-height: 360px;
-    overflow-y: auto;
-  }
-
-  .start-left-col,
-  .start-right-col {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid #dcdcdc;
-  }
-
-  /* Explorer layout on mobile */
-  .app-explorer-container {
-    flex-direction: column;
-  }
-
-  .app-explorer-sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #4a6bb5;
-    padding: 8px;
-    gap: 8px;
-  }
-
-  /* Browser layout on mobile */
-  .browser-nav-toolbar {
-    padding: 0 4px;
-    gap: 4px;
-  }
-  .nav-circle-btn {
-    width: 24px;
-    height: 24px;
-    font-size: 14px;
-  }
-  .browser-search-pill {
-    height: 24px;
-    padding: 0 6px;
-    gap: 4px;
-  }
-  .browser-bookmarks-bar {
-    overflow-x: auto;
-    white-space: nowrap;
-    padding: 0 6px;
-    gap: 8px;
-  }
-  .browser-tab-item {
-    min-width: 70px;
-    max-width: 110px;
-    padding: 0 6px;
-    font-size: 10px;
-  }
-}
-
-/* ==========================================================================
-   Phones: icon grid, finger-sized taskbar, icon-only task buttons
-   ========================================================================== */
-@media (max-width: 768px) {
-  :root {
-    --taskbar-height: 44px;
-  }
-
-  .taskbar-container {
-    height: 44px;
-  }
-
-  /* Icons fill the screen as a grid instead of one long column */
   .desktop-icons-area {
     top: 12px;
     left: 8px;
@@ -238,16 +87,185 @@
     max-width: 84px;
   }
 
-  .task-item {
-    height: 34px;
+  .desktop-watermark {
+    display: none;
   }
 
+  /* Windows fill the space above the taskbar with a 4px margin,
+     so they still read as windows on the desktop */
+  .window-container {
+    top: 4px !important;
+    left: 4px !important;
+    right: 4px !important;
+    width: calc(100vw - 8px) !important;
+    height: calc(100vh - var(--taskbar-height) - 8px) !important;
+    height: calc(100dvh - var(--taskbar-height) - 8px) !important;
+    max-width: none !important;
+    border-width: 2px;
+    border-radius: 6px 6px 2px 2px;
+  }
+
+  .window-resizer {
+    display: none; /* Disable manual corner resizing on mobile touch */
+  }
+
+  .btn-maximize {
+    display: none; /* Windows already fill the screen */
+  }
+
+  .window-titlebar {
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .window-btn {
+    width: 30px;
+    height: 26px;
+    font-size: 13px;
+  }
+
+  /* The decorative File/Edit menu and status bar do nothing on a touch screen */
+  .window-menubar,
+  .window-statusbar {
+    display: none;
+  }
+
+  /* Taskbar */
+  :root {
+    --taskbar-height: 44px;
+  }
+
+  .start-button {
+    padding: 0 12px 0 8px;
+    font-size: 13px;
+  }
+
+  .taskbar-tasks-area {
+    gap: 2px;
+    padding: 0 4px;
+  }
+
+  .task-item {
+    height: 34px;
+    min-width: 70px;
+    max-width: 120px;
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  .tray-icons {
+    display: none; /* Hide tray icon cluster, keep clock */
+  }
+
+  .tray-clock {
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  /* Start menu: full width, columns stacked, finger-sized items */
   .start-menu {
-    max-height: calc(100dvh - var(--taskbar-height));
+    width: 100vw;
+    border-radius: 0;
   }
 
   .start-menu-body {
+    flex-direction: column;
     max-height: calc(100dvh - var(--taskbar-height) - 140px);
+    overflow-y: auto;
+  }
+
+  .start-left-col,
+  .start-right-col {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #dcdcdc;
+  }
+
+  .start-item {
+    min-height: 44px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+
+  .start-item-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .start-item-desc {
+    font-size: 12px;
+  }
+
+  /* Explorer layout */
+  .app-explorer-container {
+    flex-direction: column;
+  }
+
+  .app-explorer-sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #4a6bb5;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  /* Browser: compact chrome so the page gets the space */
+  .browser-tabs-bar {
+    height: 28px;
+  }
+
+  .browser-tab-item {
+    height: 22px;
+    min-width: 70px;
+    max-width: 110px;
+    padding: 0 6px;
+    font-size: 10px;
+  }
+
+  .browser-nav-toolbar {
+    height: 32px;
+    padding: 0 4px;
+    gap: 4px;
+  }
+
+  .nav-circle-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 14px;
+  }
+
+  .browser-search-pill {
+    height: 24px;
+    padding: 0 6px;
+    gap: 4px;
+    font-size: 11px;
+  }
+
+  .browser-bookmarks-bar {
+    height: 22px;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0 6px;
+    gap: 8px;
+    font-size: 10px;
+    scrollbar-width: none;
+  }
+
+  .browser-bookmarks-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* cmd.exe: a 16px input stops iOS from zooming in on focus */
+  .terminal-container {
+    padding: 8px;
+  }
+
+  .terminal-input-row {
+    flex-wrap: wrap;
+  }
+
+  .terminal-input {
+    font-size: 16px;
   }
 }
 
@@ -264,62 +282,10 @@
   }
 }
 
-/* Short screens (phone landscape): keep the window title bar compact */
+/* Short screens (phone/tablet landscape): compact window title bar */
 @media (max-height: 500px) and (max-width: 1024px) {
   .window-titlebar {
     height: 34px;
-  }
-}
-
-/* Phones: give the content the height. The decorative File/Edit menu and the
-   window status bar take ~50px and do nothing on a touch screen. */
-@media (max-width: 768px) {
-  .window-menubar,
-  .window-statusbar {
-    display: none;
-  }
-
-  /* Compact browser chrome so the page gets the space */
-  .browser-tabs-bar {
-    height: 28px;
-  }
-
-  .browser-tab-item {
-    height: 22px;
-  }
-
-  .browser-nav-toolbar {
-    height: 32px;
-  }
-
-  .browser-search-pill {
-    height: 24px !important;
-    font-size: 11px;
-  }
-
-  .browser-bookmarks-bar {
-    height: 22px;
-    font-size: 10px;
-  }
-
-  /* Bookmarks bar scrolls sideways without showing a scrollbar */
-  .browser-bookmarks-bar {
-    scrollbar-width: none;
-  }
-
-  .browser-bookmarks-bar::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* Phones: the icon grid sits at the top, so shade from the top instead of the left */
-@media (max-width: 768px) {
-  .desktop-container {
-    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.12) 30%, transparent 50%),
-      url('../assets/backgrounds/bg.jpg');
-    /* Portrait phones see a narrow slice: center it on the main fox at the laptop
-       (fox + laptop group around x = 1080 of 1536px in bg.jpg). */
-    background-position: center, 77% center;
   }
 }
 
@@ -414,39 +380,5 @@
   .task-item {
     height: 38px;
     font-size: 13px;
-  }
-}
-
-/* Phones: readable, finger-sized Start menu items */
-@media (max-width: 768px) {
-  .start-item {
-    min-height: 44px;
-    padding: 6px 10px;
-    font-size: 14px;
-  }
-
-  .start-item-icon {
-    width: 28px;
-    height: 28px;
-  }
-
-  .start-item-desc {
-    font-size: 12px;
-  }
-}
-
-/* Phones: cmd.exe text a bit bigger; 16px input stops iOS from zooming in on focus */
-@media (max-width: 768px) {
-  .terminal-container {
-    font-size: 13px;
-    padding: 8px;
-  }
-
-  .terminal-input-row {
-    flex-wrap: wrap;
-  }
-
-  .terminal-input {
-    font-size: 16px;
   }
 }

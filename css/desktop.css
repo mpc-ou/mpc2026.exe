@@ -238,7 +238,7 @@
   border-radius: 22%;
   background: linear-gradient(180deg, #6aa8ff 0%, #2a6ee0 55%, #1a4fb8 100%);
   color: #fff !important;
-  font-size: calc(var(--icon-glyph, 26px)) !important;
+  font-size: var(--icon-glyph, 26px) !important;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 

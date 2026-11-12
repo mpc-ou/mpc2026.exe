@@ -39,8 +39,7 @@ const WindowManager = (function () {
     const tablet = area.w <= 1024;
     const wantW = appConfig.width || 600;
     const wantH = appConfig.height || 420;
-    // Content apps grow with the screen (tablets ~90%, laptops ~68% x 84%, large screens ~58% x 80%);
-    // small tools (calc, minesweeper) keep their size.
+    // Content apps grow with the screen; small tools (calc, minesweeper) keep their size.
     const big = area.w >= 1440;
     const content = wantW >= 400 && wantH >= 300;
     const scaleW = content ? (tablet ? 0.9 : big ? 0.58 : 0.68) : 0;

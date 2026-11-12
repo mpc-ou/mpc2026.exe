@@ -92,8 +92,7 @@ const Desktop = (function () {
         WindowManager.open(app.id);
       });
 
-      // Touch: one tap opens the app (nobody double-taps on a phone).
-      // A finger that moved more than 10px was scrolling, not tapping.
+      // Touch: a single tap opens the app; a finger that moved > 10px was scrolling.
       let touchStart = null;
       iconEl.addEventListener('touchstart', (e) => {
         const t = e.touches[0];
