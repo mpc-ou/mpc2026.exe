@@ -57,44 +57,36 @@
       padding: 12px 14px;
       line-height: 1.5;
     }
-    .form-group {
+    .section {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
-    label {
+    .section-title {
       font-weight: bold;
       color: #333;
     }
-    input[type="text"], input[type="email"], select {
-      height: 24px;
-      padding: 2px 6px;
-      border: 1px solid #7f9db9;
+    .steps {
       background: #fff;
-      font-size: 12px;
-      outline: none;
+      border: 1px solid #7f9db9;
+      border-radius: 3px;
+      padding: 8px 8px 8px 28px;
+      line-height: 1.7;
     }
-    .depts-grid {
+    .muted {
+      color: #666;
+    }
+    .depts {
+      list-style: none;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 8px;
     }
-    .dept-option {
+    .depts li {
       background: #fff;
       border: 1px solid #7f9db9;
       border-radius: 3px;
       padding: 8px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-    .dept-option:hover {
-      background: #f0f7ff;
-      border-color: #0055ea;
-    }
-    .dept-option input {
-      cursor: pointer;
     }
     .wizard-footer {
       height: 48px;
@@ -130,6 +122,30 @@
       border: 2px solid #0055ea;
       font-weight: bold;
       background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+      color: #000;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 15px;
+      }
+      .wizard-title {
+        font-size: 17px;
+      }
+      .wizard-desc {
+        font-size: 13px;
+      }
+      .wizard-footer {
+        height: 64px;
+      }
+      .xp-btn {
+        height: 44px;
+        font-size: 15px;
+      }
+      .xp-btn.primary {
+        flex: 1;
+      }
     }
   </style>
 </head>
@@ -145,68 +161,48 @@
 
   <div class="wizard-body">
     <div class="welcome-box">
-      <strong>Chào mừng bạn đến với đợt tuyển thành viên MPClub 2026!</strong><br/>
-      Hãy chọn ban chuyên môn bạn muốn thử sức để nhận link biểu mẫu ứng tuyển chính thức của CLB.
+      <strong>Chào bạn! Đăng ký chỉ mất khoảng 5 phút.</strong><br/>
+      Không cần biết lập trình trước, CLB sẽ đào tạo bạn từ đầu.
     </div>
 
-    <div class="form-group">
-      <label>Họ và tên của bạn:</label>
-      <input type="text" id="inp-name" placeholder="Ví dụ: Nguyễn Văn A" />
+    <div class="section">
+      <div class="section-title">Quy trình</div>
+      <ol class="steps">
+        <li><b>Điền form online</b> <span class="muted">~5 phút</span></li>
+        <li><b>Phỏng vấn trực tiếp</b> <span class="muted">~15 phút</span></li>
+        <li><b>Onboarding</b> <span class="muted">gặp gỡ CLB và ban của bạn</span></li>
+      </ol>
     </div>
 
-    <div class="form-group">
-      <label>Mã số sinh viên (MSSV) / Khóa:</label>
-      <input type="text" id="inp-mssv" placeholder="Ví dụ: 2551010001 (K25/K26)" />
-    </div>
-
-    <div class="form-group">
-      <label>Chọn Ban Chuyên Môn nguyện vọng chính:</label>
-      <div class="depts-grid">
-        <label class="dept-option">
-          <input type="radio" name="dept" value="BLT" checked />
-          <span>💻 Ban Lập Trình (BLT)</span>
-        </label>
-        <label class="dept-option">
-          <input type="radio" name="dept" value="BTK" />
-          <span>🎨 Ban Thiết Kế (BTK)</span>
-        </label>
-        <label class="dept-option">
-          <input type="radio" name="dept" value="BTT" />
-          <span>📢 Ban Truyền Thông (BTT)</span>
-        </label>
-        <label class="dept-option">
-          <input type="radio" name="dept" value="BSK" />
-          <span>🎪 Ban Sự Kiện (BSK)</span>
-        </label>
-      </div>
+    <div class="section">
+      <div class="section-title">Bạn sẽ chọn ban nguyện vọng ngay trong form</div>
+      <ul class="depts">
+        <li>💻 Ban Lập Trình</li>
+        <li>🎨 Ban Thiết Kế</li>
+        <li>📢 Ban Truyền Thông</li>
+        <li>🎪 Ban Sự Kiện</li>
+      </ul>
     </div>
   </div>
 
   <div class="wizard-footer">
-    <button class="xp-btn" id="btn-cancel">Hủy</button>
-    <button class="xp-btn primary" id="btn-submit">
-      <span>Đăng Ký Ngay</span> <i class="bi bi-arrow-right-short"></i>
-    </button>
+    <button class="xp-btn" id="btn-cancel">Đóng</button>
+    <a class="xp-btn primary" id="btn-form" href="#" target="_blank" rel="noopener">
+      <span>Mở form đăng ký</span> <i class="bi bi-box-arrow-up-right"></i>
+    </a>
   </div>
 
   <script>
+    // The one place the recruitment form link lives. MOCK until BCN sends the real Google Form.
+    const FORM_URL = 'https://forms.gle/MPC2026-MOCK-FORM';
+
+    document.getElementById('btn-form').href = FORM_URL;
+
     document.getElementById('btn-cancel').addEventListener('click', () => {
       if (window.parent && window.parent.WindowManager) {
         const win = window.parent.WindowManager.get('JOIN_MPC.exe');
         if (win) win.close();
       }
-    });
-
-    document.getElementById('btn-submit').addEventListener('click', () => {
-      const name = document.getElementById('inp-name').value.trim();
-      const mssv = document.getElementById('inp-mssv').value.trim();
-      const selectedDept = document.querySelector('input[name="dept"]:checked')?.value || 'BLT';
-
-      // Open Google Forms or Registration link in new tab
-      const formUrl = `https://forms.gle/mpclub2026recruitment?entry.name=${encodeURIComponent(name)}&entry.mssv=${encodeURIComponent(mssv)}&entry.dept=${selectedDept}`;
-      
-      alert(`Cảm ơn bạn ${name ? name : 'bạn sinh viên OU IT'}!\n\nHệ thống sẽ mở Form đăng ký chính thức của MPClub tuyển thành viên 2026.`);
-      window.open(formUrl, '_blank');
     });
   </script>
 </body>
