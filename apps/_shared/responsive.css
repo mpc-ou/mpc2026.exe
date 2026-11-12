@@ -110,16 +110,19 @@ body {
     left: -21px !important;
   }
 
-  /* OUR_TEAMS: team list becomes a horizontal strip */
+  /* OUR_TEAMS: all 4 teams visible at once as a 2x2 grid */
   .teams-sidebar {
-    flex-direction: row !important;
-    overflow-x: auto;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
     height: auto !important;
+    overflow: visible !important;
   }
 
   .team-nav-btn {
-    flex: 0 0 auto;
-    white-space: nowrap;
+    min-width: 0;
+    font-size: 13px !important;
+    line-height: 1.25;
   }
 
   /* OUR_TEAMS: skills and the apply button */
