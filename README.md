@@ -73,6 +73,8 @@ mpc2026.exe/
 ├── README.md                        # Tài liệu hướng dẫn dự án & Hướng dẫn Contributor
 │
 ├── apps/                            # CHỨA TOÀN BỘ CÁC APP CON ĐỘC LẬP
+│   ├── _shared/
+│   │   └── responsive.css           # CSS co giãn dùng chung, link cuối <head> của mỗi app
 │   ├── about_mpc/                   # Giới thiệu MPClub
 │   │   └── index.html
 │   ├── our_teams/                   # Các Ban Chuyên Môn (BLT, BTK, BTT, BSK)

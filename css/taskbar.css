@@ -643,3 +643,19 @@
 .xp-btn-cancel:hover {
   background-color: #f5f3e9;
 }
+
+/* Start menu never taller than the screen: header and footer stay, the app list scrolls */
+.start-menu {
+  max-height: calc(100vh - var(--taskbar-height));
+  max-height: calc(100dvh - var(--taskbar-height));
+}
+
+.start-menu-body {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.start-left-col,
+.start-right-col {
+  overflow-y: auto;
+}

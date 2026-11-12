@@ -77,7 +77,7 @@ const Desktop = (function () {
 
       iconEl.innerHTML = `
         <div class="desktop-icon-img">${iconGraphic}</div>
-        <div class="desktop-icon-label">${label}</div>
+        <div class="desktop-icon-label">${String(label).replace(/([_.])/g, '$1<wbr>')}</div>
       `;
 
       iconEl.addEventListener('click', (e) => {
