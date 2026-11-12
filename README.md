@@ -15,7 +15,7 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
 1. **Cách 1 (Khuyên dùng):** Mở thư mục dự án bằng **VS Code** ➜ Click chuột phải vào file `index.html` ➜ Chọn **Open with Live Server**.
 2. **Cách 2:** Mở trực tiếp file `index.html` bằng bất kỳ trình duyệt nào (Chrome, Edge, Firefox, Brave...).
 
-> **Mẹo cho Developer:** Khi khởi động web, rê chuột vào góc trên cùng bên phải màn hình sẽ xuất hiện nút **`⚡ Nhảy tới Desktop`** để bỏ qua màn hình boot BIOS và vào thẳng màn hình Desktop làm việc.
+> **Mẹo cho Developer:** Chuỗi boot chỉ chạy ở lần truy cập đầu tiên (~2 giây; bấm phím bất kỳ, chạm màn hình hoặc nút **`Bỏ qua ⏭`** để vào Desktop ngay). Các lần sau vào thẳng Desktop. Muốn xem lại boot: thêm `?boot=1` vào URL, hoặc chọn Restart trong Start menu.
 
 ---
 

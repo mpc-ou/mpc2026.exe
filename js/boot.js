@@ -10,7 +10,19 @@ const BootManager = (function () {
   let _loginEl = null;
   let _desktopEl = null;
   let _devSkipBtn = null;
-  let _globalVolume = 0.8;
+  // Sound is off until the visitor unmutes it in the tray (the mute box starts checked).
+  let _globalVolume = 0;
+
+  // The full boot runs on the first visit only; later visits land on the desktop.
+  // ?boot=1 forces it, and so does Restart (it sets FORCE_BOOT_KEY before reloading).
+  const BOOT_SEEN_KEY = 'mpc-booted';
+  const FORCE_BOOT_KEY = 'mpc-force-boot';
+  let _booting = false;
+  let _timers = [];
+
+  function later(fn, ms) {
+    _timers.push(setTimeout(fn, ms));
+  }
 
   // Real Audio Controller with user's assets/sounds
   const SoundFX = {
@@ -24,6 +36,7 @@ const BootManager = (function () {
     },
 
     play(name) {
+      if (_globalVolume === 0) return;
       try {
         const sound = this.sounds[name];
         if (sound) {
@@ -40,6 +53,7 @@ const BootManager = (function () {
 
     // 8-bit synthetic beep backup using Web Audio API
     beep(freq = 920, duration = 0.25) {
+      if (_globalVolume === 0) return;
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();
@@ -80,6 +94,7 @@ const BootManager = (function () {
     const userCard = document.getElementById('user-ouit');
     if (userCard) {
       userCard.addEventListener('click', () => {
+        if (_booting || _loginEl.classList.contains('hidden')) return;
         handleUserLogin(userCard);
       });
     }
@@ -92,8 +107,39 @@ const BootManager = (function () {
       });
     }
 
+    if (!shouldRunBoot()) {
+      skipToDesktop();
+      return;
+    }
+
+    // Any key, or a tap on a boot screen, jumps straight to the desktop.
+    _booting = true;
+    document.addEventListener('keydown', onBootInterrupt);
+    [_biosEl, _xpBootEl, _loginEl].forEach(el => el?.addEventListener('pointerdown', onBootInterrupt));
+
     // Start Phase 1: Animated BIOS with line-by-line printing
     startBiosSequence();
+  }
+
+  function shouldRunBoot() {
+    try {
+      if (new URLSearchParams(location.search).get('boot') === '1') return true;
+      if (sessionStorage.getItem(FORCE_BOOT_KEY)) {
+        sessionStorage.removeItem(FORCE_BOOT_KEY);
+        return true;
+      }
+      if (localStorage.getItem(BOOT_SEEN_KEY)) return false;
+      localStorage.setItem(BOOT_SEEN_KEY, '1');
+    } catch (e) {
+      // Storage blocked (private mode): just run the boot.
+    }
+    return true;
+  }
+
+  function onBootInterrupt(e) {
+    if (!_booting) return;
+    if (e.target === _devSkipBtn) return;
+    skipToDesktop();
   }
 
   /**
@@ -109,15 +155,15 @@ const BootManager = (function () {
     SoundFX.beep(950, 0.28);
 
     const biosLines = [
-      { text: "MPC ROM BIOS (C) 2026 MPClub Inc.", highlight: false, delay: 100 },
-      { text: "MPC-ACPI BIOS Version 2.026 - Khoa CNTT Trường ĐH Mở TP.HCM", highlight: false, delay: 150 },
-      { text: "CPU: Intel Core-OU IT @ 4.20 GHz", highlight: false, delay: 200 },
-      { text: "Memory Test: 2048576KB OK", highlight: true, delay: 250 },
-      { text: "Detecting Primary Master   ... MPC_DRIVE_15061990 (19.90 GB)", highlight: false, delay: 300 },
-      { text: "Detecting Primary Slave    ... NONE", highlight: false, delay: 200 },
-      { text: "Detecting Secondary Master ... CD-ROM MPC_RECRUITMENT_2026", highlight: false, delay: 250 },
-      { text: "Initializing Plug and Play Cards...", highlight: false, delay: 300 },
-      { text: "Loading MPCrosoft Operating System Kernel...", highlight: true, delay: 400 }
+      { text: "MPC ROM BIOS (C) 2026 MPClub Inc.", highlight: false, delay: 60 },
+      { text: "MPC-ACPI BIOS Version 2.026 - Khoa CNTT Trường ĐH Mở TP.HCM", highlight: false, delay: 60 },
+      { text: "CPU: Intel Core-OU IT @ 4.20 GHz", highlight: false, delay: 60 },
+      { text: "Memory Test: 2048576KB OK", highlight: true, delay: 60 },
+      { text: "Detecting Primary Master   ... MPC_DRIVE_15061990 (19.90 GB)", highlight: false, delay: 60 },
+      { text: "Detecting Primary Slave    ... NONE", highlight: false, delay: 60 },
+      { text: "Detecting Secondary Master ... CD-ROM MPC_RECRUITMENT_2026", highlight: false, delay: 60 },
+      { text: "Initializing Plug and Play Cards...", highlight: false, delay: 60 },
+      { text: "Loading MPCrosoft Operating System Kernel...", highlight: true, delay: 60 }
     ];
 
     const bodyEl = document.getElementById('bios-dynamic-body');
@@ -140,7 +186,7 @@ const BootManager = (function () {
         }
         bodyEl.appendChild(lineEl);
         lineIndex++;
-        setTimeout(printNextLine, item.delay);
+        later(printNextLine, item.delay);
       } else {
         // Cursor blink then start XP bootscreen
         const cursorEl = document.createElement('span');
@@ -148,24 +194,16 @@ const BootManager = (function () {
         cursorEl.textContent = '_';
         bodyEl.appendChild(cursorEl);
 
-        setTimeout(() => {
+        later(() => {
           if (!isSkipped) {
             isSkipped = true;
             startXPBootSequence();
           }
-        }, 1200);
+        }, 250);
       }
     }
 
     printNextLine();
-
-    // Click anywhere on BIOS screen to immediately skip to XP Boot
-    _biosEl.addEventListener('click', () => {
-      if (!isSkipped) {
-        isSkipped = true;
-        startXPBootSequence();
-      }
-    }, { once: true });
   }
 
   /**
@@ -176,10 +214,9 @@ const BootManager = (function () {
     _xpBootEl.classList.remove('hidden');
     _loginEl.classList.add('hidden');
 
-    // XP boot loading animation lasts 2.8 seconds
-    setTimeout(() => {
+    later(() => {
       startLoginSequence();
-    }, 2800);
+    }, 700);
   }
 
   /**
@@ -189,12 +226,20 @@ const BootManager = (function () {
     _xpBootEl.classList.add('hidden');
     _loginEl.classList.remove('hidden');
     _loginEl.classList.add('fade-in');
+
+    // During the first boot "OU IT" logs itself in; after Log off the visitor clicks.
+    if (_booting) {
+      const card = document.getElementById('user-ouit');
+      later(() => handleUserLogin(card, true), 300);
+    }
   }
 
   /**
-   * User logs into desktop
+   * User logs into desktop (auto = part of the first boot, so it runs faster)
    */
-  function handleUserLogin(cardElement) {
+  function handleUserLogin(cardElement, auto = false) {
+    const wait = auto ? 250 : 700;
+    const fade = auto ? 250 : 400;
     const statusText = cardElement.querySelector('.user-status');
     if (statusText) {
       statusText.textContent = 'Logging on...';
@@ -204,36 +249,64 @@ const BootManager = (function () {
     // Play real Windows XP logon sound
     SoundFX.play('logon');
 
-    setTimeout(() => {
+    const step = auto ? later : setTimeout;
+    step(() => {
       _loginEl.classList.add('fade-out');
-      setTimeout(() => {
+      step(() => {
         _loginEl.classList.add('hidden');
         _loginEl.classList.remove('fade-out', 'fade-in');
-        if (statusText) {
-          statusText.textContent = 'Click to start session';
-          statusText.classList.remove('user-logging-in');
-        }
-        if (_devSkipBtn) {
-          _devSkipBtn.style.display = 'none';
-        }
+        resetLoginCard();
+        if (auto) endBoot();
 
         // Play Windows XP startup sound when entering desktop!
         setTimeout(() => {
           SoundFX.play('startup');
         }, 300);
-      }, 400);
-    }, 700);
+      }, fade);
+    }, wait);
+  }
+
+  // Put the "OU IT" card back to its ready state, for the next Log off.
+  function resetLoginCard() {
+    const statusText = document.querySelector('#user-ouit .user-status');
+    if (!statusText) return;
+    statusText.textContent = window.I18n ? I18n.t('login.status_ready') : 'Click to start session';
+    statusText.classList.remove('user-logging-in');
+  }
+
+  function endBoot() {
+    _booting = false;
+    _timers.forEach(clearTimeout);
+    _timers = [];
+    document.removeEventListener('keydown', onBootInterrupt);
+    if (_devSkipBtn) _devSkipBtn.style.display = 'none';
   }
 
   /**
    * Dev Skip helper
    */
   function skipToDesktop() {
+    endBoot();
     if (_biosEl) _biosEl.classList.add('hidden');
     if (_xpBootEl) _xpBootEl.classList.add('hidden');
-    if (_loginEl) _loginEl.classList.add('hidden');
-    if (_devSkipBtn) _devSkipBtn.style.display = 'none';
+    if (_loginEl) {
+      _loginEl.classList.add('hidden');
+      _loginEl.classList.remove('fade-in', 'fade-out');
+    }
+    resetLoginCard();
     SoundFX.play('startup');
+  }
+
+  /**
+   * Restart: reload and play the full boot again.
+   */
+  function restart() {
+    try {
+      sessionStorage.setItem(FORCE_BOOT_KEY, '1');
+    } catch (e) {
+      // Storage blocked: the reload will still boot, because nothing was remembered.
+    }
+    window.location.reload();
   }
 
   /**
@@ -277,9 +350,7 @@ const BootManager = (function () {
           <p style="font-size: 13px; color: #888;">${rebootHint}</p>
         </div>
       `;
-      _biosEl.addEventListener('click', () => {
-        window.location.reload();
-      }, { once: true });
+      _biosEl.addEventListener('click', restart, { once: true });
     }, 2400);
   }
 
@@ -289,6 +360,7 @@ const BootManager = (function () {
     startXPBootSequence,
     startLoginSequence,
     skipToDesktop,
+    restart,
     goToLogin,
     goToShutdown,
     setVolume,

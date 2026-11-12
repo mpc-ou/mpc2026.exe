@@ -22,8 +22,8 @@
 </head>
 <body>
 
-  <!-- Quick Developer Jump Button (Only visible on hover) -->
-  <button id="dev-skip-btn" class="dev-skip-btn" title="Dành cho lập trình viên" data-i18n="skip.btn">⚡ Nhảy tới Desktop</button>
+  <!-- Skip button, visible for the whole boot sequence -->
+  <button id="dev-skip-btn" class="dev-skip-btn" data-i18n="skip.btn">Bỏ qua ⏭</button>
 
   <!-- ========================================================================
        PHASE 1: ANIMATED RETRO BIOS BOOT SCREEN
@@ -230,7 +230,7 @@
     <div style="font-weight: bold; font-size: 11px;" data-i18n="taskbar.vol_title">Âm lượng</div>
     <input type="range" min="0" max="100" value="80" class="tray-vol-slider" id="tray-vol-slider" />
     <label style="font-size: 10px; display: flex; align-items: center; gap: 4px; cursor: pointer;">
-      <input type="checkbox" id="tray-vol-mute" /> <span data-i18n="taskbar.mute">Tắt tiếng</span>
+      <input type="checkbox" id="tray-vol-mute" checked /> <span data-i18n="taskbar.mute">Tắt tiếng</span>
     </label>
   </div>
 
