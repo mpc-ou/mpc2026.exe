@@ -109,7 +109,7 @@ AppRegistry.register({
   height: 250,
   noMenubar: true,
   noStatusbar: true,
-  showOnDesktop: true,
+  showOnDesktop: false, // Start menu only: keep the desktop for recruitment content
   showInStartMenu: true,
   url: 'apps/calculator/index.html'
 });
@@ -124,7 +124,7 @@ AppRegistry.register({
   height: 275,
   noMenubar: true,
   noStatusbar: true,
-  showOnDesktop: true,
+  showOnDesktop: false, // Start menu only: keep the desktop for recruitment content
   showInStartMenu: true,
   url: 'apps/minesweeper/index.html'
 });
