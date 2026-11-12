@@ -57,7 +57,6 @@ body {
   .diary-sub,
   .entry-meta,
   .tag,
-  .skill-item,
   .photo-caption {
     font-size: 13px !important;
   }
@@ -121,6 +120,16 @@ body {
   .team-nav-btn {
     flex: 0 0 auto;
     white-space: nowrap;
+  }
+
+  /* OUR_TEAMS: skills and the apply button */
+  .skill-item {
+    font-size: 14px !important;
+  }
+
+  .btn-apply-team {
+    font-size: 15px !important;
+    padding: 10px 14px !important;
   }
 
   .lightbox-img {
