@@ -319,7 +319,7 @@
       url('../assets/backgrounds/bg.jpg');
     /* Portrait phones see a narrow slice: center it on the main fox at the laptop
        (fox + laptop group around x = 1080 of 1536px in bg.jpg). */
-    background-position: center, 74% center;
+    background-position: center, 77% center;
   }
 }
 
