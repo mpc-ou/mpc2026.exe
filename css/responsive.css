@@ -317,6 +317,9 @@
   .desktop-container {
     background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0, rgba(0, 0, 0, 0.12) 30%, transparent 50%),
       url('../assets/backgrounds/bg.jpg');
+    /* Portrait phones see a narrow slice: center it on the main fox at the laptop
+       (around x = 1170 of 1536px in bg.jpg). */
+    background-position: center, 88% center;
   }
 }
 
