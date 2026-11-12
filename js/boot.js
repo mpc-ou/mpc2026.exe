@@ -10,8 +10,7 @@ const BootManager = (function () {
   let _loginEl = null;
   let _desktopEl = null;
   let _devSkipBtn = null;
-  // Sound is off until the visitor unmutes it in the tray (the mute box starts checked).
-  let _globalVolume = 0;
+  let _globalVolume = 0.8;
 
   // The full boot runs on the first visit only; later visits land on the desktop.
   // ?boot=1 forces it, and so does Restart (it sets FORCE_BOOT_KEY before reloading).
@@ -36,7 +35,8 @@ const BootManager = (function () {
     },
 
     play(name) {
-      if (_globalVolume === 0) return;
+      // Browsers block sound until the visitor clicks, taps or presses a key; skip quietly until then.
+      if (_globalVolume === 0 || navigator.userActivation?.hasBeenActive === false) return;
       try {
         const sound = this.sounds[name];
         if (sound) {
@@ -53,7 +53,7 @@ const BootManager = (function () {
 
     // 8-bit synthetic beep backup using Web Audio API
     beep(freq = 920, duration = 0.25) {
-      if (_globalVolume === 0) return;
+      if (_globalVolume === 0 || navigator.userActivation?.hasBeenActive === false) return;
       try {
         const ctx = new (window.AudioContext || window.webkitAudioContext)();
         const osc = ctx.createOscillator();
@@ -72,6 +72,19 @@ const BootManager = (function () {
     }
   };
 
+  // iOS Safari only lets an <audio> play later if it was first started inside a gesture,
+  // so on the first click/tap/key, start every sound muted and stop it again.
+  function unlockAudio() {
+    Object.values(SoundFX.sounds).forEach(audio => {
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.muted = false;
+      }).catch(() => { audio.muted = false; });
+    });
+  }
+
   function setVolume(val) {
     _globalVolume = Math.max(0, Math.min(1, val));
     Object.values(SoundFX.sounds).forEach(audio => {
@@ -85,6 +98,9 @@ const BootManager = (function () {
     _loginEl = document.getElementById('screen-login');
     _desktopEl = document.getElementById('desktop');
     _devSkipBtn = document.getElementById('dev-skip-btn');
+
+    document.addEventListener('pointerdown', unlockAudio, { once: true, capture: true });
+    document.addEventListener('keydown', unlockAudio, { once: true, capture: true });
 
     if (_devSkipBtn) {
       _devSkipBtn.addEventListener('click', skipToDesktop);
@@ -149,10 +165,6 @@ const BootManager = (function () {
     _biosEl.classList.remove('hidden');
     _xpBootEl.classList.add('hidden');
     _loginEl.classList.add('hidden');
-
-    // Play 8-bit BIOS boot sound
-    SoundFX.play('bios_boot');
-    SoundFX.beep(950, 0.28);
 
     const biosLines = [
       { text: "MPC ROM BIOS (C) 2026 MPClub Inc.", highlight: false, delay: 60 },

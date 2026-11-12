@@ -22,9 +22,9 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
 ## 🌟 Tổng Quan Tính Năng Đã Hoàn Thiện
 
 1. **Chuỗi khởi động sống động (Animated Boot Sequence)**:
-   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng và phát âm thanh POST Beep 8-bit (`assets/sounds/bios_boot.wav`).
+   - **Màn hình BIOS động (`js/boot.js`)**: Hiệu ứng máy đánh chữ in từng dòng thông số RAM, ổ cứng (không phát tiếng vì trình duyệt chặn âm thanh trước khi người xem tương tác).
    - **Bootscreen MPCrosoft XP**: Hiển thị logo chính thức `assets/icons/logo.png`, dòng chữ *MPCrosoft MPC xp* cùng thanh chạy 3 khối xanh nguyên bản.
-   - **Màn hình Welcome / Login**: Tài khoản duy nhất **"OU IT"** (Avatar sinh viên IT). Ở lần boot đầu, "OU IT" tự đăng nhập (hiển thị `Logging on...`) rồi vào Desktop. Sau khi Log off, nhấn vào thẻ để đăng nhập lại. Âm thanh `logon.mp3`/`startup.mp3` chỉ phát khi đã bỏ tắt tiếng.
+   - **Màn hình Welcome / Login**: Tài khoản duy nhất **"OU IT"** (Avatar sinh viên IT). Ở lần boot đầu, "OU IT" tự đăng nhập (hiển thị `Logging on...`) rồi vào Desktop. Sau khi Log off, nhấn vào thẻ để đăng nhập lại. Âm thanh `logon.mp3`/`startup.mp3` chỉ phát sau lần đầu người xem bấm/chạm vào trang (trình duyệt chặn tự phát).
 2. **Giao diện Desktop & Window Manager**:
    - Hình nền chính thức `assets/backgrounds/bg.jpg`.
    - Chuột phải trên Desktop mở **Context Menu** chuẩn Windows XP (`Refresh` có hiệu ứng nháy màn hình, sắp xếp icon).
@@ -54,7 +54,7 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
    - Hiển thị theo chuẩn `object-fit: contain !important;`, không cắt xén, không sinh thanh cuộn, thanh controller (Play, Pause, Progress, Volume) luôn ghim cố định dưới đáy.
    - Hỗ trợ mở bất kỳ video nào từ máy tính cá nhân qua nút `Open File...`.
 8. **Khay hệ thống (System Tray) đa chức năng**:
-   - 🔊 **Âm lượng**: Điều chỉnh âm lượng toàn hệ thống và checkbox Mute (mặc định đang tắt tiếng).
+   - 🔊 **Âm lượng**: Điều chỉnh âm lượng toàn hệ thống và checkbox Mute.
    - 📶 **Mạng**: Trạng thái kết nối `OU_CAMPUS_5G`, IP `192.168.15.6`.
    - 🕒 **Đồng hồ kim & Lịch tháng**: Đồng hồ kim Analog chạy thời gian thực kết hợp bảng lịch tự động tính theo ngày hiện tại.
    - 🌐 **Nút đổi ngôn ngữ `VI` / `EN`**: Chuyển đổi ngôn ngữ song ngữ tức thì.
