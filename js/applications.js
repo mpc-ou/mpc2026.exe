@@ -137,6 +137,7 @@ AppRegistry.register({
   i18nTitleKey: 'app.recycle.title',
   i18nLabelKey: 'app.recycle.label',
   iconUrl: 'assets/icons/trash.svg',
+  showInStartMenu: false, // desktop only, like Windows XP
   width: 500,
   height: 340,
   render: (container) => {

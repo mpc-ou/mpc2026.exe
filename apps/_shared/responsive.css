@@ -1,0 +1,141 @@
+/* ==========================================================================
+   Shared responsive rules for the apps inside windows (iframes).
+   Media queries here measure the WINDOW, not the screen: a phone window or a
+   window the user shrank on desktop both get the narrow layout.
+   Linked last in each app's <head> so it overrides the app's own styles.
+   ========================================================================== */
+
+img {
+  max-width: 100%;
+}
+
+body {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px !important;
+    font-size: 15px !important;
+  }
+
+  /* Headings */
+  .title,
+  .header-title,
+  .faq-title,
+  .entry-title,
+  .event-title,
+  .diary-title-box h1 {
+    font-size: 18px !important;
+  }
+
+  .notepad-title {
+    font-size: 12px !important;
+    overflow-x: auto;
+  }
+
+  /* Body text: 15px and roomier lines */
+  .notepad-section p,
+  .event-desc,
+  .entry-body,
+  .faq-question,
+  .faq-answer,
+  .detail-desc,
+  .team-desc,
+  .photo-name,
+  .search-box input {
+    font-size: 15px !important;
+    line-height: 1.55;
+  }
+
+  /* Small print: was 9-12px */
+  .footer-stamp,
+  .lang-btn,
+  .tag-btn,
+  .photo-meta,
+  .event-badge,
+  .diary-sub,
+  .entry-meta,
+  .tag,
+  .photo-caption {
+    font-size: 13px !important;
+  }
+
+  /* Finger-sized controls */
+  .tag-btn,
+  .lang-btn,
+  .team-nav-btn,
+  .btn-apply-team,
+  .cta-btn,
+  .btn-hero,
+  .btn-apply-nav,
+  .faq-question,
+  .search-box input {
+    min-height: 44px;
+  }
+
+  /* Headers wrap instead of overflowing */
+  .header-bar,
+  .diary-header,
+  .faq-header,
+  .entry-meta,
+  .footer-stamp,
+  .cta-banner {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ACTIVITIES: 2 photos per row */
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .photo-thumb {
+    height: 110px !important;
+  }
+
+  .photo-card:hover,
+  .event-item:hover {
+    transform: none !important;
+  }
+
+  /* EVENTS: slimmer timeline */
+  .timeline {
+    margin-left: 4px !important;
+    padding-left: 14px !important;
+  }
+
+  .event-item::before {
+    left: -21px !important;
+  }
+
+  /* OUR_TEAMS: all 4 teams visible at once as a 2x2 grid */
+  .teams-sidebar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .team-nav-btn {
+    min-width: 0;
+    font-size: 13px !important;
+    line-height: 1.25;
+  }
+
+  /* OUR_TEAMS: skills and the apply button */
+  .skill-item {
+    font-size: 14px !important;
+  }
+
+  .btn-apply-team {
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  .lightbox-img {
+    max-width: 100% !important;
+  }
+}

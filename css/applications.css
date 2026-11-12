@@ -295,6 +295,7 @@
   line-height: 1.4;
   padding: 10px 12px;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .terminal-output {
@@ -319,7 +320,10 @@
 .terminal-prompt {
   color: #00ff66;
   margin-right: 6px;
-  white-space: nowrap;
+  /* A long path must wrap, or the row gets wider than the window and pushes text off-screen */
+  white-space: normal;
+  word-break: break-all;
+  flex-shrink: 1;
 }
 
 .terminal-input {
@@ -331,6 +335,7 @@
   font-family: var(--font-mono);
   font-size: 13px;
   padding: 0;
+  min-width: 60px;
 }
 
 /* 4. MPCrosoft Explorer Browser (Tabbed Retro XP Shell - Matching User Reference 7) */
@@ -635,8 +640,6 @@
   padding: 0 10px;
   font-size: 11px;
   color: #444;
-}
-  color: #222;
 }
 
 .web-header {

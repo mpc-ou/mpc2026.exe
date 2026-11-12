@@ -20,6 +20,63 @@ const WindowManager = (function () {
     change: []
   };
 
+  const EDGE = 16;        // min gap between a window and the screen edge
+  const CASCADE = 28;    // offset for each extra open window
+
+  // Free area for windows: the viewport minus the taskbar.
+  function workArea() {
+    const taskbar = document.querySelector('.taskbar-container');
+    return { w: window.innerWidth, h: window.innerHeight - (taskbar ? taskbar.offsetHeight : 36) };
+  }
+
+  /**
+   * Opening size and position: fit the screen, then center in the space right of the
+   * desktop icon column (or the whole screen if it does not fit there), cascading
+   * a little for each window already open. Phones (<=768px) are fullscreen via CSS.
+   */
+  function initialRect(appConfig, openCount) {
+    const area = workArea();
+    const tablet = area.w <= 1024;
+    const wantW = appConfig.width || 600;
+    const wantH = appConfig.height || 420;
+    // Content apps grow with the screen; small tools (calc, minesweeper) keep their size.
+    const big = area.w >= 1440;
+    const content = wantW >= 400 && wantH >= 300;
+    const scaleW = content ? (tablet ? 0.9 : big ? 0.58 : 0.68) : 0;
+    const scaleH = content ? (tablet ? 0.85 : big ? 0.8 : 0.84) : 0;
+    const width = Math.round(Math.min(Math.max(wantW, area.w * scaleW), area.w - EDGE * 2));
+    const height = Math.round(Math.min(Math.max(wantH, area.h * scaleH), area.h - EDGE * 2));
+
+    const icons = document.getElementById('desktop-icons');
+    const iconsRight = icons && !tablet ? icons.getBoundingClientRect().right : 0;
+    const left0 = area.w - iconsRight - EDGE * 2 >= width ? iconsRight + EDGE : EDGE;
+    const spanW = area.w - left0 - EDGE;
+
+    const step = (openCount % 6) * CASCADE;
+    const x = left0 + Math.max(0, (spanW - width) / 2) + step;
+    const y = EDGE + Math.max(0, (area.h - EDGE * 2 - height) / 2) + step;
+    return {
+      width, height,
+      x: Math.round(Math.min(x, area.w - width - EDGE)),
+      y: Math.round(Math.max(EDGE, Math.min(y, area.h - height - EDGE)))
+    };
+  }
+
+  // After the viewport changes (rotate phone, resize browser) keep every window on screen.
+  window.addEventListener('resize', () => {
+    const area = workArea();
+    _openWindows.forEach(win => {
+      if (win.isMaximized) return;
+      const el = win.element;
+      const w = Math.min(el.offsetWidth, area.w - EDGE * 2);
+      const h = Math.min(el.offsetHeight, area.h - EDGE * 2);
+      el.style.width = `${w}px`;
+      el.style.height = `${h}px`;
+      el.style.left = `${Math.max(EDGE, Math.min(el.offsetLeft, area.w - w - EDGE))}px`;
+      el.style.top = `${Math.max(0, Math.min(el.offsetTop, area.h - h - EDGE))}px`;
+    });
+  });
+
   /**
    * Helper to notify taskbar and external observers of window state changes
    */
@@ -42,17 +99,16 @@ const WindowManager = (function () {
       this.title = appConfig.title || appConfig.id;
       this.iconSvg = appConfig.iconSvg || '';
       this.iconUrl = appConfig.iconUrl || '';
-      this.width = Math.min(appConfig.width || 600, window.innerWidth - 30);
-      this.height = Math.min(appConfig.height || 420, window.innerHeight - 70);
+      const rect = initialRect(appConfig, _openWindows.size);
+      this.width = rect.width;
+      this.height = rect.height;
       this.isMinimized = false;
       this.isMaximized = false;
       this.prevRect = null;
       this.appConfig = appConfig;
 
-      // Position cascade calculation
-      const offset = (_openWindows.size * 26) % 180;
-      this.posX = Math.max(30, Math.min(80 + offset, window.innerWidth - this.width - 20));
-      this.posY = Math.max(30, Math.min(50 + offset, window.innerHeight - this.height - 60));
+      this.posX = rect.x;
+      this.posY = rect.y;
 
       this.element = this._createDOM();
       this._bindEvents();

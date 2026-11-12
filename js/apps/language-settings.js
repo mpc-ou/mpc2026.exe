@@ -14,7 +14,7 @@
     width: 440,
     height: 380,
     showOnDesktop: false,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       function renderUI() {
         const curLang = I18n.getLanguage();

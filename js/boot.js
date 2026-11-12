@@ -23,6 +23,11 @@ const BootManager = (function () {
     _timers.push(setTimeout(fn, ms));
   }
 
+  function clearTimers() {
+    _timers.forEach(clearTimeout);
+    _timers = [];
+  }
+
   // Real Audio Controller with user's assets/sounds
   const SoundFX = {
     sounds: {
@@ -162,8 +167,7 @@ const BootManager = (function () {
   }
 
   function continueFromBios() {
-    _timers.forEach(clearTimeout);
-    _timers = [];
+    clearTimers();
     SoundFX.play('bios_boot');
     SoundFX.beep(950, 0.28);
     startXPBootSequence();
@@ -292,8 +296,7 @@ const BootManager = (function () {
 
   function endBoot() {
     _booting = false;
-    _timers.forEach(clearTimeout);
-    _timers = [];
+    clearTimers();
     document.removeEventListener('keydown', onBootInterrupt);
     if (_devSkipBtn) _devSkipBtn.style.display = 'none';
   }

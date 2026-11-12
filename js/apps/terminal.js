@@ -16,7 +16,7 @@
     width: 640,
     height: 400,
     showOnDesktop: true,
-    showInStartMenu: true,
+    showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       container.innerHTML = `
         <div class="terminal-container" id="terminal-screen-${win.appId}">

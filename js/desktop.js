@@ -77,7 +77,7 @@ const Desktop = (function () {
 
       iconEl.innerHTML = `
         <div class="desktop-icon-img">${iconGraphic}</div>
-        <div class="desktop-icon-label">${label}</div>
+        <div class="desktop-icon-label">${String(label).replace(/([_.])/g, '$1<wbr>')}</div>
       `;
 
       iconEl.addEventListener('click', (e) => {
@@ -92,8 +92,7 @@ const Desktop = (function () {
         WindowManager.open(app.id);
       });
 
-      // Touch: one tap opens the app (nobody double-taps on a phone).
-      // A finger that moved more than 10px was scrolling, not tapping.
+      // Touch: a single tap opens the app; a finger that moved > 10px was scrolling.
       let touchStart = null;
       iconEl.addEventListener('touchstart', (e) => {
         const t = e.touches[0];
