@@ -246,7 +246,7 @@ const BootManager = (function () {
     // During the first boot "OU IT" logs itself in; after Log off the visitor clicks.
     if (_booting) {
       const card = document.getElementById('user-ouit');
-      later(() => handleUserLogin(card, true), 300);
+      later(() => handleUserLogin(card, true), 1000);
     }
   }
 
