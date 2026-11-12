@@ -245,3 +245,7 @@
 .desktop-icon[data-app-id="winmine.exe"] .desktop-icon-img > i.bi {
   background: linear-gradient(180deg, #7fd36b 0%, #3a9a2c 55%, #26731c 100%);
 }
+
+.desktop-icon[data-app-id="cmd.exe"] .desktop-icon-img > i.bi {
+  background: linear-gradient(180deg, #4a4a4a 0%, #1d1d1d 55%, #000 100%);
+}

@@ -12,7 +12,8 @@
     id: 'cmd.exe',
     title: 'Command Prompt',
     desktopLabel: 'cmd.exe',
-    iconUrl: 'assets/icons/cmd.svg',
+    // Font glyph instead of cmd.svg: the tiny console text in the SVG turned into a blur at icon size
+    iconSvg: '<i class="bi bi-terminal-fill" style="color: #1d1d1d; font-size: 26px;"></i>',
     width: 640,
     height: 400,
     showOnDesktop: true,
