@@ -21,8 +21,7 @@
 }
 
 .npc-body {
-  width: 110px;
-  height: 124px;
+  width: 150px;
   padding: 0;
   border: none;
   background: none;
@@ -33,30 +32,15 @@
 }
 
 .npc-fox {
+  display: block;
   width: 100%;
-  height: 100%;
-  overflow: visible;
+  height: auto;
+  user-select: none;
 }
 
-.npc-fox .npc-eyes {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: npcBlink 4.5s infinite;
-}
-
-.npc-fox .npc-tail {
-  transform-box: fill-box;
-  transform-origin: 10% 90%;
-  animation: npcTail 2.6s ease-in-out infinite;
-}
-
-.npc-fox .npc-arm {
-  transform-box: fill-box;
-  transform-origin: 20% 90%;
-}
-
-.npc.waving .npc-arm {
-  animation: npcWave 0.5s ease-in-out 3;
+/* Little hop when the fox talks */
+.npc.waving .npc-body {
+  animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
 }
 
 /* Speech bubble (XP balloon tooltip) */
@@ -167,19 +151,9 @@
   50% { transform: translateY(-4px); }
 }
 
-@keyframes npcBlink {
-  0%, 94%, 100% { transform: scaleY(1); }
-  97% { transform: scaleY(0.1); }
-}
-
-@keyframes npcTail {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-6deg); }
-}
-
-@keyframes npcWave {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(-25deg); }
+@keyframes npcHop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
 }
 
 @keyframes npcPop {
@@ -189,9 +163,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .npc-body,
-  .npc-fox .npc-eyes,
-  .npc-fox .npc-tail,
-  .npc.waving .npc-arm,
+  .npc.waving .npc-body,
   .npc-bubble {
     animation: none;
   }
@@ -204,8 +176,7 @@
   }
 
   .npc-body {
-    width: 80px;
-    height: 90px;
+    width: 110px;
   }
 
   .npc-bubble {
@@ -230,8 +201,7 @@
 /* Large screens */
 @media (min-width: 1600px) {
   .npc-body {
-    width: 140px;
-    height: 158px;
+    width: 190px;
   }
 
   .npc-bubble {

@@ -61,7 +61,7 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
 9. **Linh vật cáo MPC (`js/npc.js`)**:
    - Xuất hiện ở góc phải dưới sau khi boot, chào lần đầu và chỉ tới `JOIN_MPC.exe`.
    - Bấm vào cáo để xem gợi ý; mở app nào thì cáo có câu phản ứng riêng (lời thoại ở `js/i18n.js`, khóa `npc.*`).
-   - Nút "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải; hình cáo là SVG trong `index.html`, Ban Thiết kế có thể thay.
+   - Nút "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải; hình cáo là `assets/npc/fox.png` (cắt từ hình nền), Ban Thiết kế có thể thay file này.
 10. **Game & Ứng dụng phụ**:
    - 🧮 **Calculator (`calc.exe`)**: Máy tính Windows XP Luna tính toán thực tế.
    - 💣 **Minesweeper (`winmine.exe`)**: Game dò mìn cổ điển với bộ đếm số 7-segment và nút mặt cười tương tác.
