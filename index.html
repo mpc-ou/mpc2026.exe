@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="css/window.css">
   <link rel="stylesheet" href="css/taskbar.css">
   <link rel="stylesheet" href="css/applications.css">
+  <link rel="stylesheet" href="css/npc.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -147,6 +148,77 @@
 
     <!-- Desktop Icons Grid -->
     <div id="desktop-icons" class="desktop-icons-area"></div>
+
+    <!-- NPC mascot (js/npc.js). Placeholder fox drawn after the wallpaper; swap the SVG
+         for the design team's mascot when it is ready. -->
+    <div id="npc" class="npc hidden">
+      <div class="npc-bubble hidden" role="status" aria-live="polite">
+        <button class="npc-bubble-close" id="npc-bubble-close" type="button" aria-label="Đóng">&times;</button>
+        <p class="npc-text" id="npc-text"></p>
+        <div class="npc-actions">
+          <button class="npc-btn npc-btn-primary hidden" id="npc-cta" type="button" data-i18n="npc.cta">Mở JOIN_MPC.exe</button>
+          <button class="npc-btn" id="npc-hide" type="button" data-i18n="npc.hide">Ẩn mình đi</button>
+        </div>
+      </div>
+      <button class="npc-body" id="npc-body" type="button" aria-label="MPC fox">
+        <svg class="npc-fox" viewBox="0 0 160 180" aria-hidden="true">
+          <defs>
+            <linearGradient id="npc-fur" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#ff7a32"/>
+              <stop offset="1" stop-color="#e2481c"/>
+            </linearGradient>
+            <linearGradient id="npc-tail" x1="0.1" y1="1" x2="0.7" y2="0">
+              <stop offset="0" stop-color="#e2481c"/>
+              <stop offset="0.5" stop-color="#ff8a2e"/>
+              <stop offset="0.62" stop-color="#ffa63d"/>
+              <stop offset="0.72" stop-color="#2c2c30"/>
+              <stop offset="1" stop-color="#1b1b1e"/>
+            </linearGradient>
+          </defs>
+          <g class="npc-tail">
+            <path d="M98 160 C138 166 160 140 154 100 C151 80 140 68 128 64 C136 92 128 122 96 134 Z" fill="url(#npc-tail)" stroke="#5a1e0a" stroke-width="1.5"/>
+          </g>
+          <path d="M46 168 C44 132 58 112 80 112 C102 112 116 132 114 168 Z" fill="#2e2f34" stroke="#151518" stroke-width="1.5"/>
+          <path d="M66 113 L80 129 L94 113 Z" fill="#ff7a32" stroke="#5a1e0a" stroke-width="1"/>
+          <ellipse cx="62" cy="168" rx="14" ry="9" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.2"/>
+          <ellipse cx="57" cy="170" rx="7" ry="5" fill="#fff6ee"/>
+          <ellipse cx="98" cy="168" rx="14" ry="9" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.2"/>
+          <ellipse cx="103" cy="170" rx="7" ry="5" fill="#fff6ee"/>
+          <ellipse cx="50" cy="146" rx="8" ry="11" transform="rotate(12 50 146)" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.2"/>
+          <ellipse cx="51" cy="155" rx="5" ry="4" fill="#fff6ee"/>
+          <g class="npc-arm">
+            <ellipse cx="112" cy="120" rx="8" ry="12" transform="rotate(35 112 120)" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.2"/>
+            <ellipse cx="117" cy="112" rx="5" ry="4" fill="#fff6ee"/>
+          </g>
+          <path d="M42 54 C34 36 30 20 34 6 C48 12 62 24 70 36 Z" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.5"/>
+          <path d="M44 46 C39 32 37 22 39 14 C49 20 57 28 62 36 Z" fill="#fff4ea"/>
+          <path d="M118 54 C126 36 130 20 126 6 C112 12 98 24 90 36 Z" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.5"/>
+          <path d="M116 46 C121 32 123 22 121 14 C111 20 103 28 98 36 Z" fill="#fff4ea"/>
+          <path d="M28 76 C28 46 52 30 80 30 C108 30 132 46 132 76 C132 98 112 110 80 110 C48 110 28 98 28 76 Z" fill="url(#npc-fur)" stroke="#5a1e0a" stroke-width="1.5"/>
+          <path d="M68 33 L74 21 L80 31 L87 22 L90 34 Z" fill="#ff7a32"/>
+          <path d="M31 78 C26 84 20 87 13 89 C19 92 23 92 27 91 C24 95 22 97 19 99 C27 99 33 96 37 92 Z M129 78 C134 84 140 87 147 89 C141 92 137 92 133 91 C136 95 138 97 141 99 C133 99 127 96 123 92 Z" fill="#fff6ee" stroke="#e8d6c8" stroke-width="1"/>
+          <path d="M34 86 C44 102 60 108 80 108 C100 108 116 102 126 86 C118 92 104 96 80 96 C56 96 42 92 34 86 Z" fill="#fff6ee"/>
+          <ellipse cx="80" cy="94" rx="20" ry="11" fill="#fff6ee"/>
+          <ellipse cx="50" cy="90" rx="6" ry="3" fill="#ff7f7f" opacity="0.35"/>
+          <ellipse cx="110" cy="90" rx="6" ry="3" fill="#ff7f7f" opacity="0.35"/>
+          <path d="M55 60 L71 64 M105 60 L89 64" stroke="#5a2a14" stroke-width="3" stroke-linecap="round"/>
+          <g class="npc-eyes">
+            <ellipse cx="64" cy="75" rx="6.5" ry="7.5" fill="#3b2416"/>
+            <ellipse cx="96" cy="75" rx="6.5" ry="7.5" fill="#3b2416"/>
+            <circle cx="61.5" cy="72" r="2.2" fill="#fff"/>
+            <circle cx="93.5" cy="72" r="2.2" fill="#fff"/>
+          </g>
+          <g fill="rgba(255,255,255,0.12)" stroke="#3a2a22" stroke-width="2.2">
+            <circle cx="64" cy="75" r="13"/>
+            <circle cx="96" cy="75" r="13"/>
+          </g>
+          <path d="M77 73 Q80 70 83 73 M51 73 L37 69 M109 73 L123 69" fill="none" stroke="#3a2a22" stroke-width="2"/>
+          <ellipse cx="80" cy="89" rx="4.5" ry="3" fill="#1f1a1a"/>
+          <path d="M76 94 Q80 98 84 94" fill="none" stroke="#3a2a22" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <button class="npc-peek hidden" id="npc-peek" type="button" data-i18n-title="npc.show" title="Gọi linh vật">🦊</button>
 
     <!-- Rubber-band marquee selection box -->
     <div id="selection-box" class="desktop-selection-box"></div>
@@ -418,6 +490,7 @@
   <script src="js/apps/language-settings.js"></script>
   <script src="js/desktop.js"></script>
   <script src="js/taskbar.js"></script>
+  <script src="js/npc.js"></script>
   <script src="js/boot.js"></script>
   <script src="js/main.js"></script>
 </body>

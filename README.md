@@ -58,7 +58,11 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
    - 📶 **Mạng**: Trạng thái kết nối `OU_CAMPUS_5G`, IP `192.168.15.6`.
    - 🕒 **Đồng hồ kim & Lịch tháng**: Đồng hồ kim Analog chạy thời gian thực kết hợp bảng lịch tự động tính theo ngày hiện tại.
    - 🌐 **Nút đổi ngôn ngữ `VI` / `EN`**: Chuyển đổi ngôn ngữ song ngữ tức thì.
-9. **Game & Ứng dụng phụ**:
+9. **Linh vật cáo MPC (`js/npc.js`)**:
+   - Xuất hiện ở góc phải dưới sau khi boot, chào lần đầu và chỉ tới `JOIN_MPC.exe`.
+   - Bấm vào cáo để xem gợi ý; mở app nào thì cáo có câu phản ứng riêng (lời thoại ở `js/i18n.js`, khóa `npc.*`).
+   - Nút "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải; hình cáo là SVG trong `index.html`, Ban Thiết kế có thể thay.
+10. **Game & Ứng dụng phụ**:
    - 🧮 **Calculator (`calc.exe`)**: Máy tính Windows XP Luna tính toán thực tế.
    - 💣 **Minesweeper (`winmine.exe`)**: Game dò mìn cổ điển với bộ đếm số 7-segment và nút mặt cười tương tác.
 
@@ -117,6 +121,7 @@ mpc2026.exe/
 │   ├── login.css                    # Welcome / Login screen (OU IT)
 │   ├── desktop.css                  # Màn hình Desktop, chuột phải, chọn vùng
 │   ├── window.css                   # Quản lý cửa sổ (drag, resize, titlebar)
+│   ├── npc.css                      # Linh vật cáo MPC & khung thoại
 │   ├── taskbar.css                  # Taskbar, Start Menu, System Tray, Shutdown Modal
 │   ├── applications.css             # Style Explorer, Terminal, IE, WMP
 │   └── responsive.css              # Tối ưu giao diện cho Mobile & Tablet
@@ -129,6 +134,7 @@ mpc2026.exe/
     ├── applications.js              # Khai báo danh sách các app trong hệ thống
     ├── desktop.js                   # Xử lý icon màn hình, quét chuột, menu chuột phải
     ├── taskbar.js                   # Xử lý Start Menu, Tray Widget, Đồng hồ
+    ├── npc.js                       # Linh vật cáo MPC: lời chào, gợi ý, phản ứng khi mở app
     ├── boot.js                      # Điều khiển chu trình boot và âm thanh
     ├── main.js                      # Điểm khởi chạy chính
     └── apps/                        # Các app hệ thống đặc biệt

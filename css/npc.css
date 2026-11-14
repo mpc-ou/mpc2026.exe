@@ -1,0 +1,241 @@
+/* ==========================================================================
+   NPC mascot (js/npc.js): fox in the bottom-right corner with a speech bubble.
+   Sits above the desktop icons but below windows (z-index 100+).
+   ========================================================================== */
+
+.npc {
+  position: absolute;
+  right: 16px;
+  bottom: calc(var(--taskbar-height) + 8px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  pointer-events: none; /* only the bubble and the fox take clicks */
+}
+
+/* The mascot replaces the bottom-right watermark while it is shown */
+.desktop-container.npc-on .desktop-watermark {
+  display: none;
+}
+
+.npc-body {
+  width: 110px;
+  height: 124px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+  animation: npcBob 3.2s ease-in-out infinite;
+}
+
+.npc-fox {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.npc-fox .npc-eyes {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: npcBlink 4.5s infinite;
+}
+
+.npc-fox .npc-tail {
+  transform-box: fill-box;
+  transform-origin: 10% 90%;
+  animation: npcTail 2.6s ease-in-out infinite;
+}
+
+.npc-fox .npc-arm {
+  transform-box: fill-box;
+  transform-origin: 20% 90%;
+}
+
+.npc.waving .npc-arm {
+  animation: npcWave 0.5s ease-in-out 3;
+}
+
+/* Speech bubble (XP balloon tooltip) */
+.npc-bubble {
+  position: relative;
+  max-width: 260px;
+  padding: 10px 12px 10px;
+  background: #ffffe1;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 8px;
+  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35);
+  font-family: var(--font-system);
+  font-size: 12px;
+  line-height: 1.45;
+  pointer-events: auto;
+  animation: npcPop 0.18s ease-out;
+}
+
+/* Tail of the balloon, pointing down at the fox */
+.npc-bubble::after {
+  content: "";
+  position: absolute;
+  right: 44px;
+  bottom: -10px;
+  border: 10px solid transparent;
+  border-bottom: 0;
+  border-top-color: #000;
+}
+
+.npc-bubble::before {
+  content: "";
+  position: absolute;
+  right: 45px;
+  bottom: -8px;
+  z-index: 1;
+  border: 9px solid transparent;
+  border-bottom: 0;
+  border-top-color: #ffffe1;
+}
+
+.npc-text {
+  margin: 0 14px 0 0;
+}
+
+.npc-bubble-close {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  line-height: 1;
+  color: #555;
+  cursor: pointer;
+}
+
+.npc-bubble-close:hover {
+  color: #000;
+}
+
+.npc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.npc-btn {
+  min-height: 24px;
+  padding: 2px 10px;
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.npc-btn-primary {
+  border: 2px solid #0055ea;
+  font-weight: bold;
+}
+
+/* Collapsed state: a small tab to call the fox back */
+.npc-peek {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--taskbar-height) + 16px);
+  z-index: 50;
+  width: 40px;
+  height: 40px;
+  padding: 0 0 0 4px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  background: #ff7a32;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes npcBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes npcBlink {
+  0%, 94%, 100% { transform: scaleY(1); }
+  97% { transform: scaleY(0.1); }
+}
+
+@keyframes npcTail {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-6deg); }
+}
+
+@keyframes npcWave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-25deg); }
+}
+
+@keyframes npcPop {
+  from { opacity: 0; transform: translateY(6px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .npc-body,
+  .npc-fox .npc-eyes,
+  .npc-fox .npc-tail,
+  .npc.waving .npc-arm,
+  .npc-bubble {
+    animation: none;
+  }
+}
+
+/* Phones: smaller fox, bubble fits the screen, readable text and buttons */
+@media (max-width: 768px) {
+  .npc {
+    right: 8px;
+  }
+
+  .npc-body {
+    width: 80px;
+    height: 90px;
+  }
+
+  .npc-bubble {
+    max-width: calc(100vw - 24px);
+    font-size: 14px;
+  }
+
+  .npc-bubble::after {
+    right: 30px;
+  }
+
+  .npc-bubble::before {
+    right: 31px;
+  }
+
+  .npc-btn {
+    min-height: 36px;
+    font-size: 13px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1600px) {
+  .npc-body {
+    width: 140px;
+    height: 158px;
+  }
+
+  .npc-bubble {
+    max-width: 300px;
+    font-size: 14px;
+  }
+}

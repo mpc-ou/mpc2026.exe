@@ -299,6 +299,7 @@ const BootManager = (function () {
     clearTimers();
     document.removeEventListener('keydown', onBootInterrupt);
     if (_devSkipBtn) _devSkipBtn.style.display = 'none';
+    document.dispatchEvent(new CustomEvent('mpc:desktop-ready'));
   }
 
   /**
