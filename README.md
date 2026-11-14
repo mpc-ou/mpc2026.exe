@@ -59,7 +59,8 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
    - 🕒 **Đồng hồ kim & Lịch tháng**: Đồng hồ kim Analog chạy thời gian thực kết hợp bảng lịch tự động tính theo ngày hiện tại.
    - 🌐 **Nút đổi ngôn ngữ `VI` / `EN`**: Chuyển đổi ngôn ngữ song ngữ tức thì.
 9. **Linh vật cáo MPC (`js/npc.js`)**:
-   - Xuất hiện ở góc phải dưới sau khi boot, chào lần đầu và chỉ tới `JOIN_MPC.exe`.
+   - Xuất hiện ở góc phải dưới sau khi boot, chào theo giờ trong ngày; lần đầu chỉ tới `JOIN_MPC.exe`.
+   - Lời thoại hiện từng chữ, icon được nhắc tới sẽ nhấp nháy viền cam; đứng yên ở Desktop 40 giây thì cáo nhắc (tối đa 2 lần, lần cuối chỉ tới JOIN).
    - Bấm vào cáo để xem gợi ý; mở app nào thì cáo có câu phản ứng riêng (lời thoại ở `js/i18n.js`, khóa `npc.*`).
    - Nút "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải; hình cáo là `assets/npc/fox.png` (cắt từ hình nền), Ban Thiết kế có thể thay file này.
 10. **Game & Ứng dụng phụ**:
