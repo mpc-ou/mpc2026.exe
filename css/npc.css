@@ -9,9 +9,9 @@
   bottom: calc(var(--taskbar-height) + 8px);
   z-index: 50;
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* bubble on the left, so it does not cover the thought cloud in the art */
   align-items: flex-end;
-  gap: 6px;
+  gap: 10px;
   pointer-events: none; /* only the bubble and the fox take clicks */
 }
 
@@ -21,7 +21,7 @@
 }
 
 .npc-body {
-  width: 150px;
+  width: 170px;
   padding: 0;
   border: none;
   background: none;
@@ -52,6 +52,7 @@
   color: #000;
   border: 1px solid #000;
   border-radius: 8px;
+  margin-bottom: 70px; /* level with the fox's head */
   box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35);
   font-family: var(--font-system);
   font-size: 12px;
@@ -60,26 +61,26 @@
   animation: npcPop 0.18s ease-out;
 }
 
-/* Tail of the balloon, pointing down at the fox */
+/* Tail of the balloon, pointing right at the fox */
 .npc-bubble::after {
   content: "";
   position: absolute;
-  right: 44px;
-  bottom: -10px;
+  right: -11px;
+  bottom: 18px;
   border: 10px solid transparent;
-  border-bottom: 0;
-  border-top-color: #000;
+  border-right: 0;
+  border-left-color: #000;
 }
 
 .npc-bubble::before {
   content: "";
   position: absolute;
-  right: 45px;
-  bottom: -8px;
+  right: -9px;
+  bottom: 19px;
   z-index: 1;
   border: 9px solid transparent;
-  border-bottom: 0;
-  border-top-color: #ffffe1;
+  border-right: 0;
+  border-left-color: #ffffe1;
 }
 
 .npc-text {
@@ -176,20 +177,17 @@
   }
 
   .npc-body {
-    width: 110px;
+    width: 120px;
+  }
+
+  .npc {
+    gap: 6px;
   }
 
   .npc-bubble {
-    max-width: calc(100vw - 24px);
+    max-width: calc(100vw - 150px);
+    margin-bottom: 50px;
     font-size: 14px;
-  }
-
-  .npc-bubble::after {
-    right: 30px;
-  }
-
-  .npc-bubble::before {
-    right: 31px;
   }
 
   .npc-btn {
@@ -201,7 +199,7 @@
 /* Large screens */
 @media (min-width: 1600px) {
   .npc-body {
-    width: 190px;
+    width: 220px;
   }
 
   .npc-bubble {

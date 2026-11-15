@@ -149,8 +149,8 @@
     <!-- Desktop Icons Grid -->
     <div id="desktop-icons" class="desktop-icons-area"></div>
 
-    <!-- NPC mascot (js/npc.js). assets/npc/fox.png is the laptop fox cut out of the
-         wallpaper; replace that file when the design team delivers the mascot. -->
+    <!-- NPC mascot (js/npc.js). Two poses from the design team: fox-think.png ("…", idle)
+         and fox-idea.png ("Nghĩ ra rồi!", while talking). -->
     <div id="npc" class="npc hidden">
       <div class="npc-bubble hidden" role="status" aria-live="polite">
         <button class="npc-bubble-close" id="npc-bubble-close" type="button" aria-label="Đóng">&times;</button>
@@ -161,7 +161,7 @@
         </div>
       </div>
       <button class="npc-body" id="npc-body" type="button" aria-label="MPC fox">
-        <img class="npc-fox" src="assets/npc/fox.png" alt="" draggable="false" />
+        <img class="npc-fox" id="npc-fox" src="assets/npc/fox-think.png" alt="" draggable="false" />
       </button>
     </div>
     <button class="npc-peek hidden" id="npc-peek" type="button" data-i18n-title="npc.show" title="Gọi linh vật">🦊</button>

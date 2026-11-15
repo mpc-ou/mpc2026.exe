@@ -3,6 +3,7 @@
  * NPC - MPC fox mascot with a speech bubble
  * ============================================================================
  * - Appears once the desktop is ready (BootManager fires 'mpc:desktop-ready').
+ * - Two poses: thinking ("…") when quiet, "Nghĩ ra rồi!" while a line is shown.
  * - Greets by time of day; the first visit also points to JOIN_MPC.exe.
  * - Lines are typed out letter by letter; the desktop icon a line talks about pulses.
  * - Click the fox for the next tip; opening an app gets a reaction line.
@@ -34,7 +35,10 @@ const NPC = (function () {
   };
   const WITH_CTA = ['npc.greet_first', 'npc.tip4', 'npc.nudge2'];
 
-  let _root, _bubble, _text, _cta, _peek, _desktop;
+  const POSE_IDLE = 'assets/npc/fox-think.png';
+  const POSE_TALK = 'assets/npc/fox-idea.png';
+
+  let _root, _bubble, _text, _cta, _peek, _desktop, _fox;
   let _started = false;
   let _lineKeys = null;
   let _tipIndex = 0;
@@ -109,6 +113,7 @@ const NPC = (function () {
     typeOut(list.map(t).join(' '));
     _cta.classList.toggle('hidden', !WITH_CTA.includes(main));
     _bubble.classList.remove('hidden');
+    _fox.src = POSE_TALK;
     highlight(POINTS_AT[main]);
 
     _root.classList.remove('waving');
@@ -123,6 +128,7 @@ const NPC = (function () {
     clearTimeout(_closeTimer);
     clearTimeout(_typeTimer);
     _bubble.classList.add('hidden');
+    _fox.src = POSE_IDLE;
     _lineKeys = null;
   }
 
@@ -202,6 +208,8 @@ const NPC = (function () {
     _text = document.getElementById('npc-text');
     _cta = document.getElementById('npc-cta');
     _peek = document.getElementById('npc-peek');
+    _fox = document.getElementById('npc-fox');
+    new Image().src = POSE_TALK; // preload, so the first swap does not flicker
 
     document.getElementById('npc-body').addEventListener('click', () => {
       say(TIPS[_tipIndex]);
