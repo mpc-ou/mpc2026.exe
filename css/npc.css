@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NPC mascot (js/npc.js): fox in the bottom-right corner with a speech bubble.
+   NPC mascot (js/npc.js): fox in the bottom-right corner with a thought cloud.
    Sits above the desktop icons but below windows (z-index 100+).
    ========================================================================== */
 
@@ -8,11 +8,7 @@
   right: 16px;
   bottom: calc(var(--taskbar-height) + 8px);
   z-index: 50;
-  display: flex;
-  flex-direction: row; /* bubble on the left, so it does not cover the thought cloud in the art */
-  align-items: flex-end;
-  gap: 10px;
-  pointer-events: none; /* only the bubble and the fox take clicks */
+  pointer-events: none; /* only the cloud and the fox take clicks */
 }
 
 /* The mascot replaces the bottom-right watermark while it is shown */
@@ -20,7 +16,12 @@
   display: none;
 }
 
+.npc-figure {
+  position: relative;
+}
+
 .npc-body {
+  display: block;
   width: 170px;
   padding: 0;
   border: none;
@@ -43,54 +44,42 @@
   animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
 }
 
-/* Speech bubble (XP balloon tooltip) */
+/* Thought cloud, drawn like the one in the art (white, thick dark outline).
+   Its bottom-right corner sits where the art's cloud was: in fox-idea.png the
+   cloud was removed and only the small dots above the head remain. It grows
+   up and to the left with the text. */
 .npc-bubble {
-  position: relative;
-  max-width: 260px;
-  padding: 10px 12px 10px;
-  background: #ffffe1;
-  color: #000;
-  border: 1px solid #000;
-  border-radius: 8px;
-  margin-bottom: 70px; /* level with the fox's head */
-  box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.35);
+  position: absolute;
+  right: 68%;
+  bottom: 69%;
+  box-sizing: border-box; /* max-width includes padding and border */
+  width: max-content;
+  min-width: 140px;
+  max-width: 280px;
+  padding: 14px 24px 14px 20px;
+  background: #fff;
+  color: #111;
+  border: 3px solid #1a1a1a;
+  border-radius: 38px;
+  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.35), 3px 4px 10px rgba(0, 0, 0, 0.3);
   font-family: var(--font-system);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   line-height: 1.45;
   pointer-events: auto;
-  animation: npcPop 0.18s ease-out;
-}
-
-/* Tail of the balloon, pointing right at the fox */
-.npc-bubble::after {
-  content: "";
-  position: absolute;
-  right: -11px;
-  bottom: 18px;
-  border: 10px solid transparent;
-  border-right: 0;
-  border-left-color: #000;
-}
-
-.npc-bubble::before {
-  content: "";
-  position: absolute;
-  right: -9px;
-  bottom: 19px;
-  z-index: 1;
-  border: 9px solid transparent;
-  border-right: 0;
-  border-left-color: #ffffe1;
+  transform-origin: 85% 100%;
+  animation: npcPop 0.2s ease-out;
 }
 
 .npc-text {
-  margin: 0 14px 0 0;
+  margin: 0;
+  cursor: default;
 }
 
 .npc-bubble-close {
   position: absolute;
-  top: 2px;
-  right: 4px;
+  top: 6px;
+  right: 12px;
   width: 20px;
   height: 20px;
   padding: 0;
@@ -98,7 +87,7 @@
   background: none;
   font-size: 16px;
   line-height: 1;
-  color: #555;
+  color: #666;
   cursor: pointer;
 }
 
@@ -121,6 +110,7 @@
   background: linear-gradient(180deg, #fff 0%, #ece9d8 100%);
   font-family: inherit;
   font-size: 11px;
+  font-weight: normal;
   cursor: pointer;
 }
 
@@ -147,6 +137,12 @@
   box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.35);
 }
 
+/* Desktop icon the fox is talking about */
+.desktop-icon.npc-highlight {
+  border-radius: 6px;
+  animation: npcPulse 1s ease-in-out 4;
+}
+
 @keyframes npcBob {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
@@ -158,8 +154,13 @@
 }
 
 @keyframes npcPop {
-  from { opacity: 0; transform: translateY(6px) scale(0.96); }
+  from { opacity: 0; transform: scale(0.85); }
   to { opacity: 1; transform: none; }
+}
+
+@keyframes npcPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 40, 0); background-color: transparent; }
+  50% { box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9), 0 0 16px 4px rgba(255, 140, 40, 0.6); background-color: rgba(255, 140, 40, 0.18); }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -168,25 +169,25 @@
   .npc-bubble {
     animation: none;
   }
+
+  .desktop-icon.npc-highlight {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9);
+  }
 }
 
-/* Phones: smaller fox, bubble fits the screen, readable text and buttons */
+/* Phones: smaller fox; the cloud may use the width left of it */
 @media (max-width: 768px) {
   .npc {
     right: 8px;
   }
 
   .npc-body {
-    width: 120px;
-  }
-
-  .npc {
-    gap: 6px;
+    width: 130px;
   }
 
   .npc-bubble {
-    max-width: calc(100vw - 150px);
-    margin-bottom: 50px;
+    max-width: calc(100vw - 112px); /* fox is 130px wide, cloud ends at ~32% of it */
     font-size: 14px;
   }
 
@@ -203,29 +204,7 @@
   }
 
   .npc-bubble {
-    max-width: 300px;
+    max-width: 320px;
     font-size: 14px;
-  }
-}
-
-/* Desktop icon the fox is talking about */
-.desktop-icon.npc-highlight {
-  border-radius: 6px;
-  animation: npcPulse 1s ease-in-out 4;
-}
-
-@keyframes npcPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 40, 0); background-color: transparent; }
-  50% { box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9), 0 0 16px 4px rgba(255, 140, 40, 0.6); background-color: rgba(255, 140, 40, 0.18); }
-}
-
-.npc-text {
-  cursor: default;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .desktop-icon.npc-highlight {
-    animation: none;
-    box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9);
   }
 }
