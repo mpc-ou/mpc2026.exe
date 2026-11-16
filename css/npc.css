@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NPC mascot (js/npc.js): fox in the bottom-right corner with a thought cloud.
+   NPC mascot (js/npc.js): fox in the bottom-right corner with a thought bubble.
    Sits above app windows (z-index 100 and up) but below the taskbar (9000), so
    its reactions to an app stay visible; while an app is open it shrinks (.compact).
    ========================================================================== */
@@ -9,7 +9,7 @@
   right: 16px;
   bottom: calc(var(--taskbar-height) + 8px);
   z-index: 8900;
-  pointer-events: none; /* only the cloud and the fox take clicks */
+  pointer-events: none; /* only the bubble and the fox take clicks */
 }
 
 /* The mascot replaces the bottom-right watermark while it is shown */
@@ -39,53 +39,15 @@
   width: 84px;
 }
 
-/* ...and a plain rounded box beside it along the bottom, so it covers little of
-   the app: thin ink outline, two small dots trailing to the fox, smaller text,
-   no "Ẩn mình đi" (the JOIN button stays when the line has it) */
+/* ...and the bubble moves beside it along the bottom, so it covers little of the
+   app: smaller text, no "Ẩn mình đi" (the JOIN button stays when the line has it) */
 .npc.compact .npc-bubble {
   right: calc(100% + 14px);
   bottom: 6px;
   max-width: min(420px, calc(100vw - 104px));
-  padding: 9px 32px 9px 14px;
-  border: 2px solid #1a1a1a;
-  border-radius: 16px;
-  background: #fff;
-  filter: drop-shadow(2px 3px 4px rgba(0, 0, 0, 0.25));
   font-size: 12.5px;
   line-height: 1.35;
   transform-origin: 100% 100%;
-}
-
-.npc.compact .npc-cloud {
-  display: none;
-}
-
-.npc.compact .npc-bubble::before,
-.npc.compact .npc-bubble::after {
-  content: "";
-  position: absolute;
-  border: 2px solid #1a1a1a;
-  border-radius: 50%;
-  background: #fff;
-}
-
-.npc.compact .npc-bubble::before {
-  right: -13px;
-  bottom: 6px;
-  width: 7px;
-  height: 7px;
-}
-
-.npc.compact .npc-bubble::after {
-  right: -22px;
-  bottom: 0;
-  width: 4px;
-  height: 4px;
-}
-
-.npc.compact .npc-bubble-close {
-  top: 7px;
-  right: 8px;
 }
 
 .npc.compact .npc-hide,
@@ -174,11 +136,9 @@
   animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
 }
 
-/* Thought cloud, drawn like the one in the art: js/npc.js draws the scalloped
-   outline (.npc-cloud) for the bubble's size.
-   Its bottom-right corner sits where the art's cloud was: in fox-idea.png the
-   cloud was removed and only the small dots above the head remain. It grows
-   up and to the left with the text. */
+/* Thought bubble: a plain rounded box with a thin ink outline. Its bottom-right
+   corner sits where the art's cloud was: in fox-idea.png the cloud was removed and
+   only the small thought dots above the head remain. It grows up and to the left. */
 .npc-bubble {
   position: absolute;
   right: 67%;
@@ -187,10 +147,12 @@
   width: max-content;
   min-width: 160px;
   max-width: 280px;
-  padding: 30px 40px 30px 34px; /* room for the 26px lobes of the outline (CLOUD_PAD) */
+  padding: 12px 34px 12px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px;
+  background: #fff;
   color: #111;
-  isolation: isolate;
-  filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.3));
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.25));
   font-family: var(--font-system);
   font-size: 13px;
   font-weight: 600;
@@ -200,13 +162,29 @@
   animation: npcPop 0.2s ease-out;
 }
 
-.npc-cloud {
+/* When the bubble sits beside the fox (an app is open, or a short screen), the
+   art's dots are out of reach: two small dots of its own trail to the fox */
+.npc.compact .npc-bubble::before,
+.npc.compact .npc-bubble::after {
+  content: "";
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.npc.compact .npc-bubble::before {
+  right: -13px;
+  bottom: 6px;
+  width: 7px;
+  height: 7px;
+}
+
+.npc.compact .npc-bubble::after {
+  right: -22px;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
 }
 
 .npc-text {
@@ -216,8 +194,8 @@
 
 .npc-bubble-close {
   position: absolute;
-  top: 22px;
-  right: 26px;
+  top: 8px;
+  right: 8px;
   width: 20px;
   height: 20px;
   padding: 0;
@@ -241,7 +219,7 @@
   margin-top: 10px;
 }
 
-/* Buttons drawn to match the inked cloud, not Windows chrome */
+/* Buttons drawn to match the inked bubble, not Windows chrome */
 .npc-btn {
   padding: 0;
   border: none;
@@ -375,7 +353,7 @@
   }
 }
 
-/* Phones: smaller fox; the cloud may use the width left of it */
+/* Phones: smaller fox; the bubble may use the width left of it */
 @media (max-width: 768px) {
   .npc {
     right: 8px;
@@ -390,7 +368,7 @@
   }
 
   .npc-bubble {
-    max-width: calc(100vw - 112px); /* fox is 130px wide, cloud ends at ~32% of it */
+    max-width: calc(100vw - 112px); /* fox is 130px wide, the bubble ends at ~32% of it */
   }
 
   .npc-btn {
@@ -404,22 +382,46 @@
   }
 }
 
-/* Short screens (phones held sideways): no room above the fox, so the cloud sits
-   beside it, along the bottom; long lines scroll inside it so × stays on screen. */
+/* Short screens (phones held sideways): no room above the fox, so the bubble sits
+   beside it, along the bottom, with the trailing dots of .compact; long lines scroll
+   inside it so × stays on screen. */
 @media (max-height: 500px) {
   .npc-body {
     width: 110px;
   }
 
   .npc-bubble {
-    right: 100%;
-    bottom: 0;
-    max-width: min(380px, calc(100vw - 150px));
+    right: calc(100% + 14px);
+    bottom: 6px;
+    max-width: min(380px, calc(100vw - 160px));
     transform-origin: 100% 100%;
   }
 
+  .npc-bubble::before,
+  .npc-bubble::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #1a1a1a;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .npc-bubble::before {
+    right: -13px;
+    bottom: 6px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .npc-bubble::after {
+    right: -22px;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+  }
+
   .npc-text {
-    max-height: calc(100dvh - var(--taskbar-height) - 150px);
+    max-height: calc(100dvh - var(--taskbar-height) - 110px);
     overflow-y: auto;
   }
 }

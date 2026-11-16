@@ -4,13 +4,13 @@
  * ============================================================================
  * - Appears once the desktop is ready (BootManager fires 'mpc:desktop-ready').
  * - Two poses: fox-think.png (its own "…" cloud) when quiet; fox-idea.png (cloud
- *   removed) while talking, with the line in an SVG cloud drawn here.
+ *   removed, the small thought dots kept) while talking, the line in a plain box.
  * - Greets by time of day; the first visit also points to JOIN_MPC.exe.
  * - Lines are typed out letter by letter; the desktop icon a line talks about pulses.
  * - Click the fox for the next tip; opening an app gets a reaction line.
  * - Idle on the desktop for a while: up to two nudges per visit, the last one to JOIN.
  * - Sits above app windows; while an app is open it shrinks to a small corner fox.
- * - Tapping anywhere else (also inside an app) closes the cloud, so it never blocks icons.
+ * - Tapping anywhere else (also inside an app) closes the bubble, so it never blocks icons.
  * - "Ẩn mình đi" collapses it to a small tab (remembered); the tab brings it back.
  * Lines live in js/i18n.js under the "npc." keys.
  */
@@ -42,7 +42,7 @@ const NPC = (function () {
   const POSE_IDLE = 'assets/npc/fox-think.png';
   const POSE_TALK = 'assets/npc/fox-idea.png';
 
-  let _root, _bubble, _text, _sr, _cta, _peek, _desktop, _fox, _cloud, _closeBtn;
+  let _root, _bubble, _text, _sr, _cta, _peek, _desktop, _fox, _closeBtn;
   let _started = false;
   let _paused = false;           // logged off: the login screen covers the desktop
   let _lineKeys = null;
@@ -85,51 +85,15 @@ const NPC = (function () {
     return 'npc.time.late';
   }
 
-  // Outline of a thought cloud around a w x h box: a few big, slightly uneven lobes
-  // bulging outward, inked twice (bold + faint offset stroke) like the drawn cloud.
-  function cloudPath(w, h, lobe) {
-    const pts = [];
-    const edge = (x1, y1, x2, y2) => {
-      const n = Math.max(1, Math.round(Math.hypot(x2 - x1, y2 - y1) / lobe));
-      for (let i = 0; i < n; i++) pts.push([x1 + (x2 - x1) * i / n, y1 + (y2 - y1) * i / n]);
-    };
-    edge(0, 0, w, 0);
-    edge(w, 0, w, h);
-    edge(w, h, 0, h);
-    edge(0, h, 0, 0);
-    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
-    pts.forEach((p, i) => {
-      const q = pts[(i + 1) % pts.length];
-      const half = Math.hypot(q[0] - p[0], q[1] - p[1]) / 2;
-      const r = half * (1.02 + 0.12 * ((i * 7) % 3)); // uneven lobes, same every time
-      d += ` A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
-    });
-    return d + ' Z';
-  }
-
-  const CLOUD_PAD = 26;  // the lobes stick out this far around the text box (see npc.css)
-
-  function drawCloud() {
-    const w = _bubble.offsetWidth - CLOUD_PAD * 2;
-    const h = _bubble.offsetHeight - CLOUD_PAD * 2;
-    if (w <= 0 || h <= 0) return;
-    const d = cloudPath(w, h, 56);
-    _cloud.setAttribute('viewBox', `${-CLOUD_PAD} ${-CLOUD_PAD} ${w + CLOUD_PAD * 2} ${h + CLOUD_PAD * 2}`);
-    _cloud.innerHTML =
-      `<path d="${d}" fill="#fff" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/>` +
-      `<path d="${d}" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-opacity="0.3" transform="translate(1.5 1.2)"/>`;
-  }
-
   // Size the bubble for the whole line first, so it does not grow while typing.
   // min-height (not height): if a font loads late and the text gets taller, the
-  // bubble still grows and the ResizeObserver redraws the cloud.
+  // bubble can still grow.
   function fit(text) {
     _bubble.style.width = '';
     _bubble.style.minHeight = '';
     _text.textContent = text;
     _bubble.style.width = `${_bubble.offsetWidth}px`;
     _bubble.style.minHeight = `${_bubble.offsetHeight}px`;
-    drawCloud();
   }
 
   function typeOut(text) {
@@ -149,7 +113,7 @@ const NPC = (function () {
 
   const currentLine = () => _lineKeys.map(t).join(' ');
 
-  // Re-measure the open cloud for the new screen or language, showing the whole line.
+  // Re-measure the open bubble for the new screen or language, showing the whole line.
   function refit() {
     if (!_lineKeys) return;
     clearTimeout(_typeTimer);
@@ -270,7 +234,7 @@ const NPC = (function () {
     _windows = list;
     // An open app gets the screen: the fox shrinks into the corner above it
     _root.classList.toggle('compact', list.some(w => !w.isMinimized));
-    refit(); // the cloud changes shape between normal and compact
+    refit(); // the bubble changes size between normal and compact
     const now = new Set(list.map(w => w.appId));
     const opened = [...now].filter(id => !_openApps.has(id));
     _openApps = now;
@@ -290,10 +254,8 @@ const NPC = (function () {
     _cta = document.getElementById('npc-cta');
     _peek = document.getElementById('npc-peek');
     _fox = document.getElementById('npc-fox');
-    _cloud = document.getElementById('npc-cloud');
     _sr = document.getElementById('npc-sr');
     _closeBtn = document.getElementById('npc-bubble-close');
-    if (window.ResizeObserver) new ResizeObserver(drawCloud).observe(_bubble);
     new Image().src = POSE_TALK; // preload, so the first swap does not flicker
 
     document.getElementById('npc-body').addEventListener('click', () => {
@@ -320,7 +282,7 @@ const NPC = (function () {
     });
 
     ['pointerdown', 'keydown'].forEach(type => document.addEventListener(type, resetIdle, { passive: true }));
-    // A tap anywhere else closes the cloud (and still reaches what was tapped). Taps
+    // A tap anywhere else closes the bubble (and still reaches what was tapped). Taps
     // inside an app's iframe never reach this document; the page losing focus does.
     document.addEventListener('pointerdown', e => {
       if (_lineKeys && !_root.contains(e.target)) closeBubble();
