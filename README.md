@@ -62,7 +62,8 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
    - Xuất hiện ở góc phải dưới sau khi boot, chào theo giờ trong ngày; lần đầu chỉ tới `JOIN_MPC.exe`.
    - Lời thoại hiện từng chữ, icon được nhắc tới sẽ nhấp nháy viền cam; đứng yên ở Desktop 40 giây thì cáo nhắc (tối đa 2 lần, lần cuối chỉ tới JOIN).
    - Bấm vào cáo để xem gợi ý; mở app nào thì cáo có câu phản ứng riêng (lời thoại ở `js/i18n.js`, khóa `npc.*`).
-   - Nút "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải; hình cáo gồm 2 tư thế `assets/npc/fox-think.png` (bong bóng "…", lúc im lặng) và `assets/npc/fox-idea.png` (đã xóa bong bóng; lời thoại hiện trong bong bóng HTML đặt đúng chỗ đó).
+   - Hình cáo gồm 2 tư thế: `assets/npc/fox-think.png` (bong bóng "…", lúc im lặng) và `assets/npc/fox-idea.png` (đã xóa bong bóng; lời thoại hiện trong đám mây vẽ bằng SVG ở đúng chỗ đó). Thở, chớp mắt và kính lóe sáng là lớp CSS phủ lên ảnh (`css/npc.css`); đổi ảnh khác thì phải đo lại vị trí mắt/kính trong file này.
+   - "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải (nhớ cho lần sau).
 10. **Game & Ứng dụng phụ**:
    - 🧮 **Calculator (`calc.exe`)**: Máy tính Windows XP Luna tính toán thực tế.
    - 💣 **Minesweeper (`winmine.exe`)**: Game dò mìn cổ điển với bộ đếm số 7-segment và nút mặt cười tương tác.
