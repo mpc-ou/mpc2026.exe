@@ -159,6 +159,7 @@ const NPC = (function () {
     _bubble.classList.remove('hidden');
     typeOut(list.map(t).join(' '));
     _fox.src = POSE_TALK;
+    _root.dataset.pose = 'talk';
     highlight(POINTS_AT[main]);
 
     _root.classList.remove('waving');
@@ -174,6 +175,7 @@ const NPC = (function () {
     clearTimeout(_typeTimer);
     _bubble.classList.add('hidden');
     _fox.src = POSE_IDLE;
+    _root.dataset.pose = 'think';
     _lineKeys = null;
   }
 

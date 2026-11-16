@@ -39,6 +39,71 @@
   user-select: none;
 }
 
+/* --- Bringing the art to life (overlays positioned in % of the 400x461 art) --- */
+.npc-art {
+  position: relative;
+  display: block;
+  transform-origin: 50% 100%;
+  animation: npcBreathe 3.6s ease-in-out infinite;
+}
+
+/* Squash when clicked */
+.npc-body:active .npc-art {
+  animation: none;
+  transform: scale(1.05, 0.93);
+  transition: transform 0.08s;
+}
+
+/* Eye and lens boxes per pose, in % of the art (measured on the two PNGs) */
+.npc-lid-l  { left: 27.5%;  top: 44.3%; width: 5%;   height: 7%; }
+.npc-lid-r  { left: 48.3%;  top: 43.8%; width: 5.4%; height: 5.2%; }
+.npc-lens-l { left: 25.75%; top: 42.7%; width: 15%;  height: 12.1%; }
+.npc-lens-r { left: 45.75%; top: 39.7%; width: 15%;  height: 12.8%; }
+
+.npc[data-pose="talk"] .npc-lid-l  { left: 32.8%;  top: 46%;    width: 5.6%; height: 7%; }
+.npc[data-pose="talk"] .npc-lid-r  { left: 49%;    top: 43.9%;  width: 5.6%; height: 6.2%; }
+.npc[data-pose="talk"] .npc-lens-l { left: 26.25%; top: 42.95%; width: 15%;  height: 13.4%; }
+.npc[data-pose="talk"] .npc-lens-r { left: 46.75%; top: 39.7%;  width: 15%;  height: 13.4%; }
+
+.npc-lid,
+.npc-lens {
+  position: absolute;
+  pointer-events: none;
+}
+
+
+/* Eyelid: fur-coloured, drops from the top with a dark lash line */
+.npc-lid {
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(180deg, #f8682e 0%, #ec5a25 80%);
+  border-bottom: 2px solid #3a1a0c;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  animation: npcBlink 4.8s infinite;
+}
+
+/* Glint: a white streak sweeping across each lens now and then */
+.npc-lens {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.npc-lens::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 35%;
+  height: 140%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  transform: rotate(25deg) translateX(0);
+  animation: npcGlint 7s ease-in-out infinite;
+}
+
+.npc-lens-r::after {
+  animation-delay: 0.12s;
+}
+
 /* Little hop when the fox talks */
 .npc.waving .npc-body {
   animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
@@ -156,6 +221,21 @@
   50% { transform: translateY(-4px); }
 }
 
+@keyframes npcBreathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.012, 1.022); }
+}
+
+@keyframes npcBlink {
+  0%, 92%, 100% { transform: scaleY(0); }
+  95% { transform: scaleY(1); }
+}
+
+@keyframes npcGlint {
+  0%, 80% { transform: rotate(25deg) translateX(0); }
+  92%, 100% { transform: rotate(25deg) translateX(560%); }
+}
+
 @keyframes npcHop {
   0%, 100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }
@@ -174,7 +254,10 @@
 @media (prefers-reduced-motion: reduce) {
   .npc-body,
   .npc.waving .npc-body,
-  .npc-bubble {
+  .npc-bubble,
+  .npc-art,
+  .npc-lid,
+  .npc-lens::after {
     animation: none;
   }
 
