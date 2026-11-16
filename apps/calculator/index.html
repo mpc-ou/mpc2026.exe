@@ -81,11 +81,16 @@
     .keys-grid {
       display: grid;
       grid-template-columns: 36px repeat(5, 1fr);
+      /* Rows grow with the window (phones open it full screen) but stop at a key size,
+         so the keys stay together instead of spreading over the whole height */
+      grid-auto-rows: 1fr;
       gap: 5px;
       flex: 1;
+      min-height: 0;
+      max-height: 255px; /* 4 rows of at most 60px */
     }
     .calc-btn {
-      height: 28px;
+      min-height: 28px;
       background: #ece9d8;
       border: 1px solid #003c74;
       border-radius: 2px;
@@ -110,6 +115,22 @@
     }
     .btn-darkred {
       color: #990000;
+    }
+
+    /* Tall window (phone full screen): bigger display and keys, easier to tap */
+    @media (min-height: 420px) {
+      .calc-screen {
+        height: 44px;
+        font-size: 22px;
+      }
+      .mem-box,
+      .btn-top {
+        height: 36px;
+        font-size: 13px;
+      }
+      .calc-btn {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
