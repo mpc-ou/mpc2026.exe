@@ -38,7 +38,7 @@ const NPC = (function () {
   const POSE_IDLE = 'assets/npc/fox-think.png';
   const POSE_TALK = 'assets/npc/fox-idea.png';
 
-  let _root, _bubble, _text, _cta, _peek, _desktop, _fox;
+  let _root, _bubble, _text, _cta, _peek, _desktop, _fox, _cloud;
   let _started = false;
   let _lineKeys = null;
   let _tipIndex = 0;
@@ -80,12 +80,57 @@ const NPC = (function () {
     return 'npc.time.late';
   }
 
+  // Outline of a thought cloud around a w x h box: a few big, slightly uneven lobes
+  // bulging outward, inked twice (bold + faint offset stroke) like the drawn cloud.
+  function cloudPath(w, h, lobe) {
+    const pts = [];
+    const edge = (x1, y1, x2, y2) => {
+      const n = Math.max(1, Math.round(Math.hypot(x2 - x1, y2 - y1) / lobe));
+      for (let i = 0; i < n; i++) pts.push([x1 + (x2 - x1) * i / n, y1 + (y2 - y1) * i / n]);
+    };
+    edge(0, 0, w, 0);
+    edge(w, 0, w, h);
+    edge(w, h, 0, h);
+    edge(0, h, 0, 0);
+    let d = `M${pts[0][0].toFixed(1)} ${pts[0][1].toFixed(1)}`;
+    pts.forEach((p, i) => {
+      const q = pts[(i + 1) % pts.length];
+      const half = Math.hypot(q[0] - p[0], q[1] - p[1]) / 2;
+      const r = half * (1.02 + 0.12 * ((i * 7) % 3)); // uneven lobes, same every time
+      d += ` A${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+    });
+    return d + ' Z';
+  }
+
+  const CLOUD_PAD = 26;  // the lobes stick out this far around the text box (see npc.css)
+
+  function drawCloud() {
+    const w = _bubble.offsetWidth - CLOUD_PAD * 2;
+    const h = _bubble.offsetHeight - CLOUD_PAD * 2;
+    if (w <= 0 || h <= 0) return;
+    const d = cloudPath(w, h, 56);
+    _cloud.setAttribute('viewBox', `${-CLOUD_PAD} ${-CLOUD_PAD} ${w + CLOUD_PAD * 2} ${h + CLOUD_PAD * 2}`);
+    _cloud.innerHTML =
+      `<path d="${d}" fill="#fff" stroke="#1a1a1a" stroke-width="3.4" stroke-linejoin="round"/>` +
+      `<path d="${d}" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-opacity="0.4" transform="translate(2 1.5)"/>`;
+  }
+
+  // Size the bubble for the whole line first, so it does not grow while typing.
+  // min-height (not height): if a font loads late and the text gets taller, the
+  // bubble still grows and the ResizeObserver redraws the cloud.
+  function fit(text) {
+    _bubble.style.width = '';
+    _bubble.style.minHeight = '';
+    _text.textContent = text;
+    _bubble.style.width = `${_bubble.offsetWidth}px`;
+    _bubble.style.minHeight = `${_bubble.offsetHeight}px`;
+    drawCloud();
+  }
+
   function typeOut(text) {
     clearTimeout(_typeTimer);
-    if (reducedMotion()) {
-      _text.textContent = text;
-      return;
-    }
+    fit(text);
+    if (reducedMotion()) return;
     let i = 0;
     _text.textContent = '';
     (function next() {
@@ -110,9 +155,9 @@ const NPC = (function () {
     const list = [].concat(keys);
     const main = list[list.length - 1];
     _lineKeys = list;
-    typeOut(list.map(t).join(' '));
     _cta.classList.toggle('hidden', !WITH_CTA.includes(main));
     _bubble.classList.remove('hidden');
+    typeOut(list.map(t).join(' '));
     _fox.src = POSE_TALK;
     highlight(POINTS_AT[main]);
 
@@ -209,6 +254,8 @@ const NPC = (function () {
     _cta = document.getElementById('npc-cta');
     _peek = document.getElementById('npc-peek');
     _fox = document.getElementById('npc-fox');
+    _cloud = document.getElementById('npc-cloud');
+    if (window.ResizeObserver) new ResizeObserver(drawCloud).observe(_bubble);
     new Image().src = POSE_TALK; // preload, so the first swap does not flicker
 
     document.getElementById('npc-body').addEventListener('click', () => {
@@ -239,7 +286,7 @@ const NPC = (function () {
     I18n.onChange(() => {
       if (_lineKeys) {
         clearTimeout(_typeTimer);
-        _text.textContent = _lineKeys.map(t).join(' ');
+        fit(_lineKeys.map(t).join(' '));
       }
     });
 

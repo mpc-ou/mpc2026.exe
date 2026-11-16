@@ -44,24 +44,23 @@
   animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
 }
 
-/* Thought cloud, drawn like the one in the art (white, thick dark outline).
+/* Thought cloud, drawn like the one in the art: js/npc.js draws the scalloped
+   outline (.npc-cloud) for the bubble's size.
    Its bottom-right corner sits where the art's cloud was: in fox-idea.png the
    cloud was removed and only the small dots above the head remain. It grows
    up and to the left with the text. */
 .npc-bubble {
   position: absolute;
-  right: 68%;
+  right: 64%;
   bottom: 69%;
   box-sizing: border-box; /* max-width includes padding and border */
   width: max-content;
-  min-width: 140px;
+  min-width: 160px;
   max-width: 280px;
-  padding: 14px 24px 14px 20px;
-  background: #fff;
+  padding: 30px 40px 30px 34px; /* room for the 26px lobes of the outline (CLOUD_PAD) */
   color: #111;
-  border: 3px solid #1a1a1a;
-  border-radius: 38px;
-  box-shadow: 0 0 0 1px rgba(26, 26, 26, 0.35), 3px 4px 10px rgba(0, 0, 0, 0.3);
+  isolation: isolate;
+  filter: drop-shadow(3px 4px 6px rgba(0, 0, 0, 0.3));
   font-family: var(--font-system);
   font-size: 13px;
   font-weight: 600;
@@ -71,6 +70,15 @@
   animation: npcPop 0.2s ease-out;
 }
 
+.npc-cloud {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
 .npc-text {
   margin: 0;
   cursor: default;
@@ -78,8 +86,8 @@
 
 .npc-bubble-close {
   position: absolute;
-  top: 6px;
-  right: 12px;
+  top: 22px;
+  right: 26px;
   width: 20px;
   height: 20px;
   padding: 0;
