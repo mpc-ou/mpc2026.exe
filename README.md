@@ -58,7 +58,14 @@ Dự án là một **website tĩnh thuần 100%**, không sử dụng `node_modu
    - 📶 **Mạng**: Trạng thái kết nối `OU_CAMPUS_5G`, IP `192.168.15.6`.
    - 🕒 **Đồng hồ kim & Lịch tháng**: Đồng hồ kim Analog chạy thời gian thực kết hợp bảng lịch tự động tính theo ngày hiện tại.
    - 🌐 **Nút đổi ngôn ngữ `VI` / `EN`**: Chuyển đổi ngôn ngữ song ngữ tức thì.
-9. **Game & Ứng dụng phụ**:
+9. **Linh vật cáo MPC (`js/npc.js`)**:
+   - Xuất hiện ở góc phải dưới sau khi boot, chào theo giờ trong ngày; lần đầu chỉ tới `JOIN_MPC.exe`.
+   - Lời thoại hiện từng chữ, icon được nhắc tới sẽ nhấp nháy viền cam; đứng yên ở Desktop 40 giây thì cáo nhắc (tối đa 2 lần, lần cuối chỉ tới JOIN).
+   - Bấm vào cáo để xem gợi ý; mở app nào thì cáo có câu phản ứng riêng (lời thoại ở `js/i18n.js`, khóa `npc.*`).
+   - Hình cáo gồm 2 tư thế: `assets/npc/fox-think.png` (tay chống cằm, lúc im lặng) và `assets/npc/fox-idea.png` (lúc nói; lời thoại hiện trong khung bo tròn ngay trên đầu). Bong bóng vẽ sẵn trong cả hai ảnh gốc đã được xóa (giữ các chấm nhỏ trên đầu), phần tai bị bong bóng che được vẽ lại. Thở, chớp mắt và kính lóe sáng là lớp CSS phủ lên ảnh (`css/npc.css`); đổi ảnh khác thì phải đo lại vị trí mắt/kính trong file này.
+   - Cáo nằm trên cửa sổ app (dưới taskbar); đang mở app thì cáo thu nhỏ vào góc. Chạm ra chỗ khác (kể cả trong app) là khung thoại đóng; đang mở app hoặc màn hình thấp (xoay ngang) thì khung thoại nằm cạnh cáo.
+   - "Ẩn mình đi" thu cáo thành tab nhỏ ở mép phải (nhớ cho lần sau).
+10. **Game & Ứng dụng phụ**:
    - 🧮 **Calculator (`calc.exe`)**: Máy tính Windows XP Luna tính toán thực tế.
    - 💣 **Minesweeper (`winmine.exe`)**: Game dò mìn cổ điển với bộ đếm số 7-segment và nút mặt cười tương tác.
 
@@ -117,6 +124,7 @@ mpc2026.exe/
 │   ├── login.css                    # Welcome / Login screen (OU IT)
 │   ├── desktop.css                  # Màn hình Desktop, chuột phải, chọn vùng
 │   ├── window.css                   # Quản lý cửa sổ (drag, resize, titlebar)
+│   ├── npc.css                      # Linh vật cáo MPC & khung thoại
 │   ├── taskbar.css                  # Taskbar, Start Menu, System Tray, Shutdown Modal
 │   ├── applications.css             # Style Explorer, Terminal, IE, WMP
 │   └── responsive.css              # Tối ưu giao diện cho Mobile & Tablet
@@ -129,6 +137,7 @@ mpc2026.exe/
     ├── applications.js              # Khai báo danh sách các app trong hệ thống
     ├── desktop.js                   # Xử lý icon màn hình, quét chuột, menu chuột phải
     ├── taskbar.js                   # Xử lý Start Menu, Tray Widget, Đồng hồ
+    ├── npc.js                       # Linh vật cáo MPC: lời chào, gợi ý, phản ứng khi mở app
     ├── boot.js                      # Điều khiển chu trình boot và âm thanh
     ├── main.js                      # Điểm khởi chạy chính
     └── apps/                        # Các app hệ thống đặc biệt

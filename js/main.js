@@ -22,6 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.Taskbar.init();
   }
 
+  // Initialize the mascot before the boot so it hears 'mpc:desktop-ready'
+  if (window.NPC) {
+    window.NPC.init();
+  }
+
   // Initialize Boot & Login Sequence
   if (window.BootManager) {
     window.BootManager.init();

@@ -277,6 +277,7 @@ const BootManager = (function () {
         _loginEl.classList.remove('fade-out', 'fade-in');
         resetLoginCard();
         if (auto) endBoot();
+        else document.dispatchEvent(new CustomEvent('mpc:desktop-ready')); // back from Log off
 
         // Play Windows XP startup sound when entering desktop!
         setTimeout(() => {
@@ -299,6 +300,7 @@ const BootManager = (function () {
     clearTimers();
     document.removeEventListener('keydown', onBootInterrupt);
     if (_devSkipBtn) _devSkipBtn.style.display = 'none';
+    document.dispatchEvent(new CustomEvent('mpc:desktop-ready'));
   }
 
   /**
@@ -333,6 +335,7 @@ const BootManager = (function () {
    */
   function goToLogin() {
     SoundFX.play('logoff');
+    document.dispatchEvent(new CustomEvent('mpc:logoff'));
     _loginEl.classList.remove('hidden');
     _loginEl.classList.add('fade-in');
   }

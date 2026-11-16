@@ -1,0 +1,439 @@
+/* ==========================================================================
+   NPC mascot (js/npc.js): fox in the bottom-right corner with a thought bubble.
+   Sits above app windows (z-index 100 and up) but below the taskbar (9000), so
+   its reactions to an app stay visible; while an app is open it shrinks (.compact).
+   ========================================================================== */
+
+.npc {
+  position: absolute;
+  right: 16px;
+  bottom: calc(var(--taskbar-height) + 8px);
+  z-index: 8900;
+  pointer-events: none; /* only the bubble and the fox take clicks */
+}
+
+/* The mascot replaces the bottom-right watermark while it is shown */
+.desktop-container.npc-on .desktop-watermark {
+  display: none;
+}
+
+.npc-figure {
+  position: relative;
+}
+
+.npc-body {
+  display: block;
+  width: 170px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  pointer-events: auto;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+  animation: npcBob 3.2s ease-in-out infinite;
+  transition: width 0.25s ease;
+}
+
+/* An app is open: a small fox in the corner, over the window's edge */
+.npc.compact .npc-body {
+  width: 84px;
+}
+
+/* ...and the bubble moves beside it along the bottom, so it covers little of the
+   app: smaller text, no "Ẩn mình đi" (the JOIN button stays when the line has it) */
+.npc.compact .npc-bubble {
+  right: calc(100% + 14px);
+  bottom: 6px;
+  max-width: min(420px, calc(100vw - 104px));
+  font-size: 12.5px;
+  line-height: 1.35;
+  transform-origin: 100% 100%;
+}
+
+.npc.compact .npc-hide,
+.npc.compact .npc-actions:has(.npc-btn-primary.hidden) {
+  display: none;
+}
+
+.npc.compact .npc-actions {
+  margin-top: 6px;
+}
+
+.npc-fox {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* --- Bringing the art to life (overlays positioned in % of the 400x461 art) --- */
+.npc-art {
+  position: relative;
+  display: block;
+  transform-origin: 50% 100%;
+  animation: npcBreathe 3.6s ease-in-out infinite;
+}
+
+/* Squash when clicked */
+.npc-body:active .npc-art {
+  animation: none;
+  transform: scale(1.05, 0.93);
+  transition: transform 0.08s;
+}
+
+/* Eye and lens boxes per pose, in % of the art (measured on the two PNGs) */
+.npc-lid-l  { left: 27.5%;  top: 44.3%; width: 5%;   height: 7%; }
+.npc-lid-r  { left: 48.3%;  top: 43.8%; width: 5.4%; height: 5.2%; }
+.npc-lens-l { left: 25.75%; top: 42.7%; width: 15%;  height: 12.1%; }
+.npc-lens-r { left: 45.75%; top: 39.7%; width: 15%;  height: 12.8%; }
+
+.npc[data-pose="talk"] .npc-lid-l  { left: 32.8%;  top: 46%;    width: 5.6%; height: 7%; }
+.npc[data-pose="talk"] .npc-lid-r  { left: 49%;    top: 43.9%;  width: 5.6%; height: 6.2%; }
+.npc[data-pose="talk"] .npc-lens-l { left: 26.25%; top: 42.95%; width: 15%;  height: 13.4%; }
+.npc[data-pose="talk"] .npc-lens-r { left: 46.75%; top: 39.7%;  width: 15%;  height: 13.4%; }
+
+.npc-lid,
+.npc-lens {
+  position: absolute;
+  pointer-events: none;
+}
+
+
+/* Eyelid: fur-coloured, drops from the top with a dark lash line */
+.npc-lid {
+  border-radius: 50% 50% 45% 45%;
+  background: linear-gradient(180deg, #f8682e 0%, #ec5a25 80%);
+  border-bottom: 2px solid #3a1a0c;
+  transform-origin: 50% 0;
+  transform: scaleY(0);
+  animation: npcBlink 4.8s infinite;
+}
+
+/* Glint: a white streak sweeping across each lens now and then */
+.npc-lens {
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.npc-lens::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 35%;
+  height: 140%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+  transform: rotate(25deg) translateX(0);
+  animation: npcGlint 7s ease-in-out infinite;
+}
+
+.npc-lens-r::after {
+  animation-delay: 0.12s;
+}
+
+/* Little hop when the fox talks */
+.npc.waving .npc-body {
+  animation: npcHop 0.45s ease-out, npcBob 3.2s ease-in-out 0.45s infinite;
+}
+
+/* Thought bubble: a plain rounded box with a thin ink outline. Its bottom-right
+   corner sits where the art's cloud was: in fox-idea.png the cloud was removed and
+   only the small thought dots above the head remain. It grows up and to the left. */
+.npc-bubble {
+  position: absolute;
+  right: 67%;
+  bottom: 72%;
+  box-sizing: border-box; /* max-width includes padding and border */
+  width: max-content;
+  min-width: 160px;
+  max-width: 280px;
+  padding: 12px 34px 12px 16px;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px;
+  background: #fff;
+  color: #111;
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.25));
+  font-family: var(--font-system);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  pointer-events: auto;
+  transform-origin: 85% 100%;
+  animation: npcPop 0.2s ease-out;
+}
+
+/* When the bubble sits beside the fox (an app is open, or a short screen), the
+   art's dots are out of reach: two small dots of its own trail to the fox */
+.npc.compact .npc-bubble::before,
+.npc.compact .npc-bubble::after {
+  content: "";
+  position: absolute;
+  border: 2px solid #1a1a1a;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.npc.compact .npc-bubble::before {
+  right: -13px;
+  bottom: 6px;
+  width: 7px;
+  height: 7px;
+}
+
+.npc.compact .npc-bubble::after {
+  right: -22px;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+}
+
+.npc-text {
+  margin: 0;
+  cursor: default;
+}
+
+.npc-bubble-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  line-height: 1;
+  color: #666;
+  cursor: pointer;
+}
+
+.npc-bubble-close:hover {
+  color: #000;
+}
+
+.npc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 10px;
+}
+
+/* Buttons drawn to match the inked bubble, not Windows chrome */
+.npc-btn {
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: normal;
+  color: #777;
+  text-decoration: underline dashed;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.npc-btn:hover,
+.npc-btn:focus-visible {
+  color: #222;
+}
+
+.npc-btn-primary {
+  padding: 6px 14px;
+  border: 2.5px solid #1a1a1a;
+  border-radius: 999px;
+  background: #ff7a1a;
+  box-shadow: 2px 2px 0 #1a1a1a;
+  color: #fff;
+  font-size: 12.5px;
+  font-weight: 700;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.npc-btn-primary::after {
+  content: " →";
+}
+
+.npc-btn-primary:hover,
+.npc-btn-primary:focus-visible {
+  color: #fff;
+  background: #ff8c32;
+}
+
+.npc-btn-primary:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Collapsed state: a small tab to call the fox back */
+.npc-peek {
+  position: absolute;
+  right: 0;
+  bottom: calc(var(--taskbar-height) + 16px);
+  z-index: 8900;
+  width: 40px;
+  height: 40px;
+  padding: 0 0 0 4px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-right: none;
+  border-radius: 20px 0 0 20px;
+  background: #ff7a32;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* Each whole line for screen readers (the typed text is aria-hidden) */
+.npc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Desktop icon the fox is talking about */
+.desktop-icon.npc-highlight {
+  border-radius: 6px;
+  animation: npcPulse 1s ease-in-out 4;
+}
+
+@keyframes npcBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes npcBreathe {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.012, 1.022); }
+}
+
+@keyframes npcBlink {
+  0%, 92%, 100% { transform: scaleY(0); }
+  95% { transform: scaleY(1); }
+}
+
+@keyframes npcGlint {
+  0%, 80% { transform: rotate(25deg) translateX(0); }
+  92%, 100% { transform: rotate(25deg) translateX(560%); }
+}
+
+@keyframes npcHop {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+}
+
+@keyframes npcPop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes npcPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 140, 40, 0); background-color: transparent; }
+  50% { box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9), 0 0 16px 4px rgba(255, 140, 40, 0.6); background-color: rgba(255, 140, 40, 0.18); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .npc-body,
+  .npc.waving .npc-body,
+  .npc-bubble,
+  .npc-art,
+  .npc-lid,
+  .npc-lens::after {
+    animation: none;
+  }
+
+  .desktop-icon.npc-highlight {
+    animation: none;
+    box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.9);
+  }
+}
+
+/* Phones: smaller fox; the bubble may use the width left of it */
+@media (max-width: 768px) {
+  .npc {
+    right: 8px;
+  }
+
+  .npc-body {
+    width: 130px;
+  }
+
+  .npc.compact .npc-body {
+    width: 60px;
+  }
+
+  .npc-bubble {
+    max-width: calc(100vw - 112px); /* fox is 130px wide, the bubble ends at ~32% of it */
+  }
+
+  .npc-btn {
+    min-height: 32px;
+    font-size: 13px;
+  }
+
+  .npc-btn-primary {
+    min-height: 38px;
+    font-size: 13px;
+  }
+}
+
+/* Short screens (phones held sideways): no room above the fox, so the bubble sits
+   beside it, along the bottom, with the trailing dots of .compact; long lines scroll
+   inside it so × stays on screen. */
+@media (max-height: 500px) {
+  .npc-body {
+    width: 110px;
+  }
+
+  .npc-bubble {
+    right: calc(100% + 14px);
+    bottom: 6px;
+    max-width: min(380px, calc(100vw - 160px));
+    transform-origin: 100% 100%;
+  }
+
+  .npc-bubble::before,
+  .npc-bubble::after {
+    content: "";
+    position: absolute;
+    border: 2px solid #1a1a1a;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .npc-bubble::before {
+    right: -13px;
+    bottom: 6px;
+    width: 7px;
+    height: 7px;
+  }
+
+  .npc-bubble::after {
+    right: -22px;
+    bottom: 0;
+    width: 4px;
+    height: 4px;
+  }
+
+  .npc-text {
+    max-height: calc(100dvh - var(--taskbar-height) - 110px);
+    overflow-y: auto;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1600px) {
+  .npc-body {
+    width: 220px;
+  }
+
+  .npc-bubble {
+    max-width: 320px;
+    font-size: 14px;
+  }
+}
