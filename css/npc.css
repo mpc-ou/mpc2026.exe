@@ -163,7 +163,8 @@
 }
 
 /* When the bubble sits beside the fox (an app is open, or a short screen), the
-   art's dots are out of reach: two small dots of its own trail to the fox */
+   art's dots are out of reach: two small dots of its own rise from the bubble's
+   top-right corner towards the fox's head */
 .npc.compact .npc-bubble::before,
 .npc.compact .npc-bubble::after {
   content: "";
@@ -175,14 +176,14 @@
 
 .npc.compact .npc-bubble::before {
   right: -13px;
-  bottom: 6px;
+  top: 12px;
   width: 7px;
   height: 7px;
 }
 
 .npc.compact .npc-bubble::after {
   right: -22px;
-  bottom: 0;
+  top: 4px;
   width: 4px;
   height: 4px;
 }
@@ -408,14 +409,14 @@
 
   .npc-bubble::before {
     right: -13px;
-    bottom: 6px;
+    top: 12px;
     width: 7px;
     height: 7px;
   }
 
   .npc-bubble::after {
     right: -22px;
-    bottom: 0;
+    top: 4px;
     width: 4px;
     height: 4px;
   }
