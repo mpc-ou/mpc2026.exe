@@ -139,3 +139,39 @@ body {
     max-width: 100% !important;
   }
 }
+
+/* Big windows (large screens, or a maximized window): the apps were sized for a
+   ~700px window, so their 11-13px text reads tiny. Zoom the whole page up with the
+   window. zoom also scales vh, so the full-height body is divided back down.
+   Browsers without zoom (Firefox before 126) skip all of it. */
+@supports (zoom: 1) {
+  @media (min-width: 900px) {
+    :root {
+      --app-zoom: 1.1;
+    }
+  }
+
+  @media (min-width: 1050px) {
+    :root {
+      --app-zoom: 1.25;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    :root {
+      --app-zoom: 1.35;
+    }
+  }
+
+  html {
+    zoom: var(--app-zoom, 1);
+  }
+
+  body {
+    height: calc(100vh / var(--app-zoom, 1)) !important;
+  }
+
+  .lightbox-img {
+    max-height: calc(80vh / var(--app-zoom, 1)) !important;
+  }
+}
