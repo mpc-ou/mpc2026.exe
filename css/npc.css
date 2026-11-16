@@ -116,8 +116,8 @@
    up and to the left with the text. */
 .npc-bubble {
   position: absolute;
-  right: 64%;
-  bottom: 69%;
+  right: 67%;
+  bottom: 72%;
   box-sizing: border-box; /* max-width includes padding and border */
   width: max-content;
   min-width: 160px;
