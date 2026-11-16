@@ -3,8 +3,8 @@
  * NPC - MPC fox mascot with a thought cloud
  * ============================================================================
  * - Appears once the desktop is ready (BootManager fires 'mpc:desktop-ready').
- * - Two poses: fox-think.png (its own "…" cloud) when quiet; fox-idea.png (cloud
- *   removed, the small thought dots kept) while talking, the line in a plain box.
+ * - Two poses: fox-think.png when quiet, fox-idea.png while talking (the clouds drawn
+ *   in both were removed, the small thought dots kept); the line shows in a plain box.
  * - Greets by time of day; the first visit also points to JOIN_MPC.exe.
  * - Lines are typed out letter by letter; the desktop icon a line talks about pulses.
  * - Click the fox for the next tip; opening an app gets a reaction line.
