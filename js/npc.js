@@ -9,6 +9,8 @@
  * - Lines are typed out letter by letter; the desktop icon a line talks about pulses.
  * - Click the fox for the next tip; opening an app gets a reaction line.
  * - Idle on the desktop for a while: up to two nudges per visit, the last one to JOIN.
+ * - Sits above app windows; while an app is open it shrinks to a small corner fox.
+ * - Tapping anywhere else (also inside an app) closes the cloud, so it never blocks icons.
  * - "Ẩn mình đi" collapses it to a small tab (remembered); the tab brings it back.
  * Lines live in js/i18n.js under the "npc." keys.
  */
@@ -39,8 +41,9 @@ const NPC = (function () {
   const POSE_IDLE = 'assets/npc/fox-think.png';
   const POSE_TALK = 'assets/npc/fox-idea.png';
 
-  let _root, _bubble, _text, _cta, _peek, _desktop, _fox, _cloud;
+  let _root, _bubble, _text, _sr, _cta, _peek, _desktop, _fox, _cloud, _closeBtn;
   let _started = false;
+  let _paused = false;           // logged off: the login screen covers the desktop
   let _lineKeys = null;
   let _tipIndex = 0;
   let _nudgeCount = 0;
@@ -131,14 +134,25 @@ const NPC = (function () {
   function typeOut(text) {
     clearTimeout(_typeTimer);
     fit(text);
+    _sr.textContent = text;
     if (reducedMotion()) return;
+    const chars = Array.from(text); // whole code points, so emoji are never cut in half
     let i = 0;
     _text.textContent = '';
     (function next() {
       i += 1;
-      _text.textContent = text.slice(0, i);
-      if (i < text.length) _typeTimer = setTimeout(next, TYPE_MS);
+      _text.textContent = chars.slice(0, i).join('');
+      if (i < chars.length) _typeTimer = setTimeout(next, TYPE_MS);
     })();
+  }
+
+  const currentLine = () => _lineKeys.map(t).join(' ');
+
+  // Re-measure the open cloud for the new screen or language, showing the whole line.
+  function refit() {
+    if (!_lineKeys) return;
+    clearTimeout(_typeTimer);
+    fit(currentLine());
   }
 
   function highlight(appId) {
@@ -205,7 +219,7 @@ const NPC = (function () {
   // iframe are invisible here, so an open window counts as "busy reading".
   function resetIdle() {
     clearTimeout(_idleTimer);
-    if (!_started || isHidden() || _joinOpened || _nudgeCount >= NUDGES.length) return;
+    if (!_started || _paused || isHidden() || _joinOpened || _nudgeCount >= NUDGES.length) return;
     _idleTimer = setTimeout(() => {
       const busy = _windows.some(w => !w.isMinimized);
       if (!busy && _bubble.classList.contains('hidden')) {
@@ -217,7 +231,12 @@ const NPC = (function () {
   }
 
   function start() {
-    if (_started) return;
+    _closeBtn.setAttribute('aria-label', I18n.t('win.close'));
+    if (_started) { // logged back in after Log off
+      _paused = false;
+      resetIdle();
+      return;
+    }
     _started = true;
 
     if (store('get', HIDDEN_KEY)) {
@@ -235,9 +254,18 @@ const NPC = (function () {
     }, 600);
   }
 
+  function pause() {
+    _paused = true;
+    closeBubble();
+    highlight(null);
+    clearTimeout(_idleTimer);
+  }
+
   // React to apps the visitor opens (only newly opened ones).
   function onWindowsChange(list) {
     _windows = list;
+    // An open app gets the screen: the fox shrinks into the corner above it
+    _root.classList.toggle('compact', list.some(w => !w.isMinimized));
     const now = new Set(list.map(w => w.appId));
     const opened = [...now].filter(id => !_openApps.has(id));
     _openApps = now;
@@ -258,6 +286,8 @@ const NPC = (function () {
     _peek = document.getElementById('npc-peek');
     _fox = document.getElementById('npc-fox');
     _cloud = document.getElementById('npc-cloud');
+    _sr = document.getElementById('npc-sr');
+    _closeBtn = document.getElementById('npc-bubble-close');
     if (window.ResizeObserver) new ResizeObserver(drawCloud).observe(_bubble);
     new Image().src = POSE_TALK; // preload, so the first swap does not flicker
 
@@ -269,10 +299,10 @@ const NPC = (function () {
     _text.addEventListener('click', () => {
       if (_lineKeys) {
         clearTimeout(_typeTimer);
-        _text.textContent = _lineKeys.map(t).join(' ');
+        _text.textContent = currentLine();
       }
     });
-    document.getElementById('npc-bubble-close').addEventListener('click', closeBubble);
+    _closeBtn.addEventListener('click', closeBubble);
     document.getElementById('npc-hide').addEventListener('click', hide);
     _cta.addEventListener('click', () => {
       closeBubble();
@@ -285,15 +315,23 @@ const NPC = (function () {
     });
 
     ['pointerdown', 'keydown'].forEach(type => document.addEventListener(type, resetIdle, { passive: true }));
+    // A tap anywhere else closes the cloud (and still reaches what was tapped). Taps
+    // inside an app's iframe never reach this document; the page losing focus does.
+    document.addEventListener('pointerdown', e => {
+      if (_lineKeys && !_root.contains(e.target)) closeBubble();
+    }, { capture: true, passive: true });
+    window.addEventListener('blur', () => {
+      if (_lineKeys && document.activeElement && document.activeElement.tagName === 'IFRAME') closeBubble();
+    });
+    window.addEventListener('resize', refit);
     WindowManager.onChange(onWindowsChange);
     I18n.onChange(() => {
-      if (_lineKeys) {
-        clearTimeout(_typeTimer);
-        fit(_lineKeys.map(t).join(' '));
-      }
+      _closeBtn.setAttribute('aria-label', I18n.t('win.close'));
+      refit();
     });
 
     document.addEventListener('mpc:desktop-ready', start);
+    document.addEventListener('mpc:logoff', pause);
   }
 
   return { init, say, hide, show };

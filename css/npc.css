@@ -1,13 +1,14 @@
 /* ==========================================================================
    NPC mascot (js/npc.js): fox in the bottom-right corner with a thought cloud.
-   Sits above the desktop icons but below windows (z-index 100+).
+   Sits above app windows (z-index 100 and up) but below the taskbar (9000), so
+   its reactions to an app stay visible; while an app is open it shrinks (.compact).
    ========================================================================== */
 
 .npc {
   position: absolute;
   right: 16px;
   bottom: calc(var(--taskbar-height) + 8px);
-  z-index: 50;
+  z-index: 8900;
   pointer-events: none; /* only the cloud and the fox take clicks */
 }
 
@@ -30,6 +31,12 @@
   pointer-events: auto;
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
   animation: npcBob 3.2s ease-in-out infinite;
+  transition: width 0.25s ease;
+}
+
+/* An app is open: a small fox in the corner, over the window's edge */
+.npc.compact .npc-body {
+  width: 84px;
 }
 
 .npc-fox {
@@ -206,6 +213,7 @@
   font-weight: 700;
   text-decoration: none;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
 }
 
 .npc-btn-primary::after {
@@ -228,7 +236,7 @@
   position: absolute;
   right: 0;
   bottom: calc(var(--taskbar-height) + 16px);
-  z-index: 50;
+  z-index: 8900;
   width: 40px;
   height: 40px;
   padding: 0 0 0 4px;
@@ -239,6 +247,17 @@
   font-size: 22px;
   cursor: pointer;
   box-shadow: -2px 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+/* Each whole line for screen readers (the typed text is aria-hidden) */
+.npc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* Desktop icon the fox is talking about */
@@ -308,9 +327,12 @@
     width: 130px;
   }
 
+  .npc.compact .npc-body {
+    width: 60px;
+  }
+
   .npc-bubble {
     max-width: calc(100vw - 112px); /* fox is 130px wide, cloud ends at ~32% of it */
-    font-size: 14px;
   }
 
   .npc-btn {
@@ -320,7 +342,27 @@
 
   .npc-btn-primary {
     min-height: 38px;
-    font-size: 14px;
+    font-size: 13px;
+  }
+}
+
+/* Short screens (phones held sideways): no room above the fox, so the cloud sits
+   beside it, along the bottom; long lines scroll inside it so × stays on screen. */
+@media (max-height: 500px) {
+  .npc-body {
+    width: 110px;
+  }
+
+  .npc-bubble {
+    right: 100%;
+    bottom: 0;
+    max-width: min(380px, calc(100vw - 150px));
+    transform-origin: 100% 100%;
+  }
+
+  .npc-text {
+    max-height: calc(100dvh - var(--taskbar-height) - 150px);
+    overflow-y: auto;
   }
 }
 
