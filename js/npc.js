@@ -116,8 +116,8 @@ const NPC = (function () {
     const d = cloudPath(w, h, 56);
     _cloud.setAttribute('viewBox', `${-CLOUD_PAD} ${-CLOUD_PAD} ${w + CLOUD_PAD * 2} ${h + CLOUD_PAD * 2}`);
     _cloud.innerHTML =
-      `<path d="${d}" fill="#fff" stroke="#1a1a1a" stroke-width="3.4" stroke-linejoin="round"/>` +
-      `<path d="${d}" fill="none" stroke="#1a1a1a" stroke-width="1.2" stroke-opacity="0.4" transform="translate(2 1.5)"/>`;
+      `<path d="${d}" fill="#fff" stroke="#1a1a1a" stroke-width="2.2" stroke-linejoin="round"/>` +
+      `<path d="${d}" fill="none" stroke="#1a1a1a" stroke-width="1" stroke-opacity="0.3" transform="translate(1.5 1.2)"/>`;
   }
 
   // Size the bubble for the whole line first, so it does not grow while typing.
