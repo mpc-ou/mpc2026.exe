@@ -39,6 +39,27 @@
   width: 84px;
 }
 
+/* ...and a slim cloud beside it along the bottom, so it covers little of the app:
+   smaller text, no "Ẩn mình đi" (the JOIN button stays when the line has it) */
+.npc.compact .npc-bubble {
+  right: 100%;
+  bottom: 0;
+  max-width: min(420px, calc(100vw - 90px));
+  padding-right: 50px; /* one-line clouds: keep the text clear of × */
+  font-size: 12.5px;
+  line-height: 1.35;
+  transform-origin: 100% 100%;
+}
+
+.npc.compact .npc-hide,
+.npc.compact .npc-actions:has(.npc-btn-primary.hidden) {
+  display: none;
+}
+
+.npc.compact .npc-actions {
+  margin-top: 6px;
+}
+
 .npc-fox {
   display: block;
   width: 100%;

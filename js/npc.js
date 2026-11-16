@@ -19,6 +19,7 @@ const NPC = (function () {
   const GREETED_KEY = 'mpc-npc-greeted';
   const HIDDEN_KEY = 'mpc-npc-hidden';
   const AUTO_CLOSE_MS = 8000;
+  const AUTO_CLOSE_COMPACT_MS = 5000; // over an open app: get out of the way sooner
   const TYPE_MS = 22;            // per character
   const IDLE_MS = 40000;         // quiet time on the desktop before a nudge
   const HIGHLIGHT_MS = 4000;
@@ -182,7 +183,10 @@ const NPC = (function () {
     _root.classList.add('waving');
 
     clearTimeout(_closeTimer);
-    if (autoClose) _closeTimer = setTimeout(closeBubble, AUTO_CLOSE_MS);
+    if (autoClose) {
+      const ms = _root.classList.contains('compact') ? AUTO_CLOSE_COMPACT_MS : AUTO_CLOSE_MS;
+      _closeTimer = setTimeout(closeBubble, ms);
+    }
   }
 
   function closeBubble() {
@@ -266,6 +270,7 @@ const NPC = (function () {
     _windows = list;
     // An open app gets the screen: the fox shrinks into the corner above it
     _root.classList.toggle('compact', list.some(w => !w.isMinimized));
+    refit(); // the cloud changes shape between normal and compact
     const now = new Set(list.map(w => w.appId));
     const opened = [...now].filter(id => !_openApps.has(id));
     _openApps = now;
