@@ -55,7 +55,7 @@
                   <div>${isVi ? 'Ngày tháng:' : 'Date:'}</div>
                   <b>${new Date().toLocaleDateString(isVi ? 'vi-VN' : 'en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</b>
                   <div>${isVi ? 'Dung lượng:' : 'Storage:'}</div>
-                  <b>15.6 GB / 19.90 GB</b>
+                  <b>25.12 GB / 201.5 GB</b>
                 </div>
               </div>
             </div>

@@ -621,12 +621,28 @@
   background-color: #ffffff;
 }
 
-.browser-viewport-iframe {
+.browser-iframes-stack {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+.browser-viewport-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 117.65% !important;
+  height: 117.65% !important;
+  transform: scale(0.85);
+  transform-origin: 0 0;
   border: none;
-  flex: 1;
   display: block;
+}
+
+.browser-viewport-iframe.tab-hidden {
+  display: none !important;
 }
 
 /* Bottom Statusbar */
@@ -809,10 +825,11 @@
   font-size: 11px;
 }
 
-/* 5. Windows Media Player Styling (Zero Overflow, Strict Containment) */
+/* 5. Windows Media Player 9/10 Series XP Luna Blue/Silver Skin */
 [id="win-wmplayer.exe"] .window-body,
 .window-container:has(.wmp-container) .window-body {
   overflow: hidden !important;
+  background-color: #0b1a30;
 }
 
 .wmp-container {
@@ -820,156 +837,706 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background-color: #000000;
+  background: linear-gradient(180deg, #b0c8ea 0%, #87a7d6 20%, #577eae 60%, #3e6292 100%);
   color: #fff;
   overflow: hidden;
-  flex: 1;
-  min-height: 0;
+  user-select: none;
+  font-family: var(--font-system);
 }
 
-.wmp-header {
-  height: 32px;
-  background: linear-gradient(180deg, #2b3a4a 0%, #151d26 100%);
+/* Classic XP Top Menu Row */
+.wmp-top-menubar {
+  height: 22px;
+  background: linear-gradient(180deg, #ece9d8 0%, #d8d4c0 100%);
+  border-bottom: 1px solid #7f9db9;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 12px;
+  padding: 0 4px;
+  color: #000;
   font-size: 11px;
-  border-bottom: 1px solid #000;
   flex-shrink: 0;
 }
 
-.wmp-now-playing-title {
-  color: #72b2ff;
+.wmp-menu-btn {
+  padding: 2px 6px;
+  cursor: pointer;
+}
+
+.wmp-menu-btn:hover {
+  background: #316ac5;
+  color: #fff;
+}
+
+/* Main Split View: Left Nav, Center Player, Right Playlist */
+.wmp-body-split {
+  flex: 1 1 0%;
+  min-height: 0;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  padding: 6px;
+  gap: 6px;
+}
+
+/* Left Curved Blue Navigation Pane */
+.wmp-left-nav {
+  width: 115px;
+  background: linear-gradient(180deg, #2458a6 0%, #153c7c 45%, #0b224d 100%);
+  border: 1px solid #4a7ec5;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  box-shadow: inset 1px 1px 2px rgba(255,255,255,0.4), inset -1px -1px 2px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 4px 6px 4px;
+  flex-shrink: 0;
+}
+
+.wmp-nav-tabs-group {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wmp-nav-tab {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #b5d5ff;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.15s;
+}
+
+.wmp-nav-tab:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.wmp-nav-tab.active {
+  background: linear-gradient(180deg, #3895ff 0%, #1c6edb 50%, #0d4fa8 100%);
+  color: #ffffff;
+  font-weight: bold;
+  border: 1px solid #71adff;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6), 0 1px 3px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Left Bottom XP Branding */
+.wmp-left-brand {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.wmp-xp-flag {
+  display: grid;
+  grid-template-columns: 7px 7px;
+  gap: 1px;
+}
+
+.wmp-flag-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+}
+
+.wmp-brand-text {
+  font-size: 9px;
+  line-height: 1.1;
+  color: #c7defa;
   font-weight: bold;
 }
 
-.wmp-mode-badge {
-  background: #0055ea;
-  color: #fff;
-  padding: 1px 6px;
-  border-radius: 2px;
-  font-size: 9px;
-}
-
-.wmp-screen-area {
-  flex: 1 1 0%;
-  min-height: 0;
-  height: 0;
-  background-color: #000000;
-  position: relative;
-  overflow: hidden;
-}
-
-.wmp-screen-area video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-  display: block;
-  background-color: #000000;
-}
-
-.wmp-controls-panel {
-  height: 70px;
-  background: linear-gradient(180deg, #3a4b5d 0%, #1b2632 100%);
-  border-top: 1px solid #5a6d82;
+/* Center Display Pane */
+.wmp-center-display {
+  flex: 1;
+  min-width: 0;
+  background: #000000;
+  border: 1px solid #1a3a68;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
-  padding: 6px 12px;
-  gap: 6px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Now Playing Title Banner */
+.wmp-now-playing-banner {
+  height: 44px;
+  background: linear-gradient(180deg, #111b29 0%, #080d14 100%);
+  border-bottom: 1px solid #222;
+  padding: 4px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 10;
   flex-shrink: 0;
 }
 
-.wmp-timeline-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  color: #aaa;
+.wmp-artist-name {
+  font-size: 11px;
+  color: #8bb8ea;
 }
 
-.wmp-timeline-track {
-  flex: 1;
-  height: 6px;
-  background-color: #111;
-  border-radius: 3px;
+.wmp-track-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
   overflow: hidden;
-  border: 1px solid #444;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.wmp-timeline-progress {
-  height: 100%;
-  background: linear-gradient(90deg, #0055ea, #00d2ff);
-}
-
-.wmp-buttons-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.wmp-btns-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.wmp-btn {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: linear-gradient(180deg, #62768b 0%, #2f3c4a 100%);
-  border: 1px solid #8298b0;
-  color: #fff;
-  font-size: 12px;
-  cursor: pointer;
+/* Video / Visualization Viewport */
+.wmp-viewport-screen {
+  flex: 1 1 0%;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background-color: #000000;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.wmp-btn-play {
-  width: 32px;
-  height: 32px;
-  background: linear-gradient(180deg, #ff8800 0%, #cc5500 100%);
-  border-color: #ffa333;
-  font-size: 14px;
+.wmp-video-elem {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  background-color: #000000;
+  z-index: 2;
 }
 
-.wmp-vol-wrapper {
+.wmp-viz-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 1;
+}
+
+/* Bottom Strip of Viewport: Ambience & Album */
+.wmp-viewport-bottom-bar {
+  height: 38px;
+  background: linear-gradient(180deg, #0b1118 0%, #030508 100%);
+  border-top: 1px solid #222;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
-}
-
-.wmp-vol-slider {
-  width: 70px;
-}
-
-.wmp-open-file-btn {
-  background: #2062dc;
-  color: #ffffff;
-  border: 1px solid #7f9db9;
-  padding: 2px 8px;
+  justify-content: space-between;
+  padding: 0 8px;
   font-size: 10px;
+  color: #aaa;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+.wmp-ambience-selector {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wmp-amb-btn {
+  background: #182536;
+  border: 1px solid #334a68;
+  color: #ccc;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border-radius: 2px;
 }
 
-.wmp-open-file-btn:hover {
-  background: #3593ff;
+.wmp-album-tag {
+  color: #71ff71;
+  font-family: var(--font-system);
 }
 
-.wmp-playlist-select {
-  background: #1b2632;
+/* Right Playlist Sidebar */
+.wmp-playlist-sidebar {
+  width: 190px;
+  background: #000000;
+  border: 1px solid #1a3a68;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.wmp-playlist-dropdown-header {
+  height: 26px;
+  background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+  border-bottom: 1px solid #7f9db9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  color: #000;
+  font-size: 11px;
+  cursor: pointer;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.wmp-playlist-list {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #000000;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wmp-playlist-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  font-size: 11px;
+  color: #ccc;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.wmp-playlist-item:hover {
+  background: #11284d;
   color: #fff;
-  border: 1px solid #5a6d82;
-  padding: 3px 6px;
+}
+
+.wmp-playlist-item.active {
+  background: #003366;
+  color: #66ff66;
+  font-weight: bold;
+}
+
+.wmp-playlist-item.active .wmp-pl-dot {
+  color: #00ff00;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+.wmp-playlist-footer {
+  height: 22px;
+  background: #0c1624;
+  border-top: 1px solid #1a3a68;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px;
   font-size: 10px;
+  color: #888;
+  flex-shrink: 0;
+}
+
+/* Bottom Glossy Silver-Blue Curved Pill Control Deck */
+.wmp-bottom-deck {
+  height: 60px;
+  background: linear-gradient(180deg, #cde0f8 0%, #9cbce6 15%, #668fc4 45%, #426ea6 75%, #5a85be 100%);
+  border-top: 1px solid #ffffff;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 14px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8), 0 -2px 6px rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+/* Circular Glossy 3D Play Button */
+.wmp-circle-play-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #5db2ff 0%, #1e7be6 50%, #0d4ea3 100%);
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.8);
+  color: #ffffff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.1s, filter 0.15s;
+}
+
+.wmp-circle-play-btn:hover {
+  filter: brightness(1.15);
+}
+
+.wmp-circle-play-btn:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.6);
+}
+
+.wmp-deck-btns {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wmp-chrome-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f7f9fd 0%, #bdcde3 100%);
+  border: 1px solid #4a6894;
+  color: #173866;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.wmp-chrome-btn:hover {
+  background: #ffffff;
+}
+
+/* Green Glowing Seeker Track */
+.wmp-seeker-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.wmp-seeker-groove {
+  height: 6px;
+  background-color: #0b1420;
+  border: 1px solid #334d70;
   border-radius: 3px;
-  outline: none;
+  position: relative;
+  cursor: pointer;
+  box-shadow: inset 0 1px 2px #000;
+  overflow: hidden;
+}
+
+.wmp-seeker-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #00bb00 0%, #33ff33 100%);
+  box-shadow: 0 0 6px #33ff33;
+  width: 0%;
+}
+
+/* Bright Green Digital Clock */
+.wmp-green-lcd-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: bold;
+  color: #00ff00;
+  background: #000000;
+  padding: 2px 6px;
+  border: 1px solid #334d70;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.8);
+  flex-shrink: 0;
+}
+
+/* Volume Slider in Deck */
+.wmp-volume-deck {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.wmp-vol-range {
+  width: 60px;
+  height: 5px;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   6. Windows Task Manager (taskmgr.exe) & BSOD Easter Egg Styling
+   ========================================================================== */
+.taskmgr-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #ece9d8;
+  font-family: var(--font-system);
+  font-size: 11px;
+  overflow: hidden;
+}
+
+.taskmgr-tabs-bar {
+  display: flex;
+  background-color: #ece9d8;
+  padding: 4px 6px 0 6px;
+  gap: 2px;
+  border-bottom: 1px solid #7f9db9;
+}
+
+.taskmgr-tab-btn {
+  padding: 3px 12px;
+  font-size: 11px;
+  font-family: var(--font-system);
+  background: #ece9d8;
+  border: 1px solid #7f9db9;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  cursor: pointer;
+}
+
+.taskmgr-tab-btn.active {
+  background: #fff;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+  font-weight: bold;
+}
+
+.taskmgr-body-panel {
+  flex: 1;
+  background-color: #fff;
+  border: 1px solid #7f9db9;
+  border-top: none;
+  margin: 0 6px 6px 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tm-tab-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.tm-table-header {
+  display: flex;
+  background: linear-gradient(180deg, #f7f6f0 0%, #ece9d8 100%);
+  border: 1px solid #7f9db9;
+  font-weight: bold;
+  font-size: 11px;
+  padding: 2px 4px;
+}
+
+.tm-col {
+  padding: 2px 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.col-task { flex: 2; display: flex; align-items: center; gap: 6px; }
+.col-status { flex: 1; }
+
+.col-proc-name { flex: 2; display: flex; align-items: center; }
+.col-proc-pid { width: 60px; text-align: right; }
+.col-proc-cpu { width: 50px; text-align: right; }
+.col-proc-mem { width: 90px; text-align: right; }
+
+.tm-list-box {
+  flex: 1;
+  border: 1px solid #7f9db9;
+  border-top: none;
+  background-color: #fff;
+  overflow-y: auto;
+  min-height: 100px;
+}
+
+.tm-row-item {
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.tm-row-item:hover {
+  background-color: #e5f1fb;
+}
+
+.tm-row-item.selected {
+  background-color: #316ac5;
+  color: #fff;
+}
+
+.tm-icon-img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.tm-empty-row {
+  padding: 16px;
+  text-align: center;
+  color: #888;
+}
+
+.tm-btn-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  justify-content: flex-end;
+}
+
+.xp-dialog-btn {
+  padding: 3px 12px;
+  background: #ece9d8;
+  border: 1px solid #7f9db9;
+  border-radius: 3px;
+  cursor: pointer;
+  font-family: var(--font-system);
+  font-size: 11px;
+}
+
+.xp-dialog-btn:hover:not([disabled]) {
+  background: #f5f5f5;
+  border-color: #316ac5;
+}
+
+.xp-dialog-btn[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.taskmgr-statusbar {
+  height: 20px;
+  background-color: #ece9d8;
+  border-top: 1px solid #7f9db9;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 10px;
+  color: #333;
+  gap: 16px;
+}
+
+/* Performance Tab */
+.tm-perf-view {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  gap: 6px;
+}
+
+.tm-perf-grid {
+  display: flex;
+  gap: 8px;
+}
+
+.tm-perf-box {
+  flex: 1;
+  border: 1px solid #7f9db9;
+  padding: 6px;
+  background: #f7f6f0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 2px;
+}
+
+.tm-perf-title {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.tm-gauge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.tm-cpu-bar-container {
+  width: 24px;
+  height: 70px;
+  background-color: #000;
+  border: 1px solid #333;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 1px;
+}
+
+.tm-cpu-bar-fill {
+  background: linear-gradient(0deg, #00aa00, #00ff00);
+  width: 100%;
+  transition: height 0.3s;
+}
+
+.tm-cpu-val {
+  font-size: 13px;
+  font-weight: bold;
+  color: #008800;
+  font-family: var(--font-mono);
+}
+
+.tm-graph-canvas {
+  width: 100%;
+  height: 75px;
+  display: block;
+  background: #000;
+  border: 1px solid #333;
+}
+
+.tm-stats-row {
+  display: flex;
+  gap: 8px;
+}
+
+.tm-stat-col {
+  flex: 1;
+}
+
+.tm-fieldset {
+  border: 1px solid #7f9db9;
+  padding: 4px 8px;
+  font-size: 10px;
+  border-radius: 2px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tm-fieldset legend {
+  padding: 0 4px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   7. Blue Screen of Death (BSOD) Overlay
+   ========================================================================== */
+.xp-bsod-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: #0000aa;
+  color: #ffffff;
+  z-index: 999999;
+  font-family: "Lucida Console", "Courier New", Courier, monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 40px;
+  overflow: auto;
+  user-select: none;
+  cursor: default;
+}
+
+.bsod-content {
+  max-width: 900px;
+  margin: 0 auto;
 }

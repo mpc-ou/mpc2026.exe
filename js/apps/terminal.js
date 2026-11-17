@@ -15,7 +15,7 @@
     iconUrl: 'assets/icons/cmd.svg',
     width: 640,
     height: 400,
-    showOnDesktop: true,
+    showOnDesktop: false,
     showInStartMenu: false, // already in the Start menu's right column
     render: (container, win) => {
       container.innerHTML = `
@@ -23,7 +23,7 @@
           <div class="terminal-output" id="term-output">
 MPCrosoft(R) Windows XP [Version 5.1.2600]
 (C) Copyright 1985-2001 MPCrosoft Corp.
-Ban Lập Trình (BLT) - MPClub Recruitment 2026
+Câu lạc bộ Lập trình trên thiết bị di động (MPClub)
 
 Type 'help' to view available commands.
           </div>
@@ -73,6 +73,11 @@ Type 'help' to view available commands.
           case 'help':
             print(`Available commands in MPC Command Processor:`);
             print(`  HELP        Provides help information for commands.`);
+            print(`  ABOUT       Displays official MPClub identity & history.`);
+            print(`  TEAMS       Displays the 4 departments & 2026 Executive Board.`);
+            print(`  WEBDESIGN   Displays Web Design 2025 & 2026 competition results.`);
+            print(`  PROJECTS    Displays MPC Extension & tech products.`);
+            print(`  AWARDS      Displays Hall of Fame & academic achievements.`);
             print(`  DIR         Displays a list of files and subdirectories.`);
             print(`  CD          Displays the name of or changes the current directory.`);
             print(`  TYPE / CAT  Displays the contents of a text file.`);
@@ -81,8 +86,51 @@ Type 'help' to view available commands.
             print(`  WHOAMI      Displays current user information.`);
             print(`  VER         Displays the MPCrosoft Windows version.`);
             print(`  DATE        Displays the current system date.`);
-            print(`  SECRET      Reveals a secret easter egg!`);
             print(`  EXIT        Quits the CMD.EXE program.`);
+            break;
+
+          case 'about':
+            print(`=======================================================`);
+            print(`CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPC / MPClub)`);
+            print(`• Tên tiếng Anh: Mobile Programming Club`);
+            print(`• Thành lập: 24/12/2015 (Kỷ niệm 10 năm: 24/12/2025)`);
+            print(`• Đơn vị: Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM`);
+            print(`• Slogan: "Ở đâu có bug, ở đó có MPC!"`);
+            print(`• Website: https://www.mpclub.dev`);
+            print(`• Email: it.mpclub@ou.edu.vn`);
+            print(`=======================================================`);
+            break;
+
+          case 'teams':
+            print(`[CƠ CẤU 4 BỘ PHẬN & BAN CHỦ NHIỆM 2025 – 2026]`);
+            print(`1. Ban Chủ nhiệm: Nguyễn Thị Kim Oanh (Chủ nhiệm), Phạm Đức Thắng & Cao Đỗ Huyền Trân (Phó CN)`);
+            print(`2. Ban Lập trình: Nguyễn Thanh Triều (Trưởng ban)`);
+            print(`3. Ban Truyền thông: Lê Nguyễn Vân Anh (Trưởng ban)`);
+            print(`4. Ban Hậu cần: Trần Võ Thị Thu Uyên (Trưởng ban)`);
+            break;
+
+          case 'webdesign':
+            print(`[WEB DESIGN 2026 – CHỦ ĐỀ: WHITE LABEL FOR BUSINESSES (18/10/2026)]`);
+            print(`🥇 Giải Nhất: Đội ClauKi (Local Travel Services Portal)`);
+            print(`🥈 Giải Nhì:  Đội 404 Not Found (Battery Device Recycling Solution)`);
+            print(`🥉 Giải Ba:   Đội TopBotDev (WWL System for Real Estate)`);
+            print(`✨ Vào vòng triển khai: VieCodie, KTV, CHẠY DEADLINE CHO VUI`);
+            print(`[WEB DESIGN 2025 – KỶ NIỆM 35 NĂM TRƯỜNG ĐH MỞ TP.HCM]: NTK, THETHREE, Stack Lifo, Future`);
+            break;
+
+          case 'projects':
+            print(`[DỰ ÁN TIÊU BIỂU: MPC EXTENSION (03/2024 – HIỆN TẠI)]`);
+            print(`• Loại: Browser Extension cho hệ thống sis.ou.edu.vn (Trường ĐH Mở TP.HCM)`);
+            print(`• Công nghệ: WXT, React, TypeScript`);
+            print(`• Tính năng: Xem kết quả học tập, Tính GPA, Lập kế hoạch điểm, Lịch học, Lịch thi, Học phí`);
+            print(`• Đội ngũ: Trịnh Quốc Đạt, Phan Thị Khánh An, Phan Lê Hồ, Tsàn Quý Thành (+4 thành viên)`);
+            break;
+
+          case 'awards':
+            print(`[BẢNG VÀNG HALL OF FAME & THÀNH TÍCH HỌC THUẬT]`);
+            print(`• Giải pháp phần mềm 2025 (20/10/2025): Nguyễn Thị Kim Oanh (Giải Ba Olympic), Phan Gia Huy (Giải Ba Đối kháng - NPJF)`);
+            print(`• Giải pháp phần mềm 2024 (07/11/2024): Phan Gia Huy (Giải Ba - DFBP), Lê Gia Huy & Nguyễn Thái Bảo (Giải KK), Trần An Tiến, Võ Quốc Huy, Trương Bùi Anh Tuấn (Giải Thuyết trình ấn tượng)`);
+            print(`• Olympic Tin học SV Việt Nam lần thứ 31 (2022): Tsàn Quý Thành (Giải Khuyến khích Khối Chuyên tin)`);
             break;
 
           case 'cls':
@@ -91,12 +139,13 @@ Type 'help' to view available commands.
 
           case 'ver':
             print(`MPCrosoft Windows XP [Version 5.1.2600.2026]`);
-            print(`Custom Edition by MPClub - OU IT Department`);
+            print(`Custom Edition by Mobile Programming Club (MPC) – Khoa CNTT – Trường ĐH Mở TP.HCM`);
             break;
 
           case 'whoami':
             print(`OU-IT\\Administrator`);
-            print(`Group: MPClub / Ban Lap Trinh / Recruitment 2026`);
+            print(`Club: Câu lạc bộ Lập trình trên thiết bị di động (MPC) – Trường ĐH Mở TP.HCM`);
+            print(`Slogan: "Ở đâu có bug, ở đó có MPC!"`);
             break;
 
           case 'date':
@@ -105,10 +154,11 @@ Type 'help' to view available commands.
 
           case 'secret':
             print(`=======================================================`);
-            print(`⭐ BẬT MÍ EASTER EGG CHO TÂN SINH VIÊN OU IT:`);
-            print(`- Thử mở 'My Computer' -> Ổ cứng C: bạn sẽ thấy 15.6 GB of 19.90 GB`);
-            print(`- Đó chính là ngày thành lập Trường ĐH Mở TP.HCM: 15/06/1990!`);
-            print(`- Đừng quên ứng tuyển MPClub qua shortcut JOIN_MPC.exe nhé!`);
+            print(`CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPCLUB)`);
+            print(`• Thành lập: 24/12/2015 – Khoa CNTT, Trường ĐH Mở TP.HCM`);
+            print(`• Slogan: "Ở đâu có bug, ở đó có MPC!"`);
+            print(`• Trang chủ chính thức: https://www.mpclub.dev`);
+            print(`• Ứng tuyển thành viên mới qua shortcut JOIN_MPC.exe trên Desktop.`);
             print(`=======================================================`);
             break;
 
@@ -119,10 +169,10 @@ Type 'help' to view available commands.
               break;
             }
             print(` Volume in drive C is MPC_SYSTEM`);
-            print(` Volume Serial Number is 1506-1990`);
+            print(` Volume Serial Number is 2412-2015`);
             print(` Directory of ${currentDir}\n`);
-            print(`15/06/1990  08:00 AM    <DIR>          .`);
-            print(`15/06/1990  08:00 AM    <DIR>          ..`);
+            print(`24/12/2015  08:00 AM    <DIR>          .`);
+            print(`24/12/2015  08:00 AM    <DIR>          ..`);
 
             let fileCount = 0;
             let dirCount = 2;
@@ -140,7 +190,7 @@ Type 'help' to view available commands.
             });
 
             print(`              ${fileCount} File(s)    ${totalBytes.toLocaleString()} bytes`);
-            print(`              ${dirCount} Dir(s)     16,750,372,864 bytes free (15.6 GB)`);
+            print(`              ${dirCount} Dir(s)     26,971,947,008 bytes free (25.12 GB)`);
             break;
 
           case 'cd':
@@ -192,11 +242,10 @@ Type 'help' to view available commands.
             print(`│   └── Windows Media Player`);
             print(`├── WINDOWS`);
             print(`│   └── system32`);
-            print(`├── Documents and Settings`);
-            print(`│   └── OU_IT`);
-            print(`│       ├── Desktop`);
-            print(`│       └── My Documents`);
-            print(`└── OU_EASTER_EGG (15_06_1990)`);
+            print(`└── Documents and Settings`);
+            print(`    └── OU_IT`);
+            print(`        ├── Desktop`);
+            print(`        └── My Documents`);
             break;
 
           case 'exit':

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <defs>
+    <filter id="xp-shadow" x="-20%" y="-20%" width="150%" height="150%">
+      <feDropShadow dx="1.5" dy="1.5" stdDeviation="1" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <linearGradient id="sand-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3aa0ff"/>
+      <stop offset="100%" stop-color="#0055ea"/>
+    </linearGradient>
+  </defs>
+  <g filter="url(#xp-shadow)">
+    <!-- Frame -->
+    <rect x="7" y="4" width="18" height="3" fill="#2d528f" stroke="#000" stroke-width="1"/>
+    <rect x="7" y="25" width="18" height="3" fill="#2d528f" stroke="#000" stroke-width="1"/>
+    <!-- Glass body -->
+    <path d="M 8.5,7 L 23.5,7 L 17.5,16 L 23.5,25 L 8.5,25 L 14.5,16 Z" fill="#e8f4fc" stroke="#000" stroke-width="1.2" opacity="0.95"/>
+    <!-- Sand Top -->
+    <path d="M 10,8.5 L 22,8.5 L 16.5,15.5 L 15.5,15.5 Z" fill="url(#sand-grad)"/>
+    <!-- Sand Stream -->
+    <line x1="16" y1="15.5" x2="16" y2="23" stroke="#0055ea" stroke-width="1.5"/>
+    <!-- Sand Bottom -->
+    <path d="M 11,24 L 21,24 L 18,20 L 14,20 Z" fill="url(#sand-grad)"/>
+    <!-- Glass reflection highlight -->
+    <path d="M 10,9 L 12,9 L 14.8,14.5 L 13.8,14.5 Z" fill="#ffffff" opacity="0.75"/>
+  </g>
+</svg>

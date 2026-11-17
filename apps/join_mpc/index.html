@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JOIN_MPC.exe - Setup Wizard 2026</title>
+  <title>JOIN_MPC.exe – Đăng Ký Tuyển Thành Viên MPClub</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
@@ -15,7 +15,7 @@
     body {
       background: #ece9d8;
       color: #000;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Tahoma, sans-serif;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
       font-size: 12px;
       user-select: none;
       height: 100vh;
@@ -23,183 +23,330 @@
       flex-direction: column;
       overflow: hidden;
     }
+
     .wizard-header {
       background: #ffffff;
-      border-bottom: 1px solid #d0ccb8;
-      padding: 12px 18px;
+      border-bottom: 2px groove #d0ccb8;
+      padding: 10px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-shrink: 0;
     }
     .wizard-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: bold;
       color: #003399;
     }
     .wizard-desc {
       font-size: 11px;
-      color: #555;
+      color: #444;
       margin-top: 2px;
     }
-    .wizard-body {
+    .wizard-logo {
+      width: 38px;
+      height: 38px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border: 1px solid #c0cfe0;
+      border-radius: 3px;
+      padding: 3px;
+      background: #fff;
+    }
+
+    .wizard-main {
       flex: 1;
-      padding: 16px 20px;
-      background: #ece9d8;
+      display: flex;
+      overflow: hidden;
+    }
+    .wizard-sidebar {
+      width: 170px;
+      background: linear-gradient(180deg, #002b80 0%, #0055ea 65%, #3593ff 100%);
+      color: #fff;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid #7f9db9;
+      flex-shrink: 0;
+    }
+    .sidebar-badge {
+      background: rgba(255, 102, 0, 0.95);
+      color: #fff;
+      font-weight: bold;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+    .sidebar-step-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-top: 12px;
+      font-size: 11px;
+    }
+    .sidebar-step-list li {
+      padding: 5px 7px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.12);
+      border-left: 3px solid #ffcc00;
+    }
+    .sidebar-slogan {
+      font-size: 11px;
+      color: #ffdd88;
+      font-style: italic;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      padding-top: 8px;
+    }
+
+    .wizard-content {
+      flex: 1;
+      padding: 12px 14px;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 10px;
     }
-    .welcome-box {
+
+    .xp-box {
       background: #ffffff;
       border: 1px solid #7f9db9;
-      border-radius: 3px;
-      padding: 12px 14px;
-      line-height: 1.5;
+      border-radius: 2px;
+      padding: 10px 12px;
     }
-    .section {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .section-title {
+    .xp-box-title {
       font-weight: bold;
-      color: #333;
-    }
-    .steps {
-      background: #fff;
-      border: 1px solid #7f9db9;
-      border-radius: 3px;
-      padding: 8px 8px 8px 28px;
-      line-height: 1.7;
-    }
-    .muted {
-      color: #666;
-    }
-    .depts {
-      list-style: none;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-    .depts li {
-      background: #fff;
-      border: 1px solid #7f9db9;
-      border-radius: 3px;
-      padding: 8px;
-    }
-    .wizard-footer {
-      height: 48px;
-      background: #ece9d8;
-      border-top: 1px solid #d0ccb8;
+      color: #003399;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      padding: 0 16px;
+      gap: 6px;
+      font-size: 12px;
+      border-bottom: 1px solid #e1e9f5;
+      padding-bottom: 4px;
+    }
+
+    /* 4-Step Flow */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 8px;
     }
+    .step-card {
+      background: #f5f9ff;
+      border: 1px solid #9bb8de;
+      border-top: 3px solid #0055ea;
+      padding: 8px;
+      border-radius: 2px;
+      position: relative;
+    }
+    .step-num {
+      font-weight: bold;
+      color: #003399;
+      font-size: 11.5px;
+      margin-bottom: 4px;
+    }
+    .step-desc {
+      font-size: 11px;
+      color: #333;
+      line-height: 1.4;
+    }
+
+    /* Benefits Box */
+    .benefits-highlight {
+      background: #fffdf5;
+      border: 1px solid #e6b800;
+      border-left: 4px solid #ff6600;
+      padding: 8px 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      color: #222;
+    }
+
+    /* Launch Form Banner */
+    .launch-banner {
+      background: linear-gradient(90deg, #f0f6ff 0%, #e1edff 100%);
+      border: 1px solid #7f9db9;
+      border-left: 4px solid #0055ea;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .launch-info {
+      flex: 1;
+      min-width: 200px;
+    }
+    .launch-title {
+      font-weight: bold;
+      color: #003399;
+      font-size: 12.5px;
+      margin-bottom: 3px;
+    }
+    .launch-sub {
+      font-size: 11px;
+      color: #333;
+    }
+
+    .wizard-footer {
+      height: 44px;
+      background: #ece9d8;
+      border-top: 2px groove #d0ccb8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      flex-shrink: 0;
+    }
     .xp-btn {
-      min-width: 80px;
-      height: 24px;
+      min-width: 82px;
+      height: 28px;
       background: #ece9d8;
       border: 1px solid #003c74;
       border-radius: 3px;
       box-shadow: inset 1px 1px 0px #fff, inset -1px -1px 0px #707070;
-      font-size: 11px;
+      font-size: 11.5px;
       cursor: pointer;
       padding: 0 12px;
-      font-family: inherit;
+      font-family: Tahoma, sans-serif;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-    }
-    .xp-btn:active {
-      box-shadow: inset -1px -1px 0px #fff, inset 1px 1px 0px #707070;
-      padding-top: 1px;
-    }
-    .xp-btn.primary {
-      border: 2px solid #0055ea;
-      font-weight: bold;
-      background: linear-gradient(180deg, #ffffff 0%, #ece9d8 100%);
+      gap: 5px;
       color: #000;
       text-decoration: none;
     }
+    .xp-btn:hover {
+      background: #f5f3e8;
+    }
+    .xp-btn.primary {
+      background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%);
+      border-color: #803300;
+      color: #ffffff;
+      font-weight: bold;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+    }
+    .xp-btn.primary:hover {
+      background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
+    }
 
-    @media (max-width: 768px) {
-      body {
-        font-size: 15px;
-      }
-      .wizard-title {
-        font-size: 17px;
-      }
-      .wizard-desc {
-        font-size: 13px;
-      }
-      .wizard-footer {
-        height: 64px;
-      }
-      .xp-btn {
-        height: 44px;
-        font-size: 15px;
-      }
-      .xp-btn.primary {
-        flex: 1;
-      }
+    @media (max-width: 680px) {
+      .wizard-sidebar { display: none; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
 
+  <!-- Header -->
   <div class="wizard-header">
     <div>
-      <div class="wizard-title">Ứng Tuyển Thành Viên MPClub 2026 : Genesis</div>
-      <div class="wizard-desc">Trình hướng dẫn đăng ký tham gia CLB Đa Nền Tảng (OU IT)</div>
+      <div class="wizard-title" data-vi="Chương trình đăng ký tuyển thành viên – JOIN_MPC.exe" data-en="Member recruitment wizard – JOIN_MPC.exe">Chương trình đăng ký tuyển thành viên – JOIN_MPC.exe</div>
+      <div class="wizard-desc" data-vi="Câu lạc bộ Lập trình trên thiết bị di động • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Mobile Programming Club • Faculty of IT – Trường ĐH Mở TP.HCM">Câu lạc bộ Lập trình trên thiết bị di động • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</div>
     </div>
-    <img src="../../assets/icons/logo.png" style="width: 36px; height: 36px; object-fit: contain;" alt="" />
+    <img src="../../assets/icons/logo.png" class="wizard-logo" alt="Logo MPClub">
   </div>
 
-  <div class="wizard-body">
-    <div class="welcome-box">
-      <strong>Chào bạn! Đăng ký chỉ mất khoảng 5 phút.</strong><br/>
-      Không cần biết lập trình trước, CLB sẽ đào tạo bạn từ đầu.
+  <!-- Main Wizard Area -->
+  <div class="wizard-main">
+    <!-- Left InstallShield Sidebar -->
+    <div class="wizard-sidebar">
+      <div>
+        <span class="sidebar-badge">TUYỂN THÀNH VIÊN K26</span>
+
+        <ul class="sidebar-step-list">
+          <li data-vi="1. Đăng ký biểu mẫu" data-en="1. Application form">1. Đăng ký biểu mẫu</li>
+          <li data-vi="2. Làm bài trắc nghiệm trực tuyến" data-en="2. Online multiple-choice test">2. Làm bài trắc nghiệm trực tuyến</li>
+          <li data-vi="3. Kiểm tra trực tiếp" data-en="3. Direct evaluation">3. Kiểm tra trực tiếp</li>
+          <li data-vi="4. Nhận kết quả trúng tuyển" data-en="4. Onboarding results">4. Nhận kết quả trúng tuyển</li>
+        </ul>
+      </div>
+
+      <div class="sidebar-slogan" data-vi="&quot;Ở đâu có bug, ở đó có MPC!&quot;" data-en="&quot;Where there's a bug, there's MPC!&quot;">
+        "Ở đâu có bug, ở đó có MPC!"
+      </div>
     </div>
 
-    <div class="section">
-      <div class="section-title">Quy trình</div>
-      <ol class="steps">
-        <li><b>Điền form online</b> <span class="muted">~5 phút</span></li>
-        <li><b>Phỏng vấn trực tiếp</b> <span class="muted">~15 phút</span></li>
-        <li><b>Onboarding</b> <span class="muted">gặp gỡ CLB và ban của bạn</span></li>
-      </ol>
-    </div>
+    <!-- Right Content -->
+    <div class="wizard-content">
 
-    <div class="section">
-      <div class="section-title">Bạn sẽ chọn ban nguyện vọng ngay trong form</div>
-      <ul class="depts">
-        <li>💻 Ban Lập Trình</li>
-        <li>🎨 Ban Thiết Kế</li>
-        <li>📢 Ban Truyền Thông</li>
-        <li>🎪 Ban Sự Kiện</li>
-      </ul>
+      <!-- 4-Step Process -->
+      <div class="xp-box">
+        <div class="xp-box-title"><i class="bi bi-signpost-split-fill"></i> <span data-vi="Quy trình 4 vòng tuyển thành viên" data-en="Four-stage recruitment process">Quy trình 4 vòng tuyển thành viên</span></div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num" data-vi="1. Đăng ký biểu mẫu" data-en="1. Application form">1. Đăng ký biểu mẫu</div>
+            <div class="step-desc" data-vi="Điền biểu mẫu thông tin cá nhân và chọn ban nguyện vọng ứng tuyển." data-en="Fill out your personal information and select your preferred department.">Điền biểu mẫu thông tin cá nhân và chọn ban nguyện vọng ứng tuyển.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num" data-vi="2. Làm bài trắc nghiệm trực tuyến" data-en="2. Online multiple-choice test">2. Làm bài trắc nghiệm trực tuyến</div>
+            <div class="step-desc" data-vi="Thực hiện bài kiểm tra trắc nghiệm trực tuyến đánh giá tư duy và kiến thức cơ bản." data-en="Complete the online multiple-choice quiz assessing logic and foundational knowledge.">Thực hiện bài kiểm tra trắc nghiệm trực tuyến đánh giá tư duy và kiến thức cơ bản.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num" data-vi="3. Kiểm tra trực tiếp" data-en="3. Direct evaluation">3. Kiểm tra trực tiếp</div>
+            <div class="step-desc" data-html-vi="Phỏng vấn và kiểm tra trực tiếp cùng câu lạc bộ <strong>(Ban Lập trình sẽ có thêm bài kiểm tra lập trình)</strong>." data-html-en="In-person interview and evaluation <strong>(Programming Department includes an additional coding test)</strong>.">Phỏng vấn và kiểm tra trực tiếp cùng câu lạc bộ <strong>(Ban Lập trình sẽ có thêm bài kiểm tra lập trình)</strong>.</div>
+          </div>
+          <div class="step-card">
+            <div class="step-num" data-vi="4. Nhận kết quả trúng tuyển" data-en="4. Onboarding results">4. Nhận kết quả trúng tuyển</div>
+            <div class="step-desc" data-vi="Nhận thông báo kết quả trúng tuyển và tham gia buổi gặp mặt chào đón thành viên mới." data-en="Receive admission results and join the official welcome session with the club.">Nhận thông báo kết quả trúng tuyển và tham gia buổi gặp mặt chào đón thành viên mới.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Benefits -->
+      <div class="xp-box">
+        <div class="xp-box-title"><i class="bi bi-gift-fill"></i> <span data-vi="Quyền lợi khi trở thành thành viên MPC" data-en="Member benefits at MPC">Quyền lợi khi trở thành thành viên MPC</span></div>
+        <div class="benefits-highlight" data-html-vi="🌟 <strong>Quyền lợi thành viên:</strong> Được tham gia các lớp đào tạo chuyên môn từng ban (Ban Lập trình 💻, Ban Truyền thông 📸, Ban Hậu cần 🛠️), học nhóm ôn tập, tham gia các sự kiện lớn, thực hành dự án phần mềm và <strong>được cộng điểm rèn luyện hằng kỳ</strong> tại Trường ĐH Mở TP.HCM." data-html-en="🌟 <strong>Member benefits:</strong> Participate in specialized department training (Programming 💻, Media 📸, Logistics 🛠️), study groups, major club events, software projects, and <strong>receive semester training points every term</strong> at Trường ĐH Mở TP.HCM.">
+          🌟 <strong>Quyền lợi thành viên:</strong> Được tham gia các lớp đào tạo chuyên môn từng ban (Ban Lập trình 💻, Ban Truyền thông 📸, Ban Hậu cần 🛠️), học nhóm ôn tập, tham gia các sự kiện lớn, thực hành dự án phần mềm và <strong>được cộng điểm rèn luyện hằng kỳ</strong> tại Trường ĐH Mở TP.HCM.
+        </div>
+      </div>
+
+      <!-- Launch Hidden Form Window Banner -->
+      <div class="launch-banner">
+        <div class="launch-info">
+          <div class="launch-title"><i class="bi bi-window-plus"></i> <span data-vi="Biểu mẫu đăng ký phỏng vấn tuyển thành viên CLB MPC khóa K26" data-en="MPC K26 member interview registration form">Biểu mẫu đăng ký phỏng vấn tuyển thành viên CLB MPC khóa K26</span></div>
+          <div class="launch-sub" data-vi="Điền trước các câu hỏi ứng tuyển ngay trên cửa sổ này để hệ thống tự động chuyển toàn bộ nội dung sang biểu mẫu Google Form bằng tài khoản trường (@ou.edu.vn)." data-en="Complete the recruitment questions directly inside the form window to automatically open a pre-filled Google Form using your university account (@ou.edu.vn).">Điền trước các câu hỏi ứng tuyển ngay trên cửa sổ này để hệ thống tự động chuyển toàn bộ nội dung sang biểu mẫu Google Form bằng tài khoản trường (@ou.edu.vn).</div>
+        </div>
+        <button class="xp-btn primary" id="btn-open-form-win">
+          <i class="bi bi-pencil-square"></i> <span data-vi="Điền biểu mẫu trên web" data-en="Fill form on web">Điền biểu mẫu trên web</span>
+        </button>
+      </div>
+
     </div>
   </div>
 
+  <!-- Footer -->
   <div class="wizard-footer">
-    <button class="xp-btn" id="btn-cancel">Đóng</button>
-    <a class="xp-btn primary" id="btn-form" href="#" target="_blank" rel="noopener">
-      <span>Mở form đăng ký</span> <i class="bi bi-box-arrow-up-right"></i>
-    </a>
+    <span style="font-size:11px; color:#444;">Email: <strong>it.mpclub@ou.edu.vn</strong> • Website: <strong>mpclub.dev</strong></span>
+    <div style="display:flex; gap:8px;">
+      <button class="xp-btn" id="btn-cancel" data-vi="Đóng" data-en="Close">Đóng</button>
+      <button class="xp-btn primary" id="btn-footer-open-form">
+        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Bắt đầu điền đơn ứng tuyển ▸" data-en="Start application form ▸">Bắt đầu điền đơn ứng tuyển ▸</span>
+      </button>
+    </div>
   </div>
 
+  <script src="../../js/config.js"></script>
+  <script src="../_shared/lang.js"></script>
   <script>
-    // The one place the recruitment form link lives. MOCK until BCN sends the real Google Form.
-    const FORM_URL = 'https://forms.gle/MPC2026-MOCK-FORM';
+    function openRecruitmentFormWindow() {
+      if (window.parent && window.parent.WindowManager) {
+        window.parent.WindowManager.open('JOIN_MPC_FORM.exe');
+      } else {
+        window.location.href = 'form.html';
+      }
+    }
 
-    document.getElementById('btn-form').href = FORM_URL;
+    document.getElementById('btn-open-form-win')?.addEventListener('click', openRecruitmentFormWindow);
+    document.getElementById('btn-footer-open-form')?.addEventListener('click', openRecruitmentFormWindow);
 
-    document.getElementById('btn-cancel').addEventListener('click', () => {
+    document.getElementById('btn-cancel')?.addEventListener('click', () => {
       if (window.parent && window.parent.WindowManager) {
         const win = window.parent.WindowManager.get('JOIN_MPC.exe');
         if (win) win.close();

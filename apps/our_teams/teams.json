@@ -1,38 +1,160 @@
 [
   {
-    "id": "BLT",
-    "name_vi": "Ban Lập Trình (BLT)",
-    "name_en": "Programming Division",
-    "icon": "💻",
-    "color": "#0055ea",
-    "desc_vi": "Nòng cốt kỹ thuật của MPClub. Nơi các thành viên cùng nghiên cứu công nghệ mới, thực chiến xây dựng các dự án phần mềm thật (Web, Mobile, Bot, DevOps) và huấn luyện đội tuyển thuật toán thi đấu.",
-    "skills_vi": ["Frontend & Backend Development", "Git/GitHub Team Workflow", "Tư duy giải thuật & Cấu trúc dữ liệu", "DevOps & Cloud Deployment"]
+    "id": "BCN",
+    "code": "EXEC_BOARD",
+    "name_vi": "Ban Chủ nhiệm",
+    "name_en": "Executive Board",
+    "short_vi": "Điều hành và định hướng hoạt động câu lạc bộ",
+    "short_en": "Club direction and general management",
+    "icon": "👑",
+    "lead": "Nguyễn Thị Kim Oanh (Chủ nhiệm) • Phạm Đức Thắng, Cao Đỗ Huyền Trân (Phó chủ nhiệm)",
+    "lead_en": "Nguyen Thi Kim Oanh (President) • Pham Duc Thang, Cao Do Huyen Tran (Vice Presidents)",
+    "desc_vi": "Ban điều hành chung của Câu lạc bộ Lập trình trên thiết bị di động thuộc Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM. Ban Chủ nhiệm xây dựng định hướng phát triển, kế hoạch hoạt động từng năm học, điều phối sự phối hợp giữa các ban chuyên môn và đại diện câu lạc bộ làm việc với Khoa, Đoàn – Hội cùng các đơn vị đồng hành.",
+    "desc_en": "The governing body of the Mobile Programming Club (MPC) under the Faculty of Information Technology – Trường ĐH Mở TP.HCM. The Executive Board sets strategic directions, annual action plans, coordinates across departments, and represents the club with the Faculty, Youth Union, and external partners.",
+    "tasks_vi": [
+      "Quản lý chung mọi hoạt động và định hướng phát triển của câu lạc bộ",
+      "Điều phối sự phối hợp nhịp nhàng giữa Ban Lập trình, Ban Truyền thông và Ban Hậu cần",
+      "Quản lý nhân sự, phân công công việc và tổng kết kết quả hoạt động theo học kỳ",
+      "Đại diện câu lạc bộ làm việc với Khoa Công nghệ Thông tin và Đoàn – Hội Trường ĐH Mở TP.HCM",
+      "Kết nối mạng lưới cựu thành viên, giảng viên cố vấn và các đối tác doanh nghiệp"
+    ],
+    "tasks_en": [
+      "Oversee all club operations and long-term strategic development",
+      "Coordinate workflows across the Programming, Media, and Logistics departments",
+      "Manage human resources, task delegation, and semester reviews",
+      "Represent MPC when working with the Faculty of IT and Youth Union of Trường ĐH Mở TP.HCM",
+      "Connect the alumni network, faculty advisors, and corporate partners"
+    ],
+    "skills_vi": [
+      "Kỹ năng lãnh đạo và quản trị tổ chức",
+      "Xây dựng kế hoạch và điều phối dự án",
+      "Giao tiếp đối ngoại và làm việc với đối tác",
+      "Gắn kết tập thể và giải quyết vấn đề"
+    ],
+    "skills_en": [
+      "Organizational leadership and governance",
+      "Strategic planning and project management",
+      "External relations and corporate communication",
+      "Team coordination and problem solving"
+    ]
   },
   {
-    "id": "BTK",
-    "name_vi": "Ban Thiết Kế (BTK)",
-    "name_en": "UI/UX & Graphic Design Division",
-    "icon": "🎨",
-    "color": "#e91e63",
-    "desc_vi": "Linh hồn thị giác của CLB. Phụ trách xây dựng bộ nhận diện thương hiệu (Visual Identity), thiết kế UI/UX cho các sản phẩm phần mềm, vẽ linh vật mascot và sáng tạo các ấn phẩm truyền thông độc đáo.",
-    "skills_vi": ["Figma & UI/UX Product Design", "Photoshop / Illustrator", "Tư duy màu sắc & Typography", "Thiết kế linh vật & Pixel Art"]
+    "id": "BLT",
+    "code": "PROG_DEPT",
+    "name_vi": "Ban Lập trình",
+    "name_en": "Programming Department",
+    "short_vi": "Đào tạo chuyên môn và phát triển sản phẩm công nghệ",
+    "short_en": "Technical training and software products",
+    "icon": "💻",
+    "lead": "Nguyễn Thanh Triều (Trưởng ban)",
+    "lead_en": "Nguyen Thanh Trieu (Head of Programming)",
+    "desc_vi": "Bộ phận nòng cốt về học thuật và phát triển phần mềm của MPC. Ban Lập trình phụ trách tổ chức các lớp bồi dưỡng chuyên môn định kỳ, xây dựng các sản phẩm công nghệ thiết thực phục vụ sinh viên Trường ĐH Mở TP.HCM (như tiện ích MPC Extension) và đồng hành trong các kỳ thi học thuật.",
+    "desc_en": "The core technical and software engineering pillar of MPC. Responsible for organizing periodic training courses, building practical software products for students of Trường ĐH Mở TP.HCM (such as MPC Extension), and mentoring competitive programming teams.",
+    "tasks_vi": [
+      "Tổ chức các lớp đào tạo chuyên môn về phát triển web, di động, lập trình hướng đối tượng, vận hành hệ thống, trí tuệ nhân tạo, cấu trúc dữ liệu và giải thuật",
+      "Ôn tập, chia sẻ kiến thức công nghệ thông tin và tổ chức các buổi thực hành lập trình",
+      "Triển khai mô hình sinh viên cố vấn học tập thông qua hướng dẫn trực tiếp 1-1 và học nhóm",
+      "Xây dựng và duy trì các sản phẩm phần mềm phục vụ sinh viên như tiện ích MPC Extension",
+      "Xây dựng đề bài và cố vấn kỹ thuật cho cuộc thi thiết kế website Web Design và đấu trường Robocode",
+      "Đại diện câu lạc bộ tham gia kỳ thi Olympic Tin học Sinh viên Việt Nam và cuộc thi Giải pháp phần mềm"
+    ],
+    "tasks_en": [
+      "Organize technical training in web, mobile, OOP, DevOps, AI, and data structures and algorithms",
+      "Conduct IT review sessions, knowledge sharing, and hands-on coding practice",
+      "Coordinate the student peer advisor model through 1-on-1 mentoring and study groups",
+      "Develop and maintain digital products for students such as MPC Extension",
+      "Design challenges and provide technical mentorship for the Web Design and Robocode competitions",
+      "Represent MPC in the National Student Informatics Olympiad and Software Solutions Contests"
+    ],
+    "skills_vi": [
+      "Nền tảng lập trình (C/C++, Python, cấu trúc dữ liệu và giải thuật)",
+      "Phát triển ứng dụng web (HTML, CSS, JavaScript, React, Next.js)",
+      "Phát triển ứng dụng di động (Android, Flutter, React Native)",
+      "Kỹ thuật phần mềm (Git, quy trình Agile/Scrum) và triển khai với Docker"
+    ],
+    "skills_en": [
+      "Programming fundamentals (C/C++, Python, data structures and algorithms)",
+      "Web development (HTML, CSS, JavaScript, React, Next.js)",
+      "Mobile development (Android, Flutter, React Native)",
+      "Software engineering (Git, Agile/Scrum) and Docker deployment"
+    ]
   },
   {
     "id": "BTT",
-    "name_vi": "Ban Truyền Thông (BTT)",
-    "name_en": "Media & Content Division",
-    "icon": "📢",
-    "color": "#ff9800",
-    "desc_vi": "Cầu nối lan tỏa hình ảnh và giá trị của MPClub đến toàn thể sinh viên Khoa CNTT - ĐH Mở TP.HCM. Lên kế hoạch chiến dịch truyền thông đa kênh, sáng tạo video ngắn và biên tập bài viết kỹ thuật.",
-    "skills_vi": ["Content Strategy & Copywriting", "Quản trị Fanpage & Kênh truyền thông", "Quay dựng video ngắn (TikTok/Reels)", "Kỹ năng phỏng vấn & bắt trend"]
+    "code": "MEDIA_DEPT",
+    "name_vi": "Ban Truyền thông",
+    "name_en": "Media Department",
+    "short_vi": "Sáng tạo nội dung, thiết kế đồ họa và hình ảnh câu lạc bộ",
+    "short_en": "Content creation, graphic design, and brand identity",
+    "icon": "🎨",
+    "lead": "Lê Nguyễn Vân Anh (Trưởng ban)",
+    "lead_en": "Le Nguyen Van Anh (Head of Media)",
+    "desc_vi": "Bộ phận định hình diện mạo hình ảnh và cầu nối thông tin của MPC đến cộng đồng sinh viên Trường ĐH Mở TP.HCM. Ban Truyền thông phụ trách quản trị trang Fanpage CLB Lập Trình Trên Thiết Bị Di Động, sáng tạo nội dung bài viết, thiết kế ấn phẩm sự kiện, quay dựng video và chụp ảnh tư liệu.",
+    "desc_en": "Shapes the visual identity and communications voice of MPC across Trường ĐH Mở TP.HCM. Manages communication campaigns, the official Facebook Fanpage, event graphic design, video production, and event photography.",
+    "tasks_vi": [
+      "Lập kế hoạch truyền thông cho các sự kiện, cuộc thi học thuật và đợt tuyển thành viên",
+      "Quản trị trang Fanpage chính thức và các kênh thông tin trực tuyến của câu lạc bộ",
+      "Biên tập bài viết giới thiệu, thông báo chương trình, bản tin công nghệ và bài tổng kết sự kiện",
+      "Thiết kế áp phích, băng rôn, phông nền sân khấu và bộ nhận diện hình ảnh cho các chương trình",
+      "Chụp ảnh tư liệu, quay phim và dựng video truyền thông cho các hoạt động của câu lạc bộ"
+    ],
+    "tasks_en": [
+      "Build communication plans for club events, competitions, and recruitment drives",
+      "Manage the official Fanpage and digital communication channels",
+      "Write articles, event announcements, technology posts, and event recaps",
+      "Design posters, banners, stage backdrops, and visual identity kits",
+      "Capture event photography and produce promotional videos"
+    ],
+    "skills_vi": [
+      "Sáng tạo nội dung và biên tập bài viết truyền thông",
+      "Thiết kế đồ họa với Photoshop, Illustrator, Canva và Figma",
+      "Chụp ảnh sự kiện và biên tập, dựng video",
+      "Quản trị kênh truyền thông và phát triển hình ảnh câu lạc bộ"
+    ],
+    "skills_en": [
+      "Content creation and media copywriting",
+      "Graphic design with Photoshop, Illustrator, Canva, and Figma",
+      "Event photography and video editing",
+      "Social media management and brand building"
+    ]
   },
   {
-    "id": "BSK",
-    "name_vi": "Ban Sự Kiện (BSK)",
-    "name_en": "Event & Operations Division",
+    "id": "BHC",
+    "code": "LOGISTICS_DEPT",
+    "name_vi": "Ban Hậu cần",
+    "name_en": "Logistics Department",
+    "short_vi": "Tổ chức sự kiện, quản lý tài chính và công tác hậu cần",
+    "short_en": "Event operations, finance, and logistics",
     "icon": "🎪",
-    "color": "#4caf50",
-    "desc_vi": "Những nhà tổ chức tài ba đứng sau các giải đấu học thuật lớn, workshop công nghệ chuyên sâu và các chuyến dã ngoại bonding đáng nhớ của đại gia đình MPClub.",
-    "skills_vi": ["Lập kế hoạch & Dự trù ngân sách sự kiện", "Điều phối MC, diễn giả và hậu cần", "Kỹ năng đàm phán & Làm việc nhóm", "Quản trị rủi ro & Xử lý tình huống"]
+    "lead": "Trần Võ Thị Thu Uyên (Trưởng ban)",
+    "lead_en": "Tran Vo Thi Thu Uyen (Head of Logistics)",
+    "desc_vi": "Điểm tựa hậu phương vững chắc giúp mọi chương trình hội thảo, cuộc thi Web Design, chuyến dã ngoại và hành trình thiện nguyện của MPC diễn ra chu đáo, trọn vẹn. Ban Hậu cần phụ trách công tác tổ chức hiện trường, trang trí không gian, quản lý thu chi và phối hợp đón tiếp khách mời.",
+    "desc_en": "The operational backbone ensuring every seminar, Web Design competition, team building trip, and charity journey runs smoothly. Handles venue preparation, decoration, financial management, and guest hospitality.",
+    "tasks_vi": [
+      "Liên hệ chuẩn bị hội trường, địa điểm và cơ sở vật chất cho các hoạt động của câu lạc bộ",
+      "Quản lý trang thiết bị, vật dụng, quà tặng và trang trí không gian sự kiện, gian hàng",
+      "Chuẩn bị hậu cần chu đáo cho các lớp đào tạo, buổi tọa đàm và các cuộc thi học thuật",
+      "Lập dự toán kinh phí, quản lý ngân sách thu chi nội bộ và phối hợp vận động tài trợ",
+      "Đón tiếp diễn giả, khách mời doanh nghiệp và điều phối công tác tổ chức tại hiện trường"
+    ],
+    "tasks_en": [
+      "Prepare lecture halls, venues, and facilities for all club activities",
+      "Manage equipment, supplies, gifts, and event or booth decorations",
+      "Coordinate logistics for training sessions, talkshows, and academic competitions",
+      "Prepare budgets, manage internal finances, and support sponsorship outreach",
+      "Welcome guest speakers and corporate partners, and coordinate on-site operations"
+    ],
+    "skills_vi": [
+      "Lập kế hoạch tổ chức và điều phối sự kiện thực tế",
+      "Quản lý ngân sách, lập dự toán chi phí và chuẩn bị hậu cần",
+      "Kỹ năng giao tiếp, đón tiếp khách mời và làm việc với nhà tài trợ",
+      "Phối hợp làm việc nhóm và xử lý tình huống linh hoạt"
+    ],
+    "skills_en": [
+      "Event planning and on-site coordination",
+      "Budgeting, financial tracking, and logistics preparation",
+      "Guest hospitality and sponsor communication",
+      "Teamwork and flexible problem solving"
+    ]
   }
 ]

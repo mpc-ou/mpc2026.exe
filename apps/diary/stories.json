@@ -1,26 +1,44 @@
 [
   {
     "id": 1,
-    "author": "Ban Lập Trình (BLT)",
-    "date": "15/09/2025 • 02:45 AM",
-    "title": "Hậu trường dự án MPC.exe – Đêm thức trắng cùng Retro Windows XP",
-    "body": "Ý tưởng làm một chiếc website tuyển quân theo phong cách hệ điều hành Windows XP Luna nhen nhóm từ một buổi trà đá sau giờ học thuật toán. Cả team BLT đã cùng nhau bàn luận về từng chi tiết nhỏ: âm thanh khởi động BIOS 8-bit, thanh taskbar xanh huyền thoại, cửa sổ kéo thả... Hy vọng các bạn tân sinh viên khi mở chiếc máy tính này sẽ cảm nhận được ngọn lửa đam mê lập trình của CLB!",
-    "tags": ["#BLT", "#Project_MPC_exe", "#HauTruong"]
+    "author": "Ban tổ chức cuộc thi Web Design 2026",
+    "author_en": "Web Design 2026 Organizing Committee",
+    "date": "18/10/2026 • Vòng chung kết cuộc thi",
+    "date_en": "18/10/2026 • Grand Finale",
+    "category": "Học thuật",
+    "image": "../../assets/images/the-open-clubs/webdesign-0.jpg",
+    "title": "Hành trình Web Design 2026: Thử thách xây dựng website đa thương hiệu và đêm chung kết ấn tượng",
+    "title_en": "Web Design 2026 Journey: The 'White Label for Businesses' Challenge and Grand Finale",
+    "body": "Cuộc thi Web Design 2026 mang đến bài toán thực tế cho sinh viên Trường ĐH Mở TP.HCM: phát triển trang web bằng HTML, CSS, JavaScript thuần với kiến trúc tùy biến thương hiệu — cho phép thay đổi toàn bộ nhận diện và nội dung qua tệp cấu hình JSON mà không cần chỉnh sửa mã nguồn. Các đội ClauKi (Giải Nhất), 404 Not Found (Giải Nhì) và TopBotDev (Giải Ba) đã mang đến những phần trình bày vô cùng thuyết phục.",
+    "body_en": "Web Design 2026 challenged students at Trường ĐH Mở TP.HCM to build websites using pure HTML, CSS, and Vanilla JavaScript with a White Label architecture — switching brand identity and content dynamically via JSON without modifying source code. ClauKi (1st Prize), 404 Not Found (2nd Prize), and TopBotDev (3rd Prize) delivered impressive live demos.",
+    "tags": ["#WebDesign2026", "#WhiteLabel", "#BanLapTrinh"]
   },
   {
     "id": 2,
-    "author": "Ban Thiết Kế (BTK)",
-    "date": "08/11/2025 • 04:15 PM",
-    "title": "Linh vật MPC và hành trình vẽ từng pixel retro",
-    "body": "Để tái hiện cảm giác hoài niệm Windows XP mà vẫn mang đậm bản sắc Khoa CNTT - ĐH Mở TP.HCM, team thiết kế đã thử nghiệm rất nhiều phong cách: từ vector tối giản đến pixel art 8-bit. Nhìn sản phẩm hoàn thiện trên màn hình Desktop xanh mướt, cảm xúc thực sự rất tự hào!",
-    "tags": ["#BTK", "#PixelArt", "#Branding"]
+    "author": "Ban Hậu cần và Ban Truyền thông",
+    "author_en": "Logistics and Media Departments",
+    "date": "28/06/2026 • Công viên Tao Đàn",
+    "date_en": "28/06/2026 • Tao Dan Park",
+    "category": "Gắn kết",
+    "image": "../../assets/images/the-open-clubs/members-4.jpg",
+    "title": "Nhật ký dã ngoại MPC 2026: Cùng nhau giải đố – Cùng nhau gắn kết",
+    "title_en": "MPC Teambuilding 2026 Chronicle: Solving Puzzles and Bonding Together",
+    "body": "Tại Công viên Tao Đàn, TP.HCM, đại gia đình MPC tạm gác lại những giờ học căng thẳng để cùng nhau bước vào chuỗi thử thách giải mật thư, rèn luyện tư duy logic và phối hợp đồng đội ăn ý giữa Ban Lập trình, Ban Truyền thông và Ban Hậu cần.",
+    "body_en": "At Tao Dan Park, HCMC, the MPC family stepped away from coursework to tackle cipher challenges, logic puzzles, and outdoor team games across the Programming, Media, and Logistics departments.",
+    "tags": ["#Teambuilding2026", "#TaoDanPark", "#MPCFamily"]
   },
   {
     "id": 3,
-    "author": "Ban Sự Kiện (BSK) & Ban Truyền Thông (BTT)",
-    "date": "20/12/2025 • 10:30 PM",
-    "title": "Kỷ niệm buổi Tech Sharing & Bonding ấm cúng",
-    "body": "Không chỉ có những dòng code khô khan, MPClub luôn là nơi gắn kết những tâm hồn đồng điệu. Buổi dã ngoại và bonding cuối năm với những trận boardgame nảy lửa, những lời tâm sự từ các anh chị cựu sinh viên đi làm tại các tập đoàn lớn đã tiếp thêm bao động lực cho thế hệ tiếp theo.",
-    "tags": ["#BSK", "#BTT", "#Family"]
+    "author": "Ban Chủ nhiệm và các thế hệ thành viên MPC",
+    "author_en": "Executive Board and MPC Generations",
+    "date": "24/12/2025 • Cột mốc kỷ niệm 10 năm",
+    "date_en": "24/12/2025 • 10th Anniversary Milestone",
+    "category": "Kỷ niệm 10 năm",
+    "image": "../../assets/images/the-open-clubs/members-8.jpg",
+    "title": "Kỷ niệm 10 năm thành lập MPC (24/12/2015 – 24/12/2025): Một thập kỷ 'Ở đâu có bug, ở đó có MPC!'",
+    "title_en": "MPC 10th Anniversary (24/12/2015 – 24/12/2025): A Decade of 'Where there's a bug, there's MPC!'",
+    "body": "Đánh dấu chặng đường 10 năm hình thành và phát triển của Câu lạc bộ Lập trình trên thiết bị di động (MPC) tại Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM: từ một nhóm sinh viên yêu thích lập trình di động vươn mình trở thành cộng đồng học thuật công nghệ gắn kết với hơn 50 thành viên tích cực và hơn 30 sự kiện đã tổ chức.",
+    "body_en": "Marking 10 years of the Mobile Programming Club (MPC) at the Faculty of IT – Trường ĐH Mở TP.HCM: growing from mobile programming into a close-knit academic tech community with 50+ active members and 30+ organized events.",
+    "tags": ["#MPCTurns10", "#24_12_2015", "#TruongDHMoTPHCM"]
   }
 ]

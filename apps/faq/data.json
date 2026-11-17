@@ -1,30 +1,154 @@
 [
   {
     "id": 1,
-    "q_vi": "Sinh viên năm nhất (K25/K26) chưa có nhiều kiến thức lập trình có ứng tuyển được không?",
-    "a_vi": "Hoàn toàn được! MPClub luôn chào đón các bạn sinh viên có niềm đam mê và tinh thần ham học hỏi. CLB có lộ trình training bài bản từ cơ bản đến nâng cao (Web, Mobile, Thuật toán) cùng sự hướng dẫn tận tình từ các anh chị mentor.",
-    "q_en": "Can freshmen without much coding experience apply?",
-    "a_en": "Absolutely yes! MPClub welcomes everyone with curiosity and passion. We provide structured training paths from beginner to advanced with senior mentors."
+    "cat": "General",
+    "q_vi": "Khi nào câu lạc bộ tổ chức tuyển thành viên mới?",
+    "a_vi": "Thông thường đợt tuyển thành viên chính thức của MPC diễn ra vào Học kỳ I mỗi năm học. Mọi thông tin chi tiết đều được cập nhật trên trang Fanpage CLB Lập Trình Trên Thiết Bị Di Động và trang chủ https://www.mpclub.dev.",
+    "q_en": "When does MPC recruit new members?",
+    "a_en": "Official member recruitment usually takes place in Semester I of each academic year. Announcements are posted on our official Fanpage and website https://www.mpclub.dev."
   },
   {
     "id": 2,
-    "q_vi": "MPClub có những ban chuyên môn nào? Tôi có thể đăng ký nhiều ban không?",
-    "a_vi": "MPClub gồm 4 ban: Ban Lập Trình (BLT), Ban Thiết Kế (BTK), Ban Truyền Thông (BTT), và Ban Sự Kiện (BSK). Bạn có thể chọn ban nguyện vọng 1 và ban nguyện vọng 2 phù hợp với thế mạnh của mình.",
-    "q_en": "What departments does MPClub have? Can I apply to multiple teams?",
-    "a_en": "MPClub has 4 divisions: Programming (BLT), Design (BTK), Media (BTT), and Event (BSK). You can specify your 1st and 2nd priority preferences."
+    "cat": "General",
+    "q_vi": "Sinh viên không theo học ngành Công nghệ thông tin tại Trường ĐH Mở TP.HCM có thể tham gia không?",
+    "a_vi": "Hoàn toàn được! Các bạn sinh viên thuộc những khoa khác tại Trường ĐH Mở TP.HCM nếu yêu thích thiết kế đồ họa, viết bài truyền thông, quay dựng video hoặc tổ chức sự kiện đều rất phù hợp để đồng hành cùng Ban Truyền thông hoặc Ban Hậu cần.",
+    "q_en": "Can non-IT students at Trường ĐH Mở TP.HCM join MPC?",
+    "a_en": "Yes! Students from other faculties at Trường ĐH Mở TP.HCM with skills or passion in graphic design, media, video production, or event organization are warmly welcome to join the Media or Logistics departments."
   },
   {
     "id": 3,
-    "q_vi": "Quy trình tuyển thành viên 2026 diễn ra như thế nào?",
-    "a_vi": "Quy trình gồm 3 vòng chính: Vòng 1 (Vòng đơn qua form JOIN_MPC.exe) ➜ Vòng 2 (Teamwork & Thử thách chuyên môn thực tế) ➜ Vòng 3 (Phỏng vấn trực tiếp cùng Ban Chủ Nhiệm và Trưởng ban).",
-    "q_en": "How does the 2026 recruitment process work?",
-    "a_en": "The process consists of 3 stages: Stage 1 (Application form) ➜ Stage 2 (Teamwork & Practical challenge) ➜ Stage 3 (Direct interview with Board leaders)."
+    "cat": "General",
+    "q_vi": "Chưa có kiến thức lập trình từ trước thì có ứng tuyển được không?",
+    "a_vi": "Hoàn toàn được! MPC không yêu cầu ứng viên phải giỏi lập trình ngay từ đầu. Câu lạc bộ luôn xây dựng môi trường học tập thân thiện từ nền tảng với lộ trình bồi dưỡng theo từng học kỳ và sự kèm cặp trực tiếp 1-1 từ các anh chị đi trước.",
+    "q_en": "Can I join if I have no prior programming experience?",
+    "a_en": "Yes! MPC does not require prior coding knowledge before joining. Our mission is to provide a supportive learning environment with a structured training roadmap and 1-on-1 peer mentoring from the ground up."
   },
   {
     "id": 4,
-    "q_vi": "Tham gia MPClub mang lại những quyền lợi gì cho sinh viên OU IT?",
-    "a_vi": "Được rèn luyện kỹ năng thực chiến qua các dự án phần mềm thật; Được cộng điểm rèn luyện theo quy chế Khoa CNTT - ĐH Mở TP.HCM; Mở rộng network với các anh chị Alumni tại các công ty công nghệ lớn; Môi trường sinh hoạt gắn kết và năng động!",
-    "q_en": "What benefits do members receive at MPClub?",
-    "a_en": "Hands-on project experience, university extracurricular training points (ĐRL), networking with alumni at top tech firms, and a supportive family environment!"
+    "cat": "General",
+    "q_vi": "Quy trình tuyển thành viên mới của MPC gồm những vòng nào và quyền lợi ra sao?",
+    "a_vi": "Quy trình tuyển chọn gồm 4 bước: (1) Đăng ký biểu mẫu ứng tuyển ➔ (2) Làm bài kiểm tra trắc nghiệm trực tuyến ➔ (3) Kiểm tra và phỏng vấn trực tiếp (Ban Lập trình sẽ có thêm phần bài tập lập trình) ➔ (4) Nhận kết quả trúng tuyển. Khi trở thành thành viên, bạn sẽ được tham gia các lớp đào tạo chuyên môn từng ban, học nhóm ôn tập, tổ chức sự kiện và được cộng điểm rèn luyện hằng kỳ.",
+    "q_en": "What are the recruitment stages and member benefits at MPC?",
+    "a_en": "Recruitment consists of 4 stages: (1) Application form registration ➔ (2) Online multiple-choice test ➔ (3) In-person interview and test (Programming Department applicants take an additional coding test) ➔ (4) Onboarding results. Members enjoy department training, study groups, major events, and semester training points every term."
+  },
+  {
+    "id": 5,
+    "cat": "About",
+    "q_vi": "Câu lạc bộ được thành lập từ khi nào và trực thuộc đơn vị nào?",
+    "a_vi": "Câu lạc bộ Lập trình trên thiết bị di động (viết tắt là MPC) được thành lập vào ngày 24/12/2015, là câu lạc bộ học thuật cấp Khoa trực thuộc Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM.",
+    "q_en": "When was MPC founded and which unit does it belong to?",
+    "a_en": "The Mobile Programming Club (MPC) was founded on December 24, 2015, as a Faculty-level academic club under the Faculty of Information Technology – Trường ĐH Mở TP.HCM."
+  },
+  {
+    "id": 6,
+    "cat": "About",
+    "q_vi": "Những mục tiêu hoạt động trọng tâm của MPC là gì?",
+    "a_vi": "Bốn mục tiêu trọng tâm của câu lạc bộ gồm: (1) Tổ chức hội thảo học thuật chia sẻ kiến thức và ôn tập các môn lập trình; (2) Phát huy mô hình sinh viên cố vấn học tập cho sinh viên; (3) Đào tạo chuyên môn về phát triển web, ứng dụng di động, trí tuệ nhân tạo và vận hành hệ thống; (4) Tổ chức các cuộc thi học thuật thường niên và hoạt động ngoại khóa gắn kết.",
+    "q_en": "What are MPC's four core operational goals?",
+    "a_en": "Our four core goals are: (1) Academic seminars and foundational programming review; (2) Student peer mentoring; (3) Technical training in web, mobile, artificial intelligence, and DevOps; (4) Annual academic competitions and community bonding activities."
+  },
+  {
+    "id": 7,
+    "cat": "About",
+    "q_vi": "Cơ cấu tổ chức của câu lạc bộ gồm những bộ phận nào?",
+    "a_vi": "MPC hoạt động với 4 bộ phận chính: Ban Chủ nhiệm (điều hành chung và định hướng phát triển), Ban Lập trình (đào tạo chuyên môn và phát triển sản phẩm phần mềm), Ban Truyền thông (nội dung, thiết kế đồ họa và hình ảnh) và Ban Hậu cần (tổ chức sự kiện, quản lý tài chính và công tác hậu cần).",
+    "q_en": "What departments make up MPC's organizational structure?",
+    "a_en": "MPC consists of four main bodies: Executive Board (general management and direction), Programming Department (technical training and software products), Media Department (content, graphic design, and visuals), and Logistics Department (event operations, finance, and logistics)."
+  },
+  {
+    "id": 8,
+    "cat": "About",
+    "q_vi": "Quy mô thành viên hiện tại của câu lạc bộ là bao nhiêu?",
+    "a_vi": "Câu lạc bộ duy trì đội ngũ hơn 50 thành viên chính thức đang sinh hoạt tích cực tại Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM, cùng mạng lưới đông đảo các anh chị cựu thành viên qua hơn 10 năm gắn bó.",
+    "q_en": "How many active members does MPC currently have?",
+    "a_en": "MPC maintains over 50 active official members alongside a supportive alumni network spanning more than 10 years."
+  },
+  {
+    "id": 9,
+    "cat": "Activities",
+    "q_vi": "Bên cạnh việc học, câu lạc bộ có những hoạt động ngoại khóa nào?",
+    "a_vi": "Ngoài các buổi học thuật, MPC thường xuyên tổ chức lễ kỷ niệm ngày thành lập câu lạc bộ (24/12), chuyến dã ngoại gắn kết hằng năm, chương trình tình nguyện vì cộng đồng, buổi sinh hoạt định kỳ hằng tháng, giao lưu thể thao và tham gia ngày hội các câu lạc bộ toàn trường.",
+    "q_en": "What extracurricular and bonding activities does the club organize?",
+    "a_en": "Beyond academics, MPC hosts its Club Anniversary (24/12), annual team building trips, charity volunteering journeys, monthly gatherings, sports and esports matches, and the university-wide club festival."
+  },
+  {
+    "id": 10,
+    "cat": "Activities",
+    "q_vi": "Thành viên tham gia câu lạc bộ có cần đóng phí sinh hoạt không?",
+    "a_vi": "Câu lạc bộ có thu một khoản quỹ sinh hoạt nhỏ hằng năm để phục vụ trực tiếp cho các hoạt động chung của thành viên. Mức đóng góp luôn được công bố rõ ràng, minh bạch vào đầu năm học.",
+    "q_en": "Is there an annual membership activity fee?",
+    "a_en": "Yes, MPC collects a modest annual activity fund to support general member activities. The exact amount is transparently shared at the start of each academic year."
+  },
+  {
+    "id": 11,
+    "cat": "Activities",
+    "q_vi": "Cuộc thi lập trình robot ảo Robocode của câu lạc bộ là gì?",
+    "a_vi": "Đây là sân chơi lập trình robot ảo truyền thống của MPC, nơi sinh viên vận dụng ngôn ngữ lập trình để xây dựng thuật toán điều khiển xe tăng robot tự động thi đấu trên sa bàn ảo, qua đó rèn luyện tư duy logic và chiến thuật.",
+    "q_en": "What is MPC's Robocode competition?",
+    "a_en": "Robocode is MPC's traditional virtual robot coding tournament where students write algorithms to control autonomous battle tanks, sharpening logic and strategy."
+  },
+  {
+    "id": 12,
+    "cat": "Training",
+    "q_vi": "Câu lạc bộ đào tạo những mảng kiến thức và công nghệ nào?",
+    "a_vi": "MPC xây dựng lộ trình bồi dưỡng theo từng học kỳ gồm: Kỹ thuật lập trình (C/C++, cấu trúc dữ liệu và giải thuật, quản lý mã nguồn với Git), Phát triển ứng dụng web (HTML, CSS, JavaScript, React, Next.js), Lập trình hướng đối tượng (Java, C#, mẫu thiết kế phần mềm), Phát triển ứng dụng di động (Flutter, React Native), triển khai hệ thống với Docker, thiết kế giao diện và kỹ năng làm việc nhóm.",
+    "q_en": "What technologies and subjects does MPC train members in?",
+    "a_en": "MPC trains members across a semester roadmap: Programming Techniques (C/C++, data structures and algorithms, Git), Web Development (HTML, CSS, JavaScript, React, Next.js), Object-Oriented Programming (Java, C#, design patterns), Mobile Development (Flutter, React Native), Docker deployment, UI/UX design, and teamwork skills."
+  },
+  {
+    "id": 13,
+    "cat": "Training",
+    "q_vi": "Thời lượng và lịch học của các lớp đào tạo nội bộ diễn ra như thế nào?",
+    "a_vi": "Mỗi đợt đào tạo chuyên đề thông thường kéo dài từ 8 đến 12 tuần, được tổ chức vào dịp cuối tuần với thời lượng khoảng 2 đến 3 giờ mỗi buổi để không ảnh hưởng đến lịch học chính khóa trên trường.",
+    "q_en": "What is the duration and schedule of internal training courses?",
+    "a_en": "Each training track typically runs for 8 to 12 weeks on weekends (around 2 to 3 hours per session) so it fits smoothly alongside university classes."
+  },
+  {
+    "id": 14,
+    "cat": "Training",
+    "q_vi": "Ai là người trực tiếp đứng lớp và hướng dẫn trong các buổi đào tạo?",
+    "a_vi": "Người hướng dẫn gồm các thành viên giàu kinh nghiệm của Ban Lập trình, các anh chị cựu thành viên MPC đang làm việc tại doanh nghiệp công nghệ và các thầy cô giảng viên Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM.",
+    "q_en": "Who are the instructors in the training sessions?",
+    "a_en": "Instructors include experienced core members of the Programming Department, MPC alumni working in the tech industry, and invited lecturers from the Faculty of IT – Trường ĐH Mở TP.HCM."
+  },
+  {
+    "id": 15,
+    "cat": "Projects",
+    "q_vi": "Làm thế nào để thành viên được tham gia phát triển các dự án phần mềm thực tế của câu lạc bộ?",
+    "a_vi": "Thành viên có thể đăng ký trực tiếp với Ban Chủ nhiệm hoặc Ban Lập trình trong các đợt mở nhóm dự án nội bộ hằng kỳ để cùng tham gia xây dựng sản phẩm.",
+    "q_en": "How can members join real-world software projects in MPC?",
+    "a_en": "Members can sign up with the Executive Board or Programming Department during internal project team calls to build software products together."
+  },
+  {
+    "id": 16,
+    "cat": "Projects",
+    "q_vi": "Khi tham gia dự án, thành viên mới có được hướng dẫn quy trình làm việc không?",
+    "a_vi": "Chắc chắn có. Các bạn sẽ được anh chị đi trước hướng dẫn từng bước quy trình phát triển phần mềm thực tế: từ phân tích yêu cầu, thiết kế hệ thống, quản lý mã nguồn bằng Git/GitHub cho đến cách phối hợp nhóm theo mô hình Agile/Scrum.",
+    "q_en": "Do project members receive mentorship on software engineering workflows?",
+    "a_en": "Yes. Experienced leads guide members step-by-step through requirement analysis, system design, Git/GitHub version control, and Agile/Scrum teamwork."
+  },
+  {
+    "id": 17,
+    "cat": "Projects",
+    "q_vi": "Các sản phẩm do câu lạc bộ phát triển có được đưa vào sử dụng thực tế không?",
+    "a_vi": "Có! Tiêu biểu nhất là tiện ích trình duyệt MPC Extension đang hỗ trợ đông đảo sinh viên Trường ĐH Mở TP.HCM xem điểm, tính điểm trung bình tích lũy và theo dõi lịch học, lịch thi trên cổng thông tin sis.ou.edu.vn.",
+    "q_en": "Are products developed by MPC released to real users?",
+    "a_en": "Yes! Our flagship browser extension, MPC Extension, actively helps students at Trường ĐH Mở TP.HCM view grades, calculate GPA, and track schedules on sis.ou.edu.vn."
+  },
+  {
+    "id": 18,
+    "cat": "Sponsorship",
+    "q_vi": "Quý doanh nghiệp và tổ chức có thể liên hệ hợp tác cùng MPC qua kênh nào?",
+    "a_vi": "Quý doanh nghiệp và đơn vị đối tác có thể liên hệ trực tiếp với Ban Chủ nhiệm qua địa chỉ thư điện tử it.mpclub@ou.edu.vn hoặc trang Fanpage CLB Lập Trình Trên Thiết Bị Di Động.",
+    "q_en": "How can companies or organizations partner with MPC?",
+    "a_en": "Organizations can reach out via our official email it.mpclub@ou.edu.vn or the Fanpage CLB Lập Trình Trên Thiết Bị Di Động to connect with the Executive Board."
+  },
+  {
+    "id": 19,
+    "cat": "Sponsorship",
+    "q_vi": "Đơn vị đồng hành và nhà tài trợ nhận được những quyền lợi gì khi hợp tác cùng câu lạc bộ?",
+    "a_vi": "Hình ảnh thương hiệu của quý đơn vị sẽ được giới thiệu trang trọng trên trang chủ mpclub.dev, trang Fanpage và các ấn phẩm truyền thông sự kiện, đồng thời có cơ hội giao lưu, tiếp cận trực tiếp nguồn nhân lực sinh viên công nghệ thông tin năng động của Trường ĐH Mở TP.HCM.",
+    "q_en": "What benefits do partners and sponsors receive when collaborating with MPC?",
+    "a_en": "Partners receive brand visibility on mpclub.dev, our official Fanpage, and event media publications, along with direct engagement with talented IT students at Trường ĐH Mở TP.HCM."
   }
 ]

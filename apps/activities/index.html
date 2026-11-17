@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ACTIVITIES</title>
+  <title>ACTIVITIES – Hệ Thống Hoạt Động & Thư Viện Ảnh MPClub</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
@@ -13,41 +13,189 @@
       padding: 0;
     }
     body {
-      font-family: Tahoma, 'Segoe UI', sans-serif;
-      font-size: 11px;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
       color: #111;
-      background-color: #ffffff;
-      padding: 16px;
-      overflow-y: auto;
+      background-color: #ece9d8;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
-    .header-bar {
+
+    .xp-toolbar {
+      background: linear-gradient(180deg, #faf9f4 0%, #ece9d8 100%);
+      border-bottom: 1px solid #aca899;
+      padding: 6px 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 14px;
-      border-bottom: 2px solid #0055ea;
-      padding-bottom: 8px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+      gap: 6px;
     }
-    .title {
-      font-size: 15px;
+    .xp-toolbar-title {
+      font-size: 13px;
       font-weight: bold;
       color: #003399;
       display: flex;
       align-items: center;
       gap: 6px;
     }
+    .xp-tabs {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+    }
+    .xp-tab-btn {
+      background: #ece9d8;
+      border: 1px solid #7f9db9;
+      padding: 3px 10px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      color: #003399;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .xp-tab-btn.active, .xp-tab-btn:hover {
+      background: #316ac5;
+      color: #ffffff;
+      border-color: #002266;
+    }
+
+    .xp-workspace {
+      flex: 1;
+      background: #ffffff;
+      margin: 6px 8px;
+      border: 1px solid #7f9db9;
+      padding: 14px 16px;
+      overflow-y: auto;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+
+    .section-banner {
+      background: linear-gradient(90deg, #003399 0%, #2572fe 100%);
+      color: #fff;
+      padding: 8px 12px;
+      font-weight: bold;
+      font-size: 13px;
+      border-bottom: 2px solid #ff6600;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .act-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .act-card {
+      background: #fafcfe;
+      border: 1px solid #b8c9de;
+      border-top: 3px solid #0055ea;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .act-card.external {
+      border-top-color: #e65c00;
+    }
+    .act-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border-bottom: 1px solid #dde6f2;
+      background: #e9eef5;
+    }
+    .act-body {
+      padding: 10px 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .act-freq {
+      display: inline-block;
+      align-self: flex-start;
+      background: #eef4fc;
+      border: 1px solid #9bb8de;
+      color: #003399;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+    .act-card.external .act-freq {
+      background: #fff3e6;
+      border-color: #f5b882;
+      color: #b34700;
+    }
+    .act-title {
+      font-size: 13px;
+      font-weight: bold;
+      color: #003399;
+    }
+    .act-desc {
+      font-size: 11.5px;
+      color: #333;
+      line-height: 1.5;
+    }
+    .act-highlight {
+      margin-top: auto;
+      padding-top: 6px;
+      border-top: 1px dashed #d0dceb;
+      font-size: 11px;
+      color: #004499;
+      font-weight: bold;
+    }
+
+    .xp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .xp-table th, .xp-table td {
+      border: 1px solid #c0cfe0;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    .xp-table th {
+      background: linear-gradient(180deg, #f0f4fa 0%, #dce4f0 100%);
+      color: #003399;
+      font-weight: bold;
+    }
+    .xp-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
     .filter-tags {
       display: flex;
       gap: 6px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
     }
     .tag-btn {
       background: #ece9d8;
       border: 1px solid #7f9db9;
       padding: 3px 10px;
-      border-radius: 3px;
+      border-radius: 2px;
       font-size: 11px;
       cursor: pointer;
       font-family: Tahoma, sans-serif;
@@ -56,164 +204,532 @@
       background: #0055ea;
       color: #fff;
       border-color: #003399;
+      font-weight: bold;
     }
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 10px;
     }
     .photo-card {
-      border: 1px solid #dcdcdc;
-      border-radius: 4px;
-      overflow: hidden;
-      background: #fafafa;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      border: 1px solid #b8c9de;
+      background: #f9fbff;
+      padding: 4px;
       cursor: pointer;
-      transition: all 0.2s;
     }
     .photo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0,0,0,0.15);
       border-color: #0055ea;
+      background: #eef4fc;
     }
     .photo-thumb {
       width: 100%;
-      height: 120px;
+      aspect-ratio: 4 / 3;
+      height: auto;
       object-fit: cover;
+      object-position: center center;
       display: block;
-      background: #eee;
+      border: 1px solid #ddd;
+      background: #e9eef5;
     }
     .photo-info {
-      padding: 8px;
+      padding: 6px 4px 2px 4px;
     }
     .photo-name {
       font-weight: bold;
       color: #003399;
-      margin-bottom: 2px;
+      font-size: 11.5px;
     }
     .photo-meta {
       font-size: 10px;
       color: #666;
     }
-    /* Lightbox Modal */
+
     .lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.85);
+      background: rgba(0, 18, 48, 0.88);
       z-index: 9999;
       display: none;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      padding: 20px;
+      padding: 16px;
     }
     .lightbox.active {
       display: flex;
     }
-    .lightbox-img {
-      max-width: 90%;
-      max-height: 80vh;
-      object-fit: contain;
-      border: 3px solid #fff;
+    .lightbox-win {
+      background: #ece9d8;
+      border: 2px solid #0055ea;
       border-radius: 4px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+      max-width: 92%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.7);
     }
-    .lightbox-caption {
+    .lightbox-titlebar {
+      background: linear-gradient(180deg, #0058ee 0%, #3593ff 10%, #0055ea 90%, #0030a5 100%);
       color: #fff;
-      font-size: 13px;
-      margin-top: 10px;
-      text-align: center;
+      padding: 5px 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .lightbox-close {
-      position: absolute;
-      top: 16px;
-      right: 20px;
+      background: #e04343;
       color: #fff;
-      font-size: 24px;
+      border: 1px solid #fff;
+      width: 20px;
+      height: 20px;
+      font-weight: bold;
       cursor: pointer;
+      border-radius: 2px;
+      line-height: 1;
+    }
+    .lightbox-body {
+      padding: 10px;
+      background: #222;
+      text-align: center;
+    }
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+    .lightbox-caption {
+      padding: 8px 12px;
+      background: #ece9d8;
+      color: #111;
+      font-weight: bold;
+      font-size: 12px;
+      border-top: 1px solid #aca899;
+    }
+
+    .xp-statusbar {
+      height: 22px;
+      background: #ece9d8;
+      border-top: 1px solid #aca899;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #333;
+      flex-shrink: 0;
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
-  <div class="header-bar">
-    <div class="title"><i class="bi bi-images"></i> Thư Viện Hoạt Động & Workshop MPClub</div>
-    <span style="color: #666;">2023 – 2026</span>
+
+  <!-- Toolbar -->
+  <div class="xp-toolbar">
+    <div class="xp-toolbar-title">
+      <i class="bi bi-collection-play-fill"></i>
+      <span data-vi="HOẠT ĐỘNG VÀ ĐÀO TẠO MPCLUB" data-en="MPCLUB ACTIVITIES AND TRAINING">HOẠT ĐỘNG VÀ ĐÀO TẠO MPCLUB</span>
+    </div>
+    <div class="xp-tabs">
+      <button class="xp-tab-btn active" data-tab="pane-internal" data-vi="🏠 1. Hoạt động nội bộ (5)" data-en="🏠 1. Internal activities (5)">🏠 1. Hoạt động nội bộ (5)</button>
+      <button class="xp-tab-btn" data-tab="pane-external" data-vi="🌍 2. Hoạt động đối ngoại (6)" data-en="🌍 2. External activities (6)">🌍 2. Hoạt động đối ngoại (6)</button>
+      <button class="xp-tab-btn" data-tab="pane-summary" data-vi="📊 3. Bảng tần suất hoạt động" data-en="📊 3. Activity frequency">📊 3. Bảng tần suất hoạt động</button>
+      <button class="xp-tab-btn" data-tab="pane-gallery" data-vi="📸 4. Thư viện ảnh CLB" data-en="📸 4. Photo gallery">📸 4. Thư viện ảnh CLB</button>
+    </div>
   </div>
 
-  <div class="filter-tags">
-    <button class="tag-btn active" data-category="all">Tất cả</button>
-    <button class="tag-btn" data-category="training">Workshop & Training</button>
-    <button class="tag-btn" data-category="contest">Cuộc thi & Hackathon</button>
-    <button class="tag-btn" data-category="members">Gắn kết & Thành viên</button>
-    <button class="tag-btn" data-category="web">Dự án Web Design</button>
+  <!-- Main Content -->
+  <div class="xp-workspace">
+
+    <!-- PANE 1: INTERNAL ACTIVITIES -->
+    <div class="tab-pane active" id="pane-internal">
+      <div class="section-banner">
+        <span data-vi="🏠 4.1. HOẠT ĐỘNG NỘI BỘ CÂU LẠC BỘ" data-en="🏠 4.1. INTERNAL CLUB ACTIVITIES">🏠 4.1. HOẠT ĐỘNG NỘI BỘ CÂU LẠC BỘ</span>
+        <span style="font-size: 11px; font-weight: normal;" data-vi="Gắn kết • Học thuật • Phát triển kỹ năng" data-en="Bonding • Academics • Skill growth">Gắn kết • Học thuật • Phát triển kỹ năng</span>
+      </div>
+
+      <div class="act-grid">
+        <div class="act-card">
+          <img class="act-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/activities/1790506000952-dcff6x.jpeg" onerror="this.src='../../assets/images/the-open-clubs/members-4.jpg'" alt="Hoạt động dã ngoại gắn kết">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng năm" data-en="Frequency: Annually">Tần suất: Hằng năm</span>
+            <div class="act-title" data-vi="1. Dã ngoại gắn kết thành viên" data-en="1. Annual team building">1. Dã ngoại gắn kết thành viên</div>
+            <div class="act-desc" data-vi="Không gian thư giãn sau mỗi học kỳ, giúp các thành viên giữa các ban thêm gắn bó thông qua chuỗi trò chơi vận động, giải mật thư và thử thách tập thể ngoài trời." data-en="Relax after semesters and strengthen bonds across departments through outdoor team games, logic puzzles, and group challenges.">
+              Không gian thư giãn sau mỗi học kỳ, giúp các thành viên giữa các ban thêm gắn bó thông qua chuỗi trò chơi vận động, giải mật thư và thử thách tập thể ngoài trời.
+            </div>
+            <div class="act-highlight" data-vi="📌 Điểm nhấn: Chuyến dã ngoại ngày 28/06/2026 tại Công viên Tao Đàn, TP.HCM." data-en="📌 Highlight: MPC Teambuilding on 28/06/2026 at Tao Dan Park, HCMC.">📌 Điểm nhấn: Chuyến dã ngoại ngày 28/06/2026 tại Công viên Tao Đàn, TP.HCM.</div>
+          </div>
+        </div>
+
+        <div class="act-card">
+          <img class="act-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/activities/1790505351146-ccfa1h.jpg" onerror="this.src='../../assets/images/the-open-clubs/activities-0.jpg'" alt="Chia sẻ kinh nghiệm thực tế">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Định kỳ" data-en="Frequency: Periodic">Tần suất: Định kỳ</span>
+            <div class="act-title" data-vi="2. Chia sẻ kinh nghiệm thực tế" data-en="2. Practical experience sharing">2. Chia sẻ kinh nghiệm thực tế</div>
+            <div class="act-desc" data-vi="Kết nối thành viên với các anh chị cựu sinh viên, người hướng dẫn và chuyên gia đang làm việc trong ngành công nghệ thông tin để định hướng nghề nghiệp, kỳ thực tập và kỹ năng làm việc." data-en="Connect members with MPC alumni, mentors, and IT professionals for career guidance, internship tips, and workplace skills.">
+              Kết nối thành viên với các anh chị cựu sinh viên, người hướng dẫn và chuyên gia đang làm việc trong ngành công nghệ thông tin để định hướng nghề nghiệp, kỳ thực tập và kỹ năng làm việc.
+            </div>
+            <div class="act-highlight" data-vi="📌 Diễn giả: Cựu thành viên MPC đang công tác tại VNG và các doanh nghiệp phần mềm." data-en="📌 Speakers: MPC alumni working at VNG and leading software companies.">📌 Diễn giả: Cựu thành viên MPC đang công tác tại VNG và các doanh nghiệp phần mềm.</div>
+          </div>
+        </div>
+
+        <div class="act-card">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/members-1.jpg" alt="Sinh hoạt định kỳ câu lạc bộ">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng tháng" data-en="Frequency: Monthly">Tần suất: Hằng tháng</span>
+            <div class="act-title" data-vi="3. Sinh hoạt định kỳ câu lạc bộ" data-en="3. Monthly club gatherings">3. Sinh hoạt định kỳ câu lạc bộ</div>
+            <div class="act-desc" data-vi="Buổi gặp mặt giao lưu nội bộ hằng tháng để các thành viên cùng trò chuyện, trao đổi kiến thức, thảo luận kế hoạch hoạt động và thắt chặt tình cảm giữa các khóa." data-en="Monthly in-person gatherings to chat, exchange knowledge, discuss club plans, and bond across student cohorts.">
+              Buổi gặp mặt giao lưu nội bộ hằng tháng để các thành viên cùng trò chuyện, trao đổi kiến thức, thảo luận kế hoạch hoạt động và thắt chặt tình cảm giữa các khóa.
+            </div>
+            <div class="act-highlight" data-vi="📌 Duy trì sự gắn kết gần gũi giữa các thế hệ thành viên MPC." data-en="📌 Sustains close connections across all MPC generations.">📌 Duy trì sự gắn kết gần gũi giữa các thế hệ thành viên MPC.</div>
+          </div>
+        </div>
+
+        <div class="act-card">
+          <img class="act-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/activities/1790506606453-kssvae.jpg" alt="Thể thao và thể thao điện tử">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng tháng" data-en="Frequency: Monthly">Tần suất: Hằng tháng</span>
+            <div class="act-title" data-vi="4. Thể thao và thể thao điện tử" data-en="4. Sports and esports">4. Thể thao và thể thao điện tử</div>
+            <div class="act-desc" data-vi="Tổ chức các buổi giao lưu thể thao rèn luyện sức khỏe và những giải đấu thể thao điện tử nội bộ, giúp thành viên cân bằng giữa việc học trên giảng đường và đời sống tinh thần." data-en="Organize sports matches and internal esports tournaments to help members balance academic study and club life.">
+              Tổ chức các buổi giao lưu thể thao rèn luyện sức khỏe và những giải đấu thể thao điện tử nội bộ, giúp thành viên cân bằng giữa việc học trên giảng đường và đời sống tinh thần.
+            </div>
+            <div class="act-highlight" data-vi="📌 Tinh thần: Rèn luyện sức khỏe và nâng cao sự ăn ý của tập thể." data-en="📌 Spirit: Physical wellness and team synergy.">📌 Tinh thần: Rèn luyện sức khỏe và nâng cao sự ăn ý của tập thể.</div>
+          </div>
+        </div>
+
+        <div class="act-card">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/training.jpg" alt="Học nhóm lập trình">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Thường xuyên" data-en="Frequency: Regular">Tần suất: Thường xuyên</span>
+            <div class="act-title" data-vi="5. Học nhóm lập trình" data-en="5. Programming study groups">5. Học nhóm lập trình</div>
+            <div class="act-desc" data-vi="Cùng nhau ôn tập các học phần lập trình, cấu trúc dữ liệu và giải thuật, đồng thời hỗ trợ thực tập tốt nghiệp, nghiên cứu khoa học và khóa luận tại Trường ĐH Mở TP.HCM." data-en="Peer study sessions for programming courses, data structures and algorithms, internships, scientific research, and graduation theses at Trường ĐH Mở TP.HCM.">
+              Cùng nhau ôn tập các học phần lập trình, cấu trúc dữ liệu và giải thuật, đồng thời hỗ trợ thực tập tốt nghiệp, nghiên cứu khoa học và khóa luận tại Trường ĐH Mở TP.HCM.
+            </div>
+            <div class="act-highlight" data-vi="📌 Mô hình cốt lõi: Sinh viên hỗ trợ và cố vấn học tập trực tiếp cho nhau." data-en="📌 Core model: Student-to-student academic peer advising.">📌 Mô hình cốt lõi: Sinh viên hỗ trợ và cố vấn học tập trực tiếp cho nhau.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 2: EXTERNAL ACTIVITIES -->
+    <div class="tab-pane" id="pane-external">
+      <div class="section-banner" style="background: linear-gradient(90deg, #993d00 0%, #e65c00 100%); border-bottom-color: #003399;">
+        <span data-vi="🌍 4.2. HOẠT ĐỘNG ĐỐI NGOẠI VÀ PHONG TRÀO" data-en="🌍 4.2. EXTERNAL AND COMMUNITY ACTIVITIES">🌍 4.2. HOẠT ĐỘNG ĐỐI NGOẠI VÀ PHONG TRÀO</span>
+        <span style="font-size: 11px; font-weight: normal;" data-vi="Cuộc thi học thuật • Cộng đồng • Tuyển thành viên" data-en="Academic contests • Community • Recruitment">Cuộc thi học thuật • Cộng đồng • Tuyển thành viên</span>
+      </div>
+
+      <div class="act-grid">
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/activities-1.jpg" alt="Hoạt động tình nguyện">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng kỳ" data-en="Frequency: Every semester">Tần suất: Hằng kỳ</span>
+            <div class="act-title" data-vi="1. Hoạt động tình nguyện vì cộng đồng" data-en="1. Community volunteering">1. Hoạt động tình nguyện vì cộng đồng</div>
+            <div class="act-desc" data-vi="Lan tỏa tinh thần sẻ chia của sinh viên Trường ĐH Mở TP.HCM thông qua các chuyến đi cải tạo sân chơi, trao tặng quà cho trẻ em và thăm hỏi các mái ấm tình thương." data-en="Sharing the social responsibility of students at Trường ĐH Mở TP.HCM by renovating playgrounds, gifting children, and visiting charity shelters.">
+              Lan tỏa tinh thần sẻ chia của sinh viên Trường ĐH Mở TP.HCM thông qua các chuyến đi cải tạo sân chơi, trao tặng quà cho trẻ em và thăm hỏi các mái ấm tình thương.
+            </div>
+            <div class="act-highlight" data-vi="📌 Dấu ấn: Chương trình thiện nguyện ngày 31/12/2025 tại Chùa Long Thạnh và Mái ấm Bồ Đề." data-en="📌 Milestone: Charity Journey with MPC #1 on 31/12/2025 at Long Thanh Pagoda and Bo De Shelter.">📌 Dấu ấn: Chương trình thiện nguyện ngày 31/12/2025 tại Chùa Long Thạnh và Mái ấm Bồ Đề.</div>
+          </div>
+        </div>
+
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/webdesign-1.jpg" alt="Cuộc thi thiết kế website">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng năm" data-en="Frequency: Annually">Tần suất: Hằng năm</span>
+            <div class="act-title" data-vi="2. Cuộc thi thiết kế website" data-en="2. Web Design competition">2. Cuộc thi thiết kế website</div>
+            <div class="act-desc" data-vi="Sân chơi học thuật thường niên lớn nhất do MPC tổ chức, nơi sinh viên thiết kế và lập trình giao diện website thực tế, rèn luyện kỹ năng lập trình giao diện, trải nghiệm người dùng và làm việc nhóm." data-en="MPC's flagship annual academic competition where students design and code real-world web interfaces, honing frontend, UI/UX, and teamwork skills.">
+              Sân chơi học thuật thường niên lớn nhất do MPC tổ chức, nơi sinh viên thiết kế và lập trình giao diện website thực tế, rèn luyện kỹ năng lập trình giao diện, trải nghiệm người dùng và làm việc nhóm.
+            </div>
+            <div class="act-highlight" data-vi="📌 Tiêu biểu: Mùa giải 2025 kỷ niệm 35 năm thành lập trường và mùa giải 2026." data-en="📌 Highlights: Season 2025 (35th University Anniversary) and Season 2026.">📌 Tiêu biểu: Mùa giải 2025 kỷ niệm 35 năm thành lập trường và mùa giải 2026.</div>
+          </div>
+        </div>
+
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/2025-0.jpg" alt="Chào đón tân sinh viên">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng năm" data-en="Frequency: Annually">Tần suất: Hằng năm</span>
+            <div class="act-title" data-vi="3. Chào đón tân sinh viên" data-en="3. Freshman welcome">3. Chào đón tân sinh viên</div>
+            <div class="act-desc" data-vi="Đồng hành cùng Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM chào đón các khóa tân sinh viên, giới thiệu phương pháp học đại học và môi trường sinh hoạt câu lạc bộ." data-en="Partnering with the Faculty of IT – Trường ĐH Mở TP.HCM to welcome incoming freshmen and introduce university study methods and club life.">
+              Đồng hành cùng Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM chào đón các khóa tân sinh viên, giới thiệu phương pháp học đại học và môi trường sinh hoạt câu lạc bộ.
+            </div>
+            <div class="act-highlight" data-vi="📌 Sự kiện: Chương trình chào đón tân sinh viên khóa K25 ngày 28/11/2025." data-en="📌 Event: Welcome K25 Freshmen on 28/11/2025.">📌 Sự kiện: Chương trình chào đón tân sinh viên khóa K25 ngày 28/11/2025.</div>
+          </div>
+        </div>
+
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/members-3.jpg" alt="Tuyển thành viên mới">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng năm (Học kỳ I)" data-en="Frequency: Annually (Semester I)">Tần suất: Hằng năm (Học kỳ I)</span>
+            <div class="act-title" data-vi="4. Tuyển thành viên mới" data-en="4. Member recruitment">4. Tuyển thành viên mới</div>
+            <div class="act-desc" data-vi="Chào đón những bạn trẻ yêu thích công nghệ, thiết kế, truyền thông và tổ chức sự kiện qua 4 vòng: Đăng ký biểu mẫu ➔ Làm bài trắc nghiệm trực tuyến ➔ Kiểm tra trực tiếp ➔ Nhận kết quả." data-en="Welcoming passionate students across technology, design, media, and event organization through 4 stages: Form registration ➔ Online quiz ➔ Direct evaluation ➔ Onboarding.">
+              Chào đón những bạn trẻ yêu thích công nghệ, thiết kế, truyền thông và tổ chức sự kiện qua 4 vòng: Đăng ký biểu mẫu ➔ Làm bài trắc nghiệm trực tuyến ➔ Kiểm tra trực tiếp ➔ Nhận kết quả.
+            </div>
+            <div class="act-highlight" data-vi="📌 Không yêu cầu biết lập trình từ trước – câu lạc bộ đào tạo bài bản từ nền tảng." data-en="📌 No prior coding required – structured training from the ground up.">📌 Không yêu cầu biết lập trình từ trước – câu lạc bộ đào tạo bài bản từ nền tảng.</div>
+          </div>
+        </div>
+
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/training.jpg" alt="Hội thảo và chuyên đề học thuật">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Thường xuyên" data-en="Frequency: Regular">Tần suất: Thường xuyên</span>
+            <div class="act-title" data-vi="5. Hội thảo và chuyên đề học thuật" data-en="5. Academic seminars and workshops">5. Hội thảo và chuyên đề học thuật</div>
+            <div class="act-desc" data-vi="Chuỗi buổi tọa đàm công nghệ cùng cựu sinh viên và chuyên gia doanh nghiệp: chuyên đề quản lý mã nguồn với Git/GitHub, tọa đàm định hướng kỷ nguyên trí tuệ nhân tạo và phát triển trò chơi." data-en="Technology seminars with alumni and industry experts covering Git/GitHub workflows, artificial intelligence career paths, and game development.">
+              Chuỗi buổi tọa đàm công nghệ cùng cựu sinh viên và chuyên gia doanh nghiệp: chuyên đề quản lý mã nguồn với Git/GitHub, tọa đàm định hướng kỷ nguyên trí tuệ nhân tạo và phát triển trò chơi.
+            </div>
+            <div class="act-highlight" data-vi="📌 Tiêu biểu năm 2026: Tọa đàm trí tuệ nhân tạo (31/01/2026) và phát triển trò chơi (19/04/2026)." data-en="📌 2026 Highlights: AI Talkshow (31/01/2026) and Game Development Talkshow (19/04/2026).">📌 Tiêu biểu năm 2026: Tọa đàm trí tuệ nhân tạo (31/01/2026) và phát triển trò chơi (19/04/2026).</div>
+          </div>
+        </div>
+
+        <div class="act-card external">
+          <img class="act-thumb" src="../../assets/images/the-open-clubs/2026-0.jpg" alt="Ngày hội các câu lạc bộ">
+          <div class="act-body">
+            <span class="act-freq" data-vi="Tần suất: Hằng năm" data-en="Frequency: Annually">Tần suất: Hằng năm</span>
+            <div class="act-title" data-vi="6. Ngày hội các câu lạc bộ toàn trường" data-en="6. The Open Clubs exhibition">6. Ngày hội các câu lạc bộ toàn trường</div>
+            <div class="act-desc" data-vi="Ngày hội giao lưu các câu lạc bộ toàn Trường ĐH Mở TP.HCM do Đoàn Thanh niên – Hội Sinh viên trường tổ chức. MPC mang đến không gian trải nghiệm và các trò chơi đố vui sôi nổi." data-en="University-wide club festival at Trường ĐH Mở TP.HCM organized by the Youth Union, featuring MPC's interactive technology booth and games.">
+              Ngày hội giao lưu các câu lạc bộ toàn Trường ĐH Mở TP.HCM do Đoàn Thanh niên – Hội Sinh viên trường tổ chức. MPC mang đến không gian trải nghiệm và các trò chơi đố vui sôi nổi.
+            </div>
+            <div class="act-highlight" data-vi="📌 Dấu ấn: Gian hàng trải nghiệm  vào ngày 28/12/2024 và 21/12/2025." data-en="📌 Signature booth: Interactive tech showcase on 28/12/2024 and 21/12/2025.">📌 Dấu ấn: Gian hàng trải nghiệm  vào ngày 28/12/2024 và 21/12/2025.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANE 3: FREQUENCY SUMMARY TABLE -->
+    <div class="tab-pane" id="pane-summary">
+      <div class="section-banner">
+        <span data-vi="📊 4.3. BẢNG TỔNG HỢP TẦN SUẤT HOẠT ĐỘNG" data-en="📊 4.3. ACTIVITY FREQUENCY SUMMARY">📊 4.3. BẢNG TỔNG HỢP TẦN SUẤT HOẠT ĐỘNG</span>
+        <span style="font-size: 11px; font-weight: normal;">mpclub.dev</span>
+      </div>
+
+      <table class="xp-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-vi="Tên hoạt động" data-en="Activity name">Tên hoạt động</th>
+            <th data-vi="Phân nhóm" data-en="Category">Phân nhóm</th>
+            <th data-vi="Tần suất" data-en="Frequency">Tần suất</th>
+            <th data-vi="Dấu ấn tiêu biểu" data-en="Notable milestone">Dấu ấn tiêu biểu</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td data-html-vi="<strong>Dã ngoại gắn kết thành viên</strong>" data-html-en="<strong>Annual team building</strong>"><strong>Dã ngoại gắn kết thành viên</strong></td>
+            <td data-vi="Nội bộ" data-en="Internal">Nội bộ</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Chương trình dã ngoại ngày 28/06/2026 tại Công viên Tao Đàn" data-en="MPC Teambuilding on 28/06/2026 at Tao Dan Park">Chương trình dã ngoại ngày 28/06/2026 tại Công viên Tao Đàn</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td data-html-vi="<strong>Chia sẻ kinh nghiệm thực tế</strong>" data-html-en="<strong>Practical experience sharing</strong>"><strong>Chia sẻ kinh nghiệm thực tế</strong></td>
+            <td data-vi="Nội bộ" data-en="Internal">Nội bộ</td>
+            <td data-vi="Định kỳ" data-en="Periodic">Định kỳ</td>
+            <td data-vi="Giao lưu cùng cựu thành viên MPC và chuyên gia doanh nghiệp" data-en="Networking with MPC alumni and industry mentors">Giao lưu cùng cựu thành viên MPC và chuyên gia doanh nghiệp</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td data-html-vi="<strong>Sinh hoạt định kỳ câu lạc bộ</strong>" data-html-en="<strong>Monthly club gatherings</strong>"><strong>Sinh hoạt định kỳ câu lạc bộ</strong></td>
+            <td data-vi="Nội bộ" data-en="Internal">Nội bộ</td>
+            <td data-vi="Hằng tháng" data-en="Monthly">Hằng tháng</td>
+            <td data-vi="Họp mặt hằng tháng và kết nối các khóa thành viên" data-en="Monthly meetings and cross-cohort bonding">Họp mặt hằng tháng và kết nối các khóa thành viên</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td data-html-vi="<strong>Thể thao và thể thao điện tử</strong>" data-html-en="<strong>Sports and esports</strong>"><strong>Thể thao và thể thao điện tử</strong></td>
+            <td data-vi="Nội bộ" data-en="Internal">Nội bộ</td>
+            <td data-vi="Hằng tháng" data-en="Monthly">Hằng tháng</td>
+            <td data-vi="Giao lưu thể thao và các giải đấu thể thao điện tử nội bộ" data-en="Sports matches and friendly esports tournaments">Giao lưu thể thao và các giải đấu thể thao điện tử nội bộ</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td data-html-vi="<strong>Học nhóm lập trình</strong>" data-html-en="<strong>Programming study groups</strong>"><strong>Học nhóm lập trình</strong></td>
+            <td data-vi="Nội bộ" data-en="Internal">Nội bộ</td>
+            <td data-vi="Thường xuyên" data-en="Regular">Thường xuyên</td>
+            <td data-vi="Mô hình sinh viên cố vấn học tập và kèm cặp trực tiếp 1-1" data-en="Student peer advisor and 1-on-1 mentoring model">Mô hình sinh viên cố vấn học tập và kèm cặp trực tiếp 1-1</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td data-html-vi="<strong>Hoạt động tình nguyện</strong>" data-html-en="<strong>Community volunteering</strong>"><strong>Hoạt động tình nguyện</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng kỳ" data-en="Every semester">Hằng kỳ</td>
+            <td data-vi="Hành trình thiện nguyện ngày 31/12/2025 tại Chùa Long Thạnh và Mái ấm Bồ Đề" data-en="Charity Journey with MPC #1 on 31/12/2025">Hành trình thiện nguyện ngày 31/12/2025 tại Chùa Long Thạnh và Mái ấm Bồ Đề</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td data-html-vi="<strong>Cuộc thi thiết kế website</strong>" data-html-en="<strong>Web Design competition</strong>"><strong>Cuộc thi thiết kế website</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Mùa giải 2025 (21/09/2025) và mùa giải 2026 (18/10/2026)" data-en="Season 2025 (21/09/2025) and Season 2026 (18/10/2026)">Mùa giải 2025 (21/09/2025) và mùa giải 2026 (18/10/2026)</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td data-html-vi="<strong>Đấu trường lập trình robot ảo Robocode</strong>" data-html-en="<strong>Robocode tournament</strong>"><strong>Đấu trường lập trình robot ảo Robocode</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Sân chơi lập trình thuật toán điều khiển robot tự động chiến đấu" data-en="Autonomous virtual robot coding tournament">Sân chơi lập trình thuật toán điều khiển robot tự động chiến đấu</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td data-html-vi="<strong>Chào đón tân sinh viên</strong>" data-html-en="<strong>Freshman welcome</strong>"><strong>Chào đón tân sinh viên</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Chào đón tân sinh viên khóa K25 (28/11/2025) và khóa K24 (26/11/2024)" data-en="Welcome K25 Freshmen (28/11/2025) and K24 (26/11/2024)">Chào đón tân sinh viên khóa K25 (28/11/2025) và khóa K24 (26/11/2024)</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td data-html-vi="<strong>Tuyển thành viên mới</strong>" data-html-en="<strong>Member recruitment</strong>"><strong>Tuyển thành viên mới</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Đợt tuyển thành viên chính thức vào Học kỳ I hằng năm" data-en="Annual Semester I member recruitment drive">Đợt tuyển thành viên chính thức vào Học kỳ I hằng năm</td>
+          </tr>
+          <tr>
+            <td>11</td>
+            <td data-html-vi="<strong>Hội thảo và chuyên đề học thuật</strong>" data-html-en="<strong>Seminars and workshops</strong>"><strong>Hội thảo và chuyên đề học thuật</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Thường xuyên" data-en="Regular">Thường xuyên</td>
+            <td data-vi="Chuyên đề Git/GitHub (27/04/2025), tọa đàm AI (31/01/2026), tọa đàm phát triển Game (19/04/2026)" data-en="GitHub Seminar (27/04/2025), AI Talkshow (31/01/2026), Game Dev Talkshow (19/04/2026)">Chuyên đề Git/GitHub (27/04/2025), tọa đàm AI (31/01/2026), tọa đàm phát triển Game (19/04/2026)</td>
+          </tr>
+          <tr>
+            <td>12</td>
+            <td data-html-vi="<strong>Ngày hội các câu lạc bộ toàn trường</strong>" data-html-en="<strong>The Open Clubs exhibition</strong>"><strong>Ngày hội các câu lạc bộ toàn trường</strong></td>
+            <td data-vi="Đối ngoại" data-en="External">Đối ngoại</td>
+            <td data-vi="Hằng năm" data-en="Annually">Hằng năm</td>
+            <td data-vi="Gian hàng trải nghiệm công nghệ ngày 28/12/2024 và 21/12/2025" data-en="Interactive tech booth on 28/12/2024 and 21/12/2025">Gian hàng trải nghiệm công nghệ ngày 28/12/2024 và 21/12/2025</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- PANE 4: PHOTO GALLERY -->
+    <div class="tab-pane" id="pane-gallery">
+      <div class="section-banner">
+        <span data-vi="📸 4.4. THƯ VIỆN HÌNH ẢNH HOẠT ĐỘNG MPCLUB" data-en="📸 4.4. MPCLUB ACTIVITY PHOTO GALLERY">📸 4.4. THƯ VIỆN HÌNH ẢNH HOẠT ĐỘNG MPCLUB</span>
+        <span style="font-size: 11px; font-weight: normal;" data-vi="Nhấp vào ảnh để xem kích thước lớn" data-en="Click any photo to enlarge">Nhấp vào ảnh để xem kích thước lớn</span>
+      </div>
+
+      <div class="filter-tags">
+        <button class="tag-btn active" data-category="all" data-vi="Tất cả hình ảnh" data-en="All photos">Tất cả hình ảnh</button>
+        <button class="tag-btn" data-category="web" data-vi="Cuộc thi thiết kế website" data-en="Web Design contest">Cuộc thi thiết kế website</button>
+        <button class="tag-btn" data-category="training" data-vi="Đào tạo và hội thảo" data-en="Training and seminars">Đào tạo và hội thảo</button>
+        <button class="tag-btn" data-category="contest" data-vi="Giải thưởng học thuật" data-en="Academic awards">Giải thưởng học thuật</button>
+        <button class="tag-btn" data-category="members" data-vi="Gắn kết và tình nguyện" data-en="Bonding and volunteering">Gắn kết và tình nguyện</button>
+      </div>
+
+      <div class="gallery-grid" id="gallery"></div>
+
+      <div style="margin-top: 14px; background: linear-gradient(180deg, #f4f8ff 0%, #e3edfb 100%); border: 1px solid #7f9db9; border-left: 4px solid #ff6600; border-radius: 3px; padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+        <div>
+          <strong style="color: #003399; font-size: 12px; display: block;" data-vi="📸 Xem thêm toàn bộ thư viện ảnh hoạt động và sự kiện tại mpclub.dev" data-en="📸 Explore all activity photo albums and archives on mpclub.dev">📸 Xem thêm toàn bộ thư viện ảnh hoạt động và sự kiện tại mpclub.dev</strong>
+          <span style="font-size: 11px; color: #444;" data-vi="Kho tư liệu hình ảnh đầy đủ từ các mùa giải và chương trình của câu lạc bộ." data-en="Full photo galleries from all club seasons and events.">Kho tư liệu hình ảnh đầy đủ từ các mùa giải và chương trình của câu lạc bộ.</span>
+        </div>
+        <a id="link-more-act" href="https://www.mpclub.dev/vi/activities" target="_blank" rel="noopener" style="background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%); color: #fff; border: 1px solid #803300; padding: 6px 14px; font-weight: bold; font-size: 11px; border-radius: 2px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;">
+          <i class="bi bi-globe2"></i> <span data-vi="Xem thêm tại mpclub.dev" data-en="View more at mpclub.dev">Xem thêm tại mpclub.dev</span> <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+
   </div>
 
-  <div class="gallery-grid" id="gallery">
-    <!-- Photos dynamically rendered -->
-  </div>
-
-  <!-- Lightbox -->
+  <!-- Lightbox Modal -->
   <div class="lightbox" id="lightbox">
-    <div class="lightbox-close" id="lightbox-close">&times;</div>
-    <img src="" class="lightbox-img" id="lightbox-img" alt="" />
-    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-win">
+      <div class="lightbox-titlebar">
+        <span id="lightbox-title">Xem ảnh tư liệu MPClub</span>
+        <button class="lightbox-close" id="lightbox-close">&times;</button>
+      </div>
+      <div class="lightbox-body">
+        <img src="" class="lightbox-img" id="lightbox-img" alt="">
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
   </div>
 
+  <!-- Status Bar -->
+  <div class="xp-statusbar">
+    <span data-vi="12 nhóm hoạt động chính thức (5 hoạt động nội bộ • 7 hoạt động đối ngoại)" data-en="12 official activity categories (5 internal • 7 external)">12 nhóm hoạt động chính thức (5 hoạt động nội bộ • 7 hoạt động đối ngoại)</span>
+    <span data-vi="Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Faculty of IT – Trường ĐH Mở TP.HCM">Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</span>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../_shared/lang.js"></script>
   <script>
+    document.querySelectorAll('.xp-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.xp-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab)?.classList.add('active');
+      });
+    });
+
     const photos = [
-      { src: '../../assets/images/the-open-clubs/contest-0.jpg', name: 'Cuộc thi Học Thuật 2024', cat: 'contest', date: 'Khoa CNTT OU' },
-      { src: '../../assets/images/the-open-clubs/training-1.jpg', name: 'Workshop Git & Lập Trình', cat: 'training', date: 'Training định kỳ' },
-      { src: '../../assets/images/the-open-clubs/members-4.jpg', name: 'Gắn kết Tân Thành Viên', cat: 'members', date: 'Bonding Camp' },
-      { src: '../../assets/images/the-open-clubs/webdesign-1.jpg', name: 'Triển Khai Dự Án Web', cat: 'web', date: 'Thực chiến sản phẩm' },
-      { src: '../../assets/images/the-open-clubs/activities-0.jpg', name: 'Buổi Sinh Hoạt Chuyên Môn', cat: 'training', date: 'Học thuật MPC' },
-      { src: '../../assets/images/the-open-clubs/contest-1.jpg', name: 'Trao Giải Hackathon', cat: 'contest', date: 'Giải đấu nội bộ' },
-      { src: '../../assets/images/the-open-clubs/members-8.jpg', name: 'Đại Gia Đình MPClub', cat: 'members', date: 'Kỷ niệm thành lập' },
-      { src: '../../assets/images/the-open-clubs/cdtsv-0.jpg', name: 'Chiến Dịch Tình Nguyện Mùa Hè', cat: 'members', date: 'Hoạt động Đoàn Hội' },
-      { src: '../../assets/images/the-open-clubs/2026-0.jpg', name: 'Khởi Động Tuyển Sinh 2026', cat: 'training', date: 'Tuyển Thành Viên Genesis' }
+      { src: '../../assets/images/the-open-clubs/webdesign-0.jpg', name_vi: 'Vòng chung kết cuộc thi Web Design', name_en: 'Web Design Competition Finale', cat: 'web', date_vi: 'Khoa CNTT – Trường ĐH Mở TP.HCM', date_en: 'Faculty of IT – Trường ĐH Mở TP.HCM' },
+      { src: '../../assets/images/the-open-clubs/webdesign-1.jpg', name_vi: 'Thuyết trình và bảo vệ sản phẩm tại cuộc thi Web Design', name_en: 'Project presentation and defense at Web Design', cat: 'web', date_vi: 'Sân chơi học thuật thường niên', date_en: 'Annual academic competition' },
+      { src: '../../assets/images/the-open-clubs/webdesign-2.jpg', name_vi: 'Ban giám khảo và các đội thi Web Design', name_en: 'Judges and competing teams at Web Design', cat: 'web', date_vi: 'Khoa CNTT – Trường ĐH Mở TP.HCM', date_en: 'Faculty of IT – Trường ĐH Mở TP.HCM' },
+      { src: '../../assets/images/the-open-clubs/webdesign-3.jpg', name_vi: 'Lễ trao giải cuộc thi Web Design', name_en: 'Web Design award ceremony', cat: 'web', date_vi: 'Vinh danh các đội thi xuất sắc', date_en: 'Honoring outstanding teams' },
+      { src: '../../assets/images/the-open-clubs/training.jpg', name_vi: 'Lớp đào tạo chuyên môn của Ban Lập trình', name_en: 'Programming Department training session', cat: 'training', date_vi: 'Lộ trình đào tạo nội bộ MPC', date_en: 'MPC internal training roadmap' },
+      { src: '../../assets/images/the-open-clubs/training-1.jpg', name_vi: 'Chuyên đề học thuật và hướng dẫn quản lý mã nguồn', name_en: 'Academic seminar and version control workshop', cat: 'training', date_vi: 'Mô hình sinh viên cố vấn học tập', date_en: 'Student peer mentoring' },
+      { src: '../../assets/images/the-open-clubs/activities-0.jpg', name_vi: 'Buổi tọa đàm chia sẻ kinh nghiệm thực tế', name_en: 'Practical experience sharing talkshow', cat: 'training', date_vi: 'Giao lưu cùng cựu sinh viên và chuyên gia', date_en: 'Networking with alumni and experts' },
+      { src: '../../assets/images/the-open-clubs/contest-0.jpg', name_vi: 'Cuộc thi học thuật và Giải pháp phần mềm', name_en: 'Software Solutions academic contest', cat: 'contest', date_vi: 'Ghi nhận thành tích học thuật MPC', date_en: 'MPC academic achievement recognition' },
+      { src: '../../assets/images/the-open-clubs/contest-1.jpg', name_vi: 'Vinh danh các thành viên đạt giải thưởng học thuật', name_en: 'Honoring award-winning club members', cat: 'contest', date_vi: 'Khoa CNTT – Trường ĐH Mở TP.HCM', date_en: 'Faculty of IT – Trường ĐH Mở TP.HCM' },
+      { src: '../../assets/images/the-open-clubs/cdtsv-0.jpg', name_vi: 'Hành trình thiện nguyện vì cộng đồng của MPC', name_en: 'MPC community volunteering journey', cat: 'members', date_vi: 'Hoạt động thiện nguyện thường kỳ', date_en: 'Community service' },
+      { src: '../../assets/images/the-open-clubs/members-8.jpg', name_vi: 'Đại gia đình Câu lạc bộ Lập trình trên thiết bị di động', name_en: 'Mobile Programming Club (MPC) family', cat: 'members', date_vi: 'Kỷ niệm 10 năm thành lập (24/12/2015 – 24/12/2025)', date_en: '10th Anniversary (24/12/2015 – 24/12/2025)' },
+      { src: '../../assets/images/the-open-clubs/members-4.jpg', name_vi: 'Dã ngoại MPC – Cùng nhau giải đố, cùng nhau gắn kết', name_en: 'MPC Teambuilding – Solving puzzles and bonding together', cat: 'members', date_vi: '28/06/2026 • Công viên Tao Đàn', date_en: '28/06/2026 • Tao Dan Park' }
     ];
 
+    let activeCat = 'all';
     const gallery = document.getElementById('gallery');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxTitle = document.getElementById('lightbox-title');
     const lightboxClose = document.getElementById('lightbox-close');
 
-    function renderGallery(cat) {
+    function renderGallery() {
+      const vi = SubAppI18n.isVi();
+      const actLink = document.getElementById('link-more-act');
+      if (actLink) actLink.href = vi ? 'https://www.mpclub.dev/vi/activities' : 'https://www.mpclub.dev/en/activities';
+
       gallery.innerHTML = '';
-      photos.filter(p => cat === 'all' || p.cat === cat).forEach(p => {
+      photos.filter(p => activeCat === 'all' || p.cat === activeCat).forEach(p => {
+        const title = vi ? p.name_vi : p.name_en;
+        const meta = vi ? p.date_vi : p.date_en;
         const card = document.createElement('div');
         card.className = 'photo-card';
         card.innerHTML = `
-          <img src="${p.src}" class="photo-thumb" alt="${p.name}" loading="lazy" />
+          <img src="${p.src}" class="photo-thumb" alt="${title}" loading="lazy">
           <div class="photo-info">
-            <div class="photo-name">${p.name}</div>
-            <div class="photo-meta">${p.date}</div>
+            <div class="photo-name">${title}</div>
+            <div class="photo-meta">${meta}</div>
           </div>
         `;
         card.addEventListener('click', () => {
           lightboxImg.src = p.src;
-          lightboxCaption.textContent = `${p.name} • ${p.date}`;
+          lightboxTitle.textContent = title;
+          lightboxCaption.textContent = `${title} — ${meta}`;
           lightbox.classList.add('active');
         });
         gallery.appendChild(card);
       });
     }
 
-    renderGallery('all');
+    renderGallery();
 
     document.querySelectorAll('.tag-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        renderGallery(btn.dataset.category);
+        activeCat = btn.dataset.category;
+        renderGallery();
       });
     });
 
     lightboxClose.addEventListener('click', () => lightbox.classList.remove('active'));
-    lightbox.addEventListener('click', (e) => {
+    lightbox.addEventListener('click', e => {
       if (e.target === lightbox) lightbox.classList.remove('active');
     });
+
+    SubAppI18n.onChange(() => renderGallery());
   </script>
 </body>
 </html>

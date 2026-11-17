@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EVENTS</title>
+  <title>EVENTS – Sự Kiện, Web Design & Thành Tích Gần Đây MPClub</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
@@ -13,121 +13,585 @@
       padding: 0;
     }
     body {
-      font-family: Tahoma, 'Segoe UI', sans-serif;
-      font-size: 11px;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
       color: #111;
-      background: #ffffff;
-      padding: 16px;
-      overflow-y: auto;
+      background: #ece9d8;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
-    .header-bar {
-      margin-bottom: 16px;
-      border-bottom: 2px solid #0055ea;
-      padding-bottom: 8px;
+
+    .xp-header {
+      background: linear-gradient(90deg, #003399 0%, #0055ea 70%, #2572fe 100%);
+      color: #fff;
+      padding: 9px 14px;
+      border-bottom: 2px solid #ff6600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
     }
-    .title {
-      font-size: 15px;
+    .xp-header-title {
+      font-size: 13.5px;
       font-weight: bold;
-      color: #003399;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
+    .xp-header-sub {
+      font-size: 11px;
+      color: #dbeaff;
+    }
+
+    .xp-tabbar {
+      background: #ece9d8;
+      padding: 6px 10px 0 10px;
+      border-bottom: 1px solid #7f9db9;
+      display: flex;
+      gap: 3px;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+    .xp-tab {
+      background: linear-gradient(180deg, #faf9f4 0%, #e1ded0 100%);
+      border: 1px solid #7f9db9;
+      border-bottom: none;
+      border-radius: 3px 3px 0 0;
+      padding: 5px 12px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      color: #222;
+      cursor: pointer;
+      white-space: nowrap;
+      position: relative;
+      top: 1px;
+    }
+    .xp-tab.active {
+      background: #ffffff;
+      color: #003399;
+      font-weight: bold;
+      border-top: 2px solid #ff6600;
+      padding-bottom: 6px;
+      z-index: 2;
+    }
+
+    .xp-workspace {
+      flex: 1;
+      background: #ffffff;
+      margin: 0 10px 8px 10px;
+      border: 1px solid #7f9db9;
+      border-top: none;
+      padding: 14px 16px;
+      overflow-y: auto;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+
+    .year-divider {
+      background: linear-gradient(90deg, #003399 0%, #316ac5 100%);
+      color: #fff;
+      font-weight: bold;
+      padding: 5px 12px;
+      border-radius: 2px;
+      margin: 0 0 10px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      position: relative;
-      padding-left: 20px;
-      border-left: 2px solid #3399ff;
-      margin-left: 10px;
+      gap: 10px;
+      padding-left: 18px;
+      border-left: 2px solid #316ac5;
+      margin-left: 8px;
+      margin-bottom: 14px;
     }
-    .event-item {
+    .event-card {
       position: relative;
-      background: #f8faff;
-      border: 1px solid #c9d8eb;
-      border-radius: 4px;
-      padding: 12px;
-      transition: all 0.15s;
+      background: #f8fbff;
+      border: 1px solid #bfd0e6;
+      border-radius: 3px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
     }
-    .event-item:hover {
+    .event-card:hover {
       border-color: #0055ea;
-      box-shadow: 0 3px 8px rgba(0, 85, 234, 0.15);
-      transform: translateX(4px);
+      background: #f0f6ff;
     }
-    .event-item::before {
+    .event-card::before {
       content: "";
       position: absolute;
-      left: -27px;
-      top: 14px;
-      width: 12px;
-      height: 12px;
+      left: -25px;
+      top: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: #ff6600;
       border: 2px solid #fff;
-      box-shadow: 0 0 4px #0055ea;
+      box-shadow: 0 0 0 1px #0055ea;
     }
-    .event-badge {
-      display: inline-block;
-      background: #0055ea;
+    .event-thumb {
+      width: 128px;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border: 1px solid #7f9db9;
+      flex-shrink: 0;
+      background: #e6ecf5;
+    }
+    .event-info {
+      flex: 1;
+    }
+    .event-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 3px;
+      flex-wrap: wrap;
+    }
+    .event-date {
+      background: #003399;
       color: #fff;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: bold;
-      padding: 2px 6px;
-      border-radius: 3px;
-      margin-bottom: 6px;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-family: "Courier New", monospace;
+    }
+    .event-tag {
+      background: #fff2e6;
+      border: 1px solid #f5b882;
+      color: #b34700;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 1px 6px;
+      border-radius: 2px;
     }
     .event-title {
       font-size: 13px;
       font-weight: bold;
       color: #003399;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .event-desc {
-      color: #555;
-      line-height: 1.4;
+      font-size: 11.5px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .xp-groupbox {
+      border: 1px solid #b5c4d8;
+      border-radius: 3px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      background: #fbfcfe;
+    }
+    .xp-groupbox-title {
+      font-weight: bold;
+      color: #003399;
+      font-size: 12.5px;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid #dde6f2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .xp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      margin-bottom: 8px;
+    }
+    .xp-table th, .xp-table td {
+      border: 1px solid #c0cfe0;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .xp-table th {
+      background: linear-gradient(180deg, #f0f4fa 0%, #dce4f0 100%);
+      color: #003399;
+      font-weight: bold;
+    }
+    .xp-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    .exhibit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .exhibit-card {
+      background: #fff;
+      border: 1px solid #9ab3d4;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .exhibit-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border-bottom: 1px solid #ccd9ea;
+      background: #e6ecf5;
+    }
+    .exhibit-body {
+      padding: 10px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .award-pill {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 1px 7px;
+      font-size: 10px;
+      font-weight: bold;
+      border-radius: 2px;
+      color: #fff;
+    }
+    .award-1 { background: #d48800; }
+    .award-2 { background: #5a6e85; }
+    .award-3 { background: #a65926; }
+    .exhibit-team {
+      font-weight: bold;
+      font-size: 13px;
+      color: #003399;
+    }
+    .exhibit-prod {
+      font-size: 11.5px;
+      color: #333;
+      margin-bottom: 6px;
+    }
+    .exhibit-link {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      color: #003399;
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 2px;
+      align-self: flex-start;
+    }
+    .exhibit-link:hover {
+      background: #316ac5;
+      color: #fff;
+    }
+
+    /* Windows XP "See More on mpclub.dev" Card */
+    .xp-more-card {
+      margin-top: 12px;
+      background: linear-gradient(180deg, #f4f8ff 0%, #e3edfb 100%);
+      border: 1px solid #7f9db9;
+      border-left: 4px solid #ff6600;
+      border-radius: 3px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .xp-more-info strong {
+      color: #003399;
+      font-size: 12px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .xp-more-info span {
+      font-size: 11px;
+      color: #444;
+    }
+    .xp-more-btn {
+      background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%);
+      color: #fff;
+      border: 1px solid #803300;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+      padding: 6px 14px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .xp-more-btn:hover {
+      background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
+    }
+
+    .xp-statusbar {
+      height: 22px;
+      background: #ece9d8;
+      border-top: 1px solid #aca899;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .event-card { flex-direction: column; }
+      .event-thumb { width: 100%; height: 135px; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
-  <div class="header-bar">
-    <div class="title"><i class="bi bi-trophy-fill" style="color: #f4b400;"></i> Sự Kiện & Giải Đấu Trọng Điểm MPClub</div>
-  </div>
 
-  <div class="timeline">
-    <div class="event-item">
-      <span class="event-badge">SỰ KIỆN NỔI BẬT 2026</span>
-      <div class="event-title">🏆 MPC Coding Cup 2026</div>
-      <div class="event-desc">
-        Giải đấu lập trình thi đấu thuật toán thường niên quy mô toàn khoa CNTT - Trường ĐH Mở TP.HCM. Cơ hội rinh về giải thưởng lớn và tranh tài cùng những lập trình viên xuất sắc nhất.
-      </div>
-    </div>
-
-    <div class="event-item">
-      <span class="event-badge" style="background: #e65100;">WORKSHOP CHUYÊN GIA</span>
-      <div class="event-title">🎤 Tech Talk: Hành Trang Kỹ Sư Phần Mềm</div>
-      <div class="event-desc">
-        Tọa đàm gặp gỡ các Senior Software Engineer, Solutions Architect và cựu sinh viên thành đạt chia sẻ kinh nghiệm phỏng vấn, thực tập và xu hướng AI / Cloud computing.
-      </div>
-    </div>
-
-    <div class="event-item">
-      <span class="event-badge" style="background: #2e7d32;">HACKATHON THỰC CHIẾN</span>
-      <div class="event-title">⚡ Hackathon 24H: Innovation Sprint</div>
-      <div class="event-desc">
-        Đấu trường 24 giờ liên tục không ngủ, các đội thi hiện thực hóa ý tưởng sản phẩm công nghệ từ con số không thành MVP hoàn chỉnh phục vụ cộng đồng.
-      </div>
-    </div>
-
-    <div class="event-item">
-      <span class="event-badge" style="background: #7b1fa2;">GẮN KẾT THÀNH VIÊN</span>
-      <div class="event-title">🏕️ Teambuilding & Sinh Nhật MPClub</div>
-      <div class="event-desc">
-        Chuyến dã ngoại truyền thống hàng năm, nơi các thế hệ thành viên giao lưu, xả stress sau kỳ thi và thắt chặt tình cảm đồng đội.
-      </div>
+  <!-- Header -->
+  <div class="xp-header">
+    <div>
+      <div class="xp-header-title"><i class="bi bi-trophy-fill" style="color: #ffcc00;"></i> <span data-vi="SỰ KIỆN VÀ THÀNH TÍCH MPCLUB" data-en="MPCLUB EVENTS AND ACHIEVEMENTS">SỰ KIỆN VÀ THÀNH TÍCH MPCLUB</span></div>
+      <div class="xp-header-sub" data-vi="Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Mobile Programming Club (MPC) • Faculty of IT – Trường ĐH Mở TP.HCM">Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</div>
     </div>
   </div>
+
+  <!-- Tabs -->
+  <div class="xp-tabbar">
+    <button class="xp-tab active" data-tab="tab-timeline" data-vi="📅 1. Sự kiện gần đây (2026)" data-en="📅 1. Recent events (2026)">📅 1. Sự kiện gần đây (2026)</button>
+    <button class="xp-tab" data-tab="tab-webdesign" data-vi="💻 2. Cuộc thi Web Design 2026" data-en="💻 2. Web Design 2026">💻 2. Cuộc thi Web Design 2026</button>
+    <button class="xp-tab" data-tab="tab-halloffame" data-vi="🏆 3. Thành tích gần đây" data-en="🏆 3. Recent achievements">🏆 3. Thành tích gần đây</button>
+  </div>
+
+  <!-- Workspace -->
+  <div class="xp-workspace">
+
+    <!-- TAB 1: RECENT TIMELINE (4 RECENT EVENTS + SEE MORE) -->
+    <div class="tab-pane active" id="tab-timeline">
+
+      <div class="year-divider">
+        <span data-vi="📅 CÁC SỰ KIỆN TIÊU BIỂU GẦN ĐÂY (2026)" data-en="📅 RECENT FLAGSHIP EVENTS (2026)">📅 CÁC SỰ KIỆN TIÊU BIỂU GẦN ĐÂY (2026)</span>
+        <span style="font-size:11px; font-weight:normal;">Trường ĐH Mở TP.HCM</span>
+      </div>
+
+      <div class="timeline">
+        <div class="event-card">
+          <img class="event-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/events/banners/1793645396552-6m0kzr.jpg" onerror="this.src='../../assets/images/the-open-clubs/webdesign-0.jpg'" alt="Chung kết Web Design 2026">
+          <div class="event-info">
+            <div class="event-meta">
+              <span class="event-date">18/10/2026</span>
+              <span class="event-tag" data-vi="CHUNG KẾT CUỘC THI" data-en="COMPETITION FINALE">CHUNG KẾT CUỘC THI</span>
+            </div>
+            <div class="event-title" data-vi="🏆 Vòng chung kết cuộc thi Web Design 2026" data-en="🏆 Web Design 2026 Grand Finale – Theme: White Label for Businesses">🏆 Vòng chung kết cuộc thi Web Design 2026</div>
+            <div class="event-desc" data-html-vi="Vòng chung kết cuộc thi thiết kế website thường niên tại <strong>Trường ĐH Mở TP.HCM</strong> với chủ đề xây dựng nền tảng website tùy biến thương hiệu cho doanh nghiệp. Các đội thi trình bày sản phẩm trực tiếp và bảo vệ giải pháp trước hội đồng giám khảo. Đội <strong>ClauKi</strong> xuất sắc giành Giải Nhất." data-html-en="Annual web design competition finale at <strong>Trường ĐH Mở TP.HCM</strong>. Teams demonstrated live JSON White Label switching and defended their architecture before the judges. Team <strong>ClauKi</strong> won 1st Prize.">
+              Vòng chung kết cuộc thi thiết kế website thường niên tại <strong>Trường ĐH Mở TP.HCM</strong> với chủ đề xây dựng nền tảng website tùy biến thương hiệu cho doanh nghiệp. Các đội thi trình bày sản phẩm trực tiếp và bảo vệ giải pháp trước hội đồng giám khảo. Đội <strong>ClauKi</strong> xuất sắc giành Giải Nhất.
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img class="event-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/events/banners/1793646489887-81al6k.jpg" onerror="this.src='../../assets/images/the-open-clubs/members-4.jpg'" alt="Dã ngoại gắn kết MPC">
+          <div class="event-info">
+            <div class="event-meta">
+              <span class="event-date">28/06/2026</span>
+              <span class="event-tag" data-vi="HOẠT ĐỘNG GẮN KẾT" data-en="ANNUAL TEAM BUILDING">HOẠT ĐỘNG GẮN KẾT</span>
+            </div>
+            <div class="event-title" data-vi="🏕️ Dã ngoại câu lạc bộ: &quot;Cùng nhau giải đố – Cùng nhau gắn kết&quot;" data-en="🏕️ MPC Teambuilding: &quot;Solving Puzzles – Bonding Together&quot;">🏕️ Dã ngoại câu lạc bộ: "Cùng nhau giải đố – Cùng nhau gắn kết"</div>
+            <div class="event-desc" data-vi="Tổ chức tại Công viên Tao Đàn, TP.HCM. Các thành viên cùng nhau vượt qua chuỗi thử thách mật thư, giải đố tư duy logic, rèn luyện khả năng quan sát và phối hợp nhịp nhàng giữa các ban." data-en="Held at Tao Dan Park, HCMC. Members tackled cipher puzzles, logic challenges, and team bonding activities across departments.">
+              Tổ chức tại Công viên Tao Đàn, TP.HCM. Các thành viên cùng nhau vượt qua chuỗi thử thách mật thư, giải đố tư duy logic, rèn luyện khả năng quan sát và phối hợp nhịp nhàng giữa các ban.
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img class="event-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/events/banners/1781167527844-n6xrqe.jpg" onerror="this.src='../../assets/images/the-open-clubs/activities-0.jpg'" alt="Tọa đàm phát triển trò chơi">
+          <div class="event-info">
+            <div class="event-meta">
+              <span class="event-date">19/04/2026</span>
+              <span class="event-tag" data-vi="TỌA ĐÀM CHUYÊN NGÀNH" data-en="TECH TALKSHOW">TỌA ĐÀM CHUYÊN NGÀNH</span>
+            </div>
+            <div class="event-title" data-vi="🎮 Tọa đàm chuyên đề: &quot;Trò chơi điện tử không chỉ để giải trí&quot;" data-en="🎮 Talkshow #2: &quot;Games Are More Than Entertainment&quot;">🎮 Tọa đàm chuyên đề: "Trò chơi điện tử không chỉ để giải trí"</div>
+            <div class="event-desc" data-html-vi="Diễn giả khách mời: Anh <strong>Trương Thuận Tâm</strong> (Cựu sinh viên khóa K19 Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM, lập trình viên phát triển trò chơi tại VNG) chia sẻ thực tế về lộ trình nghề nghiệp trong ngành sản xuất trò chơi." data-html-en="Guest speaker: <strong>Truong Thuan Tam</strong> (K19 IT Alumnus – Trường ĐH Mở TP.HCM, Game Developer at VNG) sharing practical insights on professional game development.">
+              Diễn giả khách mời: Anh <strong>Trương Thuận Tâm</strong> (Cựu sinh viên khóa K19 Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM, lập trình viên phát triển trò chơi tại VNG) chia sẻ thực tế về lộ trình nghề nghiệp trong ngành sản xuất trò chơi.
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card">
+          <img class="event-thumb" src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/events/banners/1793676499875-470lzd.jpg" onerror="this.src='../../assets/images/the-open-clubs/2026-0.jpg'" alt="Lễ kiện toàn Ban Chủ nhiệm">
+          <div class="event-info">
+            <div class="event-meta">
+              <span class="event-date">15/03/2026</span>
+              <span class="event-tag" data-vi="TỔ CHỨC – NHÂN SỰ" data-en="LEADERSHIP">TỔ CHỨC – NHÂN SỰ</span>
+            </div>
+            <div class="event-title" data-vi="🎖️ Lễ kiện toàn Ban Chủ nhiệm MPClub nhiệm kỳ 2025 – 2026" data-en="🎖️ MPClub Executive Board Restructuring Ceremony (2025 – 2026)">🎖️ Lễ kiện toàn Ban Chủ nhiệm MPClub nhiệm kỳ 2025 – 2026</div>
+            <div class="event-desc" data-vi="Tổ chức tại cơ sở Võ Văn Tần – Trường ĐH Mở TP.HCM với sự tham dự của đại diện Đoàn – Hội Khoa Công nghệ Thông tin, tiếp nối chặng đường phát triển sau cột mốc kỷ niệm 10 năm thành lập câu lạc bộ (24/12/2015 – 24/12/2025)." data-en="Held at Vo Van Tan Campus – Trường ĐH Mở TP.HCM with Faculty Youth Union representatives, continuing MPC's journey following our 10th Anniversary (24/12/2015 – 24/12/2025).">
+              Tổ chức tại cơ sở Võ Văn Tần – Trường ĐH Mở TP.HCM với sự tham dự của đại diện Đoàn – Hội Khoa Công nghệ Thông tin, tiếp nối chặng đường phát triển sau cột mốc kỷ niệm 10 năm thành lập câu lạc bộ (24/12/2015 – 24/12/2025).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xp-more-card">
+        <div class="xp-more-info">
+          <strong data-vi="🗓️ Khám phá toàn bộ dòng thời gian hơn 30 sự kiện của MPC (2015 – 2026)" data-en="🗓️ Explore the full timeline of 30+ MPC events (2015 – 2026)">🗓️ Khám phá toàn bộ dòng thời gian hơn 30 sự kiện của MPC (2015 – 2026)</strong>
+          <span data-vi="Xem thêm tọa đàm trí tuệ nhân tạo (31/01/2026), hành trình thiện nguyện (31/12/2025), lễ kỷ niệm 10 năm thành lập và các chương trình trước đây." data-en="See AI Talkshow (31/01/2026), Charity Journey #1 (31/12/2025), MPC 10th Anniversary, The Open Clubs, and past years.">Xem thêm tọa đàm trí tuệ nhân tạo (31/01/2026), hành trình thiện nguyện (31/12/2025), lễ kỷ niệm 10 năm thành lập và các chương trình trước đây.</span>
+        </div>
+        <a class="xp-more-btn" id="link-more-events" href="https://www.mpclub.dev/vi/events" target="_blank" rel="noopener">
+          <i class="bi bi-globe2"></i>
+          <span data-vi="Xem tất cả sự kiện tại mpclub.dev" data-en="View all events at mpclub.dev">Xem tất cả sự kiện tại mpclub.dev</span>
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- TAB 2: WEB DESIGN 2026 RECENT WINNERS + SEE MORE -->
+    <div class="tab-pane" id="tab-webdesign">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-code-slash"></i> <span data-vi="Cuộc thi thiết kế website Web Design 2026 (Chung kết ngày 18/10/2026)" data-en="Web Design 2026 Competition (Finale on 18/10/2026)">Cuộc thi thiết kế website Web Design 2026 (Chung kết ngày 18/10/2026)</span></div>
+        <p style="margin-bottom: 8px;" data-html-vi="Dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong> phát triển ứng dụng web bằng HTML, CSS, JavaScript thuần với khả năng chuyển đổi thương hiệu động qua tệp cấu hình JSON. Cơ cấu giải thưởng: Giải Nhất 800.000đ (cộng 7 điểm rèn luyện), Giải Nhì 400.000đ (cộng 7 điểm rèn luyện), Giải Ba 200.000đ (cộng 5 điểm rèn luyện)." data-html-en="For students at <strong>Trường ĐH Mở TP.HCM</strong> building pure HTML, CSS, and Vanilla JS websites with dynamic JSON brand configuration. Prizes: 1st 800,000 VND (+7 training points), 2nd 400,000 VND (+7 training points), 3rd 200,000 VND (+5 training points).">
+          Dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong> phát triển ứng dụng web bằng HTML, CSS, JavaScript thuần với khả năng chuyển đổi thương hiệu động qua tệp cấu hình JSON. Cơ cấu giải thưởng: Giải Nhất 800.000đ (cộng 7 điểm rèn luyện), Giải Nhì 400.000đ (cộng 7 điểm rèn luyện), Giải Ba 200.000đ (cộng 5 điểm rèn luyện).
+        </p>
+
+        <div class="exhibit-grid">
+          <div class="exhibit-card">
+            <img src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/webdesign/1793416224430-pit9ot.png" onerror="this.src='../../assets/images/the-open-clubs/webdesign-0.jpg'" alt="ClauKi">
+            <div class="exhibit-body">
+              <span class="award-pill award-1" data-vi="🥇 GIẢI NHẤT 2026" data-en="🥇 1ST PRIZE 2026">🥇 GIẢI NHẤT 2026</span>
+              <div class="exhibit-team">ClauKi</div>
+              <div class="exhibit-prod" data-vi="Cổng thông tin dịch vụ du lịch địa phương" data-en="Local Travel Services Portal">Cổng thông tin dịch vụ du lịch địa phương</div>
+              <a class="exhibit-link" href="https://clauki.xachbalo.com" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> <span data-vi="Xem sản phẩm" data-en="Live demo">Xem sản phẩm</span></a>
+            </div>
+          </div>
+
+          <div class="exhibit-card">
+            <img src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/webdesign/1793416955894-wc9dgb.png" onerror="this.src='../../assets/images/the-open-clubs/webdesign-1.jpg'" alt="404 Not Found">
+            <div class="exhibit-body">
+              <span class="award-pill award-2" data-vi="🥈 GIẢI NHÌ 2026" data-en="🥈 2ND PRIZE 2026">🥈 GIẢI NHÌ 2026</span>
+              <div class="exhibit-team">404 Not Found</div>
+              <div class="exhibit-prod" data-vi="Giải pháp thu hồi và tái chế thiết bị pin" data-en="Battery Device Recycling Solution">Giải pháp thu hồi và tái chế thiết bị pin</div>
+              <a class="exhibit-link" href="https://demo.manhz.dev" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> <span data-vi="Xem sản phẩm" data-en="Live demo">Xem sản phẩm</span></a>
+            </div>
+          </div>
+
+          <div class="exhibit-card">
+            <img src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/webdesign/1793643677514-5zjcan.png" onerror="this.src='../../assets/images/the-open-clubs/webdesign-2.jpg'" alt="TopBotDev">
+            <div class="exhibit-body">
+              <span class="award-pill award-3" data-vi="🥉 GIẢI BA 2026" data-en="🥉 3RD PRIZE 2026">🥉 GIẢI BA 2026</span>
+              <div class="exhibit-team">TopBotDev</div>
+              <div class="exhibit-prod" data-vi="Hệ thống website bất động sản đa thương hiệu" data-en="White-Label System for Real Estate">Hệ thống website bất động sản đa thương hiệu</div>
+              <a class="exhibit-link" href="https://web-design-2026.truongbinhminh27122006.workers.dev" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> <span data-vi="Xem sản phẩm" data-en="Live demo">Xem sản phẩm</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="xp-more-card">
+        <div class="xp-more-info">
+          <strong data-vi="🌐 Xem toàn bộ 8 sản phẩm tại không gian triển lãm Web Design (mùa giải 2025 và 2026)" data-en="🌐 Explore all 8 projects in the Web Design exhibition archive (2025 and 2026)">🌐 Xem toàn bộ 8 sản phẩm tại không gian triển lãm Web Design (mùa giải 2025 và 2026)</strong>
+          <span data-vi="Bao gồm sản phẩm của các đội CHẠY DEADLINE CHO VUI, VieCodie, KTV (2026) cùng NTK, THETHREE, Stack Lifo, Future (2025)." data-en="Includes projects by CHẠY DEADLINE CHO VUI, VieCodie, KTV (2026) and NTK, THETHREE, Stack Lifo, Future (2025).">Bao gồm sản phẩm của các đội CHẠY DEADLINE CHO VUI, VieCodie, KTV (2026) cùng NTK, THETHREE, Stack Lifo, Future (2025).</span>
+        </div>
+        <a class="xp-more-btn" id="link-more-webdesign" href="https://www.mpclub.dev/vi/web-design/exhibitions" target="_blank" rel="noopener">
+          <i class="bi bi-globe2"></i>
+          <span data-vi="Xem triển lãm tại mpclub.dev" data-en="Open exhibition archive at mpclub.dev">Xem triển lãm tại mpclub.dev</span>
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- TAB 3: RECENT ACHIEVEMENTS + SEE MORE -->
+    <div class="tab-pane" id="tab-halloffame">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-patch-check-fill"></i> <span data-vi="Thành tích học thuật gần đây (2024 – 2025)" data-en="Recent academic achievements (2024 – 2025)">Thành tích học thuật gần đây (2024 – 2025)</span></div>
+        <table class="xp-table">
+          <thead>
+            <tr>
+              <th data-vi="Kỳ thi và thời gian" data-en="Competition and date">Kỳ thi và thời gian</th>
+              <th data-vi="Thành viên và đội thi" data-en="Member and team">Thành viên và đội thi</th>
+              <th data-vi="Hạng mục và giải thưởng" data-en="Category and award">Hạng mục và giải thưởng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Giải pháp phần mềm 2025</strong><br>(20/10/2025 • Khoa CNTT – Trường ĐH Mở TP.HCM)</td>
+              <td data-html-vi="<strong>Nguyễn Thị Kim Oanh</strong><br><strong>Phan Gia Huy</strong> (Đội NPJF)" data-html-en="<strong>Nguyen Thi Kim Oanh</strong><br><strong>Phan Gia Huy</strong> (Team NPJF)"><strong>Nguyễn Thị Kim Oanh</strong><br><strong>Phan Gia Huy</strong> (Đội NPJF)</td>
+              <td data-html-vi="🥉 <strong>Giải Ba</strong> Olympic Tin học<br>🥉 <strong>Giải Ba</strong> Lập trình đối kháng" data-html-en="🥉 <strong>3rd Prize</strong> Informatics Olympiad<br>🥉 <strong>3rd Prize</strong> Competitive Programming">🥉 <strong>Giải Ba</strong> Olympic Tin học<br>🥉 <strong>Giải Ba</strong> Lập trình đối kháng</td>
+            </tr>
+            <tr>
+              <td><strong>Giải pháp phần mềm 2024</strong><br>(07/11/2024 • Đoàn Khoa CNTT – Trường ĐH Mở TP.HCM)</td>
+              <td data-html-vi="<strong>Phan Gia Huy</strong> (Đội DFBP)<br><strong>Lê Gia Huy, Nguyễn Thái Bảo</strong> (Đội Run Out Of Reference)<br><strong>Trần An Tiến, Võ Quốc Huy, Trương Bùi Anh Tuấn</strong> (Đội Lazy Sunday Morning)" data-html-en="<strong>Phan Gia Huy</strong> (Team DFBP)<br><strong>Le Gia Huy, Nguyen Thai Bao</strong> (Team Run Out Of Reference)<br><strong>Tran An Tien, Vo Quoc Huy, Truong Bui Anh Tuan</strong> (Team Lazy Sunday Morning)"><strong>Phan Gia Huy</strong> (Đội DFBP)<br><strong>Lê Gia Huy, Nguyễn Thái Bảo</strong> (Đội Run Out Of Reference)<br><strong>Trần An Tiến, Võ Quốc Huy, Trương Bùi Anh Tuấn</strong> (Đội Lazy Sunday Morning)</td>
+              <td data-html-vi="🥉 <strong>Giải Ba</strong> Lập trình đối kháng<br>🎖️ <strong>Giải Khuyến khích</strong> Lập trình đối kháng<br>🌟 <strong>Giải Thuyết trình ấn tượng</strong>" data-html-en="🥉 <strong>3rd Prize</strong> Competitive Programming<br>🎖️ <strong>Consolation Prize</strong> Competitive Programming<br>🌟 <strong>Impressive Presentation Award</strong>">🥉 <strong>Giải Ba</strong> Lập trình đối kháng<br>🎖️ <strong>Giải Khuyến khích</strong> Lập trình đối kháng<br>🌟 <strong>Giải Thuyết trình ấn tượng</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="xp-more-card">
+        <div class="xp-more-info">
+          <strong data-vi="🏅 Xem đầy đủ bảng vàng thành tích của các năm trước (Olympic Tin học Sinh viên Việt Nam...)" data-en="🏅 View the complete Hall of Fame and historical achievements (National Student Olympiad...)">🏅 Xem đầy đủ bảng vàng thành tích của các năm trước (Olympic Tin học Sinh viên Việt Nam...)</strong>
+          <span data-vi="Tra cứu toàn bộ hồ sơ vinh danh cá nhân và các thế hệ thành viên đạt giải từ năm 2015 đến nay." data-en="Browse all individual Hall of Fame profiles and award records since 2015.">Tra cứu toàn bộ hồ sơ vinh danh cá nhân và các thế hệ thành viên đạt giải từ năm 2015 đến nay.</span>
+        </div>
+        <a class="xp-more-btn" id="link-more-achievements" href="https://www.mpclub.dev/vi/achievements" target="_blank" rel="noopener">
+          <i class="bi bi-globe2"></i>
+          <span data-vi="Xem bảng vàng tại mpclub.dev" data-en="View Hall of Fame at mpclub.dev">Xem bảng vàng tại mpclub.dev</span>
+          <i class="bi bi-box-arrow-up-right"></i>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status Bar -->
+  <div class="xp-statusbar">
+    <span data-vi="Hiển thị các sự kiện và thành tích gần đây • Xem đầy đủ tại mpclub.dev" data-en="Showing recent events and achievements • Full archive at mpclub.dev">Hiển thị các sự kiện và thành tích gần đây • Xem đầy đủ tại mpclub.dev</span>
+    <span data-vi="Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Faculty of IT – Trường ĐH Mở TP.HCM">Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</span>
+  </div>
+
+  <script src="../_shared/lang.js"></script>
+  <script>
+    document.querySelectorAll('.xp-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.xp-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab)?.classList.add('active');
+      });
+    });
+
+    function syncLinks() {
+      const prefix = SubAppI18n.isVi() ? 'vi' : 'en';
+      const eLink = document.getElementById('link-more-events');
+      const wLink = document.getElementById('link-more-webdesign');
+      const aLink = document.getElementById('link-more-achievements');
+      if (eLink) eLink.href = `https://www.mpclub.dev/${prefix}/events`;
+      if (wLink) wLink.href = `https://www.mpclub.dev/${prefix}/web-design/exhibitions`;
+      if (aLink) aLink.href = `https://www.mpclub.dev/${prefix}/achievements`;
+    }
+    syncLinks();
+    SubAppI18n.onChange(syncLinks);
+  </script>
 </body>
 </html>

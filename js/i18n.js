@@ -15,7 +15,7 @@ const I18n = (function () {
   const translations = {
     vi: {
       // General
-      'system.title': 'MPC.exe – MPCrosoft Windows XP (OU IT - Tuyển Thành Viên 2026)',
+      'system.title': 'MPCrosoft Windows XP – MPClub',
       'system.ready': 'Sẵn sàng',
       'system.version': 'MPC.exe v2026',
       'skip.btn': 'Bỏ qua ⏭',
@@ -50,40 +50,51 @@ const I18n = (function () {
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',
-      'bios.sub': 'MPC-ACPI BIOS Version 2.026 - Khoa CNTT Trường ĐH Mở TP.HCM',
+      'bios.sub': 'MPC-ACPI BIOS Version 2.026',
       'bios.cpu': 'CPU: Intel Core-OU IT @ 4.20 GHz',
       'bios.memory': 'Kiểm tra bộ nhớ: 2048576KB OK',
-      'bios.drive_master': 'Nhận diện ổ chính   ... MPC_DRIVE_15061990 (19.90 GB)',
+      'bios.drive_master': 'Nhận diện ổ chính   ... MPC_DRIVE_25122015 (201.5 GB)',
       'bios.drive_slave': 'Nhận diện ổ phụ     ... KHÔNG CÓ',
-      'bios.drive_cd': 'Nhận diện ổ CD-ROM  ... CD-ROM MPC_RECRUITMENT_2026',
+      'bios.drive_cd': 'Nhận diện ổ CD-ROM  ... CD-ROM DRIVE',
       'bios.pnp': 'Đang khởi tạo các thiết bị Plug and Play...',
       'bios.loading': 'Đang nạp nhân hệ điều hành MPCrosoft...',
       'bios.footer_setup': 'Nhấn DEL để vào SETUP | F11 để chọn Menu Khởi động',
       'bios.footer_click': 'Nhấp chuột bất kỳ đâu để vào hệ điều hành ngay',
 
       // Bootscreen
-      'boot.recruitment_edition': 'Khoa CNTT - ĐH Mở TP.HCM • Tuyển Thành Viên 2026',
-      'boot.copyright': 'Bản quyền © 2026 Ban Lập Trình (BLT) – MPClub',
+      'boot.recruitment_edition': 'Professional',
+      'boot.copyright': 'Copyright © 2026 MPClub',
 
       // Login Screen
-      'login.sub': 'Đợt tuyển thành viên MPClub 2026',
+      'login.sub': '',
       'login.welcome': 'Chào mừng',
-      'login.instruction': 'Để bắt đầu, hãy nhấp vào tên người dùng của bạn để vào môi trường Desktop MPC.',
-      'login.status_ready': 'Nhấp để bắt đầu phiên làm việc',
+      'login.instruction': 'Nhấp vào tên người dùng để bắt đầu.',
+      'login.status_ready': '',
       'login.status_logging_in': 'Đang đăng nhập...',
       'login.turn_off': 'Tắt máy tính',
-      'login.badge': '🚀 Tuyển Thành Viên MPC 2026: Genesis',
+      'login.badge': '',
 
       // Desktop Watermark
-      'desktop.watermark_sub': 'MPClub • Khoa CNTT - ĐH Mở TP.HCM',
+      'desktop.watermark_sub': 'Professional',
 
       // Context Menu
       'ctx.view': 'Xem',
       'ctx.sort_by': 'Sắp xếp theo',
+      'ctx.sort_name': 'Tên',
+      'ctx.sort_type': 'Loại',
+      'ctx.sort_auto': 'Tự động sắp xếp',
       'ctx.refresh': 'Làm mới',
       'ctx.paste': 'Dán',
       'ctx.paste_shortcut': 'Dán lối tắt',
+      'ctx.new': 'Mới',
       'ctx.new_folder': 'Thư mục mới',
+      'ctx.new_txt': 'Tài liệu văn bản (.txt)',
+      'ctx.new_img': 'Bản vẽ Paint (.png)',
+      'ctx.open': 'Mở',
+      'ctx.cut': 'Cắt',
+      'ctx.copy': 'Sao chép',
+      'ctx.delete': 'Xóa',
+      'ctx.rename': 'Đổi tên',
       'ctx.properties': 'Thuộc tính',
 
       // Taskbar
@@ -106,8 +117,9 @@ const I18n = (function () {
       'start.my_docs': 'Tài liệu của tôi',
       'start.my_pics': 'Hình ảnh của tôi',
       'start.my_videos': 'Video của tôi',
-      'start.language_settings': 'Cài đặt ngôn ngữ',
-      'start.recruit': 'Tuyển thành viên 2026',
+      'start.language_settings': 'Cài đặt hệ thống',
+      'start.settings': 'Cài đặt hệ thống',
+      'start.recruit': 'Đăng ký thành viên',
       'start.logoff': 'Đăng xuất',
       'start.shutdown': 'Tắt máy tính',
 
@@ -132,23 +144,25 @@ const I18n = (function () {
       'win.help': 'Trợ giúp',
 
       // Default Apps
-      'app.about.title': 'ABOUT_MPC.txt - Giới thiệu MPClub',
+      'app.about.title': 'ABOUT_MPC.txt - Giới thiệu câu lạc bộ MPClub',
       'app.about.label': 'ABOUT_MPC',
-      'app.teams.title': 'OUR_TEAMS - Các Ban Chuyên Môn MPClub',
+      'app.teams.title': 'OUR_TEAMS - Cơ cấu tổ chức và các ban chuyên môn',
       'app.teams.label': 'OUR_TEAMS',
-      'app.activities.title': 'ACTIVITIES - Hoạt Động & Workshop',
+      'app.activities.title': 'ACTIVITIES - Hoạt động và đào tạo',
       'app.activities.label': 'ACTIVITIES',
-      'app.events.title': 'EVENTS - Sự Kiện & Giải Đấu Lớn',
+      'app.events.title': 'EVENTS - Sự kiện và bảng vàng thành tích',
       'app.events.label': 'EVENTS',
-      'app.diary.title': 'DIARY.txt - Nhật Ký & Kỷ Niệm',
+      'app.diary.title': 'DIARY.txt - Nhật ký hoạt động và kỷ niệm',
       'app.diary.label': 'DIARY',
-      'app.faq.title': 'FAQ.txt - Câu Hỏi Thường Gặp',
+      'app.faq.title': 'FAQ.txt - Câu hỏi thường gặp',
       'app.faq.label': 'FAQ.txt',
-      'app.join.title': 'JOIN_MPC.exe - Đăng Ký Tuyển Thành Viên 2026',
+      'app.join.title': 'JOIN_MPC.exe - Đăng ký tham gia câu lạc bộ',
       'app.join.label': 'JOIN_MPC.exe',
-      'app.join.heading': 'TUYỂN THÀNH VIÊN MPCLUB 2026',
-      'app.join.desc': 'Cánh cửa gia nhập đại gia đình MPClub đang rộng mở đón chào bạn. Hãy nhấn nút bên dưới để điền form ứng tuyển ngay!',
-      'app.join.btn': '🚀 ĐIỀN ĐƠN ỨNG TUYỂN NGAY',
+      'app.join_form.title': 'Biểu mẫu đăng ký phỏng vấn tuyển thành viên CLB MPC khóa K26',
+      'app.join_form.label': 'MPC_FORM.exe',
+      'app.join.heading': 'THÔNG TIN TUYỂN THÀNH VIÊN MPCLUB',
+      'app.join.desc': 'Cánh cửa gia nhập đại gia đình MPClub luôn rộng mở chào đón bạn. Hãy nhấn nút bên dưới để điền form đăng ký ứng tuyển!',
+      'app.join.btn': '📝 ĐIỀN ĐƠN ỨNG TUYỂN NGAY',
       'app.recycle.title': 'Thùng rác',
       'app.recycle.label': 'Thùng rác',
       'app.recycle.empty': 'Thùng rác trống rỗng.',
@@ -169,11 +183,12 @@ const I18n = (function () {
       'exp.removable_group': 'Thiết bị lưu trữ ngoài',
       'exp.drive_c_label': 'Ổ đĩa cục bộ (C:)',
       'exp.drive_free_suffix': 'trống',
-      'exp.ou_easter': '🎓 Ngày thành lập OU: 15/06/1990',
 
-      // Language Settings Window
-      'lang_win.title': 'Tùy chọn Vùng và Ngôn ngữ',
-      'lang_win.label': 'Cài đặt Ngôn ngữ',
+      // Settings & Control Panel Window
+      'settings.title': 'Cài đặt hệ thống (Control Panel)',
+      'settings.label': 'Cài đặt',
+      'lang_win.title': 'Cài đặt hệ thống (Control Panel)',
+      'lang_win.label': 'Cài đặt hệ thống',
       'lang_win.heading': 'Tiêu chuẩn và định dạng ngôn ngữ',
       'lang_win.sub': 'Chọn ngôn ngữ giao diện cho hệ thống MPCrosoft Windows XP:',
       'lang_win.apply': 'Áp dụng',
@@ -183,7 +198,7 @@ const I18n = (function () {
 
     en: {
       // General
-      'system.title': 'MPC.exe – MPCrosoft Windows XP (OU IT - Recruitment 2026)',
+      'system.title': 'MPCrosoft Windows XP – MPClub',
       'system.ready': 'Ready',
       'system.version': 'MPC.exe v2026',
       'skip.btn': 'Skip ⏭',
@@ -218,40 +233,51 @@ const I18n = (function () {
 
       // BIOS
       'bios.title': 'MPC ROM BIOS (C) 2026 MPClub Inc.',
-      'bios.sub': 'MPC-ACPI BIOS Version 2.026 - OU Faculty of IT',
+      'bios.sub': 'MPC-ACPI BIOS Version 2.026',
       'bios.cpu': 'CPU: Intel Core-OU IT @ 4.20 GHz',
       'bios.memory': 'Memory Test: 2048576KB OK',
-      'bios.drive_master': 'Detecting Primary Master   ... MPC_DRIVE_15061990 (19.90 GB)',
+      'bios.drive_master': 'Detecting Primary Master   ... MPC_DRIVE_25122015 (201.5 GB)',
       'bios.drive_slave': 'Detecting Primary Slave    ... NONE',
-      'bios.drive_cd': 'Detecting Secondary Master ... CD-ROM MPC_RECRUITMENT_2026',
+      'bios.drive_cd': 'Detecting Secondary Master ... CD-ROM DRIVE',
       'bios.pnp': 'Initializing Plug and Play Cards...',
       'bios.loading': 'Loading MPCrosoft Operating System Kernel...',
       'bios.footer_setup': 'Press DEL to enter SETUP | F11 to Boot Menu',
       'bios.footer_click': 'Click anywhere to start OS immediately',
 
       // Bootscreen
-      'boot.recruitment_edition': 'Faculty of IT - Open University • Recruitment 2026',
-      'boot.copyright': 'Copyright © 2026 Ban Lập Trình (BLT) – MPClub',
+      'boot.recruitment_edition': 'Professional',
+      'boot.copyright': 'Copyright © 2026 MPClub',
 
       // Login Screen
-      'login.sub': 'MPClub Member Recruitment 2026',
+      'login.sub': '',
       'login.welcome': 'Welcome',
-      'login.instruction': 'To begin, click your user name to log on to the MPC Desktop environment.',
-      'login.status_ready': 'Click to start session',
+      'login.instruction': 'To begin, click your user name.',
+      'login.status_ready': '',
       'login.status_logging_in': 'Logging on...',
       'login.turn_off': 'Turn off computer',
-      'login.badge': '🚀 MPC Recruitment 2026: Genesis',
+      'login.badge': '',
 
       // Desktop Watermark
-      'desktop.watermark_sub': 'MPClub • Faculty of IT - Open University',
+      'desktop.watermark_sub': 'Professional',
 
       // Context Menu
       'ctx.view': 'View',
       'ctx.sort_by': 'Sort by',
+      'ctx.sort_name': 'Name',
+      'ctx.sort_type': 'Type',
+      'ctx.sort_auto': 'Auto Arrange',
       'ctx.refresh': 'Refresh',
       'ctx.paste': 'Paste',
       'ctx.paste_shortcut': 'Paste Shortcut',
+      'ctx.new': 'New',
       'ctx.new_folder': 'New Folder',
+      'ctx.new_txt': 'Text Document (.txt)',
+      'ctx.new_img': 'Paint Drawing (.png)',
+      'ctx.open': 'Open',
+      'ctx.cut': 'Cut',
+      'ctx.copy': 'Copy',
+      'ctx.delete': 'Delete',
+      'ctx.rename': 'Rename',
       'ctx.properties': 'Properties',
 
       // Taskbar
@@ -274,8 +300,9 @@ const I18n = (function () {
       'start.my_docs': 'My Documents',
       'start.my_pics': 'My Pictures',
       'start.my_videos': 'My Videos',
-      'start.language_settings': 'Language Settings',
-      'start.recruit': 'Recruitment 2026',
+      'start.language_settings': 'Control Panel',
+      'start.settings': 'Control Panel',
+      'start.recruit': 'Join MPClub',
       'start.logoff': 'Log Off',
       'start.shutdown': 'Turn Off Computer',
 
@@ -312,11 +339,13 @@ const I18n = (function () {
       'app.diary.label': 'DIARY',
       'app.faq.title': 'FAQ.txt - Frequently Asked Questions',
       'app.faq.label': 'FAQ.txt',
-      'app.join.title': 'JOIN_MPC.exe - Recruitment Form 2026',
+      'app.join.title': 'JOIN_MPC.exe - Club Application',
       'app.join.label': 'JOIN_MPC.exe',
-      'app.join.heading': 'MPCLUB RECRUITMENT 2026',
-      'app.join.desc': 'The door to the MPClub family is wide open for you. Click the button below to complete the recruitment application!',
-      'app.join.btn': '🚀 APPLY NOW',
+      'app.join_form.title': 'MPC K26 MEMBER INTERVIEW REGISTRATION FORM',
+      'app.join_form.label': 'MPC_FORM.exe',
+      'app.join.heading': 'MPCLUB RECRUITMENT INFORMATION',
+      'app.join.desc': 'The door to the MPClub family is open to welcome you. Click the button below to complete the application form!',
+      'app.join.btn': '📝 APPLY NOW',
       'app.recycle.title': 'Recycle Bin',
       'app.recycle.label': 'Recycle Bin',
       'app.recycle.empty': 'Recycle Bin is Empty.',
@@ -337,11 +366,12 @@ const I18n = (function () {
       'exp.removable_group': 'Devices with Removable Storage',
       'exp.drive_c_label': 'Local Disk (C:)',
       'exp.drive_free_suffix': 'free',
-      'exp.ou_easter': '🎓 OU Foundation: 15/06/1990',
 
-      // Language Settings Window
-      'lang_win.title': 'Regional and Language Options',
-      'lang_win.label': 'Language Settings',
+      // Settings & Control Panel Window
+      'settings.title': 'Control Panel (Settings)',
+      'settings.label': 'Settings',
+      'lang_win.title': 'Control Panel (Settings)',
+      'lang_win.label': 'System Settings',
       'lang_win.heading': 'Standards and formats',
       'lang_win.sub': 'Select the interface language for MPCrosoft Windows XP:',
       'lang_win.apply': 'Apply',
