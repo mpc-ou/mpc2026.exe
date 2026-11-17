@@ -1,0 +1,205 @@
+/* ==========================================================================
+   Shared responsive rules for the apps inside windows (iframes).
+   Media queries here measure the WINDOW, not the screen: a phone window or a
+   window the user shrank on desktop both get the narrow layout.
+   Linked last in each app's <head> so it overrides the app's own styles.
+   ========================================================================== */
+
+:root {
+  --cursor-default: url('../../assets/cursors/default.png') 0 0, url('../../assets/cursors/default.svg') 0 0, auto;
+  --cursor-pointer: url('../../assets/cursors/pointer.png') 6 1, url('../../assets/cursors/pointer.svg') 6 1, pointer;
+  --cursor-text: url('../../assets/cursors/text.svg') 8 12, text;
+}
+
+html, body {
+  cursor: var(--cursor-default) !important;
+}
+
+button, a, select, [role="button"], input[type="button"], input[type="submit"], input[type="radio"], input[type="checkbox"], .clickable {
+  cursor: var(--cursor-pointer) !important;
+}
+
+input[type="text"], input[type="search"], input[type="password"], textarea {
+  cursor: var(--cursor-text) !important;
+}
+
+img {
+  max-width: 100%;
+}
+
+.act-thumb,
+.photo-thumb,
+.event-thumb,
+.exhibit-card img,
+.entry-img {
+  object-fit: cover !important;
+  object-position: center center !important;
+}
+
+body {
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px !important;
+    font-size: 15px !important;
+  }
+
+  /* Headings */
+  .title,
+  .header-title,
+  .faq-title,
+  .entry-title,
+  .event-title,
+  .diary-title-box h1 {
+    font-size: 18px !important;
+  }
+
+  .notepad-title {
+    font-size: 12px !important;
+    overflow-x: auto;
+  }
+
+  /* Body text: 15px and roomier lines */
+  .notepad-section p,
+  .event-desc,
+  .entry-body,
+  .faq-question,
+  .faq-answer,
+  .detail-desc,
+  .team-desc,
+  .photo-name,
+  .search-box input {
+    font-size: 15px !important;
+    line-height: 1.55;
+  }
+
+  /* Small print: was 9-12px */
+  .footer-stamp,
+  .lang-btn,
+  .tag-btn,
+  .photo-meta,
+  .event-badge,
+  .diary-sub,
+  .entry-meta,
+  .tag,
+  .photo-caption {
+    font-size: 13px !important;
+  }
+
+  /* Finger-sized controls */
+  .tag-btn,
+  .lang-btn,
+  .team-nav-btn,
+  .btn-apply-team,
+  .cta-btn,
+  .btn-hero,
+  .btn-apply-nav,
+  .faq-question,
+  .search-box input {
+    min-height: 44px;
+  }
+
+  /* Headers wrap instead of overflowing */
+  .header-bar,
+  .diary-header,
+  .faq-header,
+  .entry-meta,
+  .footer-stamp,
+  .cta-banner {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* ACTIVITIES: 2 photos per row */
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .photo-thumb {
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+  }
+
+  .photo-card:hover,
+  .event-item:hover {
+    transform: none !important;
+  }
+
+  /* EVENTS: slimmer timeline */
+  .timeline {
+    margin-left: 4px !important;
+    padding-left: 14px !important;
+  }
+
+  .event-item::before {
+    left: -21px !important;
+  }
+
+  /* OUR_TEAMS: all 4 teams visible at once as a 2x2 grid */
+  .teams-sidebar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .team-nav-btn {
+    min-width: 0;
+    font-size: 13px !important;
+    line-height: 1.25;
+  }
+
+  /* OUR_TEAMS: skills and the apply button */
+  .skill-item {
+    font-size: 14px !important;
+  }
+
+  .btn-apply-team {
+    font-size: 15px !important;
+    padding: 10px 14px !important;
+  }
+
+  .lightbox-img {
+    max-width: 100% !important;
+  }
+}
+
+/* Big windows (large screens, or a maximized window): the apps were sized for a
+   ~700px window, so their 11-13px text reads tiny. Zoom the whole page up with the
+   window. zoom also scales vh, so the full-height body is divided back down.
+   Browsers without zoom (Firefox before 126) skip all of it. */
+@supports (zoom: 1) {
+  @media (min-width: 900px) {
+    :root {
+      --app-zoom: 1.1;
+    }
+  }
+
+  @media (min-width: 1050px) {
+    :root {
+      --app-zoom: 1.25;
+    }
+  }
+
+  @media (min-width: 1300px) {
+    :root {
+      --app-zoom: 1.35;
+    }
+  }
+
+  html {
+    zoom: var(--app-zoom, 1);
+  }
+
+  body {
+    height: calc(100vh / var(--app-zoom, 1)) !important;
+  }
+
+  .lightbox-img {
+    max-height: calc(80vh / var(--app-zoom, 1)) !important;
+  }
+}
