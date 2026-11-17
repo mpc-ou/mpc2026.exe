@@ -55,6 +55,8 @@ const NPC = (function () {
   let _highlightTimer = null;
   let _openApps = new Set();
   let _windows = [];
+  let _currentX = null;
+  let _currentY = null;
 
   const reducedMotion = () => window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -85,6 +87,69 @@ const NPC = (function () {
     return 'npc.time.late';
   }
 
+  function updateBubbleOrientation(destX, destY) {
+    if (!_root || !_bubble) return;
+
+    let foxLeft, foxTop, foxWidth, foxHeight;
+    if (typeof destX === 'number' && typeof destY === 'number') {
+      foxLeft = destX;
+      foxTop = destY;
+      foxWidth = _root.offsetWidth || 170;
+      foxHeight = _root.offsetHeight || 196;
+    } else if (typeof _currentX === 'number' && typeof _currentY === 'number') {
+      foxLeft = _currentX;
+      foxTop = _currentY;
+      foxWidth = _root.offsetWidth || 170;
+      foxHeight = _root.offsetHeight || 196;
+    } else {
+      const r = _root.getBoundingClientRect();
+      foxLeft = r.left;
+      foxTop = r.top;
+      foxWidth = r.width;
+      foxHeight = r.height;
+    }
+
+    const isCompact = _root.classList.contains('compact');
+    const bubbleWidth = _bubble.offsetWidth || 240;
+    const bubbleHeight = _bubble.offsetHeight || 80;
+
+    // Normal position (unflipped to the left):
+    // In normal mode: right: 67% means bubble right edge is at foxLeft + (foxWidth * 0.33)
+    // In compact mode: right: calc(100% + 14px) means right edge is at foxLeft - 14
+    const normalRightEdge = isCompact ? (foxLeft - 14) : (foxLeft + foxWidth * 0.33);
+    const normalLeftEdge = normalRightEdge - bubbleWidth;
+
+    // Flipped position (to the right):
+    // In normal mode: left: 65% means left edge is at foxLeft + (foxWidth * 0.65)
+    // In compact mode: left: calc(100% + 14px) means left edge is at foxLeft + foxWidth + 14
+    const flippedLeftEdge = isCompact ? (foxLeft + foxWidth + 14) : (foxLeft + foxWidth * 0.65);
+    const flippedRightEdge = flippedLeftEdge + bubbleWidth;
+
+    // Check horizontal flip:
+    // If placing on the left overflows the viewport (< 10px):
+    let shouldFlipX = false;
+    if (normalLeftEdge < 10) {
+      if (flippedRightEdge <= window.innerWidth - 10 || (window.innerWidth - flippedLeftEdge > normalRightEdge)) {
+        shouldFlipX = true;
+      }
+    }
+
+    // Check vertical flip:
+    // In normal mode: bottom: 72% means bottom edge is at foxTop + (foxHeight * 0.28)
+    // In compact mode: bottom: 6px
+    const normalTopEdge = isCompact
+      ? (foxTop + foxHeight - 6 - bubbleHeight)
+      : (foxTop + foxHeight * 0.28 - bubbleHeight);
+
+    let shouldFlipY = false;
+    if (normalTopEdge < 10) {
+      shouldFlipY = true;
+    }
+
+    _root.classList.toggle('bubble-flip-x', shouldFlipX);
+    _root.classList.toggle('bubble-flip-y', shouldFlipY);
+  }
+
   // Size the bubble for the whole line first, so it does not grow while typing.
   // min-height (not height): if a font loads late and the text gets taller, the
   // bubble can still grow.
@@ -92,8 +157,10 @@ const NPC = (function () {
     _bubble.style.width = '';
     _bubble.style.minHeight = '';
     _text.textContent = text;
+    updateBubbleOrientation();
     _bubble.style.width = `${_bubble.offsetWidth}px`;
     _bubble.style.minHeight = `${_bubble.offsetHeight}px`;
+    updateBubbleOrientation();
   }
 
   function typeOut(text) {
@@ -115,9 +182,14 @@ const NPC = (function () {
 
   // Re-measure the open bubble for the new screen or language, showing the whole line.
   function refit() {
-    if (!_lineKeys) return;
     clearTimeout(_typeTimer);
-    fit(currentLine());
+    if (_lineKeys) {
+      fit(currentLine());
+    } else if (_bubble && !_bubble.classList.contains('hidden') && _text && _text.textContent) {
+      fit(_text.textContent);
+    } else {
+      updateBubbleOrientation();
+    }
   }
 
   function highlight(appId) {
@@ -160,6 +232,7 @@ const NPC = (function () {
     _fox.src = POSE_IDLE;
     _root.dataset.pose = 'think';
     _lineKeys = null;
+    _root.classList.remove('bubble-flip-x', 'bubble-flip-y');
   }
 
   function isHidden() {
@@ -299,9 +372,100 @@ const NPC = (function () {
 
     document.addEventListener('mpc:desktop-ready', start);
     document.addEventListener('mpc:logoff', pause);
+
+    _root.addEventListener('transitionend', e => {
+      if (e.target === _root && !_bubble.classList.contains('hidden')) {
+        updateBubbleOrientation();
+      }
+    });
   }
 
-  return { init, say, hide, show };
+  function sayCustom(rawText, { autoClose = true, ms = 4000 } = {}) {
+    _lineKeys = null;
+    _cta?.classList.add('hidden');
+    _bubble?.classList.remove('hidden');
+    typeOut(rawText);
+    _fox.src = POSE_TALK;
+    _root.dataset.pose = 'talk';
+
+    _root.classList.remove('waving');
+    void _root.offsetWidth;
+    _root.classList.add('waving');
+
+    clearTimeout(_closeTimer);
+    if (autoClose) {
+      _closeTimer = setTimeout(closeBubble, ms);
+    }
+  }
+
+  let _homeTimer = null;
+
+  function moveTo(x, y, duration = 420) {
+    if (!_root) return;
+    clearTimeout(_homeTimer);
+
+    // Lock current rendered coordinates in px if currently anchored by right/bottom (left is auto)
+    if (!_root.style.left || _root.style.left === 'auto') {
+      const rect = _root.getBoundingClientRect();
+      _root.style.transition = 'none';
+      _root.style.right = 'auto';
+      _root.style.bottom = 'auto';
+      _root.style.left = `${rect.left}px`;
+      _root.style.top = `${rect.top}px`;
+      void _root.offsetWidth; // Force reflow so browser transitions from current px to target px
+    }
+
+    _currentX = x;
+    _currentY = y;
+    _root.style.transition = `left ${duration}ms cubic-bezier(0.22, 1, 0.36, 1), top ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    _root.style.left = `${x}px`;
+    _root.style.top = `${y}px`;
+    _root.style.zIndex = '9999';
+    updateBubbleOrientation(x, y);
+  }
+
+  function returnHome(duration = 480) {
+    if (!_root) return;
+    clearTimeout(_homeTimer);
+    _currentX = null;
+    _currentY = null;
+
+    const rect = _root.getBoundingClientRect();
+    if (!_root.style.left || _root.style.left === 'auto') {
+      _root.style.transition = 'none';
+      _root.style.right = 'auto';
+      _root.style.bottom = 'auto';
+      _root.style.left = `${rect.left}px`;
+      _root.style.top = `${rect.top}px`;
+      void _root.offsetWidth;
+    }
+
+    const taskbarH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--taskbar-height'), 10) || 36;
+    const homeX = Math.max(0, window.innerWidth - rect.width - 16);
+    const homeY = Math.max(0, window.innerHeight - taskbarH - 8 - rect.height);
+
+    _root.style.transition = `left ${duration}ms cubic-bezier(0.22, 1, 0.36, 1), top ${duration}ms cubic-bezier(0.22, 1, 0.36, 1)`;
+    _root.style.left = `${homeX}px`;
+    _root.style.top = `${homeY}px`;
+    _root.classList.remove('bubble-flip-x', 'bubble-flip-y');
+
+    _homeTimer = setTimeout(() => {
+      if (_currentX === null && _root) {
+        _root.style.transition = 'none';
+        _root.style.left = '';
+        _root.style.top = '';
+        _root.style.right = '16px';
+        _root.style.bottom = 'calc(var(--taskbar-height) + 8px)';
+        _root.style.zIndex = '';
+      }
+    }, duration + 20);
+  }
+
+  function getRoot() {
+    return _root;
+  }
+
+  return { init, say, sayCustom, closeBubble, hide, show, moveTo, returnHome, getRoot };
 })();
 
 window.NPC = NPC;

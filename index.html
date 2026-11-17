@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>MPC.exe – MPCrosoft Windows XP (OU IT - Tuyển Thành Viên 2026)</title>
+  <title>MPCrosoft Windows XP – MPClub</title>
   <link rel="icon" type="image/png" href="assets/icons/logo.png">
 
   <!-- Bootstrap Icons (Local font + CDN fallback) -->
@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="css/taskbar.css">
   <link rel="stylesheet" href="css/applications.css">
   <link rel="stylesheet" href="css/npc.css">
+  <link rel="stylesheet" href="css/cursor.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
@@ -64,7 +65,7 @@
           <span class="xp-brand-sub">MPC</span>
           <span style="font-size: 20px; font-weight: normal; color: #fff;">xp</span>
         </div>
-        <div class="xp-edition-tag" data-i18n="boot.recruitment_edition">Khoa CNTT - ĐH Mở TP.HCM • Tuyển Thành Viên 2026</div>
+        <div class="xp-edition-tag" data-i18n="boot.recruitment_edition">Professional</div>
       </div>
 
       <!-- Classic 3 Blue Blocks Loading Bar -->
@@ -78,7 +79,7 @@
     </div>
 
     <div class="xp-boot-footer" data-i18n="boot.copyright">
-      Bản quyền &copy; 2026 Ban Lập Trình (BLT) – MPClub
+      Copyright &copy; 2026 MPClub
     </div>
   </div>
 
@@ -90,10 +91,7 @@
     <div class="login-header-bar">
       <div class="login-brand-logo">
         <img src="assets/icons/logo.png" class="login-brand-logo-img" alt="" />
-        MPCrosoft <span>MPC</span> Professional
-      </div>
-      <div class="login-instruction" data-i18n="login.sub">
-        Đợt tuyển thành viên MPClub 2026
+        MPCrosoft <span>Windows</span><span style="font-size: 14px; font-weight: normal; margin-left: 3px;">xp</span>
       </div>
     </div>
 
@@ -102,7 +100,7 @@
       <div class="login-left-col">
         <div class="login-welcome-title" data-i18n="login.welcome">Chào mừng</div>
         <div class="login-welcome-desc" data-i18n="login.instruction">
-          Để bắt đầu, hãy nhấp vào tên người dùng của bạn để vào môi trường Desktop MPC.
+          Nhấp vào tên người dùng để bắt đầu.
         </div>
       </div>
 
@@ -116,7 +114,6 @@
           </div>
           <div class="user-details">
             <div class="user-name">OU IT</div>
-            <div class="user-status" data-i18n="login.status_ready">Nhấp để bắt đầu phiên làm việc</div>
           </div>
         </div>
       </div>
@@ -128,9 +125,6 @@
         <div class="login-power-icon"><i class="bi bi-power"></i></div>
         <span data-i18n="login.turn_off">Tắt máy tính</span>
       </button>
-      <div class="login-recruitment-badge" data-i18n="login.badge">
-        <i class="bi bi-rocket-takeoff-fill" style="margin-right: 4px;"></i> Tuyển Thành Viên MPC 2026: Genesis
-      </div>
     </div>
   </div>
 
@@ -142,8 +136,8 @@
 
     <!-- Desktop Watermark -->
     <div class="desktop-watermark">
-      <div class="desktop-watermark-title">MPC.exe</div>
-      <div class="desktop-watermark-sub" data-i18n="desktop.watermark_sub">MPClub • Khoa CNTT - ĐH Mở TP.HCM</div>
+      <div class="desktop-watermark-title">Windows XP</div>
+      <div class="desktop-watermark-sub" data-i18n="desktop.watermark_sub">Professional</div>
     </div>
 
     <!-- Desktop Icons Grid -->
@@ -193,28 +187,150 @@
       <span data-i18n="ctx.view">Xem</span>
       <span>▸</span>
     </div>
-    <div class="ctx-item">
+    <div class="ctx-item" id="ctx-sort-menu">
       <span data-i18n="ctx.sort_by">Sắp xếp theo</span>
       <span>▸</span>
+    </div>
+    <!-- Submenu for Sort By -->
+    <div id="desktop-sort-submenu" class="desktop-context-menu hidden" style="width: 170px; z-index: 9600;">
+      <div class="ctx-item" id="ctx-sort-name">
+        <span data-i18n="ctx.sort_name">Tên</span>
+      </div>
+      <div class="ctx-item" id="ctx-sort-type">
+        <span data-i18n="ctx.sort_type">Loại</span>
+      </div>
+      <div class="ctx-divider"></div>
+      <div class="ctx-item" id="ctx-sort-auto">
+        <span><b data-i18n="ctx.sort_auto">Tự động sắp xếp</b></span>
+      </div>
     </div>
     <div class="ctx-item" id="ctx-refresh">
       <span><b data-i18n="ctx.refresh">Làm mới</b></span>
       <span style="font-size: 10px; color: #888;">F5</span>
     </div>
     <div class="ctx-divider"></div>
-    <div class="ctx-item disabled">
+    <div class="ctx-item" id="ctx-paste">
       <span data-i18n="ctx.paste">Dán</span>
     </div>
     <div class="ctx-item disabled">
       <span data-i18n="ctx.paste_shortcut">Dán lối tắt</span>
     </div>
     <div class="ctx-divider"></div>
-    <div class="ctx-item" id="ctx-new-folder">
-      <span data-i18n="ctx.new_folder">Thư mục mới</span>
+    <div class="ctx-item" id="ctx-new-menu">
+      <span data-i18n="ctx.new">Mới</span>
+      <span>▸</span>
+    </div>
+    <!-- Submenu for New items -->
+    <div id="desktop-new-submenu" class="desktop-context-menu hidden" style="width: 175px; z-index: 9600;">
+      <div class="ctx-item" id="ctx-new-folder">
+        <span><i class="bi bi-folder-fill" style="color: #ffaa00; margin-right: 5px;"></i><span data-i18n="ctx.new_folder">Thư mục mới</span></span>
+      </div>
+      <div class="ctx-item" id="ctx-new-txt">
+        <span><i class="bi bi-file-earmark-text-fill" style="color: #0055ea; margin-right: 5px;"></i><span data-i18n="ctx.new_txt">Tài liệu văn bản (.txt)</span></span>
+      </div>
+      <div class="ctx-item" id="ctx-new-img">
+        <span><i class="bi bi-file-earmark-image-fill" style="color: #d13438; margin-right: 5px;"></i><span data-i18n="ctx.new_img">Bản vẽ Paint (.png)</span></span>
+      </div>
     </div>
     <div class="ctx-divider"></div>
     <div class="ctx-item" id="ctx-properties">
       <span data-i18n="ctx.properties">Thuộc tính</span>
+    </div>
+  </div>
+
+  <!-- Desktop Icon Context Menu -->
+  <div id="icon-context-menu" class="desktop-context-menu hidden" style="width: 150px; z-index: 9550;">
+    <div class="ctx-item" id="ctx-icon-open">
+      <span><b data-i18n="ctx.open">Mở</b></span>
+    </div>
+    <div class="ctx-item" id="ctx-icon-empty-trash" style="display: none;">
+      <span><i class="bi bi-trash-fill" style="color: #d13438; margin-right: 5px;"></i>Dọn sạch thùng rác</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="ctx-icon-cut">
+      <span data-i18n="ctx.cut">Cắt</span>
+    </div>
+    <div class="ctx-item" id="ctx-icon-copy">
+      <span data-i18n="ctx.copy">Sao chép</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="ctx-icon-delete">
+      <span data-i18n="ctx.delete">Xóa</span>
+    </div>
+    <div class="ctx-item" id="ctx-icon-rename">
+      <span data-i18n="ctx.rename">Đổi tên</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="ctx-icon-properties">
+      <span data-i18n="ctx.properties">Thuộc tính</span>
+    </div>
+  </div>
+
+  <!-- Taskbar Context Menu -->
+  <div id="taskbar-context-menu" class="taskbar-context-menu hidden">
+    <div class="ctx-item disabled">
+      <span>Toolbars</span>
+      <span>▸</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="tb-ctx-cascade">
+      <span>Cascade Windows</span>
+    </div>
+    <div class="ctx-item" id="tb-ctx-tile-h">
+      <span>Tile Windows Horizontally</span>
+    </div>
+    <div class="ctx-item" id="tb-ctx-tile-v">
+      <span>Tile Windows Vertically</span>
+    </div>
+    <div class="ctx-item" id="tb-ctx-show-desktop">
+      <span>Show the Desktop</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="tb-ctx-taskmgr">
+      <span><b>Task Manager</b></span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item disabled">
+      <span>✓ Lock the Taskbar</span>
+    </div>
+    <div class="ctx-item" id="tb-ctx-properties">
+      <span>Properties</span>
+    </div>
+  </div>
+
+  <!-- Task Item Context Menu -->
+  <div id="task-item-context-menu" class="taskbar-context-menu hidden">
+    <div class="ctx-item" id="task-ctx-restore">
+      <span>Restore</span>
+    </div>
+    <div class="ctx-item disabled">
+      <span>Move</span>
+    </div>
+    <div class="ctx-item disabled">
+      <span>Size</span>
+    </div>
+    <div class="ctx-item" id="task-ctx-minimize">
+      <span>Minimize</span>
+    </div>
+    <div class="ctx-item" id="task-ctx-maximize">
+      <span>Maximize</span>
+    </div>
+    <div class="ctx-divider"></div>
+    <div class="ctx-item" id="task-ctx-close">
+      <span><b>Close</b></span>
+      <span style="font-size: 10px; color: #888;">Alt+F4</span>
+    </div>
+  </div>
+
+  <!-- Task Item Hover Preview Tooltip -->
+  <div id="task-preview-tooltip" class="task-preview-tooltip hidden">
+    <div class="task-preview-header">
+      <span class="task-preview-title" id="task-preview-title">Window Title</span>
+      <button class="task-preview-close" id="task-preview-close-btn" title="Close">&times;</button>
+    </div>
+    <div class="task-preview-thumb" id="task-preview-thumb">
+      <i class="bi bi-window" style="font-size: 26px; color: #0055ea;"></i>
+      <span id="task-preview-sub">MPCrosoft Windows XP</span>
     </div>
   </div>
 
@@ -273,8 +389,8 @@
     <div class="tray-net-row"><span data-i18n="taskbar.net_status">Trạng thái:</span> <b style="color: #008800;" data-i18n="taskbar.net_connected">Đã kết nối</b></div>
     <div class="tray-net-row"><span>SSID:</span> <b>OU_CAMPUS_5G</b></div>
     <div class="tray-net-row"><span data-i18n="taskbar.net_speed">Tốc độ:</span> <b>100.0 Mbps</b></div>
-    <div class="tray-net-row"><span data-i18n="taskbar.net_ip">Địa chỉ IP:</span> <b>192.168.15.6</b></div>
-    <div class="tray-net-row"><span>Subnet:</span> <b>255.255.19.90</b></div>
+    <div class="tray-net-row"><span data-i18n="taskbar.net_ip">Địa chỉ IP:</span> <b>192.168.1.100</b></div>
+    <div class="tray-net-row"><span>Subnet:</span> <b>255.255.255.0</b></div>
   </div>
 
   <!-- Calendar & Analog Clock Popup -->
@@ -362,12 +478,12 @@
             <span class="start-item-title" data-i18n="start.my_pics">Hình ảnh của tôi</span>
           </div>
         </div>
-        <div class="start-item" onclick="WindowManager.open('language-settings')">
+        <div class="start-item" onclick="WindowManager.open('settings')">
           <div class="start-item-icon">
             <img src="assets/icons/network.svg" class="start-item-icon-img" alt="" />
           </div>
           <div class="start-item-text">
-            <span class="start-item-title" data-i18n="start.language_settings">Cài đặt ngôn ngữ</span>
+            <span class="start-item-title" data-i18n="start.settings">Cài đặt hệ thống</span>
           </div>
         </div>
         <div class="start-item" onclick="WindowManager.open('JOIN_MPC.exe')">
@@ -375,7 +491,7 @@
             <img src="assets/icons/exe.svg" class="start-item-icon-img" alt="" />
           </div>
           <div class="start-item-text">
-            <span class="start-item-title" style="color: #ff5500; font-weight: bold;" data-i18n="start.recruit">Tuyển thành viên 2026</span>
+            <span class="start-item-title" style="color: #ff5500; font-weight: bold;" data-i18n="start.recruit">Đăng ký thành viên</span>
           </div>
         </div>
       </div>
@@ -436,19 +552,27 @@
   <!-- ========================================================================
        MODULAR SCRIPTS
        ======================================================================== -->
+  <script src="js/config.js"></script>
   <script src="js/i18n.js"></script>
+  <script src="js/dialog.js"></script>
+  <script src="js/volume-manager.js"></script>
+  <script src="js/cursor.js"></script>
   <script src="js/vfs.js"></script>
   <script src="js/app-registry.js"></script>
   <script src="js/window-manager.js"></script>
   <script src="js/applications.js"></script>
+  <script src="js/wallpaper-manager.js"></script>
   <script src="js/apps/my-computer.js"></script>
   <script src="js/apps/terminal.js"></script>
+  <script src="js/apps/task-manager.js"></script>
   <script src="js/apps/explorer-browser.js"></script>
   <script src="js/apps/media-player.js"></script>
-  <script src="js/apps/language-settings.js"></script>
+  <script src="js/apps/image-viewer.js"></script>
+  <script src="js/apps/settings.js"></script>
   <script src="js/desktop.js"></script>
   <script src="js/taskbar.js"></script>
   <script src="js/npc.js"></script>
+  <script src="js/easter-egg-phot.js"></script>
   <script src="js/boot.js"></script>
   <script src="js/main.js"></script>
 </body>

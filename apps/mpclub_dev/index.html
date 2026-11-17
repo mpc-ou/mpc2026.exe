@@ -3,439 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MPClub.dev – CLB Lập trình & Đa nền tảng (OU IT)</title>
+  <title>MPClub.dev – Câu Lạc Bộ Lập Trình Trên Thiết Bị Di Động (Trường ĐH Mở TP.HCM)</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
-    :root {
-      --primary: #0044cc;
-      --primary-dark: #002b80;
-      --accent: #ff6600;
-      --accent-hover: #e65c00;
-      --bg: #f4f6fa;
-      --text: #222;
-      --card-bg: #ffffff;
-      --border: #d0d7de;
-    }
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 14px;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      background-color: #dce4f2;
+      color: #111;
+      line-height: 1.55;
+      font-size: 12.5px;
       overflow-x: hidden;
     }
-    /* Web Navigation Bar */
-    header.site-header {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+
+    /* Classic Windows XP Portal Header */
+    header.portal-header {
+      background: linear-gradient(180deg, #003399 0%, #0055ea 85%, #2572fe 100%);
       color: #fff;
+      border-bottom: 3px solid #ff6600;
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-      border-bottom: 3px solid var(--accent);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
     }
     .header-inner {
-      max-width: 1100px;
+      max-width: 1040px;
       margin: 0 auto;
-      padding: 10px 20px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
     }
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       text-decoration: none;
-      color: inherit;
+      color: #fff;
     }
     .brand-logo {
-      width: 38px;
-      height: 38px;
-      object-fit: contain;
+      width: 36px;
+      height: 36px;
       background: #fff;
-      border-radius: 50%;
+      border: 1px solid #002266;
+      border-radius: 3px;
       padding: 2px;
+      object-fit: contain;
     }
-    .brand-name {
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .brand-name span {
-      color: #ffaa00;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: #e0e9ff;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 13px;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover {
-      color: #ffffff;
-      text-decoration: underline;
-    }
-    .btn-apply-nav {
-      background: var(--accent);
-      color: #fff !important;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-weight: bold !important;
-      transition: transform 0.2s, background 0.2s !important;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-apply-nav:hover {
-      background: var(--accent-hover) !important;
-      transform: translateY(-1px);
-      text-decoration: none !important;
-    }
-    /* Hero Banner */
-    .hero-section {
-      background: linear-gradient(180deg, #0b1a30 0%, #162c52 100%);
-      color: #ffffff;
-      text-align: center;
-      padding: 48px 20px;
-      position: relative;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255, 102, 0, 0.2);
-      border: 1px solid rgba(255, 102, 0, 0.6);
-      color: #ff9944;
-      padding: 4px 14px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
-    .hero-title {
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 12px;
-      letter-spacing: -0.5px;
-      line-height: 1.25;
-    }
-    .hero-title span {
-      background: linear-gradient(90deg, #ff9900, #ffdd44);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-subtitle {
+    .brand-title {
       font-size: 15px;
-      max-width: 640px;
-      margin: 0 auto 24px auto;
-      color: #c0d4f5;
+      font-weight: bold;
+      letter-spacing: 0.3px;
     }
-    .hero-actions {
+    .brand-title span {
+      color: #ffcc00;
+    }
+    .brand-sub {
+      font-size: 10.5px;
+      color: #dbeaff;
+    }
+    .nav-bar {
       display: flex;
-      justify-content: center;
-      gap: 12px;
+      align-items: center;
+      gap: 4px;
       flex-wrap: wrap;
     }
-    .btn-hero {
-      padding: 10px 24px;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      border: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .btn-hero-primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 4px 14px rgba(255, 102, 0, 0.4);
-    }
-    .btn-hero-primary:hover {
-      background: var(--accent-hover);
-      transform: translateY(-2px);
-    }
-    .btn-hero-secondary {
+    .nav-link {
       background: rgba(255,255,255,0.12);
-      color: #fff;
       border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      text-decoration: none;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 2px;
     }
-    .btn-hero-secondary:hover {
-      background: rgba(255,255,255,0.22);
+    .nav-link:hover {
+      background: #ffffff;
+      color: #003399;
     }
-    /* Section Container */
-    .container {
-      max-width: 1060px;
-      margin: 0 auto;
-      padding: 36px 20px;
+    .nav-link.cta {
+      background: #ff6600;
+      border-color: #fff;
     }
-    .section-header {
-      text-align: center;
-      margin-bottom: 28px;
+    .nav-link.cta:hover {
+      background: #ff8533;
+      color: #fff;
     }
-    .section-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--primary-dark);
+
+    /* Main Page Container */
+    .portal-container {
+      max-width: 1040px;
+      margin: 12px auto;
+      padding: 0 12px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .section-desc {
-      color: #666;
-      font-size: 13px;
-      margin-top: 4px;
-    }
-    /* Grid */
-    .teams-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
-    }
-    .team-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .team-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      border-color: var(--primary);
-    }
-    .team-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-    .team-name {
-      font-size: 16px;
-      font-weight: 700;
-      color: #111;
-      margin-bottom: 6px;
-    }
-    .team-desc {
-      font-size: 12.5px;
-      color: #555;
-      line-height: 1.5;
-    }
-    /* Gallery */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      flex-direction: column;
       gap: 14px;
     }
-    .photo-item {
-      background: #fff;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+
+    /* Terminal Hero Window (README.md / whoami) */
+    .terminal-win {
+      background: #ece9d8;
+      border: 2px solid #0055ea;
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
-    .photo-item img {
-      width: 100%;
-      height: 130px;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.3s;
+    .terminal-titlebar {
+      background: linear-gradient(180deg, #0058ee 0%, #3593ff 8%, #0055ea 90%, #0030a5 100%);
+      color: #fff;
+      padding: 5px 10px;
+      font-weight: bold;
+      font-size: 11.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .photo-item:hover img {
-      transform: scale(1.04);
+    .terminal-body {
+      background: #0c141f;
+      color: #d4e2f4;
+      padding: 16px 18px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12.5px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 16px;
+      align-items: center;
     }
-    .photo-caption {
+    .term-cmd {
+      color: #66b3ff;
+      margin-bottom: 4px;
+    }
+    .term-h1 {
+      color: #00ff66;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .term-slogan {
+      color: #ffcc00;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .term-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .term-stat-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid #2b4c7e;
       padding: 8px 10px;
-      font-size: 11px;
-      font-weight: 600;
-      color: #444;
-      background: #fafafa;
-      border-top: 1px solid #eee;
-    }
-    /* Footer */
-    footer.site-footer {
-      background: #111a28;
-      color: #8fa0b5;
-      padding: 30px 20px;
       text-align: center;
+    }
+    .term-stat-num {
+      color: #00ff66;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .term-stat-lbl {
+      color: #a8c4e8;
+      font-size: 11px;
+    }
+
+    /* Classic XP Section Window */
+    .xp-section {
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .xp-sec-header {
+      background: linear-gradient(90deg, #003399 0%, #316ac5 100%);
+      color: #fff;
+      padding: 6px 12px;
+      font-weight: bold;
+      font-size: 12.5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ff6600;
+    }
+    .xp-sec-file {
+      font-family: "Courier New", monospace;
+      font-size: 11px;
+      background: rgba(0,0,0,0.25);
+      padding: 1px 6px;
+      border-radius: 2px;
+      color: #ffcc00;
+    }
+    .xp-sec-body {
+      background: #ffffff;
+      margin: 6px;
+      border: 1px solid #7f9db9;
+      padding: 14px;
+    }
+
+    /* Grids & Cards */
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 10px;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+    }
+    .xp-card {
+      background: #fafcfe;
+      border: 1px solid #b8c9de;
+      border-top: 3px solid #0055ea;
+      padding: 10px 12px;
+      border-radius: 2px;
+    }
+    .xp-card.orange {
+      border-top-color: #ff6600;
+    }
+    .xp-card-title {
+      font-weight: bold;
+      color: #003399;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* Tables */
+    .xp-table {
+      width: 100%;
+      border-collapse: collapse;
       font-size: 12px;
-      border-top: 1px solid #23334d;
     }
-    footer.site-footer a {
-      color: #ff9900;
+    .xp-table th, .xp-table td {
+      border: 1px solid #c0cfe0;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    .xp-table th {
+      background: linear-gradient(180deg, #f0f4fa 0%, #dce4f0 100%);
+      color: #003399;
+      font-weight: bold;
+    }
+    .xp-table tr:nth-child(even) td {
+      background: #f7faff;
+    }
+
+    /* Footer */
+    footer.portal-footer {
+      background: #002266;
+      color: #dbeaff;
+      border-top: 3px solid #ff6600;
+      padding: 16px;
+      text-align: center;
+      font-size: 11.5px;
+      margin-top: 16px;
+    }
+    footer.portal-footer a {
+      color: #ffcc00;
       text-decoration: none;
+      font-weight: bold;
     }
-    @media (max-width: 600px) {
-      .hero-title { font-size: 24px; }
-      .header-inner { flex-direction: column; gap: 8px; }
-      .nav-links { gap: 10px; }
+
+    @media (max-width: 680px) {
+      .terminal-body { grid-template-columns: 1fr; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
 
-  <!-- Web Header -->
-  <header class="site-header">
+  <!-- Header -->
+  <header class="portal-header">
     <div class="header-inner">
       <a href="#" class="brand-group">
-        <img src="../../assets/icons/logo.png" class="brand-logo" alt="MPClub Logo" />
-        <div class="brand-name">MPClub<span>.dev</span></div>
+        <img src="../../assets/icons/logo.png" class="brand-logo" alt="MPC Logo">
+        <div>
+          <div class="brand-title">MPClub<span>.dev</span> — Mobile Programming Club</div>
+          <div class="brand-sub" data-vi="Câu lạc bộ Lập trình trên thiết bị di động • Khoa CNTT – Trường ĐH Mở TP.HCM" data-en="Mobile Programming Club • Faculty of IT – Trường ĐH Mở TP.HCM">Câu lạc bộ Lập trình trên thiết bị di động • Khoa CNTT – Trường ĐH Mở TP.HCM</div>
+        </div>
       </a>
-      <ul class="nav-links">
-        <li><a href="#about">Giới thiệu</a></li>
-        <li><a href="#teams">Ban Chuyên Môn</a></li>
-        <li><a href="#gallery">Khoảnh Khắc</a></li>
-        <li>
-          <a href="#" class="btn-apply-nav" id="apply-btn-nav">
-            <i class="bi bi-rocket-takeoff-fill"></i> Tuyển Thành Viên
-          </a>
-        </li>
-      </ul>
+      <nav class="nav-bar">
+        <a class="nav-link" href="#about">README.md</a>
+        <a class="nav-link" href="#teams">members.json</a>
+        <a class="nav-link" href="#webdesign">Web Design 2026</a>
+        <a class="nav-link" href="#training" data-vi="Đào tạo" data-en="Training">Đào tạo</a>
+        <a class="nav-link" href="#projects">MPC Extension</a>
+        <a class="nav-link cta" href="#" id="btn-open-join"><i class="bi bi-rocket-takeoff-fill"></i> JOIN_MPC.exe</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Hero Banner -->
-  <section class="hero-section">
-    <div class="hero-badge">
-      <i class="bi bi-stars"></i> ĐỢT TUYỂN THÀNH VIÊN MPCLUB 2026: GENESIS
-    </div>
-    <h1 class="hero-title">ĐIỂM TỰA VỮNG CHẮC<br/><span>CHO ĐAM MÊ CÔNG NGHỆ</span></h1>
-    <p class="hero-subtitle">
-      Câu lạc bộ Đa Nền Tảng (MPClub) trực thuộc Khoa Công Nghệ Thông Tin – Trường Đại học Mở TP.HCM.
-      Nơi ươm mầm các tài năng lập trình, đồ họa và truyền thông.
-    </p>
-    <div class="hero-actions">
-      <button class="btn-hero btn-hero-primary" id="btn-hero-apply">
-        <i class="bi bi-pencil-square"></i> ĐĂNG KÝ ỨNG TUYỂN NGAY
-      </button>
-      <button class="btn-hero btn-hero-secondary" id="btn-hero-faq">
-        <i class="bi bi-question-circle"></i> CÂU HỎI THƯỜNG GẶP
-      </button>
-    </div>
-  </section>
+  <div class="portal-container">
 
-  <!-- About / Stats -->
-  <div class="container" id="about">
-    <div class="section-header">
-      <h2 class="section-title"><i class="bi bi-info-circle-fill" style="color: var(--primary);"></i> Về Chúng Tôi</h2>
-      <p class="section-desc">Hành trình kết nối sinh viên IT Đại học Mở TP.HCM qua các thế hệ</p>
+    <!-- Terminal Hero -->
+    <div class="terminal-win" id="about">
+      <div class="terminal-titlebar">
+        <span><i class="bi bi-terminal-fill"></i> C:\OU_IT\MPClub\README.md — whoami</span>
+        <span data-vi="Thành lập: 24/12/2015" data-en="Founded: 24/12/2015">Thành lập: 24/12/2015</span>
+      </div>
+      <div class="terminal-body">
+        <div>
+          <div class="term-cmd">$ cat /etc/mpclub-profile.conf</div>
+          <div class="term-h1" data-vi="CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPC)" data-en="MOBILE PROGRAMMING CLUB (MPC – TRƯỜNG ĐH MỞ TP.HCM)">CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPC)</div>
+          <div class="term-slogan" data-vi="&quot;Ở đâu có bug, ở đó có MPC!&quot;" data-en="&quot;Where there's a bug, there's MPC!&quot;">"Ở đâu có bug, ở đó có MPC!"</div>
+          <p style="margin-bottom: 10px;" data-html-vi="Trực thuộc <strong>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</strong>. Thành lập ngày <strong>24/12/2015</strong>, MPC đã phát triển từ định hướng lập trình di động ban đầu thành hệ sinh thái học thuật và thực hành công nghệ toàn diện: <em>Phát triển ứng dụng web, ứng dụng di động, trí tuệ nhân tạo, vận hành hệ thống, thiết kế giao diện, kỹ thuật phần mềm, cấu trúc dữ liệu và giải thuật</em>." data-html-en="Under the <strong>Faculty of Information Technology – Trường ĐH Mở TP.HCM</strong>. Founded on <strong>24/12/2015</strong>, MPC has grown from mobile programming into a comprehensive academic and engineering community: <em>Web development, mobile applications, artificial intelligence, DevOps, UI/UX design, software engineering, and algorithms</em>.">
+            Trực thuộc <strong>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</strong>. Thành lập ngày <strong>24/12/2015</strong>, MPC đã phát triển từ định hướng lập trình di động ban đầu thành hệ sinh thái học thuật và thực hành công nghệ toàn diện: <em>Phát triển ứng dụng web, ứng dụng di động, trí tuệ nhân tạo, vận hành hệ thống, thiết kế giao diện, kỹ thuật phần mềm, cấu trúc dữ liệu và giải thuật</em>.
+          </p>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="nav-link cta" id="btn-hero-join" style="cursor:pointer;" data-vi="🚀 Đăng ký ứng tuyển thành viên (JOIN_MPC.exe)" data-en="🚀 Apply for membership (JOIN_MPC.exe)">🚀 Đăng ký ứng tuyển thành viên (JOIN_MPC.exe)</button>
+            <button class="nav-link" id="btn-hero-faq" style="cursor:pointer;" data-vi="❓ Xem câu hỏi thường gặp" data-en="❓ View frequently asked questions">❓ Xem câu hỏi thường gặp</button>
+          </div>
+        </div>
+        <div class="term-stats">
+          <div class="term-stat-box">
+            <div class="term-stat-num">50+</div>
+            <div class="term-stat-lbl" data-vi="Thành viên hoạt động" data-en="Active members">Thành viên hoạt động</div>
+          </div>
+          <div class="term-stat-box">
+            <div class="term-stat-num">10+</div>
+            <div class="term-stat-lbl" data-vi="Năm hoạt động (2015–2026)" data-en="Years active (2015–2026)">Năm hoạt động (2015–2026)</div>
+          </div>
+          <div class="term-stat-box">
+            <div class="term-stat-num">30+</div>
+            <div class="term-stat-lbl" data-vi="Sự kiện đã tổ chức" data-en="Events organized">Sự kiện đã tổ chức</div>
+          </div>
+          <div class="term-stat-box">
+            <div class="term-stat-num">10+</div>
+            <div class="term-stat-lbl" data-vi="Dự án hoàn thành" data-en="Projects completed">Dự án hoàn thành</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 24px; line-height: 1.8; color: #333;">
-      <p style="margin-bottom: 12px;">
-        <strong>MPClub (Multi-Platform Club)</strong> là câu lạc bộ học thuật năng động bậc nhất tại Khoa CNTT - OU.
-        Chúng tôi hoạt động trên tinh thần chia sẻ kiến thức, cùng nhau phát triển các sản phẩm phần mềm thực tế
-        và chuẩn bị hành trang vững vàng trước khi bước vào thị trường công nghệ số.
-      </p>
-      <p>
-        Từ các workshop kỹ thuật chuyên sâu (Web, Mobile, AI, Cloud), giải đấu thuật toán nội bộ kịch tính đến
-        những dự án phần mềm phục vụ cộng đồng sinh viên, MPClub là ngôi nhà chung cho mọi bạn trẻ khát khao khẳng định bản thân.
-      </p>
-    </div>
+
+    <!-- Section 1: Organization & Executive Board -->
+    <section class="xp-section" id="teams">
+      <div class="xp-sec-header">
+        <span><i class="bi bi-people-fill"></i> <span data-vi="CƠ CẤU TỔ CHỨC VÀ BAN CHỦ NHIỆM (2025 – 2026)" data-en="ORGANIZATION AND EXECUTIVE BOARD (2025 – 2026)">CƠ CẤU TỔ CHỨC VÀ BAN CHỦ NHIỆM (2025 – 2026)</span></span>
+        <span class="xp-sec-file">members.json</span>
+      </div>
+      <div class="xp-sec-body">
+        <div class="grid-4" style="margin-bottom: 12px;">
+          <div class="xp-card orange">
+            <div class="xp-card-title" data-vi="👑 Ban Chủ nhiệm" data-en="👑 Executive Board">👑 Ban Chủ nhiệm</div>
+            <p data-html-vi="Điều hành chung và định hướng phát triển câu lạc bộ.<br><strong>Chủ nhiệm:</strong> Nguyễn Thị Kim Oanh<br><strong>Phó chủ nhiệm:</strong> Phạm Đức Thắng, Cao Đỗ Huyền Trân" data-html-en="General management and strategic direction.<br><strong>President:</strong> Nguyễn Thị Kim Oanh<br><strong>Vice Presidents:</strong> Phạm Đức Thắng, Cao Đỗ Huyền Trân">Điều hành chung và định hướng phát triển câu lạc bộ.<br>
+            <strong>Chủ nhiệm:</strong> Nguyễn Thị Kim Oanh<br>
+            <strong>Phó chủ nhiệm:</strong> Phạm Đức Thắng, Cao Đỗ Huyền Trân</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-title" data-vi="💻 Ban Lập trình" data-en="💻 Programming Department">💻 Ban Lập trình</div>
+            <p data-html-vi="Đào tạo chuyên môn, cố vấn học tập và phát triển sản phẩm công nghệ.<br><strong>Trưởng ban:</strong> Nguyễn Thanh Triều" data-html-en="Technical training, academic mentoring, and software development.<br><strong>Head of Department:</strong> Nguyễn Thanh Triều">Đào tạo chuyên môn, cố vấn học tập và phát triển sản phẩm công nghệ.<br>
+            <strong>Trưởng ban:</strong> Nguyễn Thanh Triều</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-title" data-vi="🎨 Ban Truyền thông" data-en="🎨 Media Department">🎨 Ban Truyền thông</div>
+            <p data-html-vi="Quản trị kênh thông tin, biên tập nội dung, thiết kế đồ họa, quay dựng và chụp ảnh.<br><strong>Trưởng ban:</strong> Lê Nguyễn Vân Anh" data-html-en="Communications, Fanpage, content writing, graphic design, video, and photography.<br><strong>Head of Department:</strong> Lê Nguyễn Vân Anh">Quản trị kênh thông tin, biên tập nội dung, thiết kế đồ họa, quay dựng và chụp ảnh.<br>
+            <strong>Trưởng ban:</strong> Lê Nguyễn Vân Anh</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-title" data-vi="🎪 Ban Hậu cần" data-en="🎪 Logistics Department">🎪 Ban Hậu cần</div>
+            <p data-html-vi="Tổ chức sự kiện, trang trí không gian, quản lý tài chính và công tác hậu cần.<br><strong>Trưởng ban:</strong> Trần Võ Thị Thu Uyên" data-html-en="Event organization, venue setup, finance, and logistics.<br><strong>Head of Department:</strong> Trần Võ Thị Thu Uyên">Tổ chức sự kiện, trang trí không gian, quản lý tài chính và công tác hậu cần.<br>
+            <strong>Trưởng ban:</strong> Trần Võ Thị Thu Uyên</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Web Design 2026 & 2025 Exhibition -->
+    <section class="xp-section" id="webdesign">
+      <div class="xp-sec-header">
+        <span><i class="bi bi-window-stack"></i> <span data-vi="CUỘC THI THIẾT KẾ WEBSITE WEB DESIGN (MÙA GIẢI 2025 VÀ 2026)" data-en="WEB DESIGN COMPETITION (2025 AND 2026 ARCHIVE)">CUỘC THI THIẾT KẾ WEBSITE WEB DESIGN (MÙA GIẢI 2025 VÀ 2026)</span></span>
+        <span class="xp-sec-file">web_design_exhibition.json</span>
+      </div>
+      <div class="xp-sec-body">
+        <p style="margin-bottom: 10px;" data-html-vi="<strong>Cuộc thi Web Design 2026 (Chung kết ngày 18/10/2026)</strong> dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong>: Xây dựng website bằng HTML, CSS, JavaScript thuần có khả năng chuyển đổi thương hiệu và nội dung qua cấu hình JSON mà không cần chỉnh sửa mã nguồn." data-html-en="<strong>Web Design 2026 (Finals on 18/10/2026)</strong> for students of <strong>Trường ĐH Mở TP.HCM</strong>: Build pure HTML, CSS, and Vanilla JS websites capable of dynamic brand and content switching via JSON config without modifying source code.">
+          <strong>Cuộc thi Web Design 2026 (Chung kết ngày 18/10/2026)</strong> dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong>: Xây dựng website bằng HTML, CSS, JavaScript thuần có khả năng chuyển đổi thương hiệu và nội dung qua cấu hình JSON mà không cần chỉnh sửa mã nguồn.
+        </p>
+        <table class="xp-table">
+          <thead>
+            <tr>
+              <th data-vi="Mùa giải và giải thưởng" data-en="Season and award">Mùa giải và giải thưởng</th>
+              <th data-vi="Đội thi" data-en="Team">Đội thi</th>
+              <th data-vi="Tên sản phẩm" data-en="Project title">Tên sản phẩm</th>
+              <th data-vi="Liên kết sản phẩm" data-en="Live link">Liên kết sản phẩm</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td data-html-vi="<strong>🥇 Giải Nhất 2026</strong> (800.000đ, cộng 7 điểm rèn luyện)" data-html-en="<strong>🥇 1st Prize 2026</strong> (800,000 VND, +7 training points)"><strong>🥇 Giải Nhất 2026</strong> (800.000đ, cộng 7 điểm rèn luyện)</td>
+              <td><strong>ClauKi</strong></td>
+              <td data-vi="Cổng thông tin dịch vụ du lịch địa phương" data-en="Local Travel Services Portal">Cổng thông tin dịch vụ du lịch địa phương</td>
+              <td><a href="https://clauki.xachbalo.com" target="_blank" rel="noopener">clauki.xachbalo.com</a></td>
+            </tr>
+            <tr>
+              <td data-html-vi="<strong>🥈 Giải Nhì 2026</strong> (400.000đ, cộng 7 điểm rèn luyện)" data-html-en="<strong>🥈 2nd Prize 2026</strong> (400,000 VND, +7 training points)"><strong>🥈 Giải Nhì 2026</strong> (400.000đ, cộng 7 điểm rèn luyện)</td>
+              <td><strong>404 Not Found</strong></td>
+              <td data-vi="Giải pháp thu hồi và tái chế thiết bị pin" data-en="Battery Device Recycling Solution">Giải pháp thu hồi và tái chế thiết bị pin</td>
+              <td><a href="https://demo.manhz.dev" target="_blank" rel="noopener">demo.manhz.dev</a></td>
+            </tr>
+            <tr>
+              <td data-html-vi="<strong>🥉 Giải Ba 2026</strong> (200.000đ, cộng 5 điểm rèn luyện)" data-html-en="<strong>🥉 3rd Prize 2026</strong> (200,000 VND, +5 training points)"><strong>🥉 Giải Ba 2026</strong> (200.000đ, cộng 5 điểm rèn luyện)</td>
+              <td><strong>TopBotDev</strong></td>
+              <td data-vi="Hệ thống website bất động sản đa thương hiệu" data-en="White-Label System for Real Estate">Hệ thống website bất động sản đa thương hiệu</td>
+              <td><a href="https://web-design-2026.truongbinhminh27122006.workers.dev" target="_blank" rel="noopener" data-vi="Xem sản phẩm" data-en="View demo">Xem sản phẩm</a></td>
+            </tr>
+            <tr>
+              <td data-html-vi="<strong>Triển lãm 2026</strong> (cùng đội VieCodie, KTV)" data-html-en="<strong>2026 Exhibition</strong> (with VieCodie, KTV)"><strong>Triển lãm 2026</strong> (cùng đội VieCodie, KTV)</td>
+              <td><strong>CHẠY DEADLINE CHO VUI</strong></td>
+              <td data-vi="Trang quảng bá thương hiệu ẩm thực và nhà hàng" data-en="Restaurant Promotion Website">Trang quảng bá thương hiệu ẩm thực và nhà hàng</td>
+              <td><a href="https://sunbin.is-a.dev/WEB-DESIGN-FOOD-AND-BEVERAGE" target="_blank" rel="noopener" data-vi="Xem sản phẩm" data-en="View demo">Xem sản phẩm</a></td>
+            </tr>
+            <tr>
+              <td data-html-vi="<strong>Triển lãm mùa 2025</strong> (Kỷ niệm 35 năm Trường ĐH Mở TP.HCM)" data-html-en="<strong>2025 Exhibition</strong> (35th Anniversary of Trường ĐH Mở TP.HCM)"><strong>Triển lãm mùa 2025</strong> (Kỷ niệm 35 năm Trường ĐH Mở TP.HCM)</td>
+              <td><strong>NTK, THETHREE, Stack Lifo, Future</strong></td>
+              <td data-vi="Trang thông tin Khoa CNTT và Cổng kỷ niệm 35 năm Trường ĐH Mở TP.HCM" data-en="IT Faculty Website and 35th Anniversary Portal of Trường ĐH Mở TP.HCM">Trang thông tin Khoa CNTT và Cổng kỷ niệm 35 năm Trường ĐH Mở TP.HCM</td>
+              <td><a href="https://www.mpclub.dev/en/web-design/exhibitions" target="_blank" rel="noopener" data-vi="Xem kho lưu trữ" data-en="Exhibition archive">Xem kho lưu trữ</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 3: Training Roadmap & MPC Extension -->
+    <section class="xp-section" id="training">
+      <div class="xp-sec-header">
+        <span><i class="bi bi-mortarboard-fill"></i> <span data-vi="ĐÀO TẠO CHUYÊN MÔN, DỰ ÁN MPC EXTENSION VÀ BẢNG VÀNG" data-en="TRAINING ROADMAP, MPC EXTENSION AND HALL OF FAME">ĐÀO TẠO CHUYÊN MÔN, DỰ ÁN MPC EXTENSION VÀ BẢNG VÀNG</span></span>
+        <span class="xp-sec-file">activities.py</span>
+      </div>
+      <div class="xp-sec-body" id="projects">
+        <div class="grid-2">
+          <div class="xp-card">
+            <div class="xp-card-title" data-vi="📚 Lộ trình đào tạo 4 giai đoạn" data-en="📚 Four-stage training roadmap">📚 Lộ trình đào tạo 4 giai đoạn</div>
+            <p data-html-vi="• <strong>Học kỳ 1–2 (Kỹ thuật lập trình):</strong> C/C++, tư duy thuật toán, cấu trúc dữ liệu, Git.<br>• <strong>Học kỳ 3 (Phát triển ứng dụng web):</strong> HTML5, CSS3, JavaScript, React, Next.js.<br>• <strong>Học kỳ 4 (Lập trình hướng đối tượng):</strong> Java / C#, nguyên lý hướng đối tượng, mẫu thiết kế phần mềm.<br>• <strong>Học kỳ 5 (Thực hành dự án):</strong> RESTful API, Docker, quy trình làm việc nhóm Agile/Scrum." data-html-en="• <strong>Semesters 1–2 (Programming techniques):</strong> C/C++, algorithmic thinking, data structures, Git.<br>• <strong>Semester 3 (Web development):</strong> HTML5, CSS3, JavaScript, React, Next.js.<br>• <strong>Semester 4 (Object-oriented programming):</strong> Java / C#, OOP principles, design patterns.<br>• <strong>Semester 5 (Project practice):</strong> RESTful API, Docker, Agile/Scrum teamwork.">
+              • <strong>Học kỳ 1–2 (Kỹ thuật lập trình):</strong> C/C++, tư duy thuật toán, cấu trúc dữ liệu, Git.<br>
+              • <strong>Học kỳ 3 (Phát triển ứng dụng web):</strong> HTML5, CSS3, JavaScript, React, Next.js.<br>
+              • <strong>Học kỳ 4 (Lập trình hướng đối tượng):</strong> Java / C#, nguyên lý hướng đối tượng, mẫu thiết kế phần mềm.<br>
+              • <strong>Học kỳ 5 (Thực hành dự án):</strong> RESTful API, Docker, quy trình làm việc nhóm Agile/Scrum.
+            </p>
+          </div>
+          <div class="xp-card orange">
+            <div class="xp-card-title" data-vi="🧩 Dự án MPC Extension và thành tích học thuật" data-en="🧩 MPC Extension project and academic achievements">🧩 Dự án MPC Extension và thành tích học thuật</div>
+            <p data-html-vi="• <strong>MPC Extension (từ tháng 03/2024 đến nay):</strong> Tiện ích trình duyệt (WXT, React, TypeScript) hỗ trợ sinh viên Trường ĐH Mở TP.HCM xem điểm, tính điểm trung bình tích lũy, lập kế hoạch điểm số và theo dõi lịch học, lịch thi trên <code>sis.ou.edu.vn</code>.<br>• <strong>Thành tích:</strong> Giải Ba Olympic Tin học và Lập trình đối kháng 2025 (Nguyễn Thị Kim Oanh, Phan Gia Huy), Giải pháp phần mềm 2024, Olympic Tin học Sinh viên Việt Nam lần thứ 31 (Tsàn Quý Thành)." data-html-en="• <strong>MPC Extension (March 2024 – present):</strong> Browser extension (WXT, React, TypeScript) helping Trường ĐH Mở TP.HCM students view grades, calculate GPA, plan targets, and track schedules on <code>sis.ou.edu.vn</code>.<br>• <strong>Achievements:</strong> 3rd Prize Informatics Olympiad and Competitive Programming 2025 (Nguyễn Thị Kim Oanh, Phan Gia Huy), Software Solutions 2024, 31st National Student Informatics Olympiad (Tsàn Quý Thành).">
+              • <strong>MPC Extension (từ tháng 03/2024 đến nay):</strong> Tiện ích trình duyệt (WXT, React, TypeScript) hỗ trợ sinh viên Trường ĐH Mở TP.HCM xem điểm, tính điểm trung bình tích lũy, lập kế hoạch điểm số và theo dõi lịch học, lịch thi trên <code>sis.ou.edu.vn</code>.<br>
+              • <strong>Thành tích:</strong> Giải Ba Olympic Tin học và Lập trình đối kháng 2025 (Nguyễn Thị Kim Oanh, Phan Gia Huy), Giải pháp phần mềm 2024, Olympic Tin học Sinh viên Việt Nam lần thứ 31 (Tsàn Quý Thành).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 
-  <!-- Departments -->
-  <div class="container" id="teams">
-    <div class="section-header">
-      <h2 class="section-title"><i class="bi bi-people-fill" style="color: var(--primary);"></i> 4 Ban Chuyên Môn</h2>
-      <p class="section-desc">Mỗi cá tính, mỗi thế mạnh đều có một bến đỗ tỏa sáng tại MPClub</p>
+  <footer class="portal-footer">
+    <div><strong data-vi="CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPC)" data-en="MOBILE PROGRAMMING CLUB (MPC)">CÂU LẠC BỘ LẬP TRÌNH TRÊN THIẾT BỊ DI ĐỘNG (MPC)</strong></div>
+    <div data-vi="Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM • Thành lập: 24/12/2015" data-en="Faculty of Information Technology – Trường ĐH Mở TP.HCM • Founded: 24/12/2015">Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM • Thành lập: 24/12/2015</div>
+    <div style="margin-top:4px;">
+      Email: <a href="mailto:it.mpclub@ou.edu.vn">it.mpclub@ou.edu.vn</a> &nbsp;|&nbsp;
+      Website: <a href="https://www.mpclub.dev" target="_blank" rel="noopener">www.mpclub.dev</a> &nbsp;|&nbsp;
+      Fanpage: <a href="https://fb.com/CLBLapTrinhTrenThietBiDiDong" target="_blank" rel="noopener">CLB Lập Trình Trên Thiết Bị Di Động</a>
     </div>
-    <div class="teams-grid">
-      <div class="team-card">
-        <div class="team-icon">💻</div>
-        <div class="team-name">Ban Lập Trình (BLT)</div>
-        <div class="team-desc">Rèn luyện tư duy thuật toán, tham gia xây dựng các dự án Web, Mobile, Bot tự động hóa và các hệ thống nội bộ.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-icon">🎨</div>
-        <div class="team-name">Ban Thiết Kế (BTK)</div>
-        <div class="team-desc">Kiến tạo ngôn ngữ thị giác, UI/UX sản phẩm, infographic, ấn phẩm truyền thông và linh vật đại diện CLB.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-icon">📢</div>
-        <div class="team-name">Ban Truyền Thông (BTT)</div>
-        <div class="team-desc">Sáng tạo nội dung số, xây dựng chiến lược truyền thông đa kênh, biên tập bài viết và lan tỏa hình ảnh sinh viên OU IT.</div>
-      </div>
-      <div class="team-card">
-        <div class="team-icon">🎪</div>
-        <div class="team-name">Ban Sự Kiện (BSK)</div>
-        <div class="team-desc">Lên kế hoạch, tổ chức các giải đấu coding, workshop công nghệ chuyên đề và các buổi bonding gắn kết đại gia đình MPC.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Gallery -->
-  <div class="container" id="gallery">
-    <div class="section-header">
-      <h2 class="section-title"><i class="bi bi-images" style="color: var(--primary);"></i> Khoảnh Khắc MPClub</h2>
-      <p class="section-desc">Những kỷ niệm đáng nhớ trong các hoạt động chuyên môn và phong trào</p>
-    </div>
-    <div class="photo-grid">
-      <div class="photo-item">
-        <img src="../../assets/images/the-open-clubs/contest-0.jpg" alt="Cuộc thi lập trình" />
-        <div class="photo-caption">🏆 Cuộc thi học thuật & Giải đấu lập trình</div>
-      </div>
-      <div class="photo-item">
-        <img src="../../assets/images/the-open-clubs/training-1.jpg" alt="Training học thuật" />
-        <div class="photo-caption">💻 Buổi Training & Workshop chuyên đề</div>
-      </div>
-      <div class="photo-item">
-        <img src="../../assets/images/the-open-clubs/members-4.jpg" alt="Gặp mặt thành viên" />
-        <div class="photo-caption">🤝 Gắn kết đại gia đình MPClub</div>
-      </div>
-      <div class="photo-item">
-        <img src="../../assets/images/the-open-clubs/webdesign-1.jpg" alt="Thực chiến sản phẩm" />
-        <div class="photo-caption">🚀 Thực chiến xây dựng sản phẩm công nghệ</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <p>Bản quyền &copy; 2026 <strong>MPClub – Khoa CNTT Trường ĐH Mở TP.HCM</strong>.</p>
-    <p style="margin-top: 6px;">Designed & Developed with ❤️ by Ban Lập Trình (BLT).</p>
   </footer>
 
+  <script src="../_shared/lang.js"></script>
   <script>
-    // Integration with parent window OS
-    function openApp(appId) {
+    function openAppInParent(appId) {
       if (window.parent && window.parent.WindowManager) {
         window.parent.WindowManager.open(appId);
-      } else {
-        alert("Mở ứng dụng: " + appId);
       }
     }
-
-    document.getElementById('apply-btn-nav').addEventListener('click', (e) => {
+    document.getElementById('btn-open-join')?.addEventListener('click', e => {
       e.preventDefault();
-      openApp('JOIN_MPC.exe');
+      openAppInParent('JOIN_MPC.exe');
     });
-
-    document.getElementById('btn-hero-apply').addEventListener('click', () => {
-      openApp('JOIN_MPC.exe');
-    });
-
-    document.getElementById('btn-hero-faq').addEventListener('click', () => {
-      openApp('FAQ.txt');
-    });
+    document.getElementById('btn-hero-join')?.addEventListener('click', () => openAppInParent('JOIN_MPC.exe'));
+    document.getElementById('btn-hero-faq')?.addEventListener('click', () => openAppInParent('FAQ.txt'));
   </script>
 </body>
 </html>

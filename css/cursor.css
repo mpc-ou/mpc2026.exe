@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Windows XP Cursors & Click Shrink Feedback (1 -> 0.95)
+   ========================================================================== */
+
+:root {
+  --cursor-default: url('../assets/cursors/default.png') 0 0, url('../assets/cursors/default.svg') 0 0, auto;
+  --cursor-pointer: url('../assets/cursors/pointer.png') 6 1, url('../assets/cursors/pointer.svg') 6 1, pointer;
+  --cursor-text: url('../assets/cursors/text.svg') 8 12, text;
+  --cursor-wait: url('../assets/cursors/wait.svg') 16 16, wait;
+}
+
+html, body {
+  cursor: var(--cursor-default) !important;
+}
+
+/* All interactive elements receive the Windows XP Pointer (Hand) */
+button,
+a,
+select,
+option,
+label,
+summary,
+[role="button"],
+[role="tab"],
+[role="menuitem"],
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="range"],
+.desktop-icon,
+.desktop-icon-label,
+.desktop-icon-img,
+.taskbar-item,
+.taskbar-btn,
+.taskbar-clock,
+.taskbar-tray-icon,
+.taskbar-quick-launch-icon,
+.start-button,
+.window-ctrl-btn,
+.window-menu-item,
+.window-tab,
+.npc-body,
+.npc-btn,
+.npc-btn-primary,
+.npc-peek,
+.npc-bubble-close,
+.btn-xp,
+.nav-btn,
+.dialog-btn,
+.context-menu-item,
+.clickable,
+.dev-skip-btn {
+  cursor: var(--cursor-pointer) !important;
+}
+
+/* Editable text */
+input[type="text"],
+input[type="search"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+textarea,
+[contenteditable="true"] {
+  cursor: var(--cursor-text) !important;
+}
+
+/* System wait / busy */
+.is-busy,
+.is-loading,
+[aria-busy="true"] {
+  cursor: var(--cursor-wait) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Tactile Click Shrink Feedback (scales 1 -> 0.95 on click)
+   -------------------------------------------------------------------------- */
+.desktop-icon,
+.desktop-icon-img,
+.taskbar-item,
+.taskbar-btn,
+.taskbar-quick-launch-icon,
+.start-button,
+.window-ctrl-btn,
+.xp-dialog-button,
+.btn-xp,
+.npc-btn-primary,
+.npc-peek,
+.clickable {
+  transition: transform 0.08s ease-out;
+}
+
+/* Active / Pressed state: shrinks from 1 to 0.95 */
+.desktop-icon:active,
+.desktop-icon.clicking,
+.desktop-icon-img.clicking,
+.taskbar-item:active,
+.taskbar-item.clicking,
+.taskbar-quick-launch-icon:active,
+.taskbar-quick-launch-icon.clicking,
+.start-button:active,
+.start-button.clicking,
+.window-ctrl-btn:active,
+.window-ctrl-btn.clicking,
+.xp-dialog-button:active,
+.xp-dialog-button.clicking,
+.btn-xp:active,
+.btn-xp.clicking,
+.npc-btn-primary:active,
+.npc-btn-primary.clicking,
+.npc-peek:active,
+.npc-peek.clicking,
+.clickable:active,
+.clickable.clicking,
+.clicking {
+  transform: scale(0.95) !important;
+}
+
+/* Quick pop animation for tap/click events */
+@keyframes xpIconClickShrink {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.clicking-pop {
+  animation: xpIconClickShrink 0.16s cubic-bezier(0.2, 0.9, 0.3, 1) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Simulated NPC Mouse Cursor (for Automated Actions)
+   -------------------------------------------------------------------------- */
+.npc-simulated-cursor {
+  position: fixed;
+  width: 26px;
+  height: 26px;
+  z-index: 1000005;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../assets/cursors/pointer.png');
+  filter: drop-shadow(2px 3px 5px rgba(0, 0, 0, 0.5));
+  transform-origin: 6px 1px;
+  transition: transform 0.12s ease-out, opacity 0.25s ease;
+}
+
+.npc-simulated-cursor.active-click {
+  transform: scale(0.85) translate(1px, 2px);
+}

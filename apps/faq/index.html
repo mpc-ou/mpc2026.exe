@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ.txt - Câu hỏi thường gặp</title>
+  <title>FAQ.txt – 32 Câu Hỏi Thường Gặp MPClub</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     * {
       box-sizing: border-box;
@@ -12,187 +13,371 @@
       padding: 0;
     }
     body {
-      background: #ffffff;
-      color: #222;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      font-size: 13px;
-      line-height: 1.6;
-      padding: 16px;
-      overflow-y: auto;
+      background: #ece9d8;
+      color: #111;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.55;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
-    .faq-header {
-      border-bottom: 2px solid #0055ea;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
+
+    .xp-help-header {
+      background: linear-gradient(90deg, #003399 0%, #0055ea 65%, #3593ff 100%);
+      color: #fff;
+      padding: 9px 14px;
+      border-bottom: 2px solid #ff6600;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
     }
-    .faq-title {
-      font-size: 17px;
+    .xp-help-title {
+      font-size: 14px;
       font-weight: bold;
-      color: #003399;
       display: flex;
       align-items: center;
-      gap: 6px;
-    }
-    .search-box {
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      background: #f4f6fa;
-      border: 1px solid #c0d0e6;
-      border-radius: 4px;
-      padding: 6px 12px;
       gap: 8px;
     }
-    .search-box input {
+    .xp-help-sub {
+      font-size: 11px;
+      color: #dbeaff;
+    }
+
+    .xp-search-bar {
+      background: #ece9d8;
+      border-bottom: 1px solid #aca899;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .xp-search-input-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border: 1px solid #7f9db9;
+      padding: 3px 8px;
+      gap: 6px;
+    }
+    .xp-search-input-wrap input {
       border: none;
-      background: transparent;
       outline: none;
       width: 100%;
-      font-size: 13px;
+      font-family: Tahoma, sans-serif;
+      font-size: 12px;
     }
-    .faq-item {
-      background: #fafbfc;
-      border: 1px solid #e1e4e8;
-      border-radius: 5px;
-      margin-bottom: 10px;
+    .xp-btn-expand {
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      box-shadow: inset 1px 1px 0 #fff;
+      padding: 3px 10px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+    .xp-btn-expand:hover {
+      background: #f5f4ea;
+    }
+
+    .xp-main {
+      flex: 1;
+      display: flex;
       overflow: hidden;
-      transition: all 0.2s;
     }
-    .faq-item:hover {
+
+    .xp-sidebar {
+      width: 215px;
+      background: #ffffff;
+      border-right: 1px solid #7f9db9;
+      margin: 6px 0 6px 8px;
+      border: 1px solid #7f9db9;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+    .xp-sidebar-head {
+      background: linear-gradient(180deg, #f0f4fa 0%, #dce4f0 100%);
+      color: #003399;
+      font-weight: bold;
+      padding: 6px 10px;
+      border-bottom: 1px solid #b5c4d8;
+      font-size: 11.5px;
+    }
+    .xp-cat-list {
+      padding: 6px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .cat-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: Tahoma, sans-serif;
+      font-size: 11.5px;
+      color: #111;
+      cursor: pointer;
+      border-radius: 2px;
+      text-align: left;
+    }
+    .cat-btn:hover {
+      background: #eef4fc;
+      border-color: #b5c9e2;
+    }
+    .cat-btn.active {
+      background: #316ac5;
+      color: #fff;
+      font-weight: bold;
+      border-color: #002266;
+    }
+    .cat-count {
+      background: rgba(0,0,0,0.12);
+      padding: 0 5px;
+      border-radius: 2px;
+      font-size: 10px;
+    }
+    .cat-btn.active .cat-count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .xp-content {
+      flex: 1;
+      background: #ffffff;
+      margin: 6px 8px;
+      border: 1px solid #7f9db9;
+      padding: 12px 14px;
+      overflow-y: auto;
+    }
+
+    .faq-item {
+      border: 1px solid #c4d3e6;
+      border-radius: 3px;
+      margin-bottom: 8px;
+      background: #fbfcfe;
+    }
+    .faq-item.active {
       border-color: #0055ea;
+      background: #ffffff;
     }
     .faq-question {
-      padding: 12px 14px;
-      font-weight: 600;
+      padding: 8px 12px;
+      font-weight: bold;
       color: #003399;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      user-select: none;
+      gap: 10px;
+      background: linear-gradient(180deg, #f7faff 0%, #ecf2fb 100%);
     }
     .faq-question:hover {
-      background: #edf3ff;
+      background: #e2edfc;
+    }
+    .faq-q-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .faq-num {
+      background: #0055ea;
+      color: #fff;
+      font-size: 10px;
+      padding: 1px 5px;
+      border-radius: 2px;
+      font-family: "Courier New", monospace;
+      flex-shrink: 0;
+    }
+    .faq-cat-tag {
+      background: #ece9d8;
+      border: 1px solid #b5b2a5;
+      color: #333;
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-weight: normal;
+      white-space: nowrap;
     }
     .faq-answer {
-      padding: 0 14px 12px 14px;
-      color: #444;
-      font-size: 12.5px;
+      padding: 10px 14px;
+      color: #222;
+      font-size: 12px;
       line-height: 1.6;
+      border-top: 1px dashed #c4d3e6;
       display: none;
-      border-top: 1px dashed #e1e4e8;
-      margin-top: 4px;
-      padding-top: 10px;
     }
     .faq-item.active .faq-answer {
       display: block;
     }
-    .faq-item.active .faq-icon {
-      transform: rotate(180deg);
-    }
-    .faq-icon {
-      transition: transform 0.2s;
-      font-size: 11px;
-    }
-    .cta-banner {
-      margin-top: 24px;
-      background: linear-gradient(90deg, #fff3e0 0%, #ffe0b2 100%);
-      border: 1px solid #ffb74d;
-      border-radius: 6px;
-      padding: 14px 18px;
+
+    .cta-box {
+      margin-top: 14px;
+      background: #fff8e6;
+      border: 1px solid #e6a800;
+      border-left: 4px solid #ff6600;
+      padding: 10px 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
     }
     .cta-btn {
-      background: #ff6600;
+      background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%);
       color: #fff;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
+      border: 1px solid #803300;
+      padding: 6px 14px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11.5px;
       font-weight: bold;
+      border-radius: 2px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-    .cta-btn:hover {
-      background: #e65c00;
+
+    .xp-statusbar {
+      height: 22px;
+      background: #ece9d8;
+      border-top: 1px solid #aca899;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 640px) {
+      .xp-main { flex-direction: column; }
+      .xp-sidebar { width: auto; margin: 6px 8px 0 8px; max-height: 140px; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
 
-  <div class="faq-header">
-    <div class="faq-title">
-      <i class="bi bi-question-circle-fill" style="color: #0055ea;"></i>
-      <span>FAQ.txt - Giải Đáp Thắc Mắc Tuyển Quân 2026</span>
-    </div>
-    <span style="font-size: 11px; color: #666;">Dữ liệu: data.json</span>
-  </div>
-
-  <div class="search-box">
-    <i class="bi bi-search" style="color: #888;"></i>
-    <input type="text" id="faq-search" placeholder="Tìm kiếm câu hỏi thắc mắc..." />
-  </div>
-
-  <!-- Dynamic FAQ list rendered from data.json -->
-  <div id="faq-list"></div>
-
-  <div class="cta-banner">
+  <!-- Header -->
+  <div class="xp-help-header">
     <div>
-      <div style="font-weight: bold; color: #b26a00;">Bạn đã sẵn sàng trở thành một mảnh ghép của MPClub?</div>
-      <div style="font-size: 11px; color: #666;">Đừng ngần ngại gửi đơn ứng tuyển ngay hôm nay!</div>
+      <div class="xp-help-title">
+        <i class="bi bi-question-circle-fill" style="color: #ffcc00;"></i>
+        <span data-vi="CÂU HỎI THƯỜNG GẶP (FAQ)" data-en="FREQUENTLY ASKED QUESTIONS (FAQ)">CÂU HỎI THƯỜNG GẶP (FAQ)</span>
+      </div>
+      <div class="xp-help-sub" data-vi="Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Mobile Programming Club (MPC) • Faculty of IT – Trường ĐH Mở TP.HCM">Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</div>
     </div>
-    <button class="cta-btn" id="btn-apply-cta">
-      <i class="bi bi-send-fill"></i> Ứng tuyển ngay (JOIN_MPC)
-    </button>
   </div>
 
-  <script>
-    const fallbackData = [
-      {
-        id: 1,
-        q_vi: "Sinh viên năm nhất (K25/K26) chưa có nhiều kiến thức lập trình có ứng tuyển được không?",
-        a_vi: "Hoàn toàn được! MPClub luôn chào đón các bạn sinh viên có niềm đam mê và tinh thần ham học hỏi. CLB có lộ trình training bài bản từ cơ bản đến nâng cao (Web, Mobile, Thuật toán) cùng sự hướng dẫn tận tình từ các anh chị mentor."
-      },
-      {
-        id: 2,
-        q_vi: "MPClub có những ban chuyên môn nào? Tôi có thể đăng ký nhiều ban không?",
-        a_vi: "MPClub gồm 4 ban: Ban Lập Trình (BLT), Ban Thiết Kế (BTK), Ban Truyền Thông (BTT), và Ban Sự Kiện (BSK). Bạn có thể chọn ban nguyện vọng 1 và ban nguyện vọng 2 phù hợp với thế mạnh của mình."
-      },
-      {
-        id: 3,
-        q_vi: "Quy trình tuyển thành viên 2026 diễn ra như thế nào?",
-        a_vi: "Quy trình gồm 3 vòng chính: Vòng 1 (Vòng đơn qua form JOIN_MPC.exe) ➜ Vòng 2 (Teamwork & Thử thách chuyên môn thực tế) ➜ Vòng 3 (Phỏng vấn trực tiếp cùng Ban Chủ Nhiệm và Trưởng ban)."
-      },
-      {
-        id: 4,
-        q_vi: "Tham gia MPClub mang lại những quyền lợi gì cho sinh viên OU IT?",
-        a_vi: "Được rèn luyện kỹ năng thực chiến qua các dự án phần mềm thật; Được cộng điểm rèn luyện theo quy chế Khoa CNTT - ĐH Mở TP.HCM; Mở rộng network với các anh chị Alumni tại các công ty công nghệ lớn; Môi trường sinh hoạt gắn kết và năng động!"
-      }
-    ];
+  <!-- Search Row -->
+  <div class="xp-search-bar">
+    <span style="font-weight:bold;" data-vi="Tìm kiếm:" data-en="Search:">Tìm kiếm:</span>
+    <div class="xp-search-input-wrap">
+      <i class="bi bi-search" style="color: #0055ea;"></i>
+      <input type="text" id="faq-search" data-placeholder-vi="Nhập từ khóa cần tìm (ví dụ: tuyển thành viên, quyền lợi, điểm rèn luyện, đào tạo, dự án...)" data-placeholder-en="Search keywords (e.g., recruitment, benefits, training points, courses, projects...)" placeholder="Nhập từ khóa cần tìm (ví dụ: tuyển thành viên, quyền lợi, điểm rèn luyện, đào tạo, dự án...)">
+    </div>
+    <button class="xp-btn-expand" id="btn-expand-all" data-vi="Mở hoặc thu gọn tất cả" data-en="Expand or collapse all">Mở hoặc thu gọn tất cả</button>
+  </div>
 
-    let currentFaqs = [];
+  <!-- Main Split Area -->
+  <div class="xp-main">
+    <!-- Left Category Tree -->
+    <div class="xp-sidebar">
+      <div class="xp-sidebar-head"><i class="bi bi-folder2-open"></i> <span data-vi="Nhóm chủ đề câu hỏi" data-en="Question categories">Nhóm chủ đề câu hỏi</span></div>
+      <div class="xp-cat-list" id="cat-list">
+        <button class="cat-btn active" data-cat="all"><span data-vi="📚 Tất cả câu hỏi" data-en="📚 All questions">📚 Tất cả câu hỏi</span> <span class="cat-count">19</span></button>
+        <button class="cat-btn" data-cat="General"><span data-vi="1. Tuyển thành viên" data-en="1. Recruitment">1. Tuyển thành viên</span> <span class="cat-count">4</span></button>
+        <button class="cat-btn" data-cat="About"><span data-vi="2. Giới thiệu CLB" data-en="2. About MPC">2. Giới thiệu CLB</span> <span class="cat-count">4</span></button>
+        <button class="cat-btn" data-cat="Activities"><span data-vi="3. Hoạt động CLB" data-en="3. Activities">3. Hoạt động CLB</span> <span class="cat-count">3</span></button>
+        <button class="cat-btn" data-cat="Training"><span data-vi="4. Đào tạo chuyên môn" data-en="4. Training">4. Đào tạo chuyên môn</span> <span class="cat-count">3</span></button>
+        <button class="cat-btn" data-cat="Projects"><span data-vi="5. Dự án công nghệ" data-en="5. Tech projects">5. Dự án công nghệ</span> <span class="cat-count">3</span></button>
+        <button class="cat-btn" data-cat="Sponsorship"><span data-vi="6. Hợp tác và tài trợ" data-en="6. Partnership">6. Hợp tác và tài trợ</span> <span class="cat-count">2</span></button>
+      </div>
+    </div>
 
-    function renderFaqs(list) {
-      const container = document.getElementById('faq-list');
-      container.innerHTML = list.map((item, index) => `
-        <div class="faq-item ${index === 0 ? 'active' : ''}">
-          <div class="faq-question">
-            <span>${item.id}. ${item.q_vi}</span>
-            <i class="bi bi-chevron-down faq-icon"></i>
-          </div>
-          <div class="faq-answer">${item.a_vi}</div>
+    <!-- Right FAQ List -->
+    <div class="xp-content">
+      <div id="faq-list"></div>
+
+      <div class="cta-box">
+        <div>
+          <div style="font-weight:bold; color:#003399;" data-vi="Bạn đã sẵn sàng gia nhập đại gia đình MPC tại Trường ĐH Mở TP.HCM?" data-en="Ready to join the MPC family at Trường ĐH Mở TP.HCM?">Bạn đã sẵn sàng gia nhập đại gia đình MPC tại Trường ĐH Mở TP.HCM?</div>
+          <div style="font-size:11px; color:#444;" data-vi="Câu lạc bộ không yêu cầu biết lập trình từ trước. Hãy mở ứng dụng JOIN_MPC.exe để đăng ký ngay nhé!" data-en="No prior coding experience required. Open JOIN_MPC.exe to submit your application!">Câu lạc bộ không yêu cầu biết lập trình từ trước. Hãy mở ứng dụng JOIN_MPC.exe để đăng ký ngay nhé!</div>
         </div>
-      `).join('');
+        <button class="cta-btn" id="btn-apply-cta">
+          <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Mở JOIN_MPC.exe để đăng ký" data-en="Open JOIN_MPC.exe to apply">Mở JOIN_MPC.exe để đăng ký</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
-      // Accordion toggle click handler
+  <!-- Status Bar -->
+  <div class="xp-statusbar">
+    <span id="status-count">Đang hiển thị 19 / 19 câu hỏi thường gặp</span>
+    <span data-vi="Email: it.mpclub@ou.edu.vn • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Email: it.mpclub@ou.edu.vn • Faculty of IT – Trường ĐH Mở TP.HCM">Email: it.mpclub@ou.edu.vn • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</span>
+  </div>
+
+  <script src="../_shared/lang.js"></script>
+  <script>
+    let allFaqs = [];
+    let activeCat = 'all';
+    let allExpanded = false;
+
+    const catLabelsVi = {
+      General: 'Tuyển thành viên',
+      About: 'Giới thiệu',
+      Activities: 'Hoạt động',
+      Training: 'Đào tạo',
+      Projects: 'Dự án',
+      Sponsorship: 'Hợp tác'
+    };
+
+    function renderFaqs() {
+      const vi = SubAppI18n.isVi();
+      const term = document.getElementById('faq-search').value.trim().toLowerCase();
+      const filtered = allFaqs.filter(item => {
+        const matchCat = activeCat === 'all' || item.cat === activeCat;
+        const q = (vi ? item.q_vi : (item.q_en || item.q_vi)).toLowerCase();
+        const a = (vi ? item.a_vi : (item.a_en || item.a_vi)).toLowerCase();
+        const matchTerm = !term || q.includes(term) || a.includes(term);
+        return matchCat && matchTerm;
+      });
+
+      document.getElementById('status-count').textContent = vi
+        ? `Đang hiển thị ${filtered.length} / ${allFaqs.length} câu hỏi thường gặp`
+        : `Showing ${filtered.length} / ${allFaqs.length} frequently asked questions`;
+
+      const container = document.getElementById('faq-list');
+      container.innerHTML = filtered.map((item, idx) => {
+        const q = vi ? item.q_vi : (item.q_en || item.q_vi);
+        const a = vi ? item.a_vi : (item.a_en || item.a_vi);
+        const catTag = vi ? (catLabelsVi[item.cat] || item.cat) : item.cat;
+        return `
+          <div class="faq-item ${(idx < 2 || allExpanded || term) ? 'active' : ''}">
+            <div class="faq-question">
+              <div class="faq-q-left">
+                <span class="faq-num">#${String(item.id).padStart(2, '0')}</span>
+                <span>${q}</span>
+              </div>
+              <span class="faq-cat-tag">${catTag}</span>
+            </div>
+            <div class="faq-answer">${a}</div>
+          </div>
+        `;
+      }).join('');
+
       container.querySelectorAll('.faq-question').forEach(q => {
         q.addEventListener('click', () => {
           q.parentElement.classList.toggle('active');
@@ -200,33 +385,36 @@
       });
     }
 
-    // Load data from data.json or fallback
     fetch('./data.json')
       .then(r => r.json())
       .then(data => {
-        currentFaqs = data;
-        renderFaqs(currentFaqs);
-      })
-      .catch(() => {
-        currentFaqs = fallbackData;
-        renderFaqs(currentFaqs);
+        allFaqs = data;
+        renderFaqs();
       });
 
-    // Search filter
-    document.getElementById('faq-search').addEventListener('input', (e) => {
-      const term = e.target.value.toLowerCase();
-      const filtered = currentFaqs.filter(item => 
-        item.q_vi.toLowerCase().includes(term) || item.a_vi.toLowerCase().includes(term)
-      );
-      renderFaqs(filtered);
+    document.querySelectorAll('.cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeCat = btn.dataset.cat;
+        renderFaqs();
+      });
     });
 
-    // CTA button
+    document.getElementById('faq-search').addEventListener('input', renderFaqs);
+
+    document.getElementById('btn-expand-all').addEventListener('click', () => {
+      allExpanded = !allExpanded;
+      renderFaqs();
+    });
+
     document.getElementById('btn-apply-cta').addEventListener('click', () => {
       if (window.parent && window.parent.WindowManager) {
         window.parent.WindowManager.open('JOIN_MPC.exe');
       }
     });
+
+    SubAppI18n.onChange(() => renderFaqs());
   </script>
 </body>
 </html>

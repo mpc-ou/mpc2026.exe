@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ĐĂNG KÝ PHỎNG VẤN TUYỂN THÀNH VIÊN CLB MPC K26</title>
+  <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #ece9d8;
+      color: #000;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Header Banner */
+    .form-banner {
+      background: linear-gradient(90deg, #003399 0%, #0055ea 70%, #2b82ff 100%);
+      color: #fff;
+      padding: 10px 16px;
+      border-bottom: 3px solid #ff6600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .banner-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .banner-logo {
+      width: 36px;
+      height: 36px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #fff;
+      border-radius: 3px;
+      padding: 3px;
+      border: 1px solid #002266;
+    }
+    .banner-title {
+      font-size: 13.5px;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+    }
+    .banner-sub {
+      font-size: 11px;
+      color: #dbeaff;
+    }
+
+    /* Scrollable Form Area */
+    .form-scroll {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-group {
+      background: #ffffff;
+      border: 1px solid #7f9db9;
+      border-top: 3px solid #0055ea;
+      border-radius: 2px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .section-group.orange {
+      border-top-color: #ff6600;
+    }
+    .section-heading {
+      font-size: 12.5px;
+      font-weight: bold;
+      color: #003399;
+      border-bottom: 1px solid #d8e4f5;
+      padding-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 12px;
+    }
+
+    .q-block {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .q-label {
+      font-weight: bold;
+      color: #111;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .req {
+      color: #d13438;
+      margin-left: 2px;
+    }
+
+    .xp-input, .xp-textarea {
+      width: 100%;
+      border: 1px solid #7f9db9;
+      padding: 5px 8px;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      background: #fff;
+      color: #000;
+      border-radius: 1px;
+    }
+    .xp-input:focus, .xp-textarea:focus {
+      outline: 1px solid #0055ea;
+      background: #f7fbff;
+    }
+    .xp-textarea {
+      resize: vertical;
+      min-height: 54px;
+    }
+
+    /* Radio Options List */
+    .radio-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #f8fbff;
+      border: 1px solid #d5e2f2;
+      padding: 8px 10px;
+      border-radius: 2px;
+    }
+    .radio-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      cursor: pointer;
+      color: #222;
+    }
+    .radio-item input[type="radio"] {
+      cursor: pointer;
+      accent-color: #0055ea;
+    }
+    .radio-item.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      color: #777;
+    }
+    .radio-item.disabled input[type="radio"] {
+      cursor: not-allowed;
+    }
+    .dup-tag {
+      font-size: 10px;
+      color: #b34700;
+      background: #fff3e6;
+      border: 1px solid #f5b882;
+      padding: 0 5px;
+      border-radius: 2px;
+      display: none;
+    }
+    .radio-item.disabled .dup-tag {
+      display: inline-block;
+    }
+    .other-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .other-input {
+      flex: 1;
+      min-width: 180px;
+      height: 24px;
+      border: 1px solid #7f9db9;
+      padding: 2px 6px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11.5px;
+    }
+
+    /* URL Preview Bar */
+    .url-preview-box {
+      background: #f4f7fc;
+      border: 1px solid #9bb8de;
+      padding: 8px 10px;
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .url-preview-row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .url-preview-input {
+      flex: 1;
+      height: 24px;
+      font-family: Consolas, monospace;
+      font-size: 11px;
+      background: #fff;
+      border: 1px solid #7f9db9;
+      padding: 2px 6px;
+      color: #003399;
+    }
+
+    /* Footer */
+    .form-footer {
+      background: #ece9d8;
+      border-top: 2px groove #d0ccb8;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      flex-wrap: wrap;
+    }
+    .xp-btn {
+      height: 28px;
+      background: #ece9d8;
+      border: 1px solid #003c74;
+      border-radius: 3px;
+      box-shadow: inset 1px 1px 0px #fff, inset -1px -1px 0px #707070;
+      font-size: 11.5px;
+      cursor: pointer;
+      padding: 0 12px;
+      font-family: Tahoma, sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: #000;
+      text-decoration: none;
+    }
+    .xp-btn:hover {
+      background: #f5f3e8;
+    }
+    .xp-btn.primary {
+      background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%);
+      border-color: #803300;
+      color: #ffffff;
+      font-weight: bold;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+    }
+    .xp-btn.primary:hover {
+      background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
+    }
+
+    @media (max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="../_shared/responsive.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="form-banner">
+    <div class="banner-left">
+      <img src="../../assets/icons/logo.png" class="banner-logo" alt="Logo MPClub">
+      <div>
+        <div class="banner-title" data-vi="ĐĂNG KÝ PHỎNG VẤN TUYỂN THÀNH VIÊN CLB MPC K26" data-en="MPC K26 MEMBER INTERVIEW REGISTRATION FORM">ĐĂNG KÝ PHỎNG VẤN TUYỂN THÀNH VIÊN CLB MPC K26</div>
+        <div class="banner-sub" data-vi="Điền thông tin bên dưới để tự động chuyển toàn bộ câu trả lời sang biểu mẫu Google Form" data-en="Complete the fields below to automatically open a pre-filled Google Form">Điền thông tin bên dưới để tự động chuyển toàn bộ câu trả lời sang biểu mẫu Google Form</div>
+      </div>
+    </div>
+    <button class="xp-btn" id="btn-reset-form" title="Xóa trắng biểu mẫu">
+      <i class="bi bi-arrow-counterclockwise"></i> <span data-vi="Làm mới" data-en="Reset">Làm mới</span>
+    </button>
+  </div>
+
+  <!-- Form Body -->
+  <form id="mpc-recruit-form" class="form-scroll" onsubmit="return false;">
+
+    <!-- Phần 1: Thông tin cá nhân -->
+    <div class="section-group">
+      <div class="section-heading">
+        <i class="bi bi-person-vcard-fill"></i>
+        <span data-vi="1. Thông tin cá nhân và liên hệ" data-en="1. Personal and contact information">1. Thông tin cá nhân và liên hệ</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- entry.2122493310 -->
+        <div class="q-block">
+          <label class="q-label" for="f-fullname">
+            <span data-vi="Họ tên của bạn ?" data-en="Your Full Name?">Họ tên của bạn ?</span><span class="req">*</span>
+          </label>
+          <input type="text" id="f-fullname" class="xp-input" placeholder="Nguyễn Văn A">
+        </div>
+
+        <!-- entry.651214934 -->
+        <div class="q-block">
+          <label class="q-label" for="f-mssv">
+            <span data-vi="MSSV" data-en="Student ID (MSSV)">MSSV</span><span class="req">*</span>
+          </label>
+          <input type="text" id="f-mssv" class="xp-input" placeholder="255101xxxx">
+        </div>
+
+        <!-- entry.1828045910 -->
+        <div class="q-block">
+          <label class="q-label" for="f-email">
+            <span data-vi="Email do trường cấp ?" data-en="University Email (@ou.edu.vn)?">Email do trường cấp ?</span><span class="req">*</span>
+          </label>
+          <input type="email" id="f-email" class="xp-input" placeholder="ten.nv@ou.edu.vn">
+        </div>
+
+        <!-- entry.986440216 -->
+        <div class="q-block">
+          <label class="q-label" for="f-phone">
+            <span data-vi="SĐT liên lạc" data-en="Phone Number">SĐT liên lạc</span><span class="req">*</span>
+          </label>
+          <input type="tel" id="f-phone" class="xp-input" placeholder="09xxxxxxxx">
+        </div>
+      </div>
+
+      <!-- entry.1279982109 -->
+      <div class="q-block">
+        <label class="q-label" for="f-fb">
+          <span data-vi="Link Facebook của bạn?" data-en="Your Facebook Profile Link?">Link Facebook của bạn?</span><span class="req">*</span>
+        </label>
+        <input type="url" id="f-fb" class="xp-input" placeholder="https://www.facebook.com/username">
+      </div>
+
+      <!-- entry.149535161: Bạn đến từ khoa nào ? -->
+      <div class="q-block">
+        <label class="q-label">
+          <span data-vi="Bạn đến từ khoa nào ?" data-en="Which Faculty are you from?">Bạn đến từ khoa nào ?</span><span class="req">*</span>
+        </label>
+        <div class="radio-list">
+          <label class="radio-item">
+            <input type="radio" name="faculty" value="Khoa Công nghệ thông tin" checked>
+            <span data-vi="Khoa Công nghệ thông tin" data-en="Faculty of Information Technology">Khoa Công nghệ thông tin</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="faculty" value="Khoa Đào tạo đặc biệt">
+            <span data-vi="Khoa Đào tạo đặc biệt" data-en="Faculty of Special Training">Khoa Đào tạo đặc biệt</span>
+          </label>
+          <div class="other-wrap">
+            <label class="radio-item">
+              <input type="radio" name="faculty" value="__other_option__" id="faculty-other-radio">
+              <span data-vi="Mục khác:" data-en="Other:">Mục khác:</span>
+            </label>
+            <input type="text" id="faculty-other-text" class="other-input" data-placeholder-vi="Nhập tên khoa của bạn..." data-placeholder-en="Enter your faculty..." placeholder="Nhập tên khoa của bạn...">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phần 2: Nguyện vọng & Kênh thông tin -->
+    <div class="section-group orange">
+      <div class="section-heading">
+        <i class="bi bi-diagram-3-fill"></i>
+        <span data-vi="2. Nguyện vọng ban và kênh biết đến câu lạc bộ" data-en="2. Department preferences and discovery channels">2. Nguyện vọng ban và kênh biết đến câu lạc bộ</span>
+      </div>
+
+      <div class="grid-2">
+        <!-- entry.319474904: Nguyện vọng 1 -->
+        <div class="q-block">
+          <label class="q-label">
+            <span data-vi="Nguyện vọng 1 của bạn ?" data-en="Your 1st Choice Department?">Nguyện vọng 1 của bạn ?</span><span class="req">*</span>
+          </label>
+          <div class="radio-list">
+            <label class="radio-item">
+              <input type="radio" name="choice1" value="Ban lập trình 💻" checked>
+              <span data-vi="Ban lập trình 💻" data-en="Programming Department 💻">Ban lập trình 💻</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="choice1" value="Ban truyền thông 📸">
+              <span data-vi="Ban truyền thông 📸" data-en="Media Department 📸">Ban truyền thông 📸</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="choice1" value="Ban hậu cần 🛠️">
+              <span data-vi="Ban hậu cần 🛠️" data-en="Logistics Department 🛠️">Ban hậu cần 🛠️</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- entry.33636831: Nguyện vọng 2 -->
+        <div class="q-block">
+          <label class="q-label">
+            <span data-vi="Nguyện vọng 2 của bạn ? ( nếu có )" data-en="Your 2nd Choice Department? (if any)">Nguyện vọng 2 của bạn ? ( nếu có )</span>
+          </label>
+          <div class="radio-list">
+            <label class="radio-item">
+              <input type="radio" name="choice2" value="" id="choice2-none" checked>
+              <span style="color:#666;" data-vi="(Không đăng ký nguyện vọng 2)" data-en="(No 2nd choice)">(Không đăng ký nguyện vọng 2)</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="choice2" value="Ban lập trình 💻">
+              <span data-vi="Ban lập trình 💻" data-en="Programming Department 💻">Ban lập trình 💻</span>
+              <span class="dup-tag" data-vi="Đã chọn ở NV1" data-en="Selected in 1st Choice">Đã chọn ở NV1</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="choice2" value="Ban truyền thông 📸">
+              <span data-vi="Ban truyền thông 📸" data-en="Media Department 📸">Ban truyền thông 📸</span>
+              <span class="dup-tag" data-vi="Đã chọn ở NV1" data-en="Selected in 1st Choice">Đã chọn ở NV1</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="choice2" value="Ban hậu cần 🛠️">
+              <span data-vi="Ban hậu cần 🛠️" data-en="Logistics Department 🛠️">Ban hậu cần 🛠️</span>
+              <span class="dup-tag" data-vi="Đã chọn ở NV1" data-en="Selected in 1st Choice">Đã chọn ở NV1</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- entry.612975854: Bạn biết đến CLB MPC chúng mình từ đâu ? -->
+      <div class="q-block">
+        <label class="q-label">
+          <span data-vi="Bạn biết đến CLB MPC chúng mình từ đâu ?" data-en="How did you hear about MPClub?">Bạn biết đến CLB MPC chúng mình từ đâu ?</span><span class="req">*</span>
+        </label>
+        <div class="radio-list">
+          <label class="radio-item">
+            <input type="radio" name="knowClubFrom" value="Từ các trang mạng xã hội gợi ý" checked>
+            <span data-vi="Từ các trang mạng xã hội gợi ý" data-en="From social media recommendations">Từ các trang mạng xã hội gợi ý</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="knowClubFrom" value="Từ các buổi sinh hoạt công dân, web khoa, sổ tay sinh viên,...">
+            <span data-vi="Từ các buổi sinh hoạt công dân, web khoa, sổ tay sinh viên,..." data-en="From orientation sessions, faculty website, student handbook,...">Từ các buổi sinh hoạt công dân, web khoa, sổ tay sinh viên,...</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="knowClubFrom" value="Từ các sự kiện mà CLB tham gia, tổ chức">
+            <span data-vi="Từ các sự kiện mà CLB tham gia, tổ chức" data-en="From events organized or attended by the club">Từ các sự kiện mà CLB tham gia, tổ chức</span>
+          </label>
+          <div class="other-wrap">
+            <label class="radio-item">
+              <input type="radio" name="knowClubFrom" value="__other_option__" id="know-club-other-radio">
+              <span data-vi="Mục khác:" data-en="Other:">Mục khác:</span>
+            </label>
+            <input type="text" id="know-club-other-text" class="other-input" data-placeholder-vi="Nhập nguồn khác..." data-placeholder-en="Specify other source..." placeholder="Nhập nguồn khác...">
+          </div>
+        </div>
+      </div>
+
+      <!-- entry.1050486977: Bạn biết bài tuyển thành viên này từ đâu? -->
+      <div class="q-block">
+        <label class="q-label">
+          <span data-vi="Bạn biết bài tuyển thành viên này từ đâu?" data-en="How did you find this recruitment post?">Bạn biết bài tuyển thành viên này từ đâu?</span><span class="req">*</span>
+        </label>
+        <div class="radio-list">
+          <label class="radio-item">
+            <input type="radio" name="knowRecruitFrom" value="Từ chính page CLB" checked>
+            <span data-vi="Từ chính page CLB" data-en="From the official MPClub fanpage">Từ chính page CLB</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="knowRecruitFrom" value="Bạn bè chia sẻ">
+            <span data-vi="Bạn bè chia sẻ" data-en="Shared by friends">Bạn bè chia sẻ</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="knowRecruitFrom" value="Thầy cô giới thiệu">
+            <span data-vi="Thầy cô giới thiệu" data-en="Recommended by lecturers">Thầy cô giới thiệu</span>
+          </label>
+          <div class="other-wrap">
+            <label class="radio-item">
+              <input type="radio" name="knowRecruitFrom" value="__other_option__" id="know-recruit-other-radio">
+              <span data-vi="Mục khác:" data-en="Other:">Mục khác:</span>
+            </label>
+            <input type="text" id="know-recruit-other-text" class="other-input" data-placeholder-vi="Nhập nguồn khác..." data-placeholder-en="Specify other source..." placeholder="Nhập nguồn khác...">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Phần 3: Câu hỏi chia sẻ & Định hướng -->
+    <div class="section-group">
+      <div class="section-heading">
+        <i class="bi bi-chat-dots-fill"></i>
+        <span data-vi="3. Câu hỏi chia sẻ và định hướng bản thân" data-en="3. Personal insights and motivation">3. Câu hỏi chia sẻ và định hướng bản thân</span>
+      </div>
+
+      <!-- entry.1606398816 -->
+      <div class="q-block">
+        <label class="q-label" for="f-impression">
+          <span data-vi="Ấn tượng đầu tiên của bạn khi biết đến hay nghe tên &quot;Lập trình trên thiết bị di động&quot; của tụi mình là gì?" data-en="What was your first impression when hearing about &quot;Mobile Programming Club&quot;?">Ấn tượng đầu tiên của bạn khi biết đến hay nghe tên "Lập trình trên thiết bị di động" của tụi mình là gì?</span><span class="req">*</span>
+        </label>
+        <textarea id="f-impression" class="xp-textarea" placeholder="Chia sẻ ấn tượng đầu tiên của bạn..."></textarea>
+      </div>
+
+      <!-- entry.719467644 -->
+      <div class="q-block">
+        <label class="q-label" for="f-prev-club">
+          <span data-vi="Bạn đã từng tham gia CLB nào hay chưa? Nếu chưa trả lời Không và bỏ qua câu tiếp theo." data-en="Have you participated in any club before? If not, answer &quot;Không&quot; and skip the next question.">Bạn đã từng tham gia CLB nào hay chưa? Nếu chưa trả lời Không và bỏ qua câu tiếp theo.</span><span class="req">*</span>
+        </label>
+        <input type="text" id="f-prev-club" class="xp-input" placeholder="Không / Có (Tên CLB)">
+      </div>
+
+      <!-- entry.1079859863 -->
+      <div class="q-block">
+        <label class="q-label" for="f-prev-role">
+          <span data-vi="Nếu có bạn giữ vai trò gì trong CLB ấy? Và đã tham gia các hoạt động nào? (Chia sẻ vài hoạt động)" data-en="If yes, what was your role and which activities did you participate in?">Nếu có bạn giữ vai trò gì trong CLB ấy? Và đã tham gia các hoạt động nào? (Chia sẻ vài hoạt động)</span>
+        </label>
+        <textarea id="f-prev-role" class="xp-textarea" placeholder="Vai trò và các hoạt động bạn từng tham gia (nếu có)..."></textarea>
+      </div>
+
+      <div class="grid-2">
+        <!-- entry.279215183 -->
+        <div class="q-block">
+          <label class="q-label" for="f-strengths">
+            <span data-vi="Ưu điểm của bạn?" data-en="What are your strengths?">Ưu điểm của bạn?</span><span class="req">*</span>
+          </label>
+          <textarea id="f-strengths" class="xp-textarea" placeholder="Ưu điểm của bạn..."></textarea>
+        </div>
+
+        <!-- entry.1525654999 -->
+        <div class="q-block">
+          <label class="q-label" for="f-weaknesses">
+            <span data-vi="Khuyết điểm của bạn?" data-en="What are your weaknesses?">Khuyết điểm của bạn?</span><span class="req">*</span>
+          </label>
+          <textarea id="f-weaknesses" class="xp-textarea" placeholder="Khuyết điểm của bạn..."></textarea>
+        </div>
+      </div>
+
+      <!-- entry.579587818 -->
+      <div class="q-block">
+        <label class="q-label" for="f-reason">
+          <span data-vi="Lý do mà bạn muốn tham gia CLB của bọn mình là gì?" data-en="Why do you want to join MPClub?">Lý do mà bạn muốn tham gia CLB của bọn mình là gì?</span><span class="req">*</span>
+        </label>
+        <textarea id="f-reason" class="xp-textarea" placeholder="Lý do bạn muốn đồng hành cùng MPC..."></textarea>
+      </div>
+
+      <!-- entry.1813422362 -->
+      <div class="q-block">
+        <label class="q-label" for="f-contrib">
+          <span data-vi="Với khả năng hiện tại của bạn đang có, bạn sẽ đóng góp được gì cho CLB, cho ban mà bạn chọn?" data-en="With your current skills, what can you contribute to MPClub and your chosen department?">Với khả năng hiện tại của bạn đang có, bạn sẽ đóng góp được gì cho CLB, cho ban mà bạn chọn?</span><span class="req">*</span>
+        </label>
+        <textarea id="f-contrib" class="xp-textarea" placeholder="Chia sẻ đóng góp dự kiến của bạn..."></textarea>
+      </div>
+
+      <!-- entry.1746300625 -->
+      <div class="q-block">
+        <label class="q-label" for="f-why-you">
+          <span data-vi="Cho một lý do để bọn mình chọn bạn giữa các cá nhân tài năng khác cũng đang mong muốn tham gia?" data-en="Give us one reason why we should choose you among other talented applicants?">Cho một lý do để bọn mình chọn bạn giữa các cá nhân tài năng khác cũng đang mong muốn tham gia?</span><span class="req">*</span>
+        </label>
+        <textarea id="f-why-you" class="xp-textarea" placeholder="Điểm khác biệt hoặc quyết tâm của bạn..."></textarea>
+      </div>
+    </div>
+
+    <!-- Phần 4: Khung giờ phỏng vấn & Câu hỏi cho CLB -->
+    <div class="section-group orange">
+      <div class="section-heading">
+        <i class="bi bi-calendar-check-fill"></i>
+        <span data-vi="4. Khung giờ phỏng vấn và câu hỏi dành cho câu lạc bộ" data-en="4. Interview time slot and questions for MPClub">4. Khung giờ phỏng vấn và câu hỏi dành cho câu lạc bộ</span>
+      </div>
+
+      <!-- entry.703900341: Bạn có thể phỏng vấn ở khung giờ nào nhỉ ? -->
+      <div class="q-block">
+        <label class="q-label">
+          <span data-vi="Bạn có thể phỏng vấn ở khung giờ nào nhỉ ?" data-en="Which interview time slot works for you?">Bạn có thể phỏng vấn ở khung giờ nào nhỉ ?</span><span class="req">*</span>
+        </label>
+        <div class="radio-list">
+          <label class="radio-item">
+            <input type="radio" name="interviewSlot" value="Offline 8h30 --> 11h  ngày 22/11" checked>
+            <span>Offline 8h30 --&gt; 11h  ngày 22/11</span>
+          </label>
+          <label class="radio-item">
+            <input type="radio" name="interviewSlot" value="Offline 13h --> 16h ngày 22/11">
+            <span>Offline 13h --&gt; 16h ngày 22/11</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- entry.1506184401 -->
+      <div class="q-block">
+        <label class="q-label" for="f-question">
+          <span data-vi="Bạn có câu hỏi nào dành cho CLB không?" data-en="Do you have any questions for MPClub?">Bạn có câu hỏi nào dành cho CLB không?</span>
+        </label>
+        <textarea id="f-question" class="xp-textarea" placeholder="Câu hỏi của bạn dành cho CLB (nếu có)..."></textarea>
+      </div>
+
+      <!-- Live Pre-fill URL Preview -->
+      <div class="url-preview-box">
+        <div style="font-size:11px; font-weight:bold; color:#003399;">
+          <i class="bi bi-link-45deg"></i> <span data-vi="Đường dẫn biểu mẫu Google Form đã điền sẵn (tự động ưu tiên tài khoản @ou.edu.vn):" data-en="Auto-generated pre-filled Google Form link (prioritizes @ou.edu.vn account):">Đường dẫn biểu mẫu Google Form đã điền sẵn (tự động ưu tiên tài khoản @ou.edu.vn):</span>
+        </div>
+        <div class="url-preview-row">
+          <input type="text" id="generated-url-preview" class="url-preview-input" readonly>
+          <button type="button" class="xp-btn" id="btn-copy-url">
+            <i class="bi bi-clipboard-check"></i> <span id="copy-label" data-vi="Sao chép liên kết" data-en="Copy link">Sao chép liên kết</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- Footer -->
+  <div class="form-footer">
+    <span style="font-size:11px; color:#333;" data-vi="💡 Nội dung được tự động lưu nháp trên trình duyệt và chuyển thẳng sang biểu mẫu Google Form." data-en="💡 Your draft is saved automatically in the browser and passed directly to Google Form.">💡 Nội dung được tự động lưu nháp trên trình duyệt và chuyển thẳng sang biểu mẫu Google Form.</span>
+    <div style="display:flex; gap:8px;">
+      <button type="button" class="xp-btn" id="btn-close-win" data-vi="Đóng cửa sổ" data-en="Close window">Đóng cửa sổ</button>
+      <a class="xp-btn primary" id="btn-submit-google-form" href="#" target="_blank" rel="noopener">
+        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Mở biểu mẫu Google Form đã điền sẵn" data-en="Open pre-filled Google Form">Mở biểu mẫu Google Form đã điền sẵn</span> <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../_shared/lang.js"></script>
+  <script>
+    const DRAFT_KEY = 'mpc_k26_form_draft_v1';
+
+    // Khi gõ vào ô "Mục khác", tự động tick radio __other_option__ tương ứng
+    function bindOtherInput(radioId, inputId) {
+      const radio = document.getElementById(radioId);
+      const input = document.getElementById(inputId);
+      if (!radio || !input) return;
+      input.addEventListener('focus', () => {
+        radio.checked = true;
+        refreshPreFillUrl();
+      });
+      input.addEventListener('input', () => {
+        radio.checked = true;
+        refreshPreFillUrl();
+      });
+    }
+
+    bindOtherInput('faculty-other-radio', 'faculty-other-text');
+    bindOtherInput('know-club-other-radio', 'know-club-other-text');
+    bindOtherInput('know-recruit-other-radio', 'know-recruit-other-text');
+
+    function getCheckedValue(name) {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '';
+    }
+
+    // Không cho chọn trùng Ban giữa Nguyện vọng 1 và Nguyện vọng 2
+    function syncDepartmentChoices() {
+      const c1 = getCheckedValue('choice1');
+      const choice2Radios = document.querySelectorAll('input[name="choice2"]');
+      const noneRadio = document.getElementById('choice2-none');
+
+      choice2Radios.forEach(radio => {
+        const label = radio.closest('.radio-item');
+        if (radio.value !== '' && radio.value === c1) {
+          if (radio.checked && noneRadio) {
+            noneRadio.checked = true;
+          }
+          radio.disabled = true;
+          if (label) label.classList.add('disabled');
+        } else {
+          radio.disabled = false;
+          if (label) label.classList.remove('disabled');
+        }
+      });
+    }
+
+    function collectFormValues() {
+      syncDepartmentChoices();
+      const facultyVal = getCheckedValue('faculty');
+      const knowClubVal = getCheckedValue('knowClubFrom');
+      const knowRecruitVal = getCheckedValue('knowRecruitFrom');
+
+      const values = {
+        fullName: document.getElementById('f-fullname')?.value || '',
+        studentId: document.getElementById('f-mssv')?.value || '',
+        schoolEmail: document.getElementById('f-email')?.value || '',
+        faculty: facultyVal,
+        facultyOther: facultyVal === '__other_option__' ? (document.getElementById('faculty-other-text')?.value || '') : '',
+        phone: document.getElementById('f-phone')?.value || '',
+        facebookUrl: document.getElementById('f-fb')?.value || '',
+        choice1: getCheckedValue('choice1'),
+        choice2: getCheckedValue('choice2'),
+        knowClubFrom: knowClubVal,
+        knowClubFromOther: knowClubVal === '__other_option__' ? (document.getElementById('know-club-other-text')?.value || '') : '',
+        knowRecruitFrom: knowRecruitVal,
+        knowRecruitFromOther: knowRecruitVal === '__other_option__' ? (document.getElementById('know-recruit-other-text')?.value || '') : '',
+        firstImpression: document.getElementById('f-impression')?.value || '',
+        prevClubExp: document.getElementById('f-prev-club')?.value || '',
+        prevClubRole: document.getElementById('f-prev-role')?.value || '',
+        strengths: document.getElementById('f-strengths')?.value || '',
+        weaknesses: document.getElementById('f-weaknesses')?.value || '',
+        reasonToJoin: document.getElementById('f-reason')?.value || '',
+        contribution: document.getElementById('f-contrib')?.value || '',
+        whyChooseYou: document.getElementById('f-why-you')?.value || '',
+        interviewSlot: getCheckedValue('interviewSlot'),
+        questionsForClub: document.getElementById('f-question')?.value || ''
+      };
+
+      return values;
+    }
+
+    function refreshPreFillUrl() {
+      const cfg = window.MPC_CONFIG || (window.parent && window.parent.MPC_CONFIG);
+      if (!cfg || typeof cfg.buildGoogleFormUrl !== 'function') return;
+
+      const values = collectFormValues();
+      const url = cfg.buildGoogleFormUrl(values);
+
+      const previewInput = document.getElementById('generated-url-preview');
+      if (previewInput) previewInput.value = url;
+
+      const submitBtn = document.getElementById('btn-submit-google-form');
+      if (submitBtn) submitBtn.href = url;
+
+      try {
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(values));
+      } catch (e) {}
+    }
+
+    function restoreDraft() {
+      try {
+        const raw = localStorage.getItem(DRAFT_KEY);
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        if (!d || typeof d !== 'object') return;
+
+        const mapText = {
+          'f-fullname': d.fullName,
+          'f-mssv': d.studentId,
+          'f-email': d.schoolEmail,
+          'f-phone': d.phone,
+          'f-fb': d.facebookUrl,
+          'faculty-other-text': d.facultyOther,
+          'know-club-other-text': d.knowClubFromOther,
+          'know-recruit-other-text': d.knowRecruitFromOther,
+          'f-impression': d.firstImpression,
+          'f-prev-club': d.prevClubExp,
+          'f-prev-role': d.prevClubRole,
+          'f-strengths': d.strengths,
+          'f-weaknesses': d.weaknesses,
+          'f-reason': d.reasonToJoin,
+          'f-contrib': d.contribution,
+          'f-why-you': d.whyChooseYou,
+          'f-question': d.questionsForClub
+        };
+
+        Object.keys(mapText).forEach(id => {
+          const el = document.getElementById(id);
+          if (el && mapText[id] !== undefined) el.value = mapText[id];
+        });
+
+        const mapRadio = {
+          faculty: d.faculty,
+          choice1: d.choice1,
+          choice2: d.choice2,
+          knowClubFrom: d.knowClubFrom,
+          knowRecruitFrom: d.knowRecruitFrom,
+          interviewSlot: d.interviewSlot
+        };
+
+        Object.keys(mapRadio).forEach(name => {
+          const val = mapRadio[name];
+          if (val === undefined) return;
+          const radios = document.querySelectorAll(`input[name="${name}"]`);
+          radios.forEach(r => {
+            if (r.value === val) r.checked = true;
+          });
+        });
+      } catch (e) {}
+    }
+
+    document.getElementById('mpc-recruit-form')?.addEventListener('input', refreshPreFillUrl);
+    document.getElementById('mpc-recruit-form')?.addEventListener('change', refreshPreFillUrl);
+
+    document.getElementById('btn-copy-url')?.addEventListener('click', () => {
+      const previewInput = document.getElementById('generated-url-preview');
+      if (!previewInput) return;
+      navigator.clipboard?.writeText(previewInput.value);
+      const lbl = document.getElementById('copy-label');
+      if (lbl) {
+        const oldText = lbl.textContent;
+        lbl.textContent = 'Đã sao chép!';
+        setTimeout(() => { lbl.textContent = oldText; }, 1600);
+      }
+    });
+
+    document.getElementById('btn-reset-form')?.addEventListener('click', () => {
+      try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      document.getElementById('mpc-recruit-form')?.reset();
+      refreshPreFillUrl();
+    });
+
+    document.getElementById('btn-close-win')?.addEventListener('click', () => {
+      if (window.parent && window.parent.WindowManager) {
+        const win = window.parent.WindowManager.get('JOIN_MPC_FORM.exe');
+        if (win) win.close();
+      }
+    });
+
+    restoreDraft();
+    refreshPreFillUrl();
+  </script>
+</body>
+</html>

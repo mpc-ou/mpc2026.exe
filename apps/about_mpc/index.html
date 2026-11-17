@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABOUT_MPC.txt</title>
+  <title>ABOUT_MPC.txt – Hồ Sơ CLB Lập Trình Trên Thiết Bị Di Động</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
@@ -13,155 +13,656 @@
       padding: 0;
     }
     body {
-      background-color: #ffffff;
+      background-color: #ece9d8;
       color: #000000;
-      font-family: 'Consolas', 'Courier New', Courier, monospace;
-      font-size: 13px;
-      line-height: 1.6;
-      padding: 16px;
-      overflow-y: auto;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.55;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
       user-select: text;
     }
-    .notepad-header {
-      border-bottom: 1px dashed #0055ea;
-      padding-bottom: 12px;
-      margin-bottom: 14px;
+
+    .xp-banner {
+      background: linear-gradient(90deg, #003399 0%, #0055ea 65%, #3593ff 100%);
+      color: #ffffff;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #ff6600;
+      flex-shrink: 0;
+    }
+    .xp-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .xp-banner-logo {
+      width: 36px;
+      height: 36px;
+      aspect-ratio: 1 / 1;
+      background: #ffffff;
+      border: 1px solid #002266;
+      border-radius: 3px;
+      padding: 3px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .xp-banner-title {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+      text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+    }
+    .xp-banner-sub {
+      font-size: 11px;
+      color: #dbeaff;
+    }
+    .xp-banner-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .xp-lang-btn {
+      background: #ece9d8;
+      color: #000;
+      border: 1px solid #003c74;
+      box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #aaa;
+      padding: 3px 10px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .xp-lang-btn:hover {
+      background: #f5f4ea;
+    }
+
+    .xp-tabs {
+      display: flex;
+      gap: 2px;
+      padding: 6px 10px 0 10px;
+      background: #ece9d8;
+      border-bottom: 1px solid #7f9db9;
+      flex-shrink: 0;
+      overflow-x: auto;
+    }
+    .xp-tab {
+      background: linear-gradient(180deg, #f8f7f1 0%, #e3dfd0 100%);
+      border: 1px solid #7f9db9;
+      border-bottom: none;
+      border-radius: 3px 3px 0 0;
+      padding: 5px 12px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11px;
+      color: #222;
+      cursor: pointer;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+      top: 1px;
+    }
+    .xp-tab:hover {
+      background: #ffffff;
+      color: #003399;
+    }
+    .xp-tab.active {
+      background: #ffffff;
       color: #003399;
       font-weight: bold;
+      border-top: 2px solid #ff6600;
+      padding-bottom: 6px;
+      z-index: 2;
     }
-    .notepad-title {
-      font-size: 16px;
-      text-align: center;
-      letter-spacing: 1px;
+
+    .xp-workspace {
+      flex: 1;
+      background: #ffffff;
+      margin: 0 10px 8px 10px;
+      border: 1px solid #7f9db9;
+      border-top: none;
+      padding: 16px 18px;
+      overflow-y: auto;
+      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.05);
     }
-    .notepad-section {
+
+    .tab-panel {
+      display: none;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+
+    .xp-groupbox {
+      border: 1px solid #b5c4d8;
+      border-radius: 4px;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      background: #fbfcfe;
+    }
+    .xp-groupbox-title {
+      font-weight: bold;
+      color: #003399;
+      font-size: 12.5px;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #dde6f2;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .xp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    .xp-table th, .xp-table td {
+      border: 1px solid #c6d3e3;
+      padding: 6px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .xp-table th {
+      background: linear-gradient(180deg, #f2f5fa 0%, #e1e8f2 100%);
+      color: #003399;
+      width: 175px;
+      font-weight: bold;
+    }
+    .xp-table tr:nth-child(even) td {
+      background: #f8fafd;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
       margin-bottom: 16px;
     }
-    .section-title {
-      font-weight: bold;
-      color: #0055ea;
-      margin-bottom: 4px;
+    .stat-box {
+      background: linear-gradient(180deg, #ffffff 0%, #eff4fc 100%);
+      border: 1px solid #7f9db9;
+      border-left: 4px solid #0055ea;
+      padding: 8px 10px;
+      text-align: center;
     }
-    .highlight {
-      background: #fff8dc;
-      padding: 1px 4px;
+    .stat-num {
+      font-size: 18px;
+      font-weight: bold;
+      color: #003399;
+      font-family: "Courier New", monospace;
+    }
+    .stat-label {
+      font-size: 10.5px;
+      color: #444;
+    }
+
+    .terminal-box {
+      background: #0c141f;
+      color: #00ff66;
+      border: 2px inset #7f9db9;
+      padding: 10px 14px;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      margin-bottom: 14px;
+    }
+    .terminal-box .cmd-line {
+      color: #8ab4f8;
+    }
+    .terminal-box .slogan-text {
+      color: #ffcc00;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .tech-badge {
+      background: #eef3fb;
+      border: 1px solid #8caad0;
+      color: #003399;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: bold;
       border-radius: 2px;
     }
-    .footer-stamp {
-      margin-top: 24px;
-      border-top: 1px dashed #ccc;
-      padding-top: 10px;
-      font-size: 11px;
-      color: #666;
+
+    .xp-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .xp-card {
+      background: #ffffff;
+      border: 1px solid #b8c9de;
+      padding: 10px 12px;
+    }
+    .xp-card-head {
+      font-weight: bold;
+      color: #003399;
+      margin-bottom: 4px;
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
     }
-    .lang-bar {
-      margin-bottom: 10px;
-      text-align: right;
+
+    .xp-photo-frame {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: #f4f7fc;
+      border: 1px solid #c6d3e3;
+      padding: 10px;
+      margin-bottom: 14px;
     }
-    .lang-btn {
+    .xp-photo-frame img {
+      width: 160px;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    /* Square 1:1 Logo Frame */
+    .xp-photo-frame img.logo-square {
+      width: 84px;
+      height: 84px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      background: #ffffff;
+      padding: 6px;
+      border: 1px solid #b5c4d8;
+      border-radius: 4px;
+    }
+
+    .xp-statusbar {
+      height: 24px;
       background: #ece9d8;
-      border: 1px solid #7f9db9;
+      border-top: 1px solid #b5b2a5;
+      padding: 0 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       font-size: 11px;
-      padding: 2px 8px;
-      cursor: pointer;
-      font-family: Tahoma, sans-serif;
+      color: #333;
+      flex-shrink: 0;
     }
-    .lang-btn:hover {
-      background: #316ac5;
-      color: #fff;
+
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+      .xp-grid-2 { grid-template-columns: 1fr; }
+      .xp-photo-frame { flex-direction: column; align-items: flex-start; }
+      .xp-photo-frame img:not(.logo-square) { width: 100%; height: 150px; }
+      .xp-table th { width: 120px; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
-  <div class="lang-bar">
-    <button class="lang-btn" id="btn-toggle-lang"><i class="bi bi-translate"></i> <span id="lang-label">English</span></button>
-  </div>
 
-  <div class="notepad-header">
-    <div class="notepad-title" id="t-main-heading">=====================================================&#10;CHÀO MỪNG ĐẾN VỚI MPCLUB 2026&#10;=====================================================</div>
-  </div>
-
-  <div id="content-body">
-    <div class="notepad-section">
-      <p id="t-intro">MPClub (Multi-Platform Club) là câu lạc bộ học thuật & công nghệ trực thuộc Khoa Công Nghệ Thông Tin - Trường Đại học Mở TP.HCM (OU IT).</p>
+  <!-- Top Banner -->
+  <div class="xp-banner">
+    <div class="xp-banner-left">
+      <img src="../../assets/icons/logo.png" class="xp-banner-logo" alt="MPC Logo">
+      <div>
+        <div class="xp-banner-title" data-vi="GIỚI THIỆU CÂU LẠC BỘ MPCLUB" data-en="ABOUT MOBILE PROGRAMMING CLUB">GIỚI THIỆU CÂU LẠC BỘ MPCLUB</div>
+        <div class="xp-banner-sub" data-vi="Khoa Công nghệ Thông tin • Trường ĐH Mở TP.HCM" data-en="Faculty of Information Technology • Trường ĐH Mở TP.HCM">Khoa Công nghệ Thông tin • Trường ĐH Mở TP.HCM</div>
+      </div>
     </div>
-
-    <div class="notepad-section">
-      <div class="section-title" id="t-vision-title">1. TẦM NHÌN & SỨ MỆNH:</div>
-      <p id="t-vision-desc">- Xây dựng cộng đồng sinh viên đam mê công nghệ tại OU.<br>
-      - Tạo môi trường thực chiến qua các dự án phần mềm, giải đấu và workshop chuyên sâu.<br>
-      - Kết nối các thế hệ lập trình viên, chia sẻ kinh nghiệm và kỹ năng nghề nghiệp thực tế.</p>
-    </div>
-
-    <div class="notepad-section">
-      <div class="section-title" id="t-activities-title">2. CÁC HOẠT ĐỘNG CHÍNH:</div>
-      <p id="t-activities-desc">- Training chuyên môn hàng tuần: Web, Mobile, AI, DevOps, Thuật toán thi đấu.<br>
-      - Hackathon & Giải đấu nội bộ kịch tính (MPC Coding Cup).<br>
-      - Các buổi Tech Sharing từ cựu thành viên và chuyên gia doanh nghiệp công nghệ lớn.</p>
-    </div>
-
-    <div class="notepad-section">
-      <div class="section-title" id="t-culture-title">3. VĂN HÓA CLB:</div>
-      <p id="t-culture-desc">- Tinh thần sẻ chia, học hỏi lẫn nhau và không ngại thử thách mới.<br>
-      - Làm việc theo nhóm với quy trình Git/GitHub và chuẩn chuyên nghiệp.<br>
-      - Gắn kết qua những buổi dã ngoại, sinh hoạt ngoại khóa và bonding khó quên.</p>
+    <div class="xp-banner-right">
+      <button class="xp-lang-btn" id="btn-toggle-lang">
+        <i class="bi bi-translate"></i> <span id="lang-label" data-vi="English" data-en="Tiếng Việt">English</span>
+      </button>
     </div>
   </div>
 
-  <div class="footer-stamp">
-    <span>Ban Lập Trình (BLT) – MPClub</span>
-    <span>Khoa CNTT – ĐH Mở TP.HCM</span>
+  <!-- Tab Navigation -->
+  <div class="xp-tabs">
+    <button class="xp-tab active" data-tab="tab-overview">
+      <i class="bi bi-card-list"></i> <span data-vi="1. Định danh và lịch sử" data-en="1. Identity and history">1. Định danh và lịch sử</span>
+    </button>
+    <button class="xp-tab" data-tab="tab-mission">
+      <i class="bi bi-compass"></i> <span data-vi="2. Sứ mệnh và giá trị" data-en="2. Mission and values">2. Sứ mệnh và giá trị</span>
+    </button>
+    <button class="xp-tab" data-tab="tab-training">
+      <i class="bi bi-mortarboard-fill"></i> <span data-vi="3. Lộ trình đào tạo" data-en="3. Training roadmap">3. Lộ trình đào tạo</span>
+    </button>
+    <button class="xp-tab" data-tab="tab-projects">
+      <i class="bi bi-cpu-fill"></i> <span data-vi="4. Dự án công nghệ" data-en="4. Tech projects">4. Dự án công nghệ</span>
+    </button>
+    <button class="xp-tab" data-tab="tab-contact">
+      <i class="bi bi-envelope-paper-fill"></i> <span data-vi="5. Hợp tác và liên hệ" data-en="5. Partnership and contact">5. Hợp tác và liên hệ</span>
+    </button>
   </div>
 
+  <!-- Workspace Content -->
+  <div class="xp-workspace">
+
+    <!-- TAB 1: OVERVIEW & IDENTITY -->
+    <div class="tab-panel active" id="tab-overview">
+      <div class="terminal-box">
+        <div class="cmd-line">C:\OU_IT\MPClub&gt; whoami --verbose</div>
+        <div class="slogan-text" data-vi="&quot;Ở đâu có bug, ở đó có MPC!&quot;" data-en="&quot;Where there's a bug, there's MPC!&quot;">"Ở đâu có bug, ở đó có MPC!"</div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div class="stat-num">24/12/2015</div>
+          <div class="stat-label" data-vi="Ngày thành lập (hơn 10 năm)" data-en="Founded (10+ years active)">Ngày thành lập (hơn 10 năm)</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">50+</div>
+          <div class="stat-label" data-vi="Thành viên chính thức" data-en="Active official members">Thành viên chính thức</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">30+</div>
+          <div class="stat-label" data-vi="Sự kiện và cuộc thi" data-en="Events and competitions">Sự kiện và cuộc thi</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">10+</div>
+          <div class="stat-label" data-vi="Dự án và sản phẩm số" data-en="Completed projects">Dự án và sản phẩm số</div>
+        </div>
+      </div>
+
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-info-square-fill"></i> <span data-vi="1.1. Thông tin định danh chính thức" data-en="1.1. Official club identification">1.1. Thông tin định danh chính thức</span></div>
+        <table class="xp-table">
+          <tr>
+            <th data-vi="Tên tiếng Việt" data-en="Vietnamese name">Tên tiếng Việt</th>
+            <td><strong>Câu lạc bộ Lập trình trên thiết bị di động</strong></td>
+          </tr>
+          <tr>
+            <th data-vi="Tên tiếng Anh" data-en="English name">Tên tiếng Anh</th>
+            <td><strong>Mobile Programming Club</strong></td>
+          </tr>
+          <tr>
+            <th data-vi="Tên viết tắt" data-en="Abbreviation">Tên viết tắt</th>
+            <td><span class="tech-badge">MPC</span> <span class="tech-badge">MPClub</span></td>
+          </tr>
+          <tr>
+            <th data-vi="Ngày thành lập" data-en="Founded date">Ngày thành lập</th>
+            <td data-vi="24/12/2015 (Kỷ niệm 10 năm: 24/12/2025)" data-en="December 24, 2015 (10th Anniversary: 24/12/2025)">24/12/2015 (Kỷ niệm 10 năm: 24/12/2025)</td>
+          </tr>
+          <tr>
+            <th data-vi="Đơn vị trực thuộc" data-en="Affiliated unit">Đơn vị trực thuộc</th>
+            <td data-html-vi="Câu lạc bộ học thuật cấp Khoa – <strong>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</strong>" data-html-en="Faculty-level academic club – <strong>Faculty of Information Technology – Trường ĐH Mở TP.HCM</strong>">Câu lạc bộ học thuật cấp Khoa – <strong>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</strong></td>
+          </tr>
+          <tr>
+            <th data-vi="Lĩnh vực hoạt động" data-en="Core domains">Lĩnh vực hoạt động</th>
+            <td data-vi="Công nghệ thông tin, lập trình, phát triển phần mềm, sinh hoạt học thuật và tổ chức sự kiện công nghệ" data-en="Information technology, programming, software engineering, academic seminars, and tech competitions">Công nghệ thông tin, lập trình, phát triển phần mềm, sinh hoạt học thuật và tổ chức sự kiện công nghệ</td>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <td>
+              <a href="https://www.mpclub.dev" target="_blank" rel="noopener">https://www.mpclub.dev</a>
+            </td>
+          </tr>
+          <tr>
+            <th>Email / Fanpage</th>
+            <td>
+              <code>it.mpclub@ou.edu.vn</code> &nbsp;|&nbsp;
+              <a href="https://fb.com/CLBLapTrinhTrenThietBiDiDong" target="_blank" rel="noopener">CLB Lập Trình Trên Thiết Bị Di Động</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-clock-history"></i> <span data-vi="1.2. Quá trình hình thành và mở rộng chuyên môn" data-en="1.2. Formation and technical expansion">1.2. Quá trình hình thành và mở rộng chuyên môn</span></div>
+        <div class="xp-photo-frame">
+          <img src="../../assets/images/the-open-clubs/members-8.jpg" alt="Đại gia đình MPClub">
+          <div data-html-vi="<p style='margin-bottom:6px;'><strong>MPC</strong> được thành lập ngày <strong>24/12/2015</strong> tại Khoa Công nghệ Thông tin – <strong>Trường ĐH Mở TP.HCM</strong> với định hướng tạo dựng môi trường học tập, nghiên cứu và thực hành công nghệ thông tin cho sinh viên.</p><p>Qua hơn một thập kỷ hoạt động, câu lạc bộ không chỉ dừng lại ở lập trình di động mà đã mở rộng sang nhiều lĩnh vực trọng tâm của ngành công nghệ thông tin hiện đại:</p>" data-html-en="<p style='margin-bottom:6px;'><strong>MPC</strong> was founded on <strong>24/12/2015</strong> at the Faculty of Information Technology – <strong>Trường ĐH Mở TP.HCM</strong> to foster a welcoming environment for IT learning, research, and software engineering.</p><p>Over the past decade, the club has grown beyond mobile programming into major software engineering fields:</p>">
+            <p style="margin-bottom: 6px;">
+              <strong>MPC</strong> được thành lập ngày <strong>24/12/2015</strong> tại Khoa Công nghệ Thông tin – <strong>Trường ĐH Mở TP.HCM</strong> với định hướng tạo dựng môi trường học tập, nghiên cứu và thực hành công nghệ thông tin cho sinh viên.
+            </p>
+            <p>
+              Qua hơn một thập kỷ hoạt động, câu lạc bộ không chỉ dừng lại ở lập trình di động mà đã mở rộng sang nhiều lĩnh vực trọng tâm của ngành công nghệ thông tin hiện đại:
+            </p>
+          </div>
+        </div>
+        <div class="tech-badges">
+          <span class="tech-badge" data-vi="Phát triển ứng dụng web" data-en="Web development">Phát triển ứng dụng web</span>
+          <span class="tech-badge" data-vi="Ứng dụng di động" data-en="Mobile applications">Ứng dụng di động</span>
+          <span class="tech-badge" data-vi="Trí tuệ nhân tạo" data-en="Artificial intelligence">Trí tuệ nhân tạo</span>
+          <span class="tech-badge" data-vi="Vận hành hệ thống (DevOps, Docker)" data-en="DevOps and Docker">Vận hành hệ thống (DevOps, Docker)</span>
+          <span class="tech-badge" data-vi="Thiết kế giao diện và trải nghiệm người dùng" data-en="UI/UX design">Thiết kế giao diện và trải nghiệm người dùng</span>
+          <span class="tech-badge" data-vi="Kỹ thuật phần mềm" data-en="Software engineering">Kỹ thuật phần mềm</span>
+          <span class="tech-badge" data-vi="Cấu trúc dữ liệu và giải thuật" data-en="Data structures and algorithms">Cấu trúc dữ liệu và giải thuật</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: VISION, MISSION & CORE GOALS -->
+    <div class="tab-panel" id="tab-mission">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-bullseye"></i> <span data-vi="2.1. Sứ mệnh và định hướng hoạt động" data-en="2.1. Mission and strategic direction">2.1. Sứ mệnh và định hướng hoạt động</span></div>
+        <p style="line-height: 1.7;" data-html-vi="MPC hướng đến việc xây dựng một môi trường học tập và phát triển công nghệ thông tin năng động, thực tế và gắn kết dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong> — nơi kiến thức chuyên môn trên giảng đường được kết nối với thực hành dự án, ý tưởng được hiện thực hóa thành sản phẩm số và mỗi thành viên đều có cơ hội học hỏi, sẻ chia và trưởng thành vững vàng." data-html-en="MPC strives to build a dynamic, practical, and welcoming IT community for students of <strong>Trường ĐH Mở TP.HCM</strong> — bridging academic theory with real-world engineering, turning ideas into digital products, and empowering every member to learn, share, and grow.">
+          MPC hướng đến việc xây dựng một môi trường học tập và phát triển công nghệ thông tin năng động, thực tế và gắn kết dành cho sinh viên <strong>Trường ĐH Mở TP.HCM</strong> — nơi kiến thức chuyên môn trên giảng đường được kết nối với thực hành dự án, ý tưởng được hiện thực hóa thành sản phẩm số và mỗi thành viên đều có cơ hội học hỏi, sẻ chia và trưởng thành vững vàng.
+        </p>
+      </div>
+
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-check2-square"></i> <span data-vi="2.2. Bốn mục tiêu hoạt động cốt lõi" data-en="2.2. Four core operational goals">2.2. Bốn mục tiêu hoạt động cốt lõi</span></div>
+        <div class="xp-grid-2">
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="🎓 1. Hội thảo học thuật" data-en="🎓 1. Academic seminars">🎓 1. Hội thảo học thuật</div>
+            <p data-vi="Chia sẻ kiến thức chuyên ngành, ôn tập các môn lập trình nền tảng và nâng cao, đồng thời cập nhật những xu hướng công nghệ mới." data-en="Share specialized knowledge, review foundational programming courses, and explore emerging technology trends.">Chia sẻ kiến thức chuyên ngành, ôn tập các môn lập trình nền tảng và nâng cao, đồng thời cập nhật những xu hướng công nghệ mới.</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="🤝 2. Mô hình cố vấn học tập" data-en="🤝 2. Student peer mentoring">🤝 2. Mô hình cố vấn học tập</div>
+            <p data-vi="Phát huy mô hình sinh viên hỗ trợ sinh viên — các anh chị và thành viên giàu kinh nghiệm trực tiếp hướng dẫn, giải đáp thắc mắc trong quá trình học tập." data-en="Experienced members mentor and support peers directly in programming coursework and projects.">Phát huy mô hình sinh viên hỗ trợ sinh viên — các anh chị và thành viên giàu kinh nghiệm trực tiếp hướng dẫn, giải đáp thắc mắc trong quá trình học tập.</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="💻 3. Đào tạo chuyên môn" data-en="💻 3. Technical training">💻 3. Đào tạo chuyên môn</div>
+            <p data-vi="Tổ chức các lớp bồi dưỡng định kỳ về phát triển web, ứng dụng di động, lập trình hướng đối tượng, vận hành hệ thống và quy trình làm việc nhóm." data-en="Organize structured training in web, mobile, object-oriented programming, DevOps, AI, and team workflows.">Tổ chức các lớp bồi dưỡng định kỳ về phát triển web, ứng dụng di động, lập trình hướng đối tượng, vận hành hệ thống và quy trình làm việc nhóm.</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="🏆 4. Cuộc thi và hoạt động ngoại khóa" data-en="🏆 4. Competitions and community">🏆 4. Cuộc thi và hoạt động ngoại khóa</div>
+            <p data-vi="Tổ chức các sân chơi học thuật thường niên (Web Design, Robocode) kết hợp hài hòa với hoạt động tình nguyện, dã ngoại và sinh hoạt câu lạc bộ." data-en="Host annual competitions (Web Design, Robocode) alongside volunteering, team building, and monthly club gatherings.">Tổ chức các sân chơi học thuật thường niên (Web Design, Robocode) kết hợp hài hòa với hoạt động tình nguyện, dã ngoại và sinh hoạt câu lạc bộ.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-gem"></i> <span data-vi="2.3. Năm giá trị cốt lõi" data-en="2.3. Five core values">2.3. Năm giá trị cốt lõi</span></div>
+        <table class="xp-table">
+          <tr>
+            <th data-vi="Học hỏi" data-en="Learning">Học hỏi</th>
+            <td data-vi="Không ngừng cập nhật kiến thức, công nghệ mới và rèn luyện tinh thần chủ động tự học." data-en="Continuously updating knowledge, new technologies, and a self-learning mindset.">Không ngừng cập nhật kiến thức, công nghệ mới và rèn luyện tinh thần chủ động tự học.</td>
+          </tr>
+          <tr>
+            <th data-vi="Chia sẻ" data-en="Sharing">Chia sẻ</th>
+            <td data-vi="Các thế hệ thành viên và cựu sinh viên luôn cởi mở truyền đạt kinh nghiệm, tài liệu và bài học thực tế cho nhau." data-en="Generations of members and alumni openly mentoring and sharing practical experience.">Các thế hệ thành viên và cựu sinh viên luôn cởi mở truyền đạt kinh nghiệm, tài liệu và bài học thực tế cho nhau.</td>
+          </tr>
+          <tr>
+            <th data-vi="Sáng tạo" data-en="Innovation">Sáng tạo</th>
+            <td data-vi="Khuyến khích thử nghiệm ý tưởng mới và xây dựng các sản phẩm phần mềm hữu ích phục vụ cộng đồng sinh viên." data-en="Encouraging new ideas and building practical software products for the student community.">Khuyến khích thử nghiệm ý tưởng mới và xây dựng các sản phẩm phần mềm hữu ích phục vụ cộng đồng sinh viên.</td>
+          </tr>
+          <tr>
+            <th data-vi="Hợp tác" data-en="Collaboration">Hợp tác</th>
+            <td data-vi="Đề cao tinh thần đồng đội và sự phối hợp nhịp nhàng giữa Ban Lập trình, Ban Truyền thông và Ban Hậu cần." data-en="Valuing teamwork and close coordination across the Programming, Media, and Logistics departments.">Đề cao tinh thần đồng đội và sự phối hợp nhịp nhàng giữa Ban Lập trình, Ban Truyền thông và Ban Hậu cần.</td>
+          </tr>
+          <tr>
+            <th data-vi="Phát triển" data-en="Growth">Phát triển</th>
+            <td data-vi="Cùng nhau hoàn thiện kỹ năng chuyên môn, kỹ năng giao tiếp và tinh thần trách nhiệm với cộng đồng." data-en="Growing together in technical mastery, communication skills, and social responsibility.">Cùng nhau hoàn thiện kỹ năng chuyên môn, kỹ năng giao tiếp và tinh thần trách nhiệm với cộng đồng.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 3: TRAINING ROADMAP -->
+    <div class="tab-panel" id="tab-training">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-diagram-3-fill"></i> <span data-vi="3.1. Lộ trình đào tạo 4 giai đoạn theo học kỳ" data-en="3.1. Four-stage semester training roadmap">3.1. Lộ trình đào tạo 4 giai đoạn theo học kỳ</span></div>
+        <div class="xp-photo-frame">
+          <img class="logo-square" src="../../assets/icons/logo.png" alt="Logo MPClub">
+          <div data-html-vi="<p style='margin-bottom:6px;'>Chương trình đào tạo nội bộ của <strong>MPC</strong> kết hợp chặt chẽ giữa lý thuyết nền tảng và thực hành dự án (thông thường kéo dài từ <strong>8 đến 12 tuần mỗi đợt</strong> vào dịp cuối tuần, khoảng 2 đến 3 giờ mỗi buổi).</p><p>Người hướng dẫn gồm các thành viên nòng cốt của Ban Lập trình, anh chị cựu thành viên đang làm việc tại doanh nghiệp và giảng viên Khoa Công nghệ Thông tin – <strong>Trường ĐH Mở TP.HCM</strong>.</p>" data-html-en="<p style='margin-bottom:6px;'>MPC's internal training combines foundational theory with project-based learning (typically <strong>8 to 12 weeks per course</strong> on weekends, 2 to 3 hours per session).</p><p>Instructors include core Programming Department members, industry alumni, and lecturers from the Faculty of IT – <strong>Trường ĐH Mở TP.HCM</strong>.</p>">
+            <p style="margin-bottom: 6px;">
+              Chương trình đào tạo nội bộ của <strong>MPC</strong> kết hợp chặt chẽ giữa lý thuyết nền tảng và thực hành dự án (thông thường kéo dài từ <strong>8 đến 12 tuần mỗi đợt</strong> vào dịp cuối tuần, khoảng 2 đến 3 giờ mỗi buổi).
+            </p>
+            <p>
+              Người hướng dẫn gồm các thành viên nòng cốt của Ban Lập trình, anh chị cựu thành viên đang làm việc tại doanh nghiệp và giảng viên Khoa Công nghệ Thông tin – <strong>Trường ĐH Mở TP.HCM</strong>.
+            </p>
+          </div>
+        </div>
+
+        <table class="xp-table">
+          <tr>
+            <th data-vi="Học kỳ 1–2: Kỹ thuật lập trình" data-en="Semester 1–2: Programming techniques">Học kỳ 1–2: Kỹ thuật lập trình</th>
+            <td data-html-vi="<strong>Nền tảng lập trình:</strong> Ngôn ngữ C / C++, tư duy thuật toán, cấu trúc dữ liệu cơ bản, logic lập trình và quản lý mã nguồn với Git.<br><em>Mục tiêu: Xây dựng tư duy lập trình vững chắc và kỹ năng giải quyết bài toán.</em>" data-html-en="<strong>Foundations:</strong> C / C++, algorithmic thinking, basic data structures, programming logic, and Git fundamentals.<br><em>Goal: Build strong problem-solving and algorithmic foundations.</em>">
+              <strong>Nền tảng lập trình:</strong> Ngôn ngữ C / C++, tư duy thuật toán, cấu trúc dữ liệu cơ bản, logic lập trình và quản lý mã nguồn với Git.<br>
+              <em>Mục tiêu: Xây dựng tư duy lập trình vững chắc và kỹ năng giải quyết bài toán.</em>
+            </td>
+          </tr>
+          <tr>
+            <th data-vi="Học kỳ 3: Phát triển ứng dụng web" data-en="Semester 3: Web development">Học kỳ 3: Phát triển ứng dụng web</th>
+            <td data-html-vi="<strong>Phát triển ứng dụng web:</strong> HTML5, CSS3, JavaScript, React, Next.js và thiết kế giao diện tương thích nhiều thiết bị.<br><em>Mục tiêu: Xây dựng giao diện thân thiện với người dùng và phát triển ứng dụng web hiện đại.</em>" data-html-en="<strong>Web development:</strong> HTML5, CSS3, JavaScript, React, Next.js, and responsive design.<br><em>Goal: Build user-friendly interfaces and modern web applications.</em>">
+              <strong>Phát triển ứng dụng web:</strong> HTML5, CSS3, JavaScript, React, Next.js và thiết kế giao diện tương thích nhiều thiết bị.<br>
+              <em>Mục tiêu: Xây dựng giao diện thân thiện với người dùng và phát triển ứng dụng web hiện đại.</em>
+            </td>
+          </tr>
+          <tr>
+            <th data-vi="Học kỳ 4: Lập trình hướng đối tượng" data-en="Semester 4: Object-oriented programming">Học kỳ 4: Lập trình hướng đối tượng</th>
+            <td data-html-vi="<strong>Lập trình hướng đối tượng:</strong> Các nguyên lý hướng đối tượng, ngôn ngữ Java / C# và các mẫu thiết kế phần mềm thông dụng.<br><em>Mục tiêu: Nắm vững tư duy thiết kế phần mềm và cách tổ chức mã nguồn rõ ràng, dễ bảo trì.</em>" data-html-en="<strong>Object-oriented programming:</strong> OOP principles, Java / C#, and common software design patterns.<br><em>Goal: Master software architecture and maintainable code organization.</em>">
+              <strong>Lập trình hướng đối tượng:</strong> Các nguyên lý hướng đối tượng, ngôn ngữ Java / C# và các mẫu thiết kế phần mềm thông dụng.<br>
+              <em>Mục tiêu: Nắm vững tư duy thiết kế phần mềm và cách tổ chức mã nguồn rõ ràng, dễ bảo trì.</em>
+            </td>
+          </tr>
+          <tr>
+            <th data-vi="Học kỳ 5: Thực hành dự án" data-en="Semester 5: Application and projects">Học kỳ 5: Thực hành dự án</th>
+            <td data-html-vi="<strong>Thực hành phát triển sản phẩm:</strong> Xây dựng dịch vụ RESTful API, triển khai ứng dụng với Docker và làm việc nhóm theo mô hình Agile/Scrum.<br><em>Mục tiêu: Vận dụng kiến thức vào dự án thực tế và làm quen với quy trình phát triển phần mềm tại doanh nghiệp.</em>" data-html-en="<strong>Product development practice:</strong> RESTful APIs, Docker deployment, and Agile/Scrum team workflows.<br><em>Goal: Deliver real-world projects using industry software engineering practices.</em>">
+              <strong>Thực hành phát triển sản phẩm:</strong> Xây dựng dịch vụ RESTful API, triển khai ứng dụng với Docker và làm việc nhóm theo mô hình Agile/Scrum.<br>
+              <em>Mục tiêu: Vận dụng kiến thức vào dự án thực tế và làm quen với quy trình phát triển phần mềm tại doanh nghiệp.</em>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 4: TECH PROJECTS -->
+    <div class="tab-panel" id="tab-projects">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-puzzle-fill"></i> <span data-vi="4.1. Dự án tiêu biểu: Tiện ích MPC Extension (từ tháng 03/2024 đến nay)" data-en="4.1. Flagship project: MPC Extension (March 2024 – Present)">4.1. Dự án tiêu biểu: Tiện ích MPC Extension (từ tháng 03/2024 đến nay)</span></div>
+        <div class="xp-photo-frame">
+          <img src="https://tsqyqazktzyicxccdpfy.supabase.co/storage/v1/object/public/media/editor/1790496707122-1ractf.webp" onerror="this.src='../../assets/images/the-open-clubs/webdesign-1.jpg'" alt="MPC Extension">
+          <div>
+            <p style="margin-bottom: 6px;" data-html-vi="<strong>MPC Extension</strong> là tiện ích mở rộng trên trình duyệt do Ban Lập trình của câu lạc bộ phát triển, giúp sinh viên <strong>Trường ĐH Mở TP.HCM</strong> tra cứu và quản lý thông tin học tập thuận tiện hơn trên cổng thông tin <code>sis.ou.edu.vn</code>." data-html-en="<strong>MPC Extension</strong> is a browser extension built by MPC's Programming Department to help students at <strong>Trường ĐH Mở TP.HCM</strong> conveniently track and plan their studies on <code>sis.ou.edu.vn</code>.">
+              <strong>MPC Extension</strong> là tiện ích mở rộng trên trình duyệt do Ban Lập trình của câu lạc bộ phát triển, giúp sinh viên <strong>Trường ĐH Mở TP.HCM</strong> tra cứu và quản lý thông tin học tập thuận tiện hơn trên cổng thông tin <code>sis.ou.edu.vn</code>.
+            </p>
+            <div class="tech-badges">
+              <span class="tech-badge">WXT Framework</span>
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">TypeScript</span>
+            </div>
+          </div>
+        </div>
+
+        <table class="xp-table">
+          <tr>
+            <th data-vi="Tính năng chính" data-en="Key features">Tính năng chính</th>
+            <td data-html-vi="• <strong>Theo dõi kết quả học tập:</strong> Hiển thị bảng điểm trực quan, dễ tra cứu theo từng học kỳ.<br>• <strong>Tính điểm trung bình và lập kế hoạch học tập:</strong> Hỗ trợ tính điểm trung bình tích lũy (GPA) và ước tính mức điểm cần đạt cho các môn học.<br>• <strong>Quản lý lịch học, lịch thi và học phí:</strong> Tổng hợp thông tin học kỳ rõ ràng ngay trên trình duyệt." data-html-en="• <strong>Grade tracking:</strong> Clean, visual academic transcript display by semester.<br>• <strong>GPA calculator and grade planner:</strong> Calculate cumulative GPA and estimate target course grades.<br>• <strong>Schedule, exam, and tuition overview:</strong> Convenient semester tracking right in the browser.">
+              • <strong>Theo dõi kết quả học tập:</strong> Hiển thị bảng điểm trực quan, dễ tra cứu theo từng học kỳ.<br>
+              • <strong>Tính điểm trung bình và lập kế hoạch học tập:</strong> Hỗ trợ tính điểm trung bình tích lũy (GPA) và ước tính mức điểm cần đạt cho các môn học.<br>
+              • <strong>Quản lý lịch học, lịch thi và học phí:</strong> Tổng hợp thông tin học kỳ rõ ràng ngay trên trình duyệt.
+            </td>
+          </tr>
+          <tr>
+            <th data-vi="Đội ngũ phát triển" data-en="Development team">Đội ngũ phát triển</th>
+            <td data-vi="Trịnh Quốc Đạt, Phan Thị Khánh An, Phan Lê Hồ, Tsàn Quý Thành cùng 4 thành viên của Ban Lập trình." data-en="Trinh Quoc Dat, Phan Thi Khanh An, Ho Phan, Tsan Quy Thanh, and 4 additional members of the Programming Department.">Trịnh Quốc Đạt, Phan Thị Khánh An, Phan Lê Hồ, Tsàn Quý Thành cùng 4 thành viên của Ban Lập trình.</td>
+          </tr>
+          <tr>
+            <th data-vi="Các dự án khác" data-en="Other projects">Các dự án khác</th>
+            <td data-html-vi="Hệ thống quản lý nội bộ câu lạc bộ, giao diện máy tính cổ điển <strong>MPC.exe</strong> và các dự án mã nguồn mở trên trang GitHub của câu lạc bộ." data-html-en="Internal club management portal, the <strong>MPC.exe</strong> retro desktop experience, and open-source repositories on the club's GitHub.">Hệ thống quản lý nội bộ câu lạc bộ, giao diện máy tính cổ điển <strong>MPC.exe</strong> và các dự án mã nguồn mở trên trang GitHub của câu lạc bộ.</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB 5: PARTNERSHIP & CONTACT -->
+    <div class="tab-panel" id="tab-contact">
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-building-check"></i> <span data-vi="5.1. Hợp tác và đồng hành" data-en="5.1. Sponsorship and partnership">5.1. Hợp tác và đồng hành</span></div>
+        <p style="margin-bottom: 10px;" data-vi="MPC luôn trân trọng mọi cơ hội hợp tác cùng quý doanh nghiệp công nghệ, tổ chức giáo dục, đơn vị tuyển dụng, chuyên gia và các anh chị cựu sinh viên trong những hoạt động:" data-en="MPC warmly welcomes partnerships with technology companies, educational institutions, recruiters, industry experts, and alumni across:">
+          MPC luôn trân trọng mọi cơ hội hợp tác cùng quý doanh nghiệp công nghệ, tổ chức giáo dục, đơn vị tuyển dụng, chuyên gia và các anh chị cựu sinh viên trong những hoạt động:
+        </p>
+        <div class="xp-grid-2">
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="🤝 Hình thức phối hợp" data-en="🤝 Partnership forms">🤝 Hình thức phối hợp</div>
+            <p data-html-vi="• Đồng hành tổ chức sự kiện (tài trợ kinh phí, hiện vật, học bổng và giải thưởng)<br>• Hỗ trợ chuyên môn (cử diễn giả khách mời, người hướng dẫn và giám khảo cuộc thi)<br>• Phối hợp tổ chức cuộc thi học thuật, buổi tọa đàm và lớp chuyên đề<br>• Kết nối cơ hội thực tập, tuyển dụng và lan tỏa hình ảnh thương hiệu" data-html-en="• Event sponsorship (financial support, in-kind gifts, scholarships, and prizes)<br>• Technical mentorship (guest speakers, mentors, and competition judges)<br>• Co-organizing academic contests, seminars, and technical workshops<br>• Internship, recruitment, and employer branding partnerships">• Đồng hành tổ chức sự kiện (tài trợ kinh phí, hiện vật, học bổng và giải thưởng)<br>• Hỗ trợ chuyên môn (cử diễn giả khách mời, người hướng dẫn và giám khảo cuộc thi)<br>• Phối hợp tổ chức cuộc thi học thuật, buổi tọa đàm và lớp chuyên đề<br>• Kết nối cơ hội thực tập, tuyển dụng và lan tỏa hình ảnh thương hiệu</p>
+          </div>
+          <div class="xp-card">
+            <div class="xp-card-head" data-vi="🌟 Quyền lợi đơn vị đồng hành" data-en="🌟 Partner benefits">🌟 Quyền lợi đơn vị đồng hành</div>
+            <p data-html-vi="• Giới thiệu hình ảnh thương hiệu trên website chính thức <code>mpclub.dev</code> và trang Fanpage của câu lạc bộ<br>• Hiển thị biểu trưng (logo) trên phông nền sân khấu, băng rôn và các ấn phẩm truyền thông sự kiện<br>• Tiếp cận trực tiếp cộng đồng sinh viên công nghệ thông tin năng động của <strong>Trường ĐH Mở TP.HCM</strong>" data-html-en="• Brand visibility on our official website <code>mpclub.dev</code> and Fanpage<br>• Logo placement on event backdrops, banners, and media publications<br>• Direct connection with motivated IT students at <strong>Trường ĐH Mở TP.HCM</strong>">• Giới thiệu hình ảnh thương hiệu trên website chính thức <code>mpclub.dev</code> và trang Fanpage của câu lạc bộ<br>• Hiển thị biểu trưng (logo) trên phông nền sân khấu, băng rôn và các ấn phẩm truyền thông sự kiện<br>• Tiếp cận trực tiếp cộng đồng sinh viên công nghệ thông tin năng động của <strong>Trường ĐH Mở TP.HCM</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="xp-groupbox">
+        <div class="xp-groupbox-title"><i class="bi bi-telephone-inbound-fill"></i> <span data-vi="5.2. Thông tin liên hệ chính thức" data-en="5.2. Official contact channels">5.2. Thông tin liên hệ chính thức</span></div>
+        <table class="xp-table">
+          <tr>
+            <th data-vi="Đơn vị" data-en="Organization">Đơn vị</th>
+            <td data-html-vi="<strong>Câu lạc bộ Lập trình trên thiết bị di động</strong><br>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-html-en="<strong>Mobile Programming Club (MPC)</strong><br>Faculty of Information Technology – Trường ĐH Mở TP.HCM"><strong>Câu lạc bộ Lập trình trên thiết bị di động</strong><br>Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td><a href="mailto:it.mpclub@ou.edu.vn"><strong>it.mpclub@ou.edu.vn</strong></a></td>
+          </tr>
+          <tr>
+            <th>Website</th>
+            <td><a href="https://www.mpclub.dev" target="_blank" rel="noopener">https://www.mpclub.dev</a></td>
+          </tr>
+          <tr>
+            <th>Fanpage</th>
+            <td><a href="https://fb.com/CLBLapTrinhTrenThietBiDiDong" target="_blank" rel="noopener">CLB Lập Trình Trên Thiết Bị Di Động</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status Bar -->
+  <div class="xp-statusbar">
+    <span data-vi="Hồ sơ giới thiệu chính thức MPClub • Cập nhật ngày 17/11/2026" data-en="Official MPClub profile • Updated 17/11/2026">Hồ sơ giới thiệu chính thức MPClub • Cập nhật ngày 17/11/2026</span>
+    <span data-vi="Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Faculty of IT – Trường ĐH Mở TP.HCM">Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</span>
+  </div>
+
+  <script src="../../js/config.js"></script>
+  <script src="../_shared/lang.js"></script>
   <script>
-    let isVi = true;
-    try {
-      if (window.parent && window.parent.I18n) {
-        isVi = window.parent.I18n.getLanguage() === 'vi';
-        window.parent.I18n.onChange(lang => {
-          setLang(lang === 'vi');
-        });
-      }
-    } catch(e) {}
-
-    function setLang(vi) {
-      isVi = vi;
-      document.getElementById('lang-label').textContent = isVi ? 'English' : 'Tiếng Việt';
-      if (isVi) {
-        document.getElementById('t-main-heading').textContent = '=====================================================\nCHÀO MỪNG ĐẾN VỚI MPCLUB 2026\n=====================================================';
-        document.getElementById('t-intro').textContent = 'MPClub (Multi-Platform Club) là câu lạc bộ học thuật & công nghệ trực thuộc Khoa Công Nghệ Thông Tin - Trường Đại học Mở TP.HCM (OU IT).';
-        document.getElementById('t-vision-title').textContent = '1. TẦM NHÌN & SỨ MỆNH:';
-        document.getElementById('t-vision-desc').innerHTML = '- Xây dựng cộng đồng sinh viên đam mê công nghệ tại OU.<br>- Tạo môi trường thực chiến qua các dự án phần mềm, giải đấu và workshop chuyên sâu.<br>- Kết nối các thế hệ lập trình viên, chia sẻ kinh nghiệm và kỹ năng nghề nghiệp thực tế.';
-        document.getElementById('t-activities-title').textContent = '2. CÁC HOẠT ĐỘNG CHÍNH:';
-        document.getElementById('t-activities-desc').innerHTML = '- Training chuyên môn hàng tuần: Web, Mobile, AI, DevOps, Thuật toán thi đấu.<br>- Hackathon & Giải đấu nội bộ kịch tính (MPC Coding Cup).<br>- Các buổi Tech Sharing từ cựu thành viên và chuyên gia doanh nghiệp công nghệ lớn.';
-        document.getElementById('t-culture-title').textContent = '3. VĂN HÓA CLB:';
-        document.getElementById('t-culture-desc').innerHTML = '- Tinh thần sẻ chia, học hỏi lẫn nhau và không ngại thử thách mới.<br>- Làm việc theo nhóm với quy trình Git/GitHub và chuẩn chuyên nghiệp.<br>- Gắn kết qua những buổi dã ngoại, sinh hoạt ngoại khóa và bonding khó quên.';
-      } else {
-        document.getElementById('t-main-heading').textContent = '=====================================================\nWELCOME TO MPCLUB 2026\n=====================================================';
-        document.getElementById('t-intro').textContent = 'MPClub (Multi-Platform Club) is an academic & technology club under the Faculty of Information Technology - Ho Chi Minh City Open University (OU IT).';
-        document.getElementById('t-vision-title').textContent = '1. VISION & MISSION:';
-        document.getElementById('t-vision-desc').innerHTML = '- Build an inspiring tech-enthusiast student community at OU.<br>- Hands-on project environment through software products, hackathons & workshops.<br>- Connect student generations and industry alumni to share real engineering experience.';
-        document.getElementById('t-activities-title').textContent = '2. CORE ACTIVITIES:';
-        document.getElementById('t-activities-desc').innerHTML = '- Weekly periodic training: Web, Mobile, AI, DevOps, Competitive Algorithms.<br>- Hackathons & internal tournaments (MPC Coding Cup).<br>- Tech Talk & Sharing sessions with senior alumni and tech leaders.';
-        document.getElementById('t-culture-title').textContent = '3. CLUB CULTURE:';
-        document.getElementById('t-culture-desc').innerHTML = '- Mutual sharing, continuous learning, and embracing new challenges.<br>- Team collaboration with modern Git/GitHub workflows.<br>- Unforgettable outdoor bonding retreats and camaraderie.';
-      }
-    }
-
-    document.getElementById('btn-toggle-lang').addEventListener('click', () => {
-      setLang(!isVi);
-      try {
-        if (window.parent && window.parent.I18n) {
-          window.parent.I18n.setLanguage(isVi ? 'vi' : 'en');
-        }
-      } catch(e) {}
+    document.querySelectorAll('.xp-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.xp-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const target = document.getElementById(btn.dataset.tab);
+        if (target) target.classList.add('active');
+      });
     });
 
-    setLang(isVi);
+    document.getElementById('btn-toggle-lang').addEventListener('click', () => {
+      const next = SubAppI18n.isVi() ? 'en' : 'vi';
+      SubAppI18n.setLang(next, true);
+    });
   </script>
 </body>
 </html>

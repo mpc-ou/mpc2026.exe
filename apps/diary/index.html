@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIARY - Nhật ký & Hậu trường MPClub</title>
+  <title>DIARY – Nhật Ký & Kỷ Niệm Gần Đây MPClub</title>
   <link rel="stylesheet" href="../../assets/fonts/bootstrap-icons/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <style>
     * {
       box-sizing: border-box;
@@ -12,148 +13,291 @@
       padding: 0;
     }
     body {
-      background: #fdfaf3;
-      color: #333333;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      font-size: 13px;
+      background: #ece9d8;
+      color: #111;
+      font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+      font-size: 12px;
       line-height: 1.6;
-      padding: 16px;
-      overflow-y: auto;
       height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
     }
-    .diary-header {
-      background: linear-gradient(135deg, #795548 0%, #4e342e 100%);
+
+    .xp-banner {
+      background: linear-gradient(90deg, #003399 0%, #0055ea 70%, #3593ff 100%);
       color: #fff;
-      padding: 14px 18px;
-      border-radius: 6px;
-      margin-bottom: 16px;
+      padding: 10px 14px;
+      border-bottom: 2px solid #ff6600;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      flex-shrink: 0;
     }
-    .diary-title-box h1 {
-      font-size: 18px;
+    .xp-banner-title {
+      font-size: 14px;
+      font-weight: bold;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .diary-sub {
+    .xp-banner-sub {
       font-size: 11px;
-      color: #d7ccc8;
+      color: #dbeaff;
       margin-top: 2px;
     }
-    .diary-entry {
+    .xp-badge-10y {
+      background: #ff6600;
+      color: #fff;
+      border: 1px solid #fff;
+      padding: 3px 10px;
+      font-weight: bold;
+      font-size: 11px;
+      border-radius: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      white-space: nowrap;
+    }
+
+    .xp-workspace {
+      flex: 1;
       background: #ffffff;
-      border: 1px solid #e0d7c6;
-      border-left: 4px solid #ff9800;
-      border-radius: 4px;
+      margin: 6px 8px;
+      border: 1px solid #7f9db9;
       padding: 14px 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      overflow-y: auto;
+    }
+
+    .diary-entry {
+      background: #fafcfe;
+      border: 1px solid #b8c9de;
+      border-left: 4px solid #0055ea;
+      border-radius: 3px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .diary-entry:nth-child(even) {
+      border-left-color: #ff6600;
+    }
+    .entry-img {
+      width: 160px;
+      aspect-ratio: 16 / 10;
+      height: auto;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      border: 2px solid #fff;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+      flex-shrink: 0;
+      background: #e6ecf5;
+    }
+    .entry-content {
+      flex: 1;
     }
     .entry-meta {
       display: flex;
       justify-content: space-between;
-      color: #888;
+      align-items: center;
       font-size: 11px;
-      margin-bottom: 8px;
-      border-bottom: 1px dashed #eee;
+      color: #555;
+      margin-bottom: 5px;
       padding-bottom: 4px;
+      border-bottom: 1px dashed #d5e0ee;
+      flex-wrap: wrap;
+      gap: 6px;
     }
     .entry-author {
       font-weight: bold;
-      color: #5d4037;
+      color: #003399;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
+    }
+    .entry-date {
+      background: #eef4fc;
+      border: 1px solid #b5c9e2;
+      color: #003399;
+      padding: 1px 6px;
+      border-radius: 2px;
+      font-weight: bold;
+      font-size: 10.5px;
     }
     .entry-title {
-      font-size: 15px;
+      font-size: 13.5px;
       font-weight: bold;
-      color: #2e7d32;
-      margin-bottom: 6px;
+      color: #003399;
+      margin-bottom: 5px;
     }
     .entry-body {
-      color: #444;
+      color: #222;
+      font-size: 12px;
       line-height: 1.6;
     }
     .entry-tags {
-      margin-top: 10px;
+      margin-top: 8px;
       display: flex;
       gap: 6px;
+      flex-wrap: wrap;
     }
     .tag {
-      background: #efebe9;
-      color: #6d4c41;
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 12px;
+      background: #ece9d8;
+      border: 1px solid #aca899;
+      color: #333;
+      font-size: 10.5px;
+      padding: 1px 7px;
+      border-radius: 2px;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+    }
+
+    /* Windows XP "See More on mpclub.dev" Card */
+    .xp-more-card {
+      margin-top: 14px;
+      background: linear-gradient(180deg, #f4f8ff 0%, #e3edfb 100%);
+      border: 1px solid #7f9db9;
+      border-left: 4px solid #ff6600;
+      border-radius: 3px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .xp-more-info strong {
+      color: #003399;
+      font-size: 12.5px;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .xp-more-info span {
+      font-size: 11px;
+      color: #444;
+    }
+    .xp-more-btn {
+      background: linear-gradient(180deg, #ff8533 0%, #e65c00 100%);
+      color: #fff;
+      border: 1px solid #803300;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4);
+      padding: 6px 14px;
+      font-family: Tahoma, sans-serif;
+      font-size: 11.5px;
+      font-weight: bold;
+      border-radius: 2px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    .xp-more-btn:hover {
+      background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
+    }
+
+    .xp-statusbar {
+      height: 22px;
+      background: #ece9d8;
+      border-top: 1px solid #aca899;
+      padding: 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #333;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .diary-entry { flex-direction: column; }
+      .entry-img { width: 100%; aspect-ratio: 16 / 9; height: auto; }
     }
   </style>
   <link rel="stylesheet" href="../_shared/responsive.css">
 </head>
 <body>
 
-  <div class="diary-header">
-    <div class="diary-title-box">
-      <h1><i class="bi bi-journal-bookmark-fill"></i> <span>MPClub Diary & Stories</span></h1>
-      <div class="diary-sub">Những trang nhật ký, kỷ niệm và câu chuyện hậu trường từ gia đình MPC (stories.json)</div>
+  <!-- Top Banner -->
+  <div class="xp-banner">
+    <div>
+      <div class="xp-banner-title">
+        <i class="bi bi-journal-bookmark-fill"></i>
+        <span data-vi="NHẬT KÝ HOẠT ĐỘNG MPCLUB" data-en="MPCLUB DIARY">NHẬT KÝ HOẠT ĐỘNG MPCLUB</span>
+      </div>
+      <div class="xp-banner-sub" data-vi="Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Mobile Programming Club (MPC) • Faculty of IT – Trường ĐH Mở TP.HCM">Câu lạc bộ Lập trình trên thiết bị di động (MPC) • Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</div>
     </div>
-    <div style="font-size: 24px; opacity: 0.85;">📔</div>
+    <div class="xp-badge-10y" data-vi="🎂 Hơn 10 năm (24/12/2015)" data-en="🎂 10+ Years (24/12/2015)">🎂 Hơn 10 năm (24/12/2015)</div>
   </div>
 
-  <div id="entries-container"></div>
+  <!-- Entries Workspace -->
+  <div class="xp-workspace">
+    <div id="entries-container"></div>
 
+    <!-- Scroll-to-bottom "See More on mpclub.dev" -->
+    <div class="xp-more-card">
+      <div class="xp-more-info">
+        <strong data-vi="📚 Bạn muốn đọc thêm các bài tổng kết sự kiện và nhật ký hoạt động trước đây?" data-en="📚 Want to read more event recaps and past club stories?">📚 Bạn muốn đọc thêm các bài tổng kết sự kiện và nhật ký hoạt động trước đây?</strong>
+        <span data-vi="Toàn bộ kho bài viết, phóng sự ảnh và kỷ niệm từ năm 2015 đến nay đều được lưu trữ đầy đủ trên trang thông tin chính thức của câu lạc bộ." data-en="All articles, photo stories, and archives since 2015 are available on our official website.">Toàn bộ kho bài viết, phóng sự ảnh và kỷ niệm từ năm 2015 đến nay đều được lưu trữ đầy đủ trên trang thông tin chính thức của câu lạc bộ.</span>
+      </div>
+      <a class="xp-more-btn" id="link-more-diary" href="https://www.mpclub.dev/vi/events" target="_blank" rel="noopener">
+        <i class="bi bi-globe2"></i>
+        <span data-vi="Xem thêm tại mpclub.dev" data-en="View more at mpclub.dev">Xem thêm tại mpclub.dev</span>
+        <i class="bi bi-box-arrow-up-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="xp-statusbar">
+    <span data-vi="Hiển thị 3 bài viết gần nhất • Khẩu hiệu: &quot;Ở đâu có bug, ở đó có MPC!&quot;" data-en="Showing 3 most recent stories • Slogan: &quot;Where there's a bug, there's MPC!&quot;">Hiển thị 3 bài viết gần nhất • Khẩu hiệu: "Ở đâu có bug, ở đó có MPC!"</span>
+    <span data-vi="Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM" data-en="Faculty of IT – Trường ĐH Mở TP.HCM">Khoa Công nghệ Thông tin – Trường ĐH Mở TP.HCM</span>
+  </div>
+
+  <script src="../_shared/lang.js"></script>
   <script>
-    const fallbackStories = [
-      {
-        id: 1,
-        author: "Ban Lập Trình (BLT)",
-        date: "15/09/2025 • 02:45 AM",
-        title: "Hậu trường dự án MPC.exe – Đêm thức trắng cùng Retro Windows XP",
-        body: "Ý tưởng làm một chiếc website tuyển quân theo phong cách hệ điều hành Windows XP Luna nhen nhóm từ một buổi trà đá sau giờ học thuật toán. Cả team BLT đã cùng nhau bàn luận về từng chi tiết nhỏ: âm thanh khởi động BIOS 8-bit, thanh taskbar xanh huyền thoại, cửa sổ kéo thả... Hy vọng các bạn tân sinh viên khi mở chiếc máy tính này sẽ cảm nhận được ngọn lửa đam mê lập trình của CLB!",
-        tags: ["#BLT", "#Project_MPC_exe", "#HauTruong"]
-      },
-      {
-        id: 2,
-        author: "Ban Thiết Kế (BTK)",
-        date: "08/11/2025 • 04:15 PM",
-        title: "Linh vật MPC và hành trình vẽ từng pixel retro",
-        body: "Để tái hiện cảm giác hoài niệm Windows XP mà vẫn mang đậm bản sắc Khoa CNTT - ĐH Mở TP.HCM, team thiết kế đã thử nghiệm rất nhiều phong cách: từ vector tối giản đến pixel art 8-bit. Nhìn sản phẩm hoàn thiện trên màn hình Desktop xanh mướt, cảm xúc thực sự rất tự hào!",
-        tags: ["#BTK", "#PixelArt", "#Branding"]
-      },
-      {
-        id: 3,
-        author: "Ban Sự Kiện (BSK) & Ban Truyền Thông (BTT)",
-        date: "20/12/2025 • 10:30 PM",
-        title: "Kỷ niệm buổi Tech Sharing & Bonding ấm cúng",
-        body: "Không chỉ có những dòng code khô khan, MPClub luôn là nơi gắn kết những tâm hồn đồng điệu. Buổi dã ngoại và bonding cuối năm với những trận boardgame nảy lửa, những lời tâm sự từ các anh chị cựu sinh viên đi làm tại các tập đoàn lớn đã tiếp thêm bao động lực cho thế hệ tiếp theo.",
-        tags: ["#BSK", "#BTT", "#Family"]
-      }
-    ];
+    let allStories = [];
 
-    function renderStories(list) {
+    function renderStories() {
+      const vi = SubAppI18n.isVi();
+      const moreLink = document.getElementById('link-more-diary');
+      if (moreLink) {
+        moreLink.href = vi ? 'https://www.mpclub.dev/vi/events' : 'https://www.mpclub.dev/en/events';
+      }
+
       const container = document.getElementById('entries-container');
-      container.innerHTML = list.map(item => `
-        <div class="diary-entry">
-          <div class="entry-meta">
-            <span class="entry-author"><i class="bi bi-person-circle"></i> ${item.author}</span>
-            <span>${item.date}</span>
+      container.innerHTML = allStories.slice(0, 3).map(item => {
+        const author = vi ? item.author : (item.author_en || item.author);
+        const date = vi ? item.date : (item.date_en || item.date);
+        const title = vi ? item.title : (item.title_en || item.title);
+        const body = vi ? item.body : (item.body_en || item.body);
+        return `
+          <div class="diary-entry">
+            ${item.image ? `<img src="${item.image}" class="entry-img" alt="${title}" loading="lazy">` : ''}
+            <div class="entry-content">
+              <div class="entry-meta">
+                <span class="entry-author"><i class="bi bi-person-badge-fill"></i> ${author}</span>
+                <span class="entry-date">${date}</span>
+              </div>
+              <div class="entry-title">${title}</div>
+              <div class="entry-body">${body}</div>
+              <div class="entry-tags">
+                ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+              </div>
+            </div>
           </div>
-          <div class="entry-title">${item.title}</div>
-          <div class="entry-body">${item.body}</div>
-          <div class="entry-tags">
-            ${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     fetch('./stories.json')
       .then(r => r.json())
-      .then(data => renderStories(data))
-      .catch(() => renderStories(fallbackStories));
+      .then(data => {
+        allStories = data;
+        renderStories();
+      });
+
+    SubAppI18n.onChange(() => renderStories());
   </script>
 </body>
 </html>

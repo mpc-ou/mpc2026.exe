@@ -144,17 +144,11 @@ const BootManager = (function () {
 
   function shouldRunBoot() {
     try {
-      if (new URLSearchParams(location.search).get('boot') === '1') return true;
-      if (sessionStorage.getItem(FORCE_BOOT_KEY)) {
-        sessionStorage.removeItem(FORCE_BOOT_KEY);
-        return true;
-      }
-      if (localStorage.getItem(BOOT_SEEN_KEY)) return false;
-      localStorage.setItem(BOOT_SEEN_KEY, '1');
+      if (new URLSearchParams(location.search).get('boot') === '0') return false;
+      return true;
     } catch (e) {
-      // Storage blocked (private mode): just run the boot.
+      return true;
     }
-    return true;
   }
 
   // On the BIOS screen a tap/key means "continue" (and lets the browser play sound);
@@ -183,12 +177,12 @@ const BootManager = (function () {
 
     const biosLines = [
       { text: "MPC ROM BIOS (C) 2026 MPClub Inc.", highlight: false, delay: 60 },
-      { text: "MPC-ACPI BIOS Version 2.026 - Khoa CNTT Trường ĐH Mở TP.HCM", highlight: false, delay: 60 },
+      { text: "MPC-ACPI BIOS Version 2.026", highlight: false, delay: 60 },
       { text: "CPU: Intel Core-OU IT @ 4.20 GHz", highlight: false, delay: 60 },
       { text: "Memory Test: 2048576KB OK", highlight: true, delay: 60 },
-      { text: "Detecting Primary Master   ... MPC_DRIVE_15061990 (19.90 GB)", highlight: false, delay: 60 },
+      { text: "Detecting Primary Master   ... MPC_DRIVE_25122015 (201.5 GB)", highlight: false, delay: 60 },
       { text: "Detecting Primary Slave    ... NONE", highlight: false, delay: 60 },
-      { text: "Detecting Secondary Master ... CD-ROM MPC_RECRUITMENT_2026", highlight: false, delay: 60 },
+      { text: "Detecting Secondary Master ... CD-ROM DRIVE", highlight: false, delay: 60 },
       { text: "Initializing Plug and Play Cards...", highlight: false, delay: 60 },
       { text: "Loading MPCrosoft Operating System Kernel...", highlight: true, delay: 60 }
     ];
@@ -220,6 +214,13 @@ const BootManager = (function () {
         promptEl.style.marginTop = '12px';
         promptEl.innerHTML = `<span class="bios-highlight">${window.I18n ? I18n.t('bios.press_any_key') : 'Press any key or tap the screen to continue . . .'}</span><span class="bios-cursor">_</span>`;
         bodyEl.appendChild(promptEl);
+
+        // Auto-advance to XP Boot if user doesn't press anything within 1.2s
+        later(() => {
+          if (!_biosEl.classList.contains('hidden')) {
+            continueFromBios();
+          }
+        }, 1200);
       }
     }
 
@@ -236,7 +237,7 @@ const BootManager = (function () {
 
     later(() => {
       startLoginSequence();
-    }, 700);
+    }, 2000);
   }
 
   /**

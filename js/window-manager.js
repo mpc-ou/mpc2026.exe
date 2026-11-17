@@ -382,7 +382,7 @@ const WindowManager = (function () {
     }
   }
 
-  return {
+  const api = {
     /**
      * Open an app window by App ID or App Config
      * If window already open, restore and focus it (prevent duplicates)
@@ -423,6 +423,81 @@ const WindowManager = (function () {
     },
 
     /**
+     * Get all open windows
+     */
+    getAll() {
+      return Array.from(_openWindows.values());
+    },
+
+    /**
+     * Minimize all windows (Show Desktop toggle)
+     */
+    minimizeAll() {
+      const wins = Array.from(_openWindows.values());
+      const anyVisible = wins.some(w => !w.isMinimized);
+      wins.forEach(w => {
+        if (anyVisible) {
+          if (!w.isMinimized) w.minimize();
+        } else {
+          w.restore();
+        }
+      });
+    },
+
+    /**
+     * Cascade windows (classic Windows XP cascade)
+     */
+    cascade() {
+      const wins = Array.from(_openWindows.values()).filter(w => !w.isMinimized);
+      const area = workArea();
+      const step = 28;
+      wins.forEach((w, idx) => {
+        if (w.isMaximized) w.toggleMaximize();
+        w.element.style.width = `${Math.min(640, area.w - 100)}px`;
+        w.element.style.height = `${Math.min(460, area.h - 100)}px`;
+        w.element.style.left = `${Math.min(30 + idx * step, area.w - 200)}px`;
+        w.element.style.top = `${Math.min(30 + idx * step, area.h - 200)}px`;
+        w.bringToFront();
+      });
+    },
+
+    /**
+     * Tile windows horizontally
+     */
+    tileHorizontally() {
+      const wins = Array.from(_openWindows.values()).filter(w => !w.isMinimized);
+      if (wins.length === 0) return;
+      const area = workArea();
+      const h = Math.floor(area.h / wins.length);
+      wins.forEach((w, idx) => {
+        if (w.isMaximized) w.toggleMaximize();
+        w.element.style.left = '0px';
+        w.element.style.top = `${idx * h}px`;
+        w.element.style.width = `${area.w}px`;
+        w.element.style.height = `${h}px`;
+        w.bringToFront();
+      });
+    },
+
+    /**
+     * Tile windows vertically
+     */
+    tileVertically() {
+      const wins = Array.from(_openWindows.values()).filter(w => !w.isMinimized);
+      if (wins.length === 0) return;
+      const area = workArea();
+      const w = Math.floor(area.w / wins.length);
+      wins.forEach((win, idx) => {
+        if (win.isMaximized) win.toggleMaximize();
+        win.element.style.left = `${idx * w}px`;
+        win.element.style.top = '0px';
+        win.element.style.width = `${w}px`;
+        win.element.style.height = `${area.h}px`;
+        win.bringToFront();
+      });
+    },
+
+    /**
      * Close a window
      */
     close(appId) {
@@ -455,6 +530,40 @@ const WindowManager = (function () {
       }
     }
   };
+
+  // Sync open windows and child iframes when system language changes
+  if (window.I18n && typeof I18n.onChange === 'function') {
+    I18n.onChange((lang) => {
+      _openWindows.forEach(win => {
+        if (win.appConfig && win.appConfig.i18nTitleKey) {
+          win.title = I18n.t(win.appConfig.i18nTitleKey);
+          const titleEl = win.element.querySelector('.window-title');
+          if (titleEl) titleEl.textContent = win.title;
+        }
+        const menuItems = win.element.querySelectorAll('.window-menubar .menu-item');
+        if (menuItems.length === 4) {
+          menuItems[0].textContent = I18n.t('win.file');
+          menuItems[1].textContent = I18n.t('win.edit');
+          menuItems[2].textContent = I18n.t('win.view');
+          menuItems[3].textContent = I18n.t('win.help');
+        }
+        const statusSpans = win.element.querySelectorAll('.window-statusbar span');
+        if (statusSpans.length >= 1) {
+          statusSpans[0].textContent = I18n.t('system.ready');
+        }
+      });
+
+      document.querySelectorAll('iframe').forEach(iframe => {
+        try {
+          iframe.contentWindow?.postMessage({ type: 'mpc:lang-change', lang }, '*');
+        } catch (e) {}
+      });
+
+      notifyChange();
+    });
+  }
+
+  return api;
 })();
 
 window.WindowManager = WindowManager;

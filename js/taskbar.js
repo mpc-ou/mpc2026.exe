@@ -33,6 +33,7 @@ const Taskbar = (function () {
     setupStartMenu();
     setupSystemTrayWidgets();
     setupShutdownModal();
+    setupTaskbarContextMenu();
     setupWindowManagerListener();
 
     // Listen for language changes
@@ -85,21 +86,31 @@ const Taskbar = (function () {
       e.stopPropagation();
       const isClosed = _volumePopup.classList.contains('hidden');
       closeTrayPopups();
-      if (isClosed) _volumePopup.classList.remove('hidden');
+      if (isClosed) {
+        if (window.MasterVolume) {
+          if (volSlider) volSlider.value = String(Math.round(MasterVolume.get() * 100));
+          if (volMute) volMute.checked = MasterVolume.isMuted();
+        }
+        _volumePopup.classList.remove('hidden');
+      }
     });
 
     const volSlider = document.getElementById('tray-vol-slider');
     const volMute = document.getElementById('tray-vol-mute');
     volSlider?.addEventListener('input', (e) => {
       const vol = e.target.value / 100;
-      if (window.BootManager && window.BootManager.setVolume) {
-        window.BootManager.setVolume(volMute.checked ? 0 : vol);
+      if (window.MasterVolume) {
+        window.MasterVolume.set(vol);
+      } else if (window.BootManager && window.BootManager.setVolume) {
+        window.BootManager.setVolume(volMute?.checked ? 0 : vol);
       }
     });
 
     volMute?.addEventListener('change', (e) => {
-      const vol = volSlider.value / 100;
-      if (window.BootManager && window.BootManager.setVolume) {
+      if (window.MasterVolume) {
+        window.MasterVolume.setMuted(e.target.checked);
+      } else if (window.BootManager && window.BootManager.setVolume) {
+        const vol = volSlider ? volSlider.value / 100 : 0.8;
         window.BootManager.setVolume(e.target.checked ? 0 : vol);
       }
     });
@@ -328,14 +339,157 @@ const Taskbar = (function () {
     });
   }
 
+  let _hoverPreviewTimer = null;
+  let _currentHoveredAppId = null;
+  let _activeContextAppId = null;
+
+  function closeAllTaskbarMenus() {
+    document.getElementById('taskbar-context-menu')?.classList.add('hidden');
+    document.getElementById('task-item-context-menu')?.classList.add('hidden');
+    hideTaskPreview();
+  }
+
+  function hideTaskPreview() {
+    const tooltip = document.getElementById('task-preview-tooltip');
+    if (tooltip) tooltip.classList.add('hidden');
+    _currentHoveredAppId = null;
+  }
+
+  function setupTaskbarContextMenu() {
+    const taskbar = document.getElementById('taskbar');
+    const tbCtx = document.getElementById('taskbar-context-menu');
+    const taskCtx = document.getElementById('task-item-context-menu');
+    const previewTooltip = document.getElementById('task-preview-tooltip');
+
+    if (!taskbar || !tbCtx) return;
+
+    // Right-click on empty taskbar area
+    taskbar.addEventListener('contextmenu', (e) => {
+      if (e.target.closest('.task-item') || e.target.closest('#start-button') || e.target.closest('.system-tray')) {
+        return;
+      }
+      e.preventDefault();
+      closeAllTaskbarMenus();
+
+      let x = e.clientX;
+      let y = e.clientY - 210;
+      if (x + 190 > window.innerWidth) x = window.innerWidth - 195;
+      if (y < 10) y = 10;
+
+      tbCtx.style.left = `${x}px`;
+      tbCtx.style.top = `${y}px`;
+      tbCtx.classList.remove('hidden');
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#taskbar-context-menu') && !e.target.closest('#task-item-context-menu')) {
+        closeAllTaskbarMenus();
+      }
+    });
+
+    // Taskbar context menu action buttons
+    document.getElementById('tb-ctx-cascade')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      WindowManager.cascade();
+    });
+
+    document.getElementById('tb-ctx-tile-h')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      WindowManager.tileHorizontally();
+    });
+
+    document.getElementById('tb-ctx-tile-v')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      WindowManager.tileVertically();
+    });
+
+    document.getElementById('tb-ctx-show-desktop')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      WindowManager.minimizeAll();
+    });
+
+    document.getElementById('tb-ctx-taskmgr')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      WindowManager.open('taskmgr.exe');
+    });
+
+    document.getElementById('tb-ctx-properties')?.addEventListener('click', () => {
+      closeAllTaskbarMenus();
+      const isVi = window.I18n && I18n.getLanguage() === 'vi';
+      XPDialog.alert(
+        isVi 
+          ? 'Thuộc tính Thanh tác vụ (Taskbar Properties)\n- Khóa thanh tác vụ: Đã bật\n- Tự động ẩn: Tắt\n- Hiển thị đồng hồ: Bật' 
+          : 'Taskbar and Start Menu Properties\n- Lock the taskbar: Enabled\n- Auto-hide taskbar: Disabled\n- Show the clock: Enabled',
+        isVi ? 'Thuộc tính Taskbar' : 'Taskbar Properties',
+        { icon: 'info' }
+      );
+    });
+
+    // Task item context menu actions
+    document.getElementById('task-ctx-restore')?.addEventListener('click', () => {
+      if (_activeContextAppId) {
+        const win = WindowManager.get(_activeContextAppId);
+        if (win) win.restore();
+      }
+      closeAllTaskbarMenus();
+    });
+
+    document.getElementById('task-ctx-minimize')?.addEventListener('click', () => {
+      if (_activeContextAppId) {
+        const win = WindowManager.get(_activeContextAppId);
+        if (win) win.minimize();
+      }
+      closeAllTaskbarMenus();
+    });
+
+    document.getElementById('task-ctx-maximize')?.addEventListener('click', () => {
+      if (_activeContextAppId) {
+        const win = WindowManager.get(_activeContextAppId);
+        if (win) win.toggleMaximize();
+      }
+      closeAllTaskbarMenus();
+    });
+
+    document.getElementById('task-ctx-close')?.addEventListener('click', () => {
+      if (_activeContextAppId) {
+        WindowManager.close(_activeContextAppId);
+      }
+      closeAllTaskbarMenus();
+    });
+
+    // Preview tooltip close button
+    document.getElementById('task-preview-close-btn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (_currentHoveredAppId) {
+        WindowManager.close(_currentHoveredAppId);
+        hideTaskPreview();
+      }
+    });
+
+    previewTooltip?.addEventListener('mouseenter', () => {
+      if (_hoverPreviewTimer) clearTimeout(_hoverPreviewTimer);
+    });
+
+    previewTooltip?.addEventListener('mouseleave', () => {
+      hideTaskPreview();
+    });
+  }
+
   function setupWindowManagerListener() {
     WindowManager.onChange((windowsList) => {
       if (!_tasksArea) return;
       _tasksArea.innerHTML = '';
 
+      const taskCtx = document.getElementById('task-item-context-menu');
+      const previewTooltip = document.getElementById('task-preview-tooltip');
+      const previewTitle = document.getElementById('task-preview-title');
+      const previewThumb = document.getElementById('task-preview-thumb');
+
       windowsList.forEach(win => {
         const taskBtn = document.createElement('button');
         taskBtn.className = 'task-item';
+        taskBtn.dataset.appId = win.appId;
         if (win.isActive && !win.isMinimized) {
           taskBtn.classList.add('active');
         }
@@ -350,7 +504,78 @@ const Taskbar = (function () {
         `;
 
         taskBtn.addEventListener('click', () => {
+          hideTaskPreview();
           WindowManager.toggleFromTaskbar(win.appId);
+        });
+
+        // Hover Preview Tooltip
+        taskBtn.addEventListener('mouseenter', () => {
+          if (_hoverPreviewTimer) clearTimeout(_hoverPreviewTimer);
+          _hoverPreviewTimer = setTimeout(() => {
+            if (!previewTooltip) return;
+            _currentHoveredAppId = win.appId;
+            if (previewTitle) previewTitle.textContent = win.title;
+            
+            // Generate snapshot representation
+            if (previewThumb) {
+              previewThumb.innerHTML = `
+                <div style="font-size: 24px; margin-bottom: 4px;">${iconGraphic}</div>
+                <div style="font-weight: bold; color: #003399; font-size: 11px;">${win.title}</div>
+                <div style="color: #666; font-size: 9px;">${win.isMinimized ? 'Minimized' : 'Running'} • MPC.exe</div>
+              `;
+            }
+
+            const btnRect = taskBtn.getBoundingClientRect();
+            let left = btnRect.left + (btnRect.width / 2) - 95;
+            if (left < 10) left = 10;
+            if (left + 190 > window.innerWidth) left = window.innerWidth - 195;
+
+            previewTooltip.style.left = `${left}px`;
+            previewTooltip.classList.remove('hidden');
+          }, 300);
+        });
+
+        taskBtn.addEventListener('mouseleave', () => {
+          if (_hoverPreviewTimer) clearTimeout(_hoverPreviewTimer);
+          _hoverPreviewTimer = setTimeout(() => {
+            hideTaskPreview();
+          }, 250);
+        });
+
+        // Right click on task button
+        taskBtn.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          hideTaskPreview();
+          closeAllTaskbarMenus();
+
+          _activeContextAppId = win.appId;
+
+          // Update menu items enabled/disabled state
+          const btnRestore = document.getElementById('task-ctx-restore');
+          const btnMin = document.getElementById('task-ctx-minimize');
+          const btnMax = document.getElementById('task-ctx-maximize');
+
+          if (btnRestore) {
+            btnRestore.classList.toggle('disabled', !win.isMinimized);
+          }
+          if (btnMin) {
+            btnMin.classList.toggle('disabled', win.isMinimized);
+          }
+          if (btnMax) {
+            btnMax.querySelector('span').textContent = win.isMaximized ? 'Restore' : 'Maximize';
+          }
+
+          let x = e.clientX;
+          let y = e.clientY - 170;
+          if (x + 160 > window.innerWidth) x = window.innerWidth - 165;
+          if (y < 10) y = 10;
+
+          if (taskCtx) {
+            taskCtx.style.left = `${x}px`;
+            taskCtx.style.top = `${y}px`;
+            taskCtx.classList.remove('hidden');
+          }
         });
 
         _tasksArea.appendChild(taskBtn);

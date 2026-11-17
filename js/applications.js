@@ -10,7 +10,7 @@
 // 1. ABOUT_MPC
 AppRegistry.register({
   id: 'ABOUT_MPC',
-  title: 'ABOUT_MPC.txt - Giới thiệu MPClub',
+  title: 'ABOUT_MPC.txt - Giới thiệu câu lạc bộ MPClub',
   desktopLabel: 'ABOUT_MPC',
   i18nTitleKey: 'app.about.title',
   i18nLabelKey: 'app.about.label',
@@ -23,7 +23,7 @@ AppRegistry.register({
 // 2. OUR_TEAMS
 AppRegistry.register({
   id: 'OUR_TEAMS',
-  title: 'OUR_TEAMS - Các Ban Chuyên Môn MPClub',
+  title: 'OUR_TEAMS - Cơ cấu tổ chức và các ban chuyên môn',
   desktopLabel: 'OUR_TEAMS',
   i18nTitleKey: 'app.teams.title',
   i18nLabelKey: 'app.teams.label',
@@ -36,7 +36,7 @@ AppRegistry.register({
 // 3. ACTIVITIES
 AppRegistry.register({
   id: 'ACTIVITIES',
-  title: 'ACTIVITIES - Hoạt Động & Workshop',
+  title: 'ACTIVITIES - Hoạt động và đào tạo',
   desktopLabel: 'ACTIVITIES',
   i18nTitleKey: 'app.activities.title',
   i18nLabelKey: 'app.activities.label',
@@ -49,7 +49,7 @@ AppRegistry.register({
 // 4. EVENTS
 AppRegistry.register({
   id: 'EVENTS',
-  title: 'EVENTS - Sự Kiện & Giải Đấu Lớn',
+  title: 'EVENTS - Sự kiện và bảng vàng thành tích',
   desktopLabel: 'EVENTS',
   i18nTitleKey: 'app.events.title',
   i18nLabelKey: 'app.events.label',
@@ -62,7 +62,7 @@ AppRegistry.register({
 // 5. DIARY
 AppRegistry.register({
   id: 'DIARY',
-  title: 'DIARY.txt - Nhật Ký & Kỷ Niệm',
+  title: 'DIARY.txt - Nhật ký hoạt động và kỷ niệm',
   desktopLabel: 'DIARY',
   i18nTitleKey: 'app.diary.title',
   i18nLabelKey: 'app.diary.label',
@@ -75,7 +75,7 @@ AppRegistry.register({
 // 6. FAQ.txt
 AppRegistry.register({
   id: 'FAQ.txt',
-  title: 'FAQ.txt - Câu Hỏi Thường Gặp',
+  title: 'FAQ.txt - Câu hỏi thường gặp',
   desktopLabel: 'FAQ.txt',
   i18nTitleKey: 'app.faq.title',
   i18nLabelKey: 'app.faq.label',
@@ -88,15 +88,30 @@ AppRegistry.register({
 // 7. JOIN_MPC.exe (Featured Shortcut)
 AppRegistry.register({
   id: 'JOIN_MPC.exe',
-  title: 'JOIN_MPC.exe - Đăng Ký Tuyển Thành Viên 2026',
+  title: 'JOIN_MPC.exe - Đăng ký tham gia câu lạc bộ',
   desktopLabel: 'JOIN_MPC.exe',
   i18nTitleKey: 'app.join.title',
   i18nLabelKey: 'app.join.label',
   iconUrl: 'assets/icons/exe.svg',
   featured: true,
-  width: 520,
-  height: 420,
+  width: 680,
+  height: 460,
   url: 'apps/join_mpc/index.html'
+});
+
+// 7b. JOIN_MPC_FORM.exe (Hidden Window - Only opened from JOIN_MPC.exe)
+AppRegistry.register({
+  id: 'JOIN_MPC_FORM.exe',
+  title: 'Biểu mẫu đăng ký phỏng vấn tuyển thành viên CLB MPC khóa K26',
+  desktopLabel: 'MPC_FORM.exe',
+  i18nTitleKey: 'app.join_form.title',
+  i18nLabelKey: 'app.join_form.label',
+  iconUrl: 'assets/icons/exe.svg',
+  showOnDesktop: false,
+  showInStartMenu: false,
+  width: 740,
+  height: 550,
+  url: 'apps/join_mpc/form.html'
 });
 
 // 8. Calculator (Accessories)
@@ -109,7 +124,7 @@ AppRegistry.register({
   height: 250,
   noMenubar: true,
   noStatusbar: true,
-  showOnDesktop: true,
+  showOnDesktop: false,
   showInStartMenu: true,
   url: 'apps/calculator/index.html'
 });
@@ -124,12 +139,27 @@ AppRegistry.register({
   height: 275,
   noMenubar: true,
   noStatusbar: true,
-  showOnDesktop: true,
+  showOnDesktop: false,
   showInStartMenu: true,
   url: 'apps/minesweeper/index.html'
 });
 
-// 10. RECYCLE_BIN
+// 10. Paint (Accessories)
+AppRegistry.register({
+  id: 'mspaint.exe',
+  title: 'Paint',
+  desktopLabel: 'Paint',
+  iconSvg: '<i class="bi bi-palette-fill" style="color: #d13438; font-size: 26px;"></i>',
+  width: 720,
+  height: 520,
+  noMenubar: true,
+  noStatusbar: true,
+  showOnDesktop: false,
+  showInStartMenu: true,
+  url: 'apps/paint/index.html'
+});
+
+// 11. RECYCLE_BIN
 AppRegistry.register({
   id: 'RECYCLE_BIN',
   title: 'Thùng rác',
@@ -138,19 +168,61 @@ AppRegistry.register({
   i18nLabelKey: 'app.recycle.label',
   iconUrl: 'assets/icons/trash.svg',
   showInStartMenu: false, // desktop only, like Windows XP
-  width: 500,
-  height: 340,
+  width: 520,
+  height: 360,
   render: (container) => {
     function renderContent() {
-      container.innerHTML = `
-        <div class="app-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #666;">
-          <img src="assets/icons/trash.svg" style="width: 54px; height: 54px; margin-bottom: 12px;" alt="" />
-          <p style="font-size: 13px; font-weight: bold;" data-i18n="app.recycle.empty">${I18n.t('app.recycle.empty')}</p>
-          <p style="font-size: 11px; margin-top: 4px; color: #888;" data-i18n="app.recycle.hint">${I18n.t('app.recycle.hint')}</p>
-        </div>
-      `;
+      const isVi = window.I18n ? I18n.getLanguage() === 'vi' : true;
+      const trash = (window.VFS && VFS.getTrash) ? VFS.getTrash() : [];
+
+      if (trash.length === 0) {
+        container.innerHTML = `
+          <div class="app-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; color: #666;">
+            <img src="assets/icons/trash.svg" style="width: 56px; height: 56px; margin-bottom: 12px;" alt="" />
+            <p style="font-size: 13px; font-weight: bold;">${isVi ? 'Thùng rác trống rỗng.' : 'Recycle Bin is empty.'}</p>
+            <p style="font-size: 11px; margin-top: 4px; color: #888;">${isVi ? '(Không có mục nào bị bỏ lại ở đây)' : '(No items in Recycle Bin)'}</p>
+          </div>
+        `;
+      } else {
+        let itemsHtml = '';
+        trash.forEach(item => {
+          itemsHtml += `
+            <div style="display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-bottom: 1px solid #f0f0f0;">
+              <i class="bi bi-file-earmark-text" style="color: #666; font-size: 18px;"></i>
+              <div style="flex: 1; font-size: 12px;">
+                <b>${item.name}</b>
+                <span style="color: #888; font-size: 10px; margin-left: 8px;">${item.path || ''}</span>
+              </div>
+              <span style="color: #999; font-size: 11px;">${item.deletedAt || ''}</span>
+            </div>
+          `;
+        });
+
+        container.innerHTML = `
+          <div style="display: flex; flex-direction: column; height: 100%; font-family: Tahoma, sans-serif;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ece9d8; border-bottom: 1px solid #999;">
+              <span style="font-size: 12px;"><img src="assets/icons/trash-full.svg" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;" alt="" /><b>${isVi ? 'Thùng rác' : 'Recycle Bin'}</b> (${trash.length} ${isVi ? 'mục đã xóa' : 'items'})</span>
+              <button class="xp-dialog-button" id="btn-empty-recycle-bin" style="padding: 3px 12px; font-size: 11px; cursor: pointer;">
+                <i class="bi bi-trash-fill" style="color: #d13438; margin-right: 4px;"></i>${isVi ? 'Dọn sạch thùng rác' : 'Empty Recycle Bin'}
+              </button>
+            </div>
+            <div style="flex: 1; overflow-y: auto; background: #fff; padding: 8px;">
+              ${itemsHtml}
+            </div>
+          </div>
+        `;
+
+        container.querySelector('#btn-empty-recycle-bin')?.addEventListener('click', () => {
+          if (window.VFS && VFS.emptyTrash) {
+            VFS.emptyTrash();
+            renderContent();
+          }
+        });
+      }
     }
+
     renderContent();
-    I18n.onChange(() => renderContent());
+    if (window.I18n) I18n.onChange(() => renderContent());
+    if (window.VFS && VFS.onChange) VFS.onChange(() => renderContent());
   }
 });

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * My Computer & Drive C: Explorer (15.6 GB of 19.90 GB - OU Founding Date)
+ * My Computer & Drive C: Explorer (25.12 GB of 201.5 GB)
  * ============================================================================
  * Bilingual Support: Vietnamese & English
  */
@@ -85,7 +85,7 @@
             <!-- Statusbar -->
             <div class="window-statusbar">
               <span id="exp-status-left">${isVi ? 'Sẵn sàng' : 'Ready'}</span>
-              <span>15.6 GB of 19.90 GB ${isVi ? 'trống' : 'free'} (OU 15/06/1990)</span>
+              <span>25.12 GB of 201.5 GB ${isVi ? 'trống' : 'free'}</span>
             </div>
           </div>
         `;
@@ -135,12 +135,11 @@
                 <div class="exp-drive-info">
                   <div class="exp-drive-name"><b>${isVi ? 'Ổ đĩa cục bộ (C:)' : 'Local Disk (C:)'}</b></div>
                   <div class="exp-drive-bar-bg">
-                    <div class="exp-drive-bar-fill" style="width: 21.6%;"></div>
+                    <div class="exp-drive-bar-fill" style="width: 87.5%;"></div>
                   </div>
                   <div class="exp-drive-stats">
-                    <span class="ou-easter-text">15.6 GB ${isVi ? 'trống' : 'free'}</span> of 19.90 GB
+                    <span>25.12 GB ${isVi ? 'trống' : 'free'} / 201.5 GB</span>
                   </div>
-                  <div class="ou-badge-hint" title="15/06/1990: Ngày thành lập trường ĐH Mở TP.HCM">🎓 ${isVi ? 'Ngày thành lập OU: 15/06/1990' : 'OU Foundation: 15/06/1990'}</div>
                 </div>
               </div>
             </div>
@@ -181,7 +180,7 @@
             let iconSrc = 'assets/icons/folder.svg';
             if (item.type === 'file') iconSrc = 'assets/icons/notepad.svg';
             else if (item.type === 'exe') iconSrc = 'assets/icons/exe.svg';
-            else if (item.type === 'img') iconSrc = 'assets/icons/folder.svg';
+            else if (item.type === 'img') iconSrc = item.url || 'assets/icons/image-viewer.svg';
             else if (item.type === 'video') iconSrc = 'assets/icons/wmp.svg';
 
             itemsHtml += `
@@ -219,6 +218,11 @@
                 });
               } else if (name === 'JOIN_MPC.exe') {
                 WindowManager.open('JOIN_MPC.exe');
+              } else if (type === 'img' || name.endsWith('.png') || name.endsWith('.jpg') || name.endsWith('.bmp')) {
+                const fullPath = `${currentView}\\${name}`;
+                if (window.ImageViewer && typeof ImageViewer.open === 'function') {
+                  ImageViewer.open(fullPath);
+                }
               } else if (type === 'video' || name.endsWith('.mp4')) {
                 const fullPath = `${currentView}\\${name}`;
                 const node = VFS.getNode(fullPath);
@@ -245,6 +249,9 @@
       renderView();
       if (window.I18n) {
         I18n.onChange(() => renderView());
+      }
+      if (window.VFS && VFS.onChange) {
+        VFS.onChange(() => renderView());
       }
     }
   });

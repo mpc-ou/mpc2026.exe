@@ -5,8 +5,35 @@
    Linked last in each app's <head> so it overrides the app's own styles.
    ========================================================================== */
 
+:root {
+  --cursor-default: url('../../assets/cursors/default.png') 0 0, url('../../assets/cursors/default.svg') 0 0, auto;
+  --cursor-pointer: url('../../assets/cursors/pointer.png') 6 1, url('../../assets/cursors/pointer.svg') 6 1, pointer;
+  --cursor-text: url('../../assets/cursors/text.svg') 8 12, text;
+}
+
+html, body {
+  cursor: var(--cursor-default) !important;
+}
+
+button, a, select, [role="button"], input[type="button"], input[type="submit"], input[type="radio"], input[type="checkbox"], .clickable {
+  cursor: var(--cursor-pointer) !important;
+}
+
+input[type="text"], input[type="search"], input[type="password"], textarea {
+  cursor: var(--cursor-text) !important;
+}
+
 img {
   max-width: 100%;
+}
+
+.act-thumb,
+.photo-thumb,
+.event-thumb,
+.exhibit-card img,
+.entry-img {
+  object-fit: cover !important;
+  object-position: center center !important;
 }
 
 body {
@@ -92,7 +119,8 @@ body {
   }
 
   .photo-thumb {
-    height: 110px !important;
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
   }
 
   .photo-card:hover,

@@ -28,11 +28,7 @@
   filter: grayscale(100%) brightness(0.65) contrast(0.9);
 }
 
-/* Refresh Flash */
-.desktop-container.desktop-refreshing {
-  opacity: 0.7;
-  filter: brightness(1.2);
-}
+
 
 /* Watermark */
 .desktop-watermark {
@@ -61,19 +57,16 @@
 /* Desktop Icons Grid */
 .desktop-icons-area {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  bottom: calc(var(--taskbar-height) + 14px);
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 16px 14px;
+  inset: 0;
+  bottom: var(--taskbar-height);
+  pointer-events: none;
   z-index: 5;
 }
 
 /* Individual Desktop Icon */
 .desktop-icon {
+  position: absolute;
+  pointer-events: auto;
   width: 82px;
   height: 86px;
   display: flex;
@@ -245,4 +238,13 @@
 
 .desktop-icon[data-app-id="winmine.exe"] .desktop-icon-img > i.bi {
   background: linear-gradient(180deg, #7fd36b 0%, #3a9a2c 55%, #26731c 100%);
+}
+
+/* Drag & Swap Hover Feedback */
+.desktop-icon.drag-swap-hover {
+  background-color: rgba(255, 170, 0, 0.35) !important;
+  border-color: #ffaa00 !important;
+  box-shadow: 0 0 10px rgba(255, 170, 0, 0.7);
+  transform: scale(1.08);
+  transition: transform 0.15s, background-color 0.15s;
 }

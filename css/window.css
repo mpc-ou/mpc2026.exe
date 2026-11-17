@@ -232,3 +232,179 @@ body.window-is-resizing iframe {
   background-size: 4px 4px;
   background-position: 100% 100%;
 }
+
+/* ==========================================================================
+   Windows XP Authentic Modal Dialog (XPDialog MessageBox)
+   ========================================================================== */
+.xp-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-dialog-box {
+  background-color: #ece9d8;
+  border: 3px solid #0055ea;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  box-shadow: 2px 4px 20px rgba(0, 0, 0, 0.5);
+  width: 420px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+  font-size: 11px;
+}
+
+.xp-dialog-titlebar {
+  height: 28px;
+  background: var(--xp-blue-active-title);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px 0 8px;
+  user-select: none;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  cursor: grab;
+}
+
+.xp-dialog-titlebar:active {
+  cursor: grabbing;
+}
+
+.xp-dialog-title-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: bold;
+  font-size: 11px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.xp-dialog-close-btn {
+  width: 21px;
+  height: 21px;
+  background: linear-gradient(180deg, #e7674e 0%, #d6371a 50%, #aa1a04 100%);
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  line-height: 1;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.xp-dialog-close-btn:hover {
+  filter: brightness(1.2);
+}
+
+.xp-dialog-panel {
+  background-color: #fdfdfb;
+  border: 1px solid #7f9db9;
+  margin: 12px 12px 0 12px;
+  padding: 16px;
+  border-radius: 3px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.xp-dialog-icon-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.xp-dialog-content-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.xp-dialog-message {
+  color: #000000;
+  font-size: 11px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.xp-dialog-input {
+  height: 22px;
+  border: 1px solid #7f9db9;
+  padding: 0 6px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  width: 100%;
+  outline: none;
+  margin-top: 4px;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.xp-dialog-input:focus {
+  border-color: #0055ea;
+}
+
+.xp-dialog-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #333333;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+.xp-dialog-button-row {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.xp-dialog-button {
+  min-width: 75px;
+  height: 23px;
+  padding: 0 14px;
+  background: linear-gradient(180deg, #f7f6f0 0%, #ece9d8 100%);
+  border: 1px solid #003c74;
+  border-radius: 3px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 0 #ffffff;
+}
+
+.xp-dialog-button:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #e8e6d8 100%);
+  border-color: #316ac5;
+}
+
+.xp-dialog-button:active {
+  background: #ddd9c4;
+  box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.xp-dialog-button.primary {
+  outline: 1px dotted #000000;
+  outline-offset: -3px;
+}
