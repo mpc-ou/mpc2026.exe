@@ -42,8 +42,61 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding: 12px !important;
-    font-size: 15px !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+  }
+
+  /* Prevent button text wrapping into multiple broken lines */
+  button,
+  .xp-btn,
+  .xp-more-btn,
+  .cat-btn,
+  .tag-btn,
+  .team-nav-btn,
+  .cta-btn,
+  .xp-btn-cta,
+  .xp-tab-btn,
+  .xp-view-btn {
+    white-space: nowrap !important;
+    box-sizing: border-box;
+  }
+
+  /* Shared action footers and callout cards */
+  .wizard-footer,
+  .form-footer,
+  .xp-more-card,
+  .cta-box,
+  .launch-banner {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    min-height: 48px;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+  }
+
+  .wizard-footer > div,
+  .form-footer > div {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .wizard-footer .xp-btn,
+  .form-footer .xp-btn,
+  .cta-box .cta-btn,
+  .launch-banner .xp-btn,
+  .xp-more-card .xp-more-btn,
+  .xp-btn-cta {
+    min-height: 34px !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+  }
+
+  .wizard-footer > div .xp-btn,
+  .form-footer > div .xp-btn {
+    flex: 1;
+    justify-content: center;
   }
 
   /* Headings */

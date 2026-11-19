@@ -271,6 +271,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .xp-btn-cta:hover {
       background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
@@ -324,6 +326,15 @@
       .xp-main { flex-direction: column; }
       .xp-sidebar { width: 100%; max-height: 155px; }
       .skills-grid { grid-template-columns: 1fr; }
+      .teams-cta-box {
+        flex-direction: column;
+        align-items: stretch !important;
+      }
+      .teams-cta-box .xp-btn-cta {
+        width: 100%;
+        justify-content: center;
+        height: 34px;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
@@ -578,10 +589,10 @@
           </ul>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 12px; flex-wrap:wrap; gap:8px;">
+        <div class="teams-cta-box" style="display:flex; justify-content:space-between; align-items:center; margin-top: 12px; flex-wrap:wrap; gap:8px;">
           <span style="font-size:11px; color:#555;">${vi ? 'Bạn muốn đồng hành cùng bộ phận này? Hãy đăng ký ứng tuyển ngay nhé!' : 'Ready to join this department? Apply now!'}</span>
           <button class="xp-btn-cta" id="btn-apply-now">
-            <i class="bi bi-rocket-takeoff-fill"></i> ${vi ? 'Đăng ký ứng tuyển (JOIN_MPC.exe)' : 'Apply now (JOIN_MPC.exe)'}
+            <i class="bi bi-rocket-takeoff-fill"></i> ${vi ? 'Điền đơn ngay ▸' : 'Apply now ▸'}
           </button>
         </div>
       `;

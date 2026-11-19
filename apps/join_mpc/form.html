@@ -246,6 +246,8 @@
       gap: 5px;
       color: #000;
       text-decoration: none;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .xp-btn:hover {
       background: #f5f3e8;
@@ -263,6 +265,39 @@
 
     @media (max-width: 640px) {
       .grid-2 { grid-template-columns: 1fr; }
+      .form-footer {
+        flex-direction: column-reverse;
+        align-items: stretch;
+        gap: 8px;
+        padding: 8px 10px;
+      }
+      .form-footer .footer-note {
+        text-align: center;
+        font-size: 10.5px;
+      }
+      .form-footer .footer-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+      .form-footer .footer-actions .xp-btn {
+        flex: 1;
+        height: 34px;
+        font-size: 12px;
+        white-space: nowrap;
+        justify-content: center;
+      }
+      .url-preview-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+      }
+      .url-preview-row .xp-btn {
+        width: 100%;
+        height: 30px;
+        white-space: nowrap;
+        justify-content: center;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
@@ -599,11 +634,11 @@
 
   <!-- Footer -->
   <div class="form-footer">
-    <span style="font-size:11px; color:#333;" data-vi="💡 Nội dung được tự động lưu nháp trên trình duyệt và chuyển thẳng sang biểu mẫu Google Form." data-en="💡 Your draft is saved automatically in the browser and passed directly to Google Form.">💡 Nội dung được tự động lưu nháp trên trình duyệt và chuyển thẳng sang biểu mẫu Google Form.</span>
-    <div style="display:flex; gap:8px;">
-      <button type="button" class="xp-btn" id="btn-close-win" data-vi="Đóng cửa sổ" data-en="Close window">Đóng cửa sổ</button>
+    <div class="footer-note" style="font-size:11px; color:#333;" data-vi="💡 Nội dung được tự động lưu nháp và nộp qua biểu mẫu Google Form (@ou.edu.vn)." data-en="💡 Auto-saved draft, submitted directly to Google Form (@ou.edu.vn).">💡 Nội dung được tự động lưu nháp và nộp qua biểu mẫu Google Form (@ou.edu.vn).</div>
+    <div class="footer-actions" style="display:flex; gap:8px;">
+      <button type="button" class="xp-btn" id="btn-close-win" data-vi="Đóng" data-en="Close">Đóng</button>
       <a class="xp-btn primary" id="btn-submit-google-form" href="#" target="_blank" rel="noopener">
-        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Mở biểu mẫu Google Form đã điền sẵn" data-en="Open pre-filled Google Form">Mở biểu mẫu Google Form đã điền sẵn</span> <i class="bi bi-box-arrow-up-right"></i>
+        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Mở Google Form ứng tuyển" data-en="Open Google Form">Mở Google Form ứng tuyển</span> <i class="bi bi-box-arrow-up-right"></i>
       </a>
     </div>
   </div>

@@ -220,6 +220,8 @@
       gap: 5px;
       color: #000;
       text-decoration: none;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .xp-btn:hover {
       background: #f5f3e8;
@@ -237,7 +239,40 @@
 
     @media (max-width: 680px) {
       .wizard-sidebar { display: none; }
-      .steps-grid { grid-template-columns: 1fr 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .wizard-footer {
+        height: auto;
+        min-height: 48px;
+        padding: 8px 10px;
+        flex-direction: column-reverse;
+        gap: 8px;
+        align-items: stretch;
+      }
+      .wizard-footer-contact {
+        text-align: center;
+        font-size: 10.5px;
+      }
+      .wizard-footer-actions {
+        display: flex;
+        gap: 8px;
+        width: 100%;
+      }
+      .wizard-footer-actions .xp-btn {
+        flex: 1;
+        height: 34px;
+        font-size: 12px;
+        white-space: nowrap;
+        justify-content: center;
+      }
+      .launch-banner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .launch-banner .xp-btn {
+        width: 100%;
+        height: 34px;
+        justify-content: center;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
@@ -314,7 +349,7 @@
           <div class="launch-sub" data-vi="Điền trước các câu hỏi ứng tuyển ngay trên cửa sổ này để hệ thống tự động chuyển toàn bộ nội dung sang biểu mẫu Google Form bằng tài khoản trường (@ou.edu.vn)." data-en="Complete the recruitment questions directly inside the form window to automatically open a pre-filled Google Form using your university account (@ou.edu.vn).">Điền trước các câu hỏi ứng tuyển ngay trên cửa sổ này để hệ thống tự động chuyển toàn bộ nội dung sang biểu mẫu Google Form bằng tài khoản trường (@ou.edu.vn).</div>
         </div>
         <button class="xp-btn primary" id="btn-open-form-win">
-          <i class="bi bi-pencil-square"></i> <span data-vi="Điền biểu mẫu trên web" data-en="Fill form on web">Điền biểu mẫu trên web</span>
+          <i class="bi bi-pencil-square"></i> <span data-vi="Điền đơn ngay" data-en="Apply now">Điền đơn ngay</span>
         </button>
       </div>
 
@@ -323,11 +358,11 @@
 
   <!-- Footer -->
   <div class="wizard-footer">
-    <span style="font-size:11px; color:#444;">Email: <strong>it.mpclub@ou.edu.vn</strong> • Website: <strong>mpclub.dev</strong></span>
-    <div style="display:flex; gap:8px;">
+    <div class="wizard-footer-contact" style="font-size:11px; color:#444;">Email: <strong>it.mpclub@ou.edu.vn</strong> • Website: <strong>mpclub.dev</strong></div>
+    <div class="wizard-footer-actions" style="display:flex; gap:8px;">
       <button class="xp-btn" id="btn-cancel" data-vi="Đóng" data-en="Close">Đóng</button>
       <button class="xp-btn primary" id="btn-footer-open-form">
-        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Bắt đầu điền đơn ứng tuyển ▸" data-en="Start application form ▸">Bắt đầu điền đơn ứng tuyển ▸</span>
+        <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Điền đơn ngay ▸" data-en="Apply now ▸">Điền đơn ngay ▸</span>
       </button>
     </div>
   </div>
