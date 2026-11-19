@@ -2,17 +2,25 @@
   {
     "name": "Phan Gia Huy",
     "username": "pgiahuy",
-    "avatar": "https://github.com/pgiahuy.png",
-    "commits": 26,
+    "avatar": "https://avatars.githubusercontent.com/u/152808787?v=4",
+    "commits": 6,
     "role": "Lead Architect & Developer",
     "profile": "https://github.com/pgiahuy"
   },
   {
     "name": "Nguyễn Thanh Triều",
     "username": "konnn04",
-    "avatar": "https://github.com/konnn04.png",
-    "commits": 3,
+    "avatar": "https://avatars.githubusercontent.com/u/85620049?v=4",
+    "commits": 5,
     "role": "Trưởng Ban Lập Trình (BLT)",
     "profile": "https://github.com/konnn04"
+  },
+  {
+    "name": "github-actions[bot]",
+    "username": "github-actions[bot]",
+    "avatar": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "commits": 1,
+    "role": "Contributor",
+    "profile": "https://github.com/apps/github-actions"
   }
 ]
