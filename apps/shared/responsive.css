@@ -42,8 +42,108 @@ body {
 
 @media (max-width: 600px) {
   body {
-    padding: 12px !important;
-    font-size: 15px !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+  }
+
+  /* Prevent button text wrapping into multiple broken lines */
+  button,
+  .xp-btn,
+  .xp-more-btn,
+  .cat-btn,
+  .tag-btn,
+  .team-nav-btn,
+  .cta-btn,
+  .xp-btn-cta,
+  .xp-tab-btn,
+  .xp-view-btn {
+    white-space: nowrap !important;
+    box-sizing: border-box;
+  }
+
+  /* Prevent any horizontal overflow on mobile inside apps */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+
+  .wizard-main,
+  .wizard-content,
+  .xp-workspace,
+  .xp-content,
+  .xp-main {
+    overflow-x: hidden !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Shared action footers */
+  .wizard-footer,
+  .form-footer {
+    flex-wrap: wrap !important;
+    height: auto !important;
+    min-height: 48px;
+    gap: 8px !important;
+    padding: 8px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .wizard-footer > div,
+  .form-footer > div {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .wizard-footer .xp-btn,
+  .form-footer .xp-btn {
+    flex: 1;
+    min-height: 34px !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+  }
+
+  /* Shared callout banners: stack vertically and make buttons full-width */
+  .launch-banner,
+  .cta-box,
+  .xp-more-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+    height: auto !important;
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+  }
+
+  .launch-banner .launch-info,
+  .cta-box > div,
+  .xp-more-card .xp-more-info {
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .launch-banner .xp-btn,
+  .cta-box .cta-btn,
+  .xp-more-card .xp-more-btn {
+    width: 100% !important;
+    min-height: 34px !important;
+    height: auto !important;
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hide decorative statusbars on mobile to prevent text collision and overlapping */
+  .xp-statusbar,
+  .statusbar {
+    display: none !important;
   }
 
   /* Headings */

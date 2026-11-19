@@ -90,7 +90,7 @@
             <span class="wmp-menu-btn" id="wmp-m-tools">Tools</span>
             <span class="wmp-menu-btn" id="wmp-m-help">Help</span>
             <div style="flex: 1;"></div>
-            <button class="wmp-open-file-btn" id="wmp-open-file-btn" style="background:#2062dc;color:#fff;border:1px solid #7f9db9;padding:1px 6px;font-size:10px;cursor:pointer;">
+            <button class="wmp-open-file-btn" id="wmp-open-file-btn" style="background:#2062dc;color:#fff;border:1px solid #7f9db9;padding:1px 6px;font-size:10px;cursor:pointer;white-space:nowrap;">
               <i class="bi bi-folder2-open"></i> Open File...
             </button>
             <input type="file" id="wmp-hidden-file-input" accept="video/*,audio/*" style="display:none;" />
@@ -392,7 +392,8 @@
 
       // Toggle Playlist Sidebar
       togglePlBtn.addEventListener('click', () => {
-        const isHidden = playlistPanel.style.display === 'none';
+        const computedDisplay = window.getComputedStyle(playlistPanel).display;
+        const isHidden = computedDisplay === 'none';
         playlistPanel.style.display = isHidden ? 'flex' : 'none';
       });
 

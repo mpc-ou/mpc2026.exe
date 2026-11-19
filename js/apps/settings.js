@@ -179,14 +179,14 @@
               </div>
 
               <!-- Dialog Bottom Buttons -->
-              <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; flex-shrink: 0;">
-                <button id="setting-btn-ok" style="min-width: 72px; height: 24px; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-weight: bold; font-family: Tahoma, sans-serif; font-size: 11px;">
+              <div style="display: flex; justify-content: flex-end; gap: 8px; margin-top: 10px; flex-shrink: 0; flex-wrap: wrap;">
+                <button id="setting-btn-ok" style="min-width: 72px; height: 26px; white-space: nowrap; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-weight: bold; font-family: Tahoma, sans-serif; font-size: 11px;">
                   ${isVi ? 'Đồng ý' : 'OK'}
                 </button>
-                <button id="setting-btn-cancel" style="min-width: 72px; height: 24px; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-family: Tahoma, sans-serif; font-size: 11px;">
+                <button id="setting-btn-cancel" style="min-width: 72px; height: 26px; white-space: nowrap; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-family: Tahoma, sans-serif; font-size: 11px;">
                   ${isVi ? 'Hủy bỏ' : 'Cancel'}
                 </button>
-                <button id="setting-btn-apply" style="min-width: 72px; height: 24px; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-family: Tahoma, sans-serif; font-size: 11px;">
+                <button id="setting-btn-apply" style="min-width: 72px; height: 26px; white-space: nowrap; background: #ece9d8; border: 1px solid #716f64; border-radius: 2px; cursor: pointer; font-family: Tahoma, sans-serif; font-size: 11px;">
                   ${isVi ? 'Áp dụng' : 'Apply'}
                 </button>
               </div>

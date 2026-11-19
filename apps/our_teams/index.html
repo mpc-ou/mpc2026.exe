@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -271,6 +271,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
     .xp-btn-cta:hover {
       background: linear-gradient(180deg, #ff944d 0%, #ff6600 100%);
@@ -321,9 +323,118 @@
     }
 
     @media (max-width: 650px) {
-      .xp-main { flex-direction: column; }
-      .xp-sidebar { width: 100%; max-height: 155px; }
-      .skills-grid { grid-template-columns: 1fr; }
+      .xp-toolbar {
+        padding: 6px 10px;
+        gap: 6px;
+      }
+      .xp-toolbar-title {
+        font-size: 11.5px;
+        width: 100%;
+        margin-bottom: 2px;
+      }
+      .xp-toolbar-actions {
+        width: 100%;
+        display: flex;
+        gap: 6px;
+      }
+      .xp-view-btn {
+        flex: 1;
+        text-align: center;
+        padding: 6px 4px;
+        font-size: 11px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .xp-address-bar {
+        padding: 3px 8px;
+        font-size: 10.5px;
+      }
+
+      .xp-main {
+        flex-direction: column;
+      }
+
+      /* Horizontal pill bar for departments on mobile instead of tall accordion */
+      .xp-sidebar {
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        padding: 6px 8px !important;
+        background: #d6dff7 !important;
+        border-right: none !important;
+        border-bottom: 1px solid #7f9db9 !important;
+        flex-shrink: 0 !important;
+        overflow-y: hidden !important;
+        overflow-x: auto !important;
+      }
+      .xp-sidebar .xp-task-box {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+      }
+      .xp-sidebar .xp-task-header {
+        display: none !important;
+      }
+      .xp-sidebar .xp-task-box:nth-child(2),
+      .xp-sidebar .xp-task-box:nth-child(3) {
+        display: none !important;
+      }
+      .xp-sidebar #teams-nav {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        padding: 0 !important;
+        scrollbar-width: none !important;
+      }
+      .xp-sidebar #teams-nav::-webkit-scrollbar {
+        display: none !important;
+      }
+      .xp-sidebar .team-nav-btn {
+        flex-shrink: 0 !important;
+        min-height: 32px !important;
+        padding: 4px 10px !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+        background: #ffffff !important;
+        border: 1px solid #7f9db9 !important;
+        border-radius: 3px !important;
+        color: #003399 !important;
+      }
+      .xp-sidebar .team-nav-btn.active {
+        background: #316ac5 !important;
+        color: #ffffff !important;
+        border-color: #002266 !important;
+      }
+
+      .xp-content {
+        padding: 10px 12px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .teams-cta-box {
+        flex-direction: column;
+        align-items: stretch !important;
+      }
+      .teams-cta-box .xp-btn-cta {
+        width: 100%;
+        justify-content: center;
+        height: 34px;
+      }
+
+      /* Hide statusbar on mobile to completely prevent overlapping text collision */
+      .xp-statusbar {
+        display: none !important;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
@@ -338,7 +449,7 @@
     </div>
     <div class="xp-toolbar-actions">
       <button class="xp-view-btn active" data-view="view-depts" data-vi="🏢 4 bộ phận chuyên môn" data-en="🏢 4 departments">🏢 4 bộ phận chuyên môn</button>
-      <button class="xp-view-btn" data-view="view-board" data-vi="🎖️ Ban Chủ nhiệm 2025 – 2026" data-en="🎖️ Executive Board 2025 – 2026">🎖️ Ban Chủ nhiệm 2025 – 2026</button>
+      <button class="xp-view-btn" data-view="view-board" data-vi="🎖️ Ban Chủ nhiệm" data-en="🎖️ Executive Board">🎖️ Ban Chủ nhiệm</button>
     </div>
   </div>
 
@@ -492,6 +603,10 @@
       document.querySelectorAll('.view-section').forEach(s => {
         s.classList.toggle('active', s.id === viewId);
       });
+      const sidebar = document.querySelector('.xp-sidebar');
+      if (sidebar && window.innerWidth <= 650) {
+        sidebar.style.display = viewId === 'view-board' ? 'none' : 'block';
+      }
     }
 
     document.querySelectorAll('.xp-view-btn').forEach(btn => {
@@ -578,10 +693,10 @@
           </ul>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 12px; flex-wrap:wrap; gap:8px;">
+        <div class="teams-cta-box" style="display:flex; justify-content:space-between; align-items:center; margin-top: 12px; flex-wrap:wrap; gap:8px;">
           <span style="font-size:11px; color:#555;">${vi ? 'Bạn muốn đồng hành cùng bộ phận này? Hãy đăng ký ứng tuyển ngay nhé!' : 'Ready to join this department? Apply now!'}</span>
           <button class="xp-btn-cta" id="btn-apply-now">
-            <i class="bi bi-rocket-takeoff-fill"></i> ${vi ? 'Đăng ký ứng tuyển (JOIN_MPC.exe)' : 'Apply now (JOIN_MPC.exe)'}
+            <i class="bi bi-rocket-takeoff-fill"></i> ${vi ? 'Điền đơn ngay ▸' : 'Apply now ▸'}
           </button>
         </div>
       `;

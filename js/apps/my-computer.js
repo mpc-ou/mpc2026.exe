@@ -164,6 +164,11 @@
             </div>
           `;
 
+          grid.querySelector('#drive-c-item')?.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+              navigateTo('C:\\');
+            }
+          });
           grid.querySelector('#drive-c-item')?.addEventListener('dblclick', () => {
             navigateTo('C:\\');
           });
@@ -197,7 +202,7 @@
             const name = itemEl.dataset.name;
             const type = itemEl.dataset.type;
 
-            itemEl.addEventListener('dblclick', () => {
+            function openItemTarget() {
               if (type === 'dir') {
                 const newPath = currentView === 'C:' || currentView === 'C:\\'
                   ? `C:\\${name}`
@@ -233,7 +238,14 @@
                   WindowManager.open('wmplayer.exe');
                 }
               }
+            }
+
+            itemEl.addEventListener('click', () => {
+              if (window.innerWidth <= 768) {
+                openItemTarget();
+              }
             });
+            itemEl.addEventListener('dblclick', openItemTarget);
           });
         }
       }

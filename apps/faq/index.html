@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -246,6 +246,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      white-space: nowrap;
+      box-sizing: border-box;
     }
 
     .xp-statusbar {
@@ -264,6 +266,16 @@
     @media (max-width: 640px) {
       .xp-main { flex-direction: column; }
       .xp-sidebar { width: auto; margin: 6px 8px 0 8px; max-height: 140px; }
+      .cta-box {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .cta-box .cta-btn {
+        width: 100%;
+        justify-content: center;
+        height: 34px;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
@@ -317,7 +329,7 @@
           <div style="font-size:11px; color:#444;" data-vi="Câu lạc bộ không yêu cầu biết lập trình từ trước. Hãy mở ứng dụng JOIN_MPC.exe để đăng ký ngay nhé!" data-en="No prior coding experience required. Open JOIN_MPC.exe to submit your application!">Câu lạc bộ không yêu cầu biết lập trình từ trước. Hãy mở ứng dụng JOIN_MPC.exe để đăng ký ngay nhé!</div>
         </div>
         <button class="cta-btn" id="btn-apply-cta">
-          <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Mở JOIN_MPC.exe để đăng ký" data-en="Open JOIN_MPC.exe to apply">Mở JOIN_MPC.exe để đăng ký</span>
+          <i class="bi bi-rocket-takeoff-fill"></i> <span data-vi="Điền đơn ngay ▸" data-en="Apply now ▸">Điền đơn ngay ▸</span>
         </button>
       </div>
     </div>

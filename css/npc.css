@@ -558,6 +558,18 @@
   }
 }
 
+/* Mobile screens */
+@media (max-width: 640px) {
+  /* On mobile portrait, hide compact mascot when an app window is open to avoid obscuring action buttons */
+  .npc.compact {
+    display: none !important;
+  }
+
+  .npc:not(.compact) .npc-body {
+    width: 120px;
+  }
+}
+
 /* Large screens */
 @media (min-width: 1600px) {
   .npc-body {

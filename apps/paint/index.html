@@ -207,6 +207,28 @@
       display: flex;
       align-items: center;
     }
+
+    @media (max-width: 600px) {
+      .paint-menubar {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+      }
+      .paint-menubar::-webkit-scrollbar {
+        display: none;
+      }
+      .paint-menu-item {
+        white-space: nowrap;
+      }
+      .paint-palette-bar {
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+      }
+      .paint-palette-bar::-webkit-scrollbar {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>

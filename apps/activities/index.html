@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -319,6 +319,23 @@
       font-size: 11px;
       color: #333;
       flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      .xp-tab-btn {
+        white-space: nowrap;
+        font-size: 10.5px;
+        padding: 3px 6px;
+      }
+      .tag-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+      }
+      .tag-filters .tag-btn {
+        flex-shrink: 0;
+        white-space: nowrap;
+      }
     }
   </style>
   <link rel="stylesheet" href="../shared/responsive.css">
