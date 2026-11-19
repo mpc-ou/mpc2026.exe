@@ -200,9 +200,9 @@ AppRegistry.register({
 
         container.innerHTML = `
           <div style="display: flex; flex-direction: column; height: 100%; font-family: Tahoma, sans-serif;">
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ece9d8; border-bottom: 1px solid #999;">
-              <span style="font-size: 12px;"><img src="assets/icons/trash-full.svg" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;" alt="" /><b>${isVi ? 'Thùng rác' : 'Recycle Bin'}</b> (${trash.length} ${isVi ? 'mục đã xóa' : 'items'})</span>
-              <button class="xp-dialog-button" id="btn-empty-recycle-bin" style="padding: 3px 12px; font-size: 11px; cursor: pointer;">
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: #ece9d8; border-bottom: 1px solid #999; flex-wrap: wrap; gap: 6px;">
+              <span style="font-size: 12px; white-space: nowrap;"><img src="assets/icons/trash-full.svg" style="width: 20px; height: 20px; vertical-align: middle; margin-right: 6px;" alt="" /><b>${isVi ? 'Thùng rác' : 'Recycle Bin'}</b> (${trash.length} ${isVi ? 'mục đã xóa' : 'items'})</span>
+              <button class="xp-dialog-button" id="btn-empty-recycle-bin" style="padding: 3px 12px; font-size: 11px; cursor: pointer; white-space: nowrap;">
                 <i class="bi bi-trash-fill" style="color: #d13438; margin-right: 4px;"></i>${isVi ? 'Dọn sạch thùng rác' : 'Empty Recycle Bin'}
               </button>
             </div>
