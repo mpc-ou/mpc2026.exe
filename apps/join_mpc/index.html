@@ -238,40 +238,59 @@
     }
 
     @media (max-width: 680px) {
-      .wizard-sidebar { display: none; }
-      .steps-grid { grid-template-columns: 1fr; }
+      .wizard-sidebar { display: none !important; }
+      .steps-grid { grid-template-columns: 1fr !important; }
+      .wizard-content {
+        overflow-x: hidden !important;
+        padding: 8px 10px !important;
+        box-sizing: border-box !important;
+      }
+      .xp-box,
+      .benefits-highlight,
+      .launch-banner {
+        box-sizing: border-box !important;
+        max-width: 100% !important;
+        word-break: break-word !important;
+      }
+      .launch-banner {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+      }
+      .launch-info {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+      .launch-banner .xp-btn {
+        width: 100% !important;
+        height: 34px !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+      }
       .wizard-footer {
-        height: auto;
-        min-height: 48px;
-        padding: 8px 10px;
-        flex-direction: column-reverse;
-        gap: 8px;
-        align-items: stretch;
+        height: auto !important;
+        min-height: 48px !important;
+        padding: 8px 10px !important;
+        flex-direction: column-reverse !important;
+        gap: 8px !important;
+        align-items: stretch !important;
+        box-sizing: border-box !important;
       }
       .wizard-footer-contact {
         text-align: center;
         font-size: 10.5px;
       }
       .wizard-footer-actions {
-        display: flex;
-        gap: 8px;
-        width: 100%;
+        display: flex !important;
+        gap: 8px !important;
+        width: 100% !important;
       }
       .wizard-footer-actions .xp-btn {
-        flex: 1;
-        height: 34px;
-        font-size: 12px;
-        white-space: nowrap;
-        justify-content: center;
-      }
-      .launch-banner {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .launch-banner .xp-btn {
-        width: 100%;
-        height: 34px;
-        justify-content: center;
+        flex: 1 !important;
+        height: 34px !important;
+        font-size: 12px !important;
+        white-space: nowrap !important;
+        justify-content: center !important;
       }
     }
   </style>
